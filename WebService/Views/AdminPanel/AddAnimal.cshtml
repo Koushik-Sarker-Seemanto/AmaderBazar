@@ -1,0 +1,68 @@
+@model Models.AdminModels.LiveAnimalViewModel;
+
+@{
+    ViewData["Title"] = "Add Animal";
+}
+
+
+<div class="container m-auto">
+    <div class="m-auto col-lg-9 p-5 bg-white">
+        <h1 class="d-flex justify-content-center">Add Animal</h1>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger alert alert-danger"})
+        <form id="registerForm" asp-action="AddAnimal" class="" autocomplete="off">
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input asp-for="Title" class="form-control" id="title" placeholder="Enter Animal Title">
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input asp-for="Price" class="form-control" id="price" placeholder="Enter Price">
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="category">Category</label>
+                @*<select asp-for="Category" class="form-control" id="category" placeholder="Select Category">
+                    
+                </select>*@
+                <select asp-for="Category" class="form-control" id="category" asp-items="@(new SelectList(@ViewBag.Categories,"Id","Name"))">
+                    <option disabled selected value=""> -- Please Select -- </option>
+                </select>
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label for="specialityIds">Speciality Ids</label>
+                <select asp-for="SpecialityIds" multiple="multiple" class="form-control chosen-select" id="specialityIds" asp-items="@(new MultiSelectList(@ViewBag.specialityList,"ItemId","Name"))">
+                    <option disabled selected value=""> -- Please Select -- </option>
+                </select>
+                <span asp-validation-for="SpecialityIds" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label for="origin">Origin</label>
+                <input asp-for="Origin" class="form-control" id="origin" placeholder="Enter Origin">
+                <span asp-validation-for="Origin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="color">Color</label>
+                <input asp-for="Color" class="form-control" id="color" placeholder="Enter Color">
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input asp-for="Location" class="form-control" id="location" placeholder="Enter Location">
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input asp-for="Description" class="form-control" id="description" placeholder="Enter Description">
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-block btn-success m-b-20" type="submit">Add Animal</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>

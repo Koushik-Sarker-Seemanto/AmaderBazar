@@ -1,0 +1,22 @@
+@model Models.Entities.Category;
+@{
+    ViewData["Title"] = "Admin Panel";
+}
+
+
+<div class="container m-auto">
+    <div>
+        <form asp-action="AddCategory" asp-controller="AdminPanel" >
+            <div class="form-group">
+                <label for="categoryName">Category Name</label>
+                <input asp-for="Name" class="form-control" id="categoryName" placeholder="Enter Category Name">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-block btn-success m-b-20" type="submit">Add Category</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>

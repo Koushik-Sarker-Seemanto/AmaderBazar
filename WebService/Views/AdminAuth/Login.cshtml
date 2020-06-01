@@ -1,0 +1,29 @@
+@model Models.AdminModels.LoginViewModel;
+@{
+    ViewData["Title"] = "Login Page";
+}
+
+<div class="container m-auto">
+    <div class="m-auto col-lg-9 p-5 bg-white">
+        <h1 class="d-flex justify-content-center">Login Form</h1>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger alert alert-danger"})
+        <form id="loginForm" asp-action="Login" class="" autocomplete="off">
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input asp-for="Username" class="form-control" id="username" placeholder="Enter Username">
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input asp-for="Password" type="password" class="form-control" id="password" placeholder="Password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-block btn-success m-b-20" type="submit">sign in</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>
