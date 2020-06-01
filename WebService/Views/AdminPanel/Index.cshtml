@@ -15,6 +15,7 @@
                     <td class="text-center font-weight-bold">Price</td>
                     <td class="text-center font-weight-bold">Origin</td>
                     <td class="text-center font-weight-bold">Location</td>
+                    <td class="text-center font-weight-bold">Sold</td>
                     <td class="text-center font-weight-bold">Color</td>
                     <td class="text-center font-weight-bold">Action</td>
                 </tr>
@@ -27,28 +28,75 @@
                         foreach (var item in Model.LiveAnimalList)
                         {
                             <tr>
-                                <td class="text-center">
-                                    @item.Title
-                                </td>
-                                <td class="text-center">
-                                    @item.Category.Name
-                                </td>
-                                <td class="text-center">
-                                    @item.Price
-                                </td>
-                                <td class="text-center">
-                                    @item.Origin
-                                </td>
-                                <td class="text-center">
-                                    @item.Location
-                                </td>
-                                <td class="text-center">
-                                    @item.Color
-                                </td>
-                                <td class="text-center">
-                                    @Html.ActionLink("Details", "AnimalDetails", "AdminPanel", new { itemId = item.Id }, new { @class = "btn btn-success mr-2" })
-                                    @Html.ActionLink("Delete", "AnimalDelete", "AdminPanel", new { itemId = item.Id }, new { @class = "btn btn-danger" })
-                                </td>
+                                @{
+                                    if (item.Title != null)
+                                    {
+                                        <td class="text-center">@item.Title</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (item.Category != null)
+                                    {
+                                        <td class="text-center">@item.Category.Name</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (!double.IsNaN(item.Price))
+                                    {
+                                        <td class="text-center">@item.Price</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (item.Origin != null)
+                                    {
+                                        <td class="text-center">@item.Origin</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (item.Location != null)
+                                    {
+                                        <td class="text-center">@item.Location</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (item.Sold != null)
+                                    {
+                                        <td class="text-center">@item.Sold</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (item.Color != null)
+                                    {
+                                        <td class="text-center">@item.Color</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (item.Id != null)
+                                    {
+                                        <td class="text-center">
+                                            @Html.ActionLink("Details", "AnimalDetails", "AdminPanel", new {itemId = item.Id}, new {@class = "btn btn-success mr-2"})
+                                            @Html.ActionLink("Delete", "AnimalDelete", "AdminPanel", new {itemId = item.Id}, new {@class = "btn btn-danger"})
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                }
                             </tr>
                         }
                     }
@@ -56,7 +104,6 @@
                     {
                         <td> No data found!!!</td>
                     }
-            
                 }
                 </tbody>
             

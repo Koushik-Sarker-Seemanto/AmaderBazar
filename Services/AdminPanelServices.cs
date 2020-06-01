@@ -14,7 +14,6 @@ namespace Services
     {
         private readonly IMongoRepository _repository;
         private readonly ILogger<AdminPanelServices> _logger;
-        private IAdminPanelServices _adminPanelServicesImplementation;
 
         public AdminPanelServices(IMongoRepository repository, ILogger<AdminPanelServices> logger)
         {
@@ -86,9 +85,11 @@ namespace Services
             try
             {
                 var animals =  await _repository.GetItemsAsync<LiveAnimal>();
+                var list = animals?.ToList();
+                list?.Reverse();            // New Element upward.
                 var response = new AdminIndexViewModel
                 {
-                    LiveAnimalList = animals?.ToList(),
+                    LiveAnimalList = list,
                 };
                 return response;
             }
