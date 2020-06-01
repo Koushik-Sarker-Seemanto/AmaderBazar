@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Repositories;
+using Services;
+using Services.Contracts;
 
 namespace WebService
 {
@@ -30,8 +33,19 @@ namespace WebService
             
             services.AddSingleton<IDatabaseSettings>(sp => 
                 sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
+            
+            //authentication configure
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/AdminAuth/Login";
+                    options.AccessDeniedPath = "/Auth/Forbidden/";
+                    options.Cookie.Name = "UserLoginCookie";
+                });
 
             services.AddSingleton<IMongoRepository, MongoRepository>();
+
+            services.AddSingleton<IUserServices, UserServices>();
             
             services.AddControllersWithViews();
         }
@@ -53,6 +67,8 @@ namespace WebService
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
