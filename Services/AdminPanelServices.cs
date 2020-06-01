@@ -143,5 +143,30 @@ namespace Services
                 return false;
             }
         }
+
+        public async Task<bool> SellAnimal(string itemId)
+        {
+            try
+            {
+                var result = await _repository.GetItemAsync<LiveAnimal>(e => e.Id == itemId);
+                if (result == null)
+                {
+                    return false;
+                }
+                if (result.Sold)
+                {
+                    _logger.LogInformation($"SellAnimal: Already Sold.");
+                    return false;
+                }
+                result.Sold = true;
+                await _repository.UpdateAsync<LiveAnimal>(e => e.Id == result.Id, result);
+                return true;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"GetAnimalDetails Failed: {e.Message}");
+                return false;
+            }
+        }
     }
 }

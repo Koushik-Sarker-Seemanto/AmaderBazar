@@ -28,7 +28,7 @@ namespace WebService.Controllers
         public async Task<IActionResult> Index(int? page)
         {
             AdminIndexViewModel results = await _adminPanelServices.GetAnimalList();
-            var list = results.LiveAnimalList.ToPagedList(page ?? 1, 1);
+            var list = results.LiveAnimalList.ToPagedList(page ?? 1, 10);
             return View(list);
         }
 
@@ -122,6 +122,16 @@ namespace WebService.Controllers
             return RedirectToAction("AnimalDetails", "AdminPanel", new{ itemId = model.Id});
         }
 
+        public async Task<IActionResult> SellAnimal(string itemId)
+        {
+            if (string.IsNullOrEmpty(itemId))
+            {
+                return RedirectToAction("Index", "AdminPanel");
+            }
+            bool result = await _adminPanelServices.SellAnimal(itemId);
+            
+            return RedirectToAction("Index", "AdminPanel");
+        }
 
         public async Task<IActionResult> AnimalDetails(string itemId)
         {
