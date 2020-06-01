@@ -1,3 +1,4 @@
+@model Models.AdminModels.AdminIndexViewModel;
 @{
     ViewData["Title"] = "Admin Panel";
 }
@@ -9,10 +10,56 @@
 
 <div class="container m-auto">
     <div>
-        
         <h1>Admin Panel</h1>
         <a asp-controller="AdminAuth" asp-action="Logout">Logout</a>
+    </div>
+    
+    <div class="m-auto col-lg-9">
+        <table class="table-bordered table">
+            <thead>
+                <tr>
+                    <td>Title</td>
+                    <td>Category</td>
+                    <td>Price</td>
+                    <td>Color</td>
+                    <td>Origin</td>
+                </tr>
+            </thead>
+            
+            <tbody>
+            @{
+                if (Model.LiveAnimalList != null)
+                {
+                    foreach (var item in Model.LiveAnimalList)
+                    {
+                        <tr>
+                            <td>
+                                @item.Title
+                            </td>
+                            <td>
+                                @item.Category
+                            </td>
+                            <td>
+                                @item.Price
+                            </td>
+                            <td>
+                                @item.Color
+                            </td>
+                            <td>
+                                @item.Origin
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <h1> No data found!!!</h1>
+                }
+                
+            }
+            </tbody>
 
+        </table>
     </div>
 
 </div>

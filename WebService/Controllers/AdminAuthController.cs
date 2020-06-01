@@ -43,6 +43,7 @@ namespace WebService.Controllers
         }
         
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register([Bind] RegisterViewModel model)
         {
             if(ModelState.IsValid == false)
@@ -78,6 +79,7 @@ namespace WebService.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Bind] LoginViewModel model)
         {
             if(ModelState.IsValid == false)
