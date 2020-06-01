@@ -89,6 +89,7 @@
                                     {
                                         <td class="text-center">
                                             @Html.ActionLink("Details", "AnimalDetails", "AdminPanel", new {itemId = item.Id}, new {@class = "btn btn-success mr-2"})
+                                            @Html.ActionLink("Update", "UpdateAnimal", "AdminPanel", new {itemId = item.Id}, new {@class = "btn btn-primary mr-2"})
                                             @Html.ActionLink("Delete", "AnimalDelete", "AdminPanel", new {itemId = item.Id}, new {@class = "btn btn-danger"})
                                         </td>
                                     }

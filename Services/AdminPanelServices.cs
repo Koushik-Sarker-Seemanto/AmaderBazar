@@ -49,6 +49,22 @@ namespace Services
             }
         }
 
+        public async Task<bool> UpdateAnimal(LiveAnimalViewModel model)
+        {
+            try
+            {
+                var id = model.Id;
+                var result = await BuildAnimal(model);
+                await _repository.UpdateAsync<LiveAnimal>(e => e.Id == id, result);
+                return true;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"AddAnimal Failed: {e.Message}");
+                return false;
+            }
+        }
+
         private async Task<LiveAnimal> BuildAnimal(LiveAnimalViewModel model)
         {
             var category = await _repository.GetItemAsync<Category>(e => e.Id == model.Category);

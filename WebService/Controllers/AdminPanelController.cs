@@ -78,6 +78,46 @@ namespace WebService.Controllers
             
             return RedirectToAction("Index", "AdminPanel");
         }
+        
+        public async Task<IActionResult> UpdateAnimal(string itemId)
+        {
+            ViewBag.Categories = await _adminPanelServices.GetCategoryList();
+            if (string.IsNullOrEmpty(itemId))
+            {
+                return RedirectToAction("Index", "AdminPanel");
+            }
+            var result = await _adminPanelServices.GetAnimalDetails(itemId);
+            LiveAnimalViewModel liveAnimalViewModel = new LiveAnimalViewModel
+            {
+                Id = result.Id,
+                Title = result.Title,
+                Category = result.Category.Id,
+                Color = result.Color,
+                Location = result.Location,
+                Origin = result.Origin,
+                Description = result.Description,
+                Price = result.Price,
+            };
+            _logger.LogInformation($"AnimalInfo: {JsonConvert.SerializeObject(result)}");
+            return View(liveAnimalViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateAnimal([Bind] LiveAnimalViewModel model)
+        {
+            ViewBag.Categories = await _adminPanelServices.GetCategoryList();
+            if(ModelState.IsValid == false)
+            {
+                return View(model);
+            }
+
+            _logger.LogInformation($"AddAnimal: {JsonConvert.SerializeObject(model)}");
+
+            await _adminPanelServices.UpdateAnimal(model);
+            
+            return RedirectToAction("AnimalDetails", "AdminPanel", new{ itemId = model.Id});
+        }
 
 
         public async Task<IActionResult> AnimalDetails(string itemId)

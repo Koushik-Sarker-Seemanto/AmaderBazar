@@ -9,6 +9,7 @@ namespace Services.Contracts
     {
         Task <List<Category>> GetCategoryList();
         Task<bool> AddAnimal(LiveAnimalViewModel model);
+        Task<bool> UpdateAnimal(LiveAnimalViewModel model);
         Task<bool> AddCategory(Category model);
         Task<AdminIndexViewModel> GetAnimalList();
         Task<LiveAnimal> GetAnimalDetails(string id);
