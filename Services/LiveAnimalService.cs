@@ -26,7 +26,9 @@ namespace Services
             try
             {
                 var animals = await _repository.GetItemsAsync<LiveAnimal>();
-                return BuildList(animals?.ToList());
+                var animalsrRes = BuildList(animals?.ToList());
+                animalsrRes?.Reverse();
+                return animalsrRes;
             }
             catch (Exception e)
             {

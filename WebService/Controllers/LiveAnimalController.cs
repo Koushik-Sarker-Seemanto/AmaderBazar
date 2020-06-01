@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,7 @@ namespace WebService.Controllers
 
         public async Task<IActionResult> Details(string Id)
         {
+            
             var LiveAnimalDetails = await _liveAnimalService.GetLiveAnimalById(Id);
             ViewBag.LiveAnimalDetails = LiveAnimalDetails;
             ViewBag.Related = await GetRelated(LiveAnimalDetails.Category);
