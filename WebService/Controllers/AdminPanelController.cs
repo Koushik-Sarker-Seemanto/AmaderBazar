@@ -91,9 +91,20 @@ namespace WebService.Controllers
             return View(result);
         }
         
-        public IActionResult AnimalDelete(string itemId)
+        public async Task<IActionResult> AnimalDelete(string itemId)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(itemId))
+            {
+                return RedirectToAction("Index", "AdminPanel");
+            }
+
+            bool result = await _adminPanelServices.DeleteAnimal(itemId);
+            if (result)
+            {
+                return RedirectToAction("Index", "AdminPanel");
+            }
+
+            return BadRequest("Couldn't delete");
         }
     }
 }

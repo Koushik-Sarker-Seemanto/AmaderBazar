@@ -112,5 +112,19 @@ namespace Services
                 return null;
             }
         }
+
+        public async Task<bool> DeleteAnimal(string id)
+        {
+            try
+            {
+                await _repository.DeleteAsync<LiveAnimal>(e => e.Id == id);
+                return true;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"GetAnimalDetails Failed: {e.Message}");
+                return false;
+            }
+        }
     }
 }
