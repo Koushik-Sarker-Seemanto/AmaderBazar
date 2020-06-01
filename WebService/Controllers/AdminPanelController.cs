@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -79,7 +78,33 @@ namespace WebService.Controllers
             
             return RedirectToAction("Index", "AdminPanel");
         }
+
+
+        public async Task<IActionResult> AnimalDetails(string itemId)
+        {
+            if (string.IsNullOrEmpty(itemId))
+            {
+                return RedirectToAction("Index", "AdminPanel");
+            }
+            var result = await _adminPanelServices.GetAnimalDetails(itemId);
+            _logger.LogInformation($"AnimalInfo: {JsonConvert.SerializeObject(result)}");
+            return View(result);
+        }
         
-        
+        public async Task<IActionResult> AnimalDelete(string itemId)
+        {
+            if (string.IsNullOrEmpty(itemId))
+            {
+                return RedirectToAction("Index", "AdminPanel");
+            }
+
+            bool result = await _adminPanelServices.DeleteAnimal(itemId);
+            if (result)
+            {
+                return RedirectToAction("Index", "AdminPanel");
+            }
+
+            return BadRequest("Couldn't delete");
+        }
     }
 }

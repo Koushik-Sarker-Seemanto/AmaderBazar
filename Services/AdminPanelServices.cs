@@ -14,7 +14,6 @@ namespace Services
     {
         private readonly IMongoRepository _repository;
         private readonly ILogger<AdminPanelServices> _logger;
-        private IAdminPanelServices _adminPanelServicesImplementation;
 
         public AdminPanelServices(IMongoRepository repository, ILogger<AdminPanelServices> logger)
         {
@@ -86,9 +85,11 @@ namespace Services
             try
             {
                 var animals =  await _repository.GetItemsAsync<LiveAnimal>();
+                var list = animals?.ToList();
+                list?.Reverse();            // New Element upward.
                 var response = new AdminIndexViewModel
                 {
-                    LiveAnimalList = animals?.ToList(),
+                    LiveAnimalList = list,
                 };
                 return response;
             }
@@ -96,6 +97,34 @@ namespace Services
             {
                 _logger.LogError(e, $"GetCategoryList Failed: {e.Message}");
                 return null;
+            }
+        }
+
+        public async Task<LiveAnimal> GetAnimalDetails(string id)
+        {
+            try
+            {
+                var animal =  await _repository.GetItemAsync<LiveAnimal>(e => e.Id == id);
+                return animal;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"GetAnimalDetails Failed: {e.Message}");
+                return null;
+            }
+        }
+
+        public async Task<bool> DeleteAnimal(string id)
+        {
+            try
+            {
+                await _repository.DeleteAsync<LiveAnimal>(e => e.Id == id);
+                return true;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"GetAnimalDetails Failed: {e.Message}");
+                return false;
             }
         }
     }

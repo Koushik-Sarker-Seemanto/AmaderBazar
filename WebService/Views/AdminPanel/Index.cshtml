@@ -3,63 +3,114 @@
     ViewData["Title"] = "Admin Panel";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-
-<div class="container m-auto">
-    <div>
-        <h1>Admin Panel</h1>
-        <a asp-controller="AdminAuth" asp-action="Logout">Logout</a>
-    </div>
-    
-    <div class="m-auto col-lg-9">
-        <table class="table-bordered table">
-            <thead>
-                <tr>
-                    <td>Title</td>
-                    <td>Category</td>
-                    <td>Price</td>
-                    <td>Color</td>
-                    <td>Origin</td>
+<div class="container-fluid m-auto">
+    <div class="m-auto col-lg-9 bg-white p-5 mt-3 mb-3">
+        <h1 class="d-flex justify-content-center">Animal List</h1>
+        <div class="table-responsive-md">
+            <table class="table-bordered table table-striped">
+                <thead>
+                <tr class="bg-success text-white">
+                    <td class="text-center font-weight-bold">Title</td>
+                    <td class="text-center font-weight-bold">Category</td>
+                    <td class="text-center font-weight-bold">Price</td>
+                    <td class="text-center font-weight-bold">Origin</td>
+                    <td class="text-center font-weight-bold">Location</td>
+                    <td class="text-center font-weight-bold">Sold</td>
+                    <td class="text-center font-weight-bold">Color</td>
+                    <td class="text-center font-weight-bold">Action</td>
                 </tr>
-            </thead>
+                </thead>
             
-            <tbody>
-            @{
-                if (Model.LiveAnimalList != null)
-                {
-                    foreach (var item in Model.LiveAnimalList)
+                <tbody>
+                @{
+                    if (Model.LiveAnimalList != null)
                     {
-                        <tr>
-                            <td>
-                                @item.Title
-                            </td>
-                            <td>
-                                @item.Category
-                            </td>
-                            <td>
-                                @item.Price
-                            </td>
-                            <td>
-                                @item.Color
-                            </td>
-                            <td>
-                                @item.Origin
-                            </td>
-                        </tr>
+                        foreach (var item in Model.LiveAnimalList)
+                        {
+                            <tr>
+                                @{
+                                    if (item.Title != null)
+                                    {
+                                        <td class="text-center">@item.Title</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (item.Category != null)
+                                    {
+                                        <td class="text-center">@item.Category.Name</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (!double.IsNaN(item.Price))
+                                    {
+                                        <td class="text-center">@item.Price</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (item.Origin != null)
+                                    {
+                                        <td class="text-center">@item.Origin</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (item.Location != null)
+                                    {
+                                        <td class="text-center">@item.Location</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (item.Sold != null)
+                                    {
+                                        <td class="text-center">@item.Sold</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (item.Color != null)
+                                    {
+                                        <td class="text-center">@item.Color</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (item.Id != null)
+                                    {
+                                        <td class="text-center">
+                                            @Html.ActionLink("Details", "AnimalDetails", "AdminPanel", new {itemId = item.Id}, new {@class = "btn btn-success mr-2"})
+                                            @Html.ActionLink("Delete", "AnimalDelete", "AdminPanel", new {itemId = item.Id}, new {@class = "btn btn-danger"})
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                }
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <td> No data found!!!</td>
                     }
                 }
-                else
-                {
-                    <h1> No data found!!!</h1>
-                }
-                
-            }
-            </tbody>
-
-        </table>
+                </tbody>
+            
+            </table>
+            
+        </div>
+        
     </div>
 
 </div>
