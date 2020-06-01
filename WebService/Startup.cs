@@ -48,7 +48,8 @@ namespace WebService
             services.AddSingleton<IUserServices, UserServices>();
 
             services.AddSingleton<IAdminPanelServices, AdminPanelServices>();
-            
+            services.AddSingleton<ILiveAnimalService, LiveAnimalService>();
+
             services.AddControllersWithViews();
         }
 

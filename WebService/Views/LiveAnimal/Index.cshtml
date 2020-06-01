@@ -1,0 +1,10 @@
+﻿@using System.Security.Cryptography
+@{
+    ViewData["Title"] = "Live Animal";
+    Layout = null;
+}
+
+@foreach (var animal in ViewBag.LiveAnimals)
+{
+    <h1>@animal.Category</h1>
+}
