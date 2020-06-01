@@ -1,6 +1,10 @@
-@model Models.AdminModels.AdminIndexViewModel;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Core.Common
+
+@model X.PagedList.IPagedList<Models.Entities.LiveAnimal>;
 @{
     ViewData["Title"] = "Admin Panel";
+    Layout = "_LayoutAdmin";
 }
 
 <div class="container-fluid m-auto">
@@ -23,9 +27,9 @@
             
                 <tbody>
                 @{
-                    if (Model.LiveAnimalList != null)
+                    if (Model != null)
                     {
-                        foreach (var item in Model.LiveAnimalList)
+                        foreach (var item in Model)
                         {
                             <tr>
                                 @{
@@ -109,7 +113,13 @@
                 </tbody>
             
             </table>
-            
+            <div class="d-flex justify-content-center">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new{ page }),
+                    new PagedListRenderOptions {
+                        LiElementClasses = new string[] { "page-item" }, 
+                        PageClasses = new string[] { "page-link" },
+                    })
+            </div>
         </div>
         
     </div>

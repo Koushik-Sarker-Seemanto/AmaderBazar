@@ -7,6 +7,8 @@ using Models.AdminModels;
 using Models.Entities;
 using Newtonsoft.Json;
 using Services.Contracts;
+using X.PagedList;
+using X.PagedList.Mvc.Core;
 
 namespace WebService.Controllers
 {
@@ -23,10 +25,11 @@ namespace WebService.Controllers
             _logger = logger;
         }
         
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
             AdminIndexViewModel results = await _adminPanelServices.GetAnimalList();
-            return View(results);
+            var list = results.LiveAnimalList.ToPagedList(page ?? 1, 1);
+            return View(list);
         }
 
         public async Task<IActionResult> AddAnimal()
