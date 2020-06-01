@@ -11,5 +11,8 @@ namespace Services.Contracts
     public interface ILiveAnimalService
     {
         Task<List<LiveAnimalViewModelFrontend>> GetAllLiveAnimals();
+        Task<LiveAnimalViewModelFrontend> GetLiveAnimalById(string Id);
+
+        Task<List<LiveAnimalViewModelFrontend>> GetLiveAnimalByCategory(string category);
     }
 }
