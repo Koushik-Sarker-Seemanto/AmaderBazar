@@ -1,0 +1,108 @@
+@model Models.Entities.LiveAnimal;
+@{
+    ViewData["Title"] = "Animal Details";
+}
+
+<div class="container m-auto">
+    <div class="m-auto col-lg-9 bg-white p-5 mt-3 mb-3">
+        <h1 class="d-flex justify-content-center">Animal Details</h1>
+        @{
+            if (Model != null)
+            {
+                if (Model.Title != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="title">Title</label>
+                        <p style="background: #eeeeee" class="p-1" id="title"> @Html.DisplayFor(model => model.Title) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="title">Title</label>
+                        <p style="background: #eeeeee" class="p-1" id="title"> N/A </p>
+                    </div>
+                }
+                
+                if (Model.Category != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="category">Category</label>
+                        <p style="background: #eeeeee" class="p-1" id="category"> @Model.Category.Name </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="category">Category</label>
+                        <p style="background: #eeeeee" class="p-1" id="category"> N/A </p>
+                    </div>
+                }
+                
+                if (!double.IsNaN(Model.Price))
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="price">Price</label>
+                        <p style="background: #eeeeee" class="p-1" id="price"> @Html.DisplayFor(model => model.Price) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="price">Price</label>
+                        <p style="background: #eeeeee" class="p-1" id="price"> N/A </p>
+                    </div>
+                }
+                
+                if (Model.Origin != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="origin">Origin</label>
+                        <p style="background: #eeeeee" class="p-1" id="origin"> @Html.DisplayFor(model => model.Origin) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="origin">Origin</label>
+                        <p style="background: #eeeeee" class="p-1" id="origin"> N/A </p>
+                    </div>
+                }
+                
+                if (Model.Location != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="location">Location</label>
+                        <p style="background: #eeeeee" class="p-1" id="location"> @Html.DisplayFor(model => model.Location) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="location">Location</label>
+                        <p style="background: #eeeeee" class="p-1" id="location"> N/A </p>
+                    </div>
+                }
+                
+                if (Model.Description != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="description">Description</label>
+                        <p style="background: #eeeeee" class="p-1" id="description"> @Html.DisplayFor(model => model.Description) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="description">Location</label>
+                        <p style="background: #eeeeee" class="p-1" id="description"> N/A </p>
+                    </div>
+                }
+            }
+            else
+            {
+                <h1>No data found!!!</h1>
+            }
+        }
+    </div>
+</div>

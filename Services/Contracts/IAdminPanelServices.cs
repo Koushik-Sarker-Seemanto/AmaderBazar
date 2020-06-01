@@ -11,5 +11,6 @@ namespace Services.Contracts
         Task<bool> AddAnimal(LiveAnimalViewModel model);
         Task<bool> AddCategory(Category model);
         Task<AdminIndexViewModel> GetAnimalList();
+        Task<LiveAnimal> GetAnimalDetails(string id);
     }
 }
