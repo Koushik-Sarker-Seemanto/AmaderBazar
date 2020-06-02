@@ -190,10 +190,11 @@ namespace Services
                     {
                         uploadedImage = Image.FromStream(stream);
                     }
-
-                    var Bigimg = ImageResize.Scale(uploadedImage, 200, 100);
+                    string phrase = file.FileName;
+                    string[] words = phrase.Split('.');
+                    var Bigimg = ScaleImage(uploadedImage, 342);
                     
-                    var BigImgPath =  Guid.NewGuid().ToString()+".png";
+                    var BigImgPath =  Guid.NewGuid().ToString()+"."+words[1];
 
                     Bigimg.SaveAs($"wwwroot\\images\\{BigImgPath}");
                     paths.Add(BigImgPath);
@@ -202,6 +203,20 @@ namespace Services
             }
 
             return paths;
+        }
+        public static System.Drawing.Image ScaleImage(System.Drawing.Image image, int maxHeight)
+        {
+            var ratio = (double)maxHeight / image.Height;
+
+            var newWidth = (int)(image.Width * ratio);
+            var newHeight = (int)(image.Height * ratio);
+
+            var newImage = new Bitmap(newWidth, newHeight);
+            using (var g = Graphics.FromImage(newImage))
+            {
+                g.DrawImage(image, 0, 0, newWidth, newHeight);
+            }
+            return newImage;
         }
     }
 }
