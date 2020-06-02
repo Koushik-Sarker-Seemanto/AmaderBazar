@@ -19,4 +19,8 @@
     <Folder Include="wwwroot\themes\js\js\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="8.0.7" />
+  </ItemGroup>
+
 </Project>

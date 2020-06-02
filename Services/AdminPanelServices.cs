@@ -49,6 +49,22 @@ namespace Services
             }
         }
 
+        public async Task<bool> UpdateAnimal(LiveAnimalViewModel model)
+        {
+            try
+            {
+                var id = model.Id;
+                var result = await BuildAnimal(model);
+                await _repository.UpdateAsync<LiveAnimal>(e => e.Id == id, result);
+                return true;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"AddAnimal Failed: {e.Message}");
+                return false;
+            }
+        }
+
         private async Task<LiveAnimal> BuildAnimal(LiveAnimalViewModel model)
         {
             var category = await _repository.GetItemAsync<Category>(e => e.Id == model.Category);
@@ -119,6 +135,31 @@ namespace Services
             try
             {
                 await _repository.DeleteAsync<LiveAnimal>(e => e.Id == id);
+                return true;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"GetAnimalDetails Failed: {e.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> SellAnimal(string itemId)
+        {
+            try
+            {
+                var result = await _repository.GetItemAsync<LiveAnimal>(e => e.Id == itemId);
+                if (result == null)
+                {
+                    return false;
+                }
+                if (result.Sold)
+                {
+                    _logger.LogInformation($"SellAnimal: Already Sold.");
+                    return false;
+                }
+                result.Sold = true;
+                await _repository.UpdateAsync<LiveAnimal>(e => e.Id == result.Id, result);
                 return true;
             }
             catch (Exception e)

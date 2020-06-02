@@ -1,6 +1,7 @@
 @model Models.Entities.LiveAnimal;
 @{
     ViewData["Title"] = "Animal Details";
+    Layout = "_LayoutAdmin";
 }
 
 <div class="container m-auto">
@@ -98,11 +99,17 @@
                         <p style="background: #eeeeee" class="p-1" id="description"> N/A </p>
                     </div>
                 }
+                <div class="d-block mt-3 mb-5">
+                    @Html.ActionLink("Update", "UpdateAnimal", "AdminPanel", new {itemId = Model?.Id}, new {@class = "btn btn-success w-45 float-left"})
+                    @Html.ActionLink("Delete", "AnimalDelete", "AdminPanel", new {itemId = Model?.Id}, new {@class = "btn btn-danger w-45 float-right"})
+                </div>
+                
             }
             else
             {
                 <h1>No data found!!!</h1>
             }
+            
         }
     </div>
 </div>

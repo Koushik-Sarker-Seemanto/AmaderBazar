@@ -1,6 +1,10 @@
-@model Models.AdminModels.AdminIndexViewModel;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Core.Common
+
+@model X.PagedList.IPagedList<Models.Entities.LiveAnimal>;
 @{
     ViewData["Title"] = "Admin Panel";
+    Layout = "_LayoutAdmin";
 }
 
 <div class="container-fluid m-auto">
@@ -23,9 +27,9 @@
             
                 <tbody>
                 @{
-                    if (Model.LiveAnimalList != null)
+                    if (Model != null)
                     {
-                        foreach (var item in Model.LiveAnimalList)
+                        foreach (var item in Model)
                         {
                             <tr>
                                 @{
@@ -88,8 +92,18 @@
                                     if (item.Id != null)
                                     {
                                         <td class="text-center">
-                                            @Html.ActionLink("Details", "AnimalDetails", "AdminPanel", new {itemId = item.Id}, new {@class = "btn btn-success mr-2"})
-                                            @Html.ActionLink("Delete", "AnimalDelete", "AdminPanel", new {itemId = item.Id}, new {@class = "btn btn-danger"})
+                                            @Html.ActionLink("Details", "AnimalDetails", "AdminPanel", new {itemId = item.Id}, new {@class = "btn btn-primary mr-2"})
+                                            @{
+                                                if (item.Sold == true)
+                                                {
+                                                    @Html.ActionLink("Sold", "", "", "", new {@class = "btn btn-secondary disabled mr-2", })
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink("Sell", "SellAnimal", "AdminPanel", new {itemId = item.Id}, new {@class = "btn btn-success mr-2", })
+                                                }
+                                            }
+                                            
                                         </td>
                                     }
                                     else
@@ -108,7 +122,13 @@
                 </tbody>
             
             </table>
-            
+            <div class="d-flex justify-content-center">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new{ page }),
+                    new PagedListRenderOptions {
+                        LiElementClasses = new string[] { "page-item" }, 
+                        PageClasses = new string[] { "page-link" },
+                    })
+            </div>
         </div>
         
     </div>

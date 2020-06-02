@@ -8,10 +8,14 @@
 
 <div class="container m-auto">
     <div class="m-auto col-lg-9 p-5 bg-white">
-        <h1 class="d-flex justify-content-center">Add Animal</h1>
+        <h1 class="d-flex justify-content-center">Update Animal</h1>
         @Html.ValidationSummary(true, "", new {@class = "text-danger alert alert-danger"})
-        <form id="registerForm" asp-action="AddAnimal" class="" autocomplete="off">
+        <form id="animalUpdateForm" asp-action="UpdateAnimal" class="" autocomplete="off">
             @Html.AntiForgeryToken()
+            <div class="form-group" hidden="hidden">
+                <label for="title">Id</label>
+                <input asp-for="Id" class="form-control" id="id">
+            </div>
             <div class="form-group">
                 <label for="title">Title</label>
                 <input asp-for="Title" class="form-control" id="title" placeholder="Enter Animal Title">
