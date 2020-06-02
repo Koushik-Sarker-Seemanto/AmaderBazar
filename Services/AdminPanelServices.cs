@@ -206,6 +206,22 @@ namespace Services
 
             return paths;
         }
+
+        public async Task<bool> UpdateAnimalLiveAnimal(LiveAnimal model)
+        {
+            try
+            {
+                var id = model.Id;
+                await _repository.UpdateAsync<LiveAnimal>(e => e.Id == id, model);
+                return true;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"UpdateAnimalLiveAnimal Failed: {e.Message}");
+                return false;
+            }
+        }
+
         public static System.Drawing.Image ScaleImage(System.Drawing.Image image, int maxHeight)
         {
             

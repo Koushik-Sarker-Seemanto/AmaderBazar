@@ -169,5 +169,30 @@ namespace WebService.Controllers
 
             return BadRequest("Couldn't delete");
         }
+
+        public async Task<bool> RemoveImage(string imgId, string itemId)
+        {
+            _logger.LogInformation($"Query params: ImgId: {imgId} --- ItemId: {itemId}");
+            if (string.IsNullOrEmpty(imgId) || string.IsNullOrEmpty(itemId))
+            {
+                return false;
+            }
+            var item = await _adminPanelServices.GetAnimalDetails(itemId);
+            _logger.LogInformation($"Item Initial: {JsonConvert.SerializeObject(item)}");
+            if (item == null)
+            {
+                return false;
+            }
+
+            var images = item.Images;
+            var exist = images.FirstOrDefault(e => e == imgId);
+            if (exist != null)
+                images.Remove(exist);
+            item.Images = images;
+
+            _logger.LogInformation($"Item Final: {JsonConvert.SerializeObject(item)}");
+            var res = await _adminPanelServices.UpdateAnimalLiveAnimal(item);
+            return res;
+        }
     }
 }

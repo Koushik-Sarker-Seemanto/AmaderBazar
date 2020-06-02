@@ -62,7 +62,7 @@
                             <ul class="thumbnails small">
                                 <li class="span1">
                                     <a class="thumbnail" data-fancybox-group="group1" title="Description 2"><img style="width:100px;height:100px;" src="~/images/@image" alt=""></a>
-                                    <button class="btn-danger">Remove</button>
+                                    <button id="@image" name="@Model.Id" class="removeBtn btn-danger">Remove</button>
                                 </li>
                             </ul>
                         </div>
@@ -71,11 +71,34 @@
             }
 
             <script>
-                var images = [];
-                $('.btn-danger').click(function () {
-//                    images.push({ src: $(this).parent().find("img").attr("src") });
-//                    console.log(images);
-                    $(this).parent().parent().parent().remove();
+                $(document).on('click', '.removeBtn', function (e) {
+                    e.preventDefault();
+                    let removeSection = $(this).parent().parent().parent();
+                    let imgStr = $(this).attr("id");
+                    let itemStr = $(this).attr("name");
+                    console.log("imgID: "+imgStr);
+                    console.log("ItemID: "+itemStr);
+                    
+                    $.ajax({
+                        url: '@Url.Action("RemoveImage", "AdminPanel")',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        type: 'GET',
+                        data: "imgId=" + imgStr+ "&itemId=" + itemStr,
+                        success: function(response) {
+                            if (response === true){
+                                alert("Success! Image Deleted!");
+                                removeSection.remove();
+                            }
+                            else{
+                                alert("Ops!!! Couldn't delete image!");
+                            }
+                            
+                        },
+                        error: function(response) {
+                            alert("Ops!!! Internal Error!");
+                        }
+                    });
                 });
             </script>
 
@@ -85,7 +108,7 @@
                 <input type="file" name="files" multiple />
             </div>
             <div class="text-center">
-                <button id="btn" class="btn btn-block btn-success m-b-20">Add Animal</button>
+                <button id="btn" class="btn btn-block btn-success m-b-20">Update Animal</button>
             </div>
         </form>
 
