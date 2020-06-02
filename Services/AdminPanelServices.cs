@@ -17,6 +17,8 @@ namespace Services
 {
     public class AdminPanelServices: IAdminPanelServices
     {
+        private string pathBaseLinux = "wwwroot/images/";
+        private string pathBaseWindows = "wwwroot\\images\\";
         private readonly IMongoRepository _repository;
         private readonly ILogger<AdminPanelServices> _logger;
         private IHostingEnvironment _hostingEnvironment;
@@ -196,7 +198,7 @@ namespace Services
                     
                     var BigImgPath =  Guid.NewGuid().ToString()+"."+words[1];
 
-                    Bigimg.SaveAs($"wwwroot\\images\\{BigImgPath}");
+                    Bigimg.SaveAs($"{pathBaseLinux}{BigImgPath}");
                     paths.Add(BigImgPath);
 
                 }

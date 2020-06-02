@@ -111,7 +111,7 @@ namespace WebService.Controllers
                 Images = result.Images,
             };
             _logger.LogInformation($"AnimalInfo: {JsonConvert.SerializeObject(result)}");
-            ViewBag.Images = liveAnimalViewModel.Images;
+            //ViewBag.Images = liveAnimalViewModel.Images;
             return View(liveAnimalViewModel);
         }
 

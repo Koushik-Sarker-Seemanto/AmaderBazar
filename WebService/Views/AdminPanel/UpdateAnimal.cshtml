@@ -53,19 +53,23 @@
                 <textarea rows="5" asp-for="Description" class="form-control" id="description" placeholder="Enter Description"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-
-            @foreach (var image in ViewBag.Images)
-            {
-                <div>
-                    <ul class="thumbnails small">
-                        <li class="span1">
-                            <a class="thumbnail" data-fancybox-group="group1" title="Description 2"><img style="width:100px;height:100px;" src="~/images/@image" alt=""></a>
-                            <button class="btn-danger">Remove</button>
-                        </li>
-                    </ul>
-                </div>
-                
+            @{
+                if (Model.Images != null)
+                {
+                    @foreach (var image in Model.Images)
+                    {
+                        <div>
+                            <ul class="thumbnails small">
+                                <li class="span1">
+                                    <a class="thumbnail" data-fancybox-group="group1" title="Description 2"><img style="width:100px;height:100px;" src="~/images/@image" alt=""></a>
+                                    <button class="btn-danger">Remove</button>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                }
             }
+
             <script>
                 var images = [];
                 $('.btn-danger').click(function () {
