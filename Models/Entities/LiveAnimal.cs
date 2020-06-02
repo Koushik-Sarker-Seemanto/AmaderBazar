@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using MongoDB.Bson.Serialization.Attributes;
@@ -25,5 +26,7 @@ namespace Models.Entities
         public string Location { get; set; }
         [DefaultValue(false)]
         public bool Sold { get; set; }
+
+        public List<string> Images { get; set; }
     }
 }

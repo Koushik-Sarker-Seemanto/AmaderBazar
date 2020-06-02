@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Models.AdminModels
 {
@@ -20,5 +22,7 @@ namespace Models.AdminModels
         public string Origin { get; set; }
         public string Description { get; set; }
         public string Location { get; set; }
+        public List<string> Images { get; set; }
+
     }
 }

@@ -1,6 +1,10 @@
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Models.AdminModels;
@@ -40,16 +44,19 @@ namespace WebService.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddAnimal([Bind] LiveAnimalViewModel model)
+        public async Task<IActionResult> AddAnimal([Bind] LiveAnimalViewModel model,ICollection<IFormFile> files)
         {
+
             ViewBag.Categories = await _adminPanelServices.GetCategoryList();
-            if(ModelState.IsValid == false)
+            if(ModelState.IsValid == false )
             {
                 return View(model);
             }
 
             var id = Guid.NewGuid().ToString();
             model.Id = id;
+            var images = await _adminPanelServices.UploadImage(files);
+            model.Images = images;
             
             _logger.LogInformation($"AddAnimal: {JsonConvert.SerializeObject(model)}");
 
@@ -73,6 +80,7 @@ namespace WebService.Controllers
                 return RedirectToAction("Index", "AdminPanel");
             }
 
+            
             var id = Guid.NewGuid().ToString();
             model.Id = id;
 
@@ -100,8 +108,10 @@ namespace WebService.Controllers
                 Origin = result.Origin,
                 Description = result.Description,
                 Price = result.Price,
+                Images = result.Images,
             };
             _logger.LogInformation($"AnimalInfo: {JsonConvert.SerializeObject(result)}");
+            ViewBag.Images = liveAnimalViewModel.Images;
             return View(liveAnimalViewModel);
         }
 

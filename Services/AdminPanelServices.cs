@@ -1,7 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using LazZiya.ImageResize;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Models.AdminModels;
 using Models.Entities;
@@ -14,10 +19,12 @@ namespace Services
     {
         private readonly IMongoRepository _repository;
         private readonly ILogger<AdminPanelServices> _logger;
+        private IHostingEnvironment _hostingEnvironment;
 
-        public AdminPanelServices(IMongoRepository repository, ILogger<AdminPanelServices> logger)
+        public AdminPanelServices(IHostingEnvironment hostingEnvironment,IMongoRepository repository, ILogger<AdminPanelServices> logger)
         {
             _repository = repository;
+            _hostingEnvironment = hostingEnvironment;
             _logger = logger;
         }
         public async Task<List<Category>> GetCategoryList()
@@ -78,6 +85,7 @@ namespace Services
                 Origin = model.Origin,
                 Price = model.Price,
                 Description = model.Description,
+                Images = model.Images,
             };
             return liveAnimal;
         }
@@ -167,6 +175,33 @@ namespace Services
                 _logger.LogError(e, $"GetAnimalDetails Failed: {e.Message}");
                 return false;
             }
+        }
+
+        public async Task<List<string>> UploadImage(ICollection<IFormFile> files)
+        {
+
+            var paths = new List<string>();
+            foreach (var file in files)
+            {
+                if (file.Length > 0)
+                {
+                    Image uploadedImage;
+                    using (var stream = file.OpenReadStream())
+                    {
+                        uploadedImage = Image.FromStream(stream);
+                    }
+
+                    var Bigimg = ImageResize.Scale(uploadedImage, 200, 100);
+                    
+                    var BigImgPath =  Guid.NewGuid().ToString()+".png";
+
+                    Bigimg.SaveAs($"wwwroot\\images\\{BigImgPath}");
+                    paths.Add(BigImgPath);
+
+                }
+            }
+
+            return paths;
         }
     }
 }

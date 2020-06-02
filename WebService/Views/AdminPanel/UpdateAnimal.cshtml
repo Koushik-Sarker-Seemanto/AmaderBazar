@@ -9,7 +9,7 @@
 <div class="container m-auto">
     <div class="m-auto col-lg-9 p-5 bg-white">
         <h1 class="d-flex justify-content-center">Update Animal</h1>
-        @Html.ValidationSummary(true, "", new {@class = "text-danger alert alert-danger"})
+        @Html.ValidationSummary(true, "", new { @class = "text-danger alert alert-danger" })
         <form id="animalUpdateForm" asp-action="UpdateAnimal" class="" autocomplete="off">
             @Html.AntiForgeryToken()
             <div class="form-group" hidden="hidden">
@@ -53,9 +53,37 @@
                 <textarea rows="5" asp-for="Description" class="form-control" id="description" placeholder="Enter Description"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
+
+            @foreach (var image in ViewBag.Images)
+            {
+                <div>
+                    <ul class="thumbnails small">
+                        <li class="span1">
+                            <a class="thumbnail" data-fancybox-group="group1" title="Description 2"><img style="width:100px;height:100px;" src="~/images/@image" alt=""></a>
+                            <button class="btn-danger">Remove</button>
+                        </li>
+                    </ul>
+                </div>
+                
+            }
+            <script>
+                var images = [];
+                $('.btn-danger').click(function () {
+//                    images.push({ src: $(this).parent().find("img").attr("src") });
+//                    console.log(images);
+                    $(this).parent().parent().parent().remove();
+                });
+            </script>
+
+
+            <div class="form-group">
+                <label>Upload New Image</label>
+                <input type="file" name="files" multiple />
+            </div>
             <div class="text-center">
-                <button class="btn btn-block btn-success m-b-20" type="submit">Add Animal</button>
+                <button id="btn" class="btn btn-block btn-success m-b-20">Add Animal</button>
             </div>
         </form>
+
     </div>
 </div>

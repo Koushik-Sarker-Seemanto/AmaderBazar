@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Models.AdminModels;
 using Models.Entities;
 
@@ -15,5 +16,7 @@ namespace Services.Contracts
         Task<LiveAnimal> GetAnimalDetails(string id);
         Task<bool> DeleteAnimal(string id);
         Task<bool> SellAnimal(string itemId);
+
+        Task<List<string>> UploadImage(ICollection<IFormFile> files);
     }
 }
