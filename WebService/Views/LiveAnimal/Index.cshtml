@@ -19,7 +19,7 @@
                     <li class="span3">
                         <div class="product-box">
                             <span class="sale_tag"></span>
-                            <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })'><img alt="" src="themes/images/ladies/9.jpg"></a><br />
+                            <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })'><img alt="" src="~/images/@animal.Images[0]"></a><br />
                             <a href = '@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })' class="title">@animal.Title</a><br />
                             <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })'>@animal.Origin</a>
                             <p class="price">@animal.Price</p>

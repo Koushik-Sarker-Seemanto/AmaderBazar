@@ -52,11 +52,16 @@ namespace Services
                 return null;
             }
         }
+        /// <summary>
+        /// For Related Product Only
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
         public async Task<List<LiveAnimalViewModelFrontend>> GetLiveAnimalByCategory(string category)
         {
             try
             {
-                var animals = await _repository.GetItemsAsync<LiveAnimal>(d => d.Category.Name == category);
+                var animals = await _repository.GetItemsAsync<LiveAnimal>(d => d.Category.Name == category && d.Sold == false);
                 var list = animals?.ToList();
                 list?.Reverse();
                 var animalList = BuildList(list);
@@ -93,6 +98,7 @@ namespace Services
                     Origin = animal.Origin,
                     Price = animal.Price,
                     Description = animal.Description,
+                    Images = animal.Images,
                 };
             
 
