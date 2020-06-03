@@ -10,7 +10,7 @@
     <div class="m-auto col-lg-9 p-5 bg-white">
         <h1 class="d-flex justify-content-center">Update Animal</h1>
         @Html.ValidationSummary(true, "", new { @class = "text-danger alert alert-danger" })
-        <form id="animalUpdateForm" asp-action="UpdateAnimal" class="" autocomplete="off">
+        <form id="animalUpdateForm" asp-action="UpdateAnimal" class="" autocomplete="off" enctype="multipart/form-data">
             @Html.AntiForgeryToken()
             <div class="form-group" hidden="hidden">
                 <label for="title">Id</label>
@@ -56,56 +56,29 @@
             @{
                 if (Model.Images != null)
                 {
-                    @foreach (var image in Model.Images)
-                    {
-                        <div>
-                            <ul class="thumbnails small">
-                                <li class="span1">
-                                    <a class="thumbnail" data-fancybox-group="group1" title="Description 2"><img style="width:100px;height:100px;" src="~/images/@image" alt=""></a>
-                                    <button id="@image" name="@Model.Id" class="removeBtn btn-danger">Remove</button>
-                                </li>
-                            </ul>
-                        </div>
-                    }
+                    <h3 class="d-flex justify-content-center">Uploaded Images</h3>
+                    <div class="row mt-5 mb-4">
+                        
+                        @{
+                            foreach (var img in Model.Images)
+                            {
+                                <div class="col-lg-3">
+                                    <div class="m-2 m-auto">
+                                        <a target="_blank" href="~/images/@img">
+                                            <img class="img-fluid" style="max-width: 100%; height: auto;" src="~/images/@img" alt="">
+                                        </a>
+                                        <button id="@img" name="@Model.Id" class="removeBtn btn btn-danger btn-block mt-2">Remove</button>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
                 }
             }
-
-            <script>
-                $(document).on('click', '.removeBtn', function (e) {
-                    e.preventDefault();
-                    let removeSection = $(this).parent().parent().parent();
-                    let imgStr = $(this).attr("id");
-                    let itemStr = $(this).attr("name");
-                    console.log("imgID: "+imgStr);
-                    console.log("ItemID: "+itemStr);
-                    
-                    $.ajax({
-                        url: '@Url.Action("RemoveImage", "AdminPanel")',
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        type: 'GET',
-                        data: "imgId=" + imgStr+ "&itemId=" + itemStr,
-                        success: function(response) {
-                            if (response === true){
-                                alert("Success! Image Deleted!");
-                                removeSection.remove();
-                            }
-                            else{
-                                alert("Ops!!! Couldn't delete image!");
-                            }
-                            
-                        },
-                        error: function(response) {
-                            alert("Ops!!! Internal Error!");
-                        }
-                    });
-                });
-            </script>
-
-
             <div class="form-group">
-                <label>Upload New Image</label>
-                <input type="file" name="files" multiple />
+                <label for="files">Upload New Image</label>
+                <input type="file" class="form-control" id="files" name="files" multiple />
+                
             </div>
             <div class="text-center">
                 <button id="btn" class="btn btn-block btn-success m-b-20">Update Animal</button>
@@ -114,3 +87,35 @@
 
     </div>
 </div>
+
+<script>
+    $(document).on('click', '.removeBtn', function (e) {
+        e.preventDefault();
+        let removeSection = $(this).parent().parent();
+        let imgStr = $(this).attr("id");
+        let itemStr = $(this).attr("name");
+        console.log("imgID: "+imgStr);
+        console.log("ItemID: "+itemStr);
+        
+        $.ajax({
+            url: '@Url.Action("RemoveImage", "AdminPanel")',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            type: 'GET',
+            data: "imgId=" + imgStr+ "&itemId=" + itemStr,
+            success: function(response) {
+                if (response === true){
+                    alert("Success! Image Deleted!");
+                    removeSection.remove();
+                }
+                else{
+                    alert("Ops!!! Couldn't delete image!");
+                }
+                
+            },
+            error: function(response) {
+                alert("Ops!!! Internal Error!");
+            }
+        });
+    });
+</script>

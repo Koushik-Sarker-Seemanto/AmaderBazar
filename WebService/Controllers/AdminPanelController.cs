@@ -44,7 +44,7 @@ namespace WebService.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddAnimal([Bind] LiveAnimalViewModel model,ICollection<IFormFile> files)
+        public async Task<IActionResult> AddAnimal([Bind] LiveAnimalViewModel model, ICollection<IFormFile> files)
         {
 
             ViewBag.Categories = await _adminPanelServices.GetCategoryList();
@@ -98,6 +98,7 @@ namespace WebService.Controllers
                 return RedirectToAction("Index", "AdminPanel");
             }
             var result = await _adminPanelServices.GetAnimalDetails(itemId);
+            
             LiveAnimalViewModel liveAnimalViewModel = new LiveAnimalViewModel
             {
                 Id = result.Id,
@@ -117,19 +118,36 @@ namespace WebService.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateAnimal([Bind] LiveAnimalViewModel model)
+        public async Task<IActionResult> UpdateAnimal([Bind] LiveAnimalViewModel model, ICollection<IFormFile> files)
         {
             ViewBag.Categories = await _adminPanelServices.GetCategoryList();
             if(ModelState.IsValid == false)
             {
                 return View(model);
             }
+            var newImages = await _adminPanelServices.UploadImage(files);
+            _logger.LogInformation($"UpdateAnimal New Images: {JsonConvert.SerializeObject(newImages)}");
 
-            _logger.LogInformation($"AddAnimal: {JsonConvert.SerializeObject(model)}");
+            if (model != null)
+            {
+                var item = await _adminPanelServices.GetAnimalDetails(model.Id);
+                var existingImages = item?.Images;
+                if (existingImages == null)
+                {
+                    existingImages = new List<string>();
+                }
+                existingImages.AddRange(newImages);
+                
+                _logger.LogInformation($"UpdateAnimal Final Images: {JsonConvert.SerializeObject(existingImages)}");
+
+                model.Images = existingImages;
+            }
+
+            _logger.LogInformation($"UpdateAnimal: {JsonConvert.SerializeObject(model)}");
 
             await _adminPanelServices.UpdateAnimal(model);
             
-            return RedirectToAction("AnimalDetails", "AdminPanel", new{ itemId = model.Id});
+            return RedirectToAction("AnimalDetails", "AdminPanel", new{ itemId = model?.Id});
         }
 
         public async Task<IActionResult> SellAnimal(string itemId)
