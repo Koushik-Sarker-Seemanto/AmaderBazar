@@ -99,6 +99,7 @@ namespace Services
                     Price = animal.Price,
                     Description = animal.Description,
                     Images = animal.Images,
+                    Sold = animal.Sold,
                 };
             
 

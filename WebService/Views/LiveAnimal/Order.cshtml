@@ -1,6 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Live Animal";
-
+﻿
+@{
+    ViewData["Title"] = "Order";
 }
 
 @Html.Partial("_NavBar")
@@ -13,7 +13,7 @@
     <div class="row">
         <div class="span12">
             <div class="row">
-                <div class="span9">
+                <div class="span7">
                     <a href="~/images/@ViewBag.LiveAnimalDetails.Images[0]" class="thumbnail" data-fancybox-group="group1" title="Description 1" id="big"><img alt="" src="~/images/@ViewBag.LiveAnimalDetails.Images[0]" id="big-img"></a>
                     <ul class="thumbnails small">
                         @foreach (var image in ViewBag.LiveAnimalDetails.Images)
@@ -25,9 +25,9 @@
 
                     </ul>
                 </div>
-                <div class="span3">
+                <div class="span5">
                     <div>
-                        <h4>@ViewBag.LiveAnimalDetails.Title</h4>
+                        <h4>@ViewBag.LiveAnimalDetails.Title </h4>
                     </div>
                     <div style="margin-top: -1%;">
                         <h5>@ViewBag.LiveAnimalDetails.Origin</h5>
@@ -39,30 +39,53 @@
                     <div>
                         <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">@ViewBag.LiveAnimalDetails.Location</span>
                     </div>
-                    @if (ViewBag.LiveAnimalDetails.Sold == false)
-                    {
-                        <div style="margin-top: 15%;">
-                            <strong style="font-size: medium; color: green;">In Stock </strong>
-                        </div>
-                    }
-                    else
-                    {
-                        <div style="margin-top: 15%;">
-                            <strong style="font-size: medium; color: red;">Sold Out </strong>
-                        </div>
-                    }
-
-
-                    <div style="margin-top: 10%;">
+                    <div style="margin-top: 3%;">
                         <strong style="font-size: x-large; ">&#2547 @ViewBag.LiveAnimalDetails.Price </strong>
                     </div>
-                    @if (ViewBag.LiveAnimalDetails.Sold == false)
-                    {
-                        <div style="margin-top: 10%;">
-                            <button class="btn btn-success" style="font-size: 16px;padding: 2%;">Order Now</button>
-                        </div>
-                    }
-                    
+                    <div style="margin-top: 7%;">
+                        <h5 style="text-align: center;">Confirm Order</h5>
+                    </div>
+                    <div style="margin-top: -4%;">
+                        <hr>
+
+                    </div>
+                    <div style="margin-top: -4%;">
+                        <hr>
+
+                    </div>
+
+                    <div style="margin-top: 5%;">
+                        <form action="#" method="post" class="form-stacked">
+                            <div class="control-group">
+                                <label class="control-label"><strong>Name</strong></label>
+                                <div class="controls">
+                                    <input type="text" placeholder="Enter your Name" style="width: 90%;">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"><strong>Phone Number</strong></label>
+                                <div class="controls">
+                                    <input type="text" placeholder="Enter your Phone Number" style="width: 90%;">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label"><strong>Address</strong></label>
+                                <div class="controls">
+                                    <input type="text" placeholder="Enter your Address" style="width: 90%;">
+                                </div>
+                            </div>
+                            @if (@ViewBag.LiveAnimalDetails.Sold == false)
+                            {
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="submit" class="btn btn-inverse large" value="Confirm Order">
+                                    </div>
+                                </div>
+                            }
+                            
+                        </form>
+                    </div>
                 </div>
             </div>
 
@@ -122,7 +145,7 @@
             </div>
         </div>
     </div>
-  
+
 </section>
 <section id="footer-bar">
     <div class="row">
