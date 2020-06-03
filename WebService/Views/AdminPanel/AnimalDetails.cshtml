@@ -99,11 +99,30 @@
                         <p style="background: #eeeeee" class="p-1" id="description"> N/A </p>
                     </div>
                 }
-                <div class="d-block mt-3 mb-5">
+                <div class="d-flex mt-3 mb-5">
                     @Html.ActionLink("Update", "UpdateAnimal", "AdminPanel", new {itemId = Model?.Id}, new {@class = "btn btn-success w-45 float-left"})
                     @Html.ActionLink("Delete", "AnimalDelete", "AdminPanel", new {itemId = Model?.Id}, new {@class = "btn btn-danger w-45 float-right"})
                 </div>
-                
+
+                if (Model.Images != null)
+                {
+                    <h3 class="d-flex justify-content-center">Uploaded Images</h3>
+                    <div class="row mt-5">
+                        
+                        @{
+                            foreach (var img in Model.Images)
+                            {
+                                <div class="col-lg-3">
+                                    <div class="m-2">
+                                        <a target="_blank" href="~/images/@img" data-fancybox-group="group1">
+                                            <img class="img-fluid" style="max-width: 100%; height: auto;" src="~/images/@img" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                }
             }
             else
             {
@@ -113,3 +132,13 @@
         }
     </div>
 </div>
+
+@*<div class="row">
+    <div class="col-lg-3">
+        <div class="thumbnail">
+            <a class="" data-fancybox-group="group1">
+                <img style="width:100px;height:100px;" src="~/images/@img" alt="">
+            </a>
+        </div>
+    </div>
+</div>*@
