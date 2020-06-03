@@ -22,17 +22,21 @@ namespace WebService.Controllers
         private readonly IAdminPanelServices _adminPanelServices;
         private readonly ILogger<AdminAuthController> _logger;
 
+        private readonly IOrderService _orderServices;
+        
+
         public AdminPanelController(IAdminPanelServices adminPanelServices,
-            ILogger<AdminAuthController> logger)
+            ILogger<AdminAuthController> logger,IOrderService orderService)
         {
             _adminPanelServices = adminPanelServices;
+            _orderServices = orderService;
             _logger = logger;
         }
         
         public async Task<IActionResult> Index(int? page)
         {
             AdminIndexViewModel results = await _adminPanelServices.GetAnimalList();
-            var list = results.LiveAnimalList.ToPagedList(page ?? 1, 10);
+            var list = results.LiveAnimalList.ToPagedList(page ?? 1, 2);
             return View(list);
         }
 
@@ -212,5 +216,41 @@ namespace WebService.Controllers
             var res = await _adminPanelServices.UpdateAnimalLiveAnimal(item);
             return res;
         }
+
+        public async Task<IActionResult> PlacedOrder(int? page)
+        {
+            var OrderViews =  await _orderServices.PlacedOrders();
+            var list = OrderViews.ToPagedList(page ?? 1, 2);
+            return View(list);
+        }
+
+        public async Task<IActionResult> ContactClient(string Id)
+        {
+            if (string.IsNullOrEmpty(Id))
+            {
+                return RedirectToAction("PlacedOrder", "AdminPanel");
+            }
+            bool result = await _orderServices.ContactClient(Id);
+
+            return RedirectToAction("PlacedOrder", "AdminPanel");
+        }
+
+        public async Task<IActionResult> OrderDelete(string itemId)
+        {
+            if (string.IsNullOrEmpty(itemId))
+            {
+                return RedirectToAction("PlacedOrder", "AdminPanel");
+            }
+
+            bool result = await _orderServices.DeleteOrder(itemId);
+            if (result)
+            {
+                return RedirectToAction("PlacedOrder", "AdminPanel");
+            }
+
+            return BadRequest("Couldn't delete");
+        }
+
+
     }
 }

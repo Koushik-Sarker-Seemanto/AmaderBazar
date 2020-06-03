@@ -94,8 +94,7 @@
         let removeSection = $(this).parent().parent();
         let imgStr = $(this).attr("id");
         let itemStr = $(this).attr("name");
-        //console.log("imgID: "+imgStr);
-        //console.log("ItemID: "+itemStr);
+        
         
         Swal.fire({
             title: 'Are you sure?',
@@ -121,6 +120,7 @@
                               'success'
                             );
                             removeSection.remove();
+
                         }
                         else{
                             Swal.fire(
