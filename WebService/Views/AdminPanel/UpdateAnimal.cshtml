@@ -94,27 +94,51 @@
         let removeSection = $(this).parent().parent();
         let imgStr = $(this).attr("id");
         let itemStr = $(this).attr("name");
-        console.log("imgID: "+imgStr);
-        console.log("ItemID: "+itemStr);
+        //console.log("imgID: "+imgStr);
+        //console.log("ItemID: "+itemStr);
         
-        $.ajax({
-            url: '@Url.Action("RemoveImage", "AdminPanel")',
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            type: 'GET',
-            data: "imgId=" + imgStr+ "&itemId=" + itemStr,
-            success: function(response) {
-                if (response === true){
-                    alert("Success! Image Deleted!");
-                    removeSection.remove();
-                }
-                else{
-                    alert("Ops!!! Couldn't delete image!");
-                }
-                
-            },
-            error: function(response) {
-                alert("Ops!!! Internal Error!");
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: '@Url.Action("RemoveImage", "AdminPanel")',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    type: 'GET',
+                    data: "imgId=" + imgStr+ "&itemId=" + itemStr,
+                    success: function(response) {
+                        if (response === true){
+                            Swal.fire(
+                              'Deleted!',
+                              'Your file has been deleted.',
+                              'success'
+                            );
+                            removeSection.remove();
+                        }
+                        else{
+                            Swal.fire(
+                                'Ops!',
+                                "Couldn't delete image!",
+                                'Failed'
+                            );
+                        }
+                        
+                    },
+                    error: function(response) {
+                        Swal.fire(
+                            'Ops!',
+                            'Internal Error!',
+                            'Failed'
+                        );
+                    }
+                });
             }
         });
     });
