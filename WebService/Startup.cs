@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Models.Entities;
 using Repositories;
 using Services;
 using Services.Contracts;
@@ -49,6 +50,7 @@ namespace WebService
 
             services.AddSingleton<IAdminPanelServices, AdminPanelServices>();
             services.AddSingleton<ILiveAnimalService, LiveAnimalService>();
+            services.AddSingleton<IOrderService, OrderService>(); 
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }

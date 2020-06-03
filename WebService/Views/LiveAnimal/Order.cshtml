@@ -1,4 +1,4 @@
-﻿
+﻿@model Models.Entities.Order
 @{
     ViewData["Title"] = "Order";
 }
@@ -55,24 +55,39 @@
                     </div>
 
                     <div style="margin-top: 5%;">
-                        <form action="#" method="post" class="form-stacked">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger alert alert-danger" })
+
+                        <form autocomplete="Off" method="post"  asp-action="Order" class="form-stacked">
                             <div class="control-group">
                                 <label class="control-label"><strong>Name</strong></label>
                                 <div class="controls">
-                                    <input type="text" placeholder="Enter your Name" style="width: 90%;">
+                                    <input asp-for="Name" type="text" placeholder="Enter your Name" style="width: 90%;"><br/>
+                                    <span asp-validation-for="Name" class="text-danger"></span>
                                 </div>
                             </div>
 
                             <div class="control-group">
                                 <label class="control-label"><strong>Phone Number</strong></label>
                                 <div class="controls">
-                                    <input type="text" placeholder="Enter your Phone Number" style="width: 90%;">
+                                    <input asp-for="PhoneNumber" type="text" placeholder="Enter your Phone Number" style="width: 90%;"><br/>
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label"><strong>Address</strong></label>
                                 <div class="controls">
-                                    <input type="text" placeholder="Enter your Address" style="width: 90%;">
+                                    <input type="text" asp-for="Address" placeholder="Enter your Address" style="width: 90%;">
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="control-group" style="visibility: hidden">
+                                <label class="control-label"><strong>Address</strong></label>
+                                <div class="controls">
+                                    <input type="text" asp-for="LiveAnimalId" placeholder="Enter your Address" style="width: 90%;" value="@ViewBag.LiveAnimalDetails.Id">
+                                    <span asp-validation-for="LiveAnimalId" class="text-danger"></span>
+
                                 </div>
                             </div>
                             @if (@ViewBag.LiveAnimalDetails.Sold == false)
@@ -83,7 +98,7 @@
                                     </div>
                                 </div>
                             }
-                            
+
                         </form>
                     </div>
                 </div>
