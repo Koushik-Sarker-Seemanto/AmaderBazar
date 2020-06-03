@@ -59,10 +59,13 @@
                     @if (ViewBag.LiveAnimalDetails.Sold == false)
                     {
                         <div style="margin-top: 10%;">
-                            <button class="btn btn-success" style="font-size: 16px;padding: 2%;">Order Now</button>
+                            <form>
+                                <input class="btn btn-success" style="font-size: 16px; padding: 3%;" value="Order Now" onclick="location.href = '@Url.Action("Order", "LiveAnimal")?id=@ViewBag.LiveAnimalDetails.Id'" >
+
+                            </form>
                         </div>
                     }
-                    
+
                 </div>
             </div>
 
@@ -122,7 +125,7 @@
             </div>
         </div>
     </div>
-  
+
 </section>
 <section id="footer-bar">
     <div class="row">
@@ -176,8 +179,8 @@
 
         });
 
-        $('#myCarousel-2').carousel({
-            interval: 200
-        });
+        //        $('#myCarousel-2').carousel({
+        //            interval: 200
+        //        });
     });
 </script>

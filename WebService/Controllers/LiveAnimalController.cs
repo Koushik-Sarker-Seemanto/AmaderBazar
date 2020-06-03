@@ -31,6 +31,15 @@ namespace WebService.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Order(string Id)
+        {
+            
+            var LiveAnimalDetails = await _liveAnimalService.GetLiveAnimalById(Id);
+            ViewBag.Related = await GetRelated(LiveAnimalDetails.Category);
+            ViewBag.LiveAnimalDetails = LiveAnimalDetails;
+            return View();
+        }
+
         private async Task<List<LiveAnimalViewModelFrontend>> GetRelated(string category)
         {
             var related = await _liveAnimalService.GetLiveAnimalByCategory(category);
