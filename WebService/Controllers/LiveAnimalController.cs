@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Models.Entities;
-using Models.LiveAnimalsModels;
+using Models.LiveAnimalModels;
 using Services.Contracts;
 
 namespace WebService.Controllers
@@ -21,37 +21,53 @@ namespace WebService.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            ViewBag.LiveAnimals = await _liveAnimalService.GetAllLiveAnimals();
-            return View();
+            var animals = await _liveAnimalService.GetAllLiveAnimals();
+            return View(animals);
         }
 
         public async Task<IActionResult> Details(string Id)
         {
+            if (string.IsNullOrEmpty(Id))
+            {
+                return RedirectToAction("Index", "LiveAnimal");
+            }
+
+            LiveAnimalDetailsViewModel viewModel = new LiveAnimalDetailsViewModel();
             
-            var LiveAnimalDetails = await _liveAnimalService.GetLiveAnimalById(Id);
-            ViewBag.LiveAnimalDetails = LiveAnimalDetails;
-            ViewBag.Related = await GetRelated(LiveAnimalDetails.Category);
-            return View();
+            var liveAnimalDetails = await _liveAnimalService.GetLiveAnimalById(Id);
+            viewModel.LiveAnimalDetails = liveAnimalDetails;
+            viewModel.Related = await GetRelated(liveAnimalDetails.Category);
+            return View(viewModel);
         }
 
         public async Task<IActionResult> Order(string Id)
         {
+            if (string.IsNullOrEmpty(Id))
+            {
+                return RedirectToAction("Index", "LiveAnimal");
+            }
             
-            var LiveAnimalDetails = await _liveAnimalService.GetLiveAnimalById(Id);
-            ViewBag.Related = await GetRelated(LiveAnimalDetails.Category);
-            ViewBag.LiveAnimalDetails = LiveAnimalDetails;
-            return View();
+            LiveAnimalDetailsViewModel viewModel = new LiveAnimalDetailsViewModel();
+            
+            var liveAnimalDetails = await _liveAnimalService.GetLiveAnimalById(Id);
+            viewModel.LiveAnimalDetails = liveAnimalDetails;
+            viewModel.Related = await GetRelated(liveAnimalDetails.Category);
+            
+            return View(viewModel);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Order([Bind] Order order)
         {
-            var LiveAnimalDetails = await _liveAnimalService.GetLiveAnimalById(order.LiveAnimalId);
-            ViewBag.Related = await GetRelated(LiveAnimalDetails.Category);
-            ViewBag.LiveAnimalDetails = LiveAnimalDetails;
+            LiveAnimalDetailsViewModel viewModel = new LiveAnimalDetailsViewModel();
+            var liveAnimalDetails = await _liveAnimalService.GetLiveAnimalById(order.LiveAnimalId);
+            viewModel.LiveAnimalDetails = liveAnimalDetails;
+            viewModel.Related = await GetRelated(liveAnimalDetails.Category);
+            viewModel.Order = order;
             if (ModelState.IsValid == false)
             {
-                return View(order);
+                return View(viewModel);
             }
             var id = Guid.NewGuid().ToString();
             order.Id = id;
@@ -62,8 +78,7 @@ namespace WebService.Controllers
         private async Task<List<LiveAnimalViewModelFrontend>> GetRelated(string category)
         {
             var related = await _liveAnimalService.GetLiveAnimalByCategory(category);
-            if (related.Count > 9) related.RemoveRange(9, related.Count - 9);
-            return related;
+            return related.Take(9).ToList();
         }
     }
 }

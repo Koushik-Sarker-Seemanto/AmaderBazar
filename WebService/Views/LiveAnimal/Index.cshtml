@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Models.LiveAnimalModels.LiveAnimalViewModelFrontend>
+@{
     ViewData["Title"] = "Live Animal";
 
 }
@@ -39,12 +40,21 @@
         </div>
         <div class="span9">
             <ul class="thumbnails listing-products">
-                @foreach (var animal in ViewBag.LiveAnimals)
+                @foreach (var animal in Model)
                 {
                     <li class="span3">
                         <div class="product-box">
                             <span class="sale_tag"></span>
-                            <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })'><img alt="" src="~/images/@animal.Images[0]"></a><br />
+                            @{
+                                if (animal.Images != null)
+                                {
+                                    <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })'><img alt="" src="~/images/@animal.Images[0]"></a><br />
+                                }
+                                else
+                                {
+                                    <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })'><img alt="" src="~/static/noimage.png"></a><br />
+                                }
+                            }
                             <a href = '@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })' class="title">@animal.Title</a><br />
                             <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })'>@animal.Origin</a>
                             <p class="price">@animal.Price</p>

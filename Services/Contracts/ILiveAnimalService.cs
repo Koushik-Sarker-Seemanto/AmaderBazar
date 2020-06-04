@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Models.Entities;
-using Models.LiveAnimalsModels;
+using Models.LiveAnimalModels;
 
 namespace Services.Contracts
 {
