@@ -132,7 +132,17 @@
                                     <li class="span3">
                                         <div class="product-box">
                                             <span class="sale_tag"></span>
-                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img alt="" src="~/images/@Model.Related[i].Images[0]"></a><br />
+                                            @{
+                                                if (Model.Related[i].Images != null)
+                                                {
+                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img alt="" src="~/images/@Model.Related[i].Images[0]"></a><br />
+                                                }
+                                                else
+                                                {
+                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img alt="" src="~/static/noimage.png"></a><br />
+                                                }
+                                            }
+                                            
                                             <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">@Model.Related[i].Title</a><br />
                                             <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>@Model.Related[i].Origin</a>
                                             <p class="price">@Model.Related[i].Price</p>
@@ -152,7 +162,16 @@
                                         <li class="span3">
                                             <div class="product-box">
                                                 <span class="sale_tag"></span>
-                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img alt="" src="~/images/@Model.Related[i].Images[0]"></a><br />
+                                                @{
+                                                    if (Model.Related[i].Images != null)
+                                                    {
+                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img alt="" src="~/images/@Model.Related[i].Images[0]"></a><br />
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img alt="" src="~/static/noimage.png"></a><br />
+                                                    }
+                                                }
                                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">@Model.Related[i].Title</a><br />
                                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>@Model.Related[i].Origin</a>
                                                 <p class="price">@Model.Related[i].Price</p>
