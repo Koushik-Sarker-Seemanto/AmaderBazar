@@ -101,7 +101,7 @@
                 }
                 <div class="d-flex mt-3 mb-5">
                     @Html.ActionLink("Update", "UpdateAnimal", "AdminPanel", new {itemId = Model?.Id}, new {@class = "btn btn-success w-45 float-left"})
-                    @Html.ActionLink("Delete", "AnimalDelete", "AdminPanel", new {itemId = Model?.Id}, new {@class = "btn btn-danger w-45 float-right"})
+                    @Html.ActionLink("Delete", "AnimalDelete", "AdminPanel", new {itemId = Model?.Id}, new {@class = "animalDeleteBtn btn btn-danger w-45 float-right"})
                 </div>
 
                 if (Model.Images != null)
@@ -133,12 +133,29 @@
     </div>
 </div>
 
-@*<div class="row">
-    <div class="col-lg-3">
-        <div class="thumbnail">
-            <a class="" data-fancybox-group="group1">
-                <img style="width:100px;height:100px;" src="~/images/@img" alt="">
-            </a>
-        </div>
-    </div>
-</div>*@
+<script>
+
+    $(document).on('click', '.animalDeleteBtn', function (e) {
+        e.preventDefault();
+        var clicked = $(this);
+        alert("Worked!");
+        $(this).unbind('click');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                console.log("Clicked YES!");
+                clicked.unbind('click').click();
+                console.log("It Won't work");
+                //clicked.unbind('click').submit();
+            }
+        });
+    });
+    
+</script>

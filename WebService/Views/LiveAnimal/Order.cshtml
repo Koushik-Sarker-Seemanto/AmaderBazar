@@ -1,6 +1,11 @@
-﻿@model Models.Entities.Order
+﻿@*
+@model Models.Entities.Order;
+*@
+@model Models.LiveAnimalModels.LiveAnimalDetailsViewModel;
 @{
     ViewData["Title"] = "Order";
+    ViewBag.LiveAnimalDetailsId = Model.LiveAnimalDetails.Id;
+    ViewBag.LiveAnimalDetailsSold = Model.LiveAnimalDetails.Sold;
 }
 
 @Html.Partial("_NavBar")
@@ -14,33 +19,53 @@
         <div class="span12">
             <div class="row">
                 <div class="span7">
-                    <a href="~/images/@ViewBag.LiveAnimalDetails.Images[0]" class="thumbnail" data-fancybox-group="group1" title="Description 1" id="big"><img alt="" src="~/images/@ViewBag.LiveAnimalDetails.Images[0]" id="big-img"></a>
-                    <ul class="thumbnails small">
-                        @foreach (var image in ViewBag.LiveAnimalDetails.Images)
+                    @{
+                        if (Model.LiveAnimalDetails.Images != null)
                         {
-                            <li class="span1">
-                                <a class="thumbnail" data-fancybox-group="group1" title="Description 2"><img src="~/images/@image" alt=""></a>
-                            </li>
+                            <a href="~/images/@Model.LiveAnimalDetails.Images[0]" class="thumbnail" data-fancybox-group="group1" title="Description 1" id="big">
+                                <img alt="" src="~/images/@Model.LiveAnimalDetails.Images[0]" id="big-img">
+                            </a>
                         }
+                        else
+                        {
+                            <a href="~/static/noimage.png" class="thumbnail" data-fancybox-group="group1" title="Description 1" id="big">
+                                <img alt="" src="~/static/noimage.png" id="big-img">
+                            </a>
+                        }
+                    }
+                    
+                    <ul class="thumbnails small">
+                        @{
+                            if (Model.LiveAnimalDetails.Images != null)
+                            {
+                                @foreach (var image in Model.LiveAnimalDetails.Images)
+                                {
+                                    <li class="span1">
+                                        <a class="thumbnail" data-fancybox-group="group1" title="Description 2"><img src="~/images/@image" alt=""></a>
+                                    </li>
+                                }
+                            }
+                        }
+                        
 
                     </ul>
                 </div>
                 <div class="span5">
                     <div>
-                        <h4>@ViewBag.LiveAnimalDetails.Title </h4>
+                        <h4>@Model.LiveAnimalDetails.Title </h4>
                     </div>
                     <div style="margin-top: -1%;">
-                        <h5>@ViewBag.LiveAnimalDetails.Origin</h5>
+                        <h5>@Model.LiveAnimalDetails.Origin</h5>
                     </div>
 
                     <div>
-                        <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">@ViewBag.LiveAnimalDetails.Color</span>
+                        <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Color</span>
                     </div>
                     <div>
-                        <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">@ViewBag.LiveAnimalDetails.Location</span>
+                        <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span>
                     </div>
                     <div style="margin-top: 3%;">
-                        <strong style="font-size: x-large; ">&#2547 @ViewBag.LiveAnimalDetails.Price </strong>
+                        <strong style="font-size: x-large; ">&#2547 @Model.LiveAnimalDetails.Price </strong>
                     </div>
                     <div style="margin-top: 7%;">
                         <h5 style="text-align: center;">Confirm Order</h5>
@@ -55,51 +80,7 @@
                     </div>
 
                     <div style="margin-top: 5%;">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger alert alert-danger" })
-
-                        <form autocomplete="Off" method="post"  asp-action="Order" class="form-stacked">
-                            <div class="control-group">
-                                <label class="control-label"><strong>Name</strong></label>
-                                <div class="controls">
-                                    <input asp-for="Name" type="text" placeholder="Enter your Name" style="width: 90%;"><br/>
-                                    <span asp-validation-for="Name" class="text-danger"></span>
-                                </div>
-                            </div>
-
-                            <div class="control-group">
-                                <label class="control-label"><strong>Phone Number</strong></label>
-                                <div class="controls">
-                                    <input asp-for="PhoneNumber" type="text" placeholder="Enter your Phone Number" style="width: 90%;"><br/>
-                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label"><strong>Address</strong></label>
-                                <div class="controls">
-                                    <input type="text" asp-for="Address" placeholder="Enter your Address" style="width: 90%;">
-                                    <span asp-validation-for="Address" class="text-danger"></span>
-
-                                </div>
-                            </div>
-                            <div class="control-group" style="visibility: hidden">
-                                <label class="control-label"><strong>Address</strong></label>
-                                <div class="controls">
-                                    <input type="text" asp-for="LiveAnimalId" placeholder="Enter your Address" style="width: 90%;" value="@ViewBag.LiveAnimalDetails.Id">
-                                    <span asp-validation-for="LiveAnimalId" class="text-danger"></span>
-
-                                </div>
-                            </div>
-                            @if (@ViewBag.LiveAnimalDetails.Sold == false)
-                            {
-                                <div class="control-group">
-                                    <div class="controls">
-                                        <input type="submit" class="btn btn-inverse large" value="Confirm Order">
-                                    </div>
-                                </div>
-                            }
-
-                        </form>
+                        @{ await Html.RenderPartialAsync("_OrderForm", Model.Order ); }
                     </div>
                 </div>
             </div>
@@ -111,7 +92,7 @@
                     <li class="active"><a href="#home">Description</a></li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="home">@ViewBag.LiveAnimalDetails.Description</div>
+                    <div class="tab-pane active" id="home">@Model.LiveAnimalDetails.Description</div>
                     <div class="tab-pane" id="profile">
                         <table class="table table-striped shop_attributes">
                             <tbody>
@@ -140,12 +121,22 @@
                     <div class="carousel-inner">
                         <div class="active item">
                             <ul class="thumbnails listing-products">
-                                @foreach (var animal in ViewBag.Related)
+                                @foreach (var animal in Model.Related)
                                 {
                                     <li class="span3">
                                         <div class="product-box">
                                             <span class="sale_tag"></span>
-                                            <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })'><img alt="" src="~/images/@animal.Images[0]"></a><br />
+                                            @{
+                                                if (animal.Images != null)
+                                                {
+                                                    <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })'><img alt="" src="~/images/@animal.Images[0]"></a><br />
+                                                }
+                                                else
+                                                {
+                                                    <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })'><img alt="" src="~/static/noimage.png"></a><br />
+                                                }
+                                            }
+                                            
                                             <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })' class="title">@animal.Title</a><br />
                                             <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })'>@animal.Origin</a>
                                             <p class="price">@animal.Price</p>

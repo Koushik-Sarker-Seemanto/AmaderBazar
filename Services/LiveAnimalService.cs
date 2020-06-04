@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Models.AdminModels;
 using Models.Entities;
-using Models.LiveAnimalsModels;
+using Models.LiveAnimalModels;
 using Repositories;
 using Services.Contracts;
 

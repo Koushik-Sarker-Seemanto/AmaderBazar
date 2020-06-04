@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Models.AdminModels;
 using Models.Entities;
-using Models.LiveAnimalsModels;
+using Models.LiveAnimalModels;
 
 namespace Models.OrderModels
 {

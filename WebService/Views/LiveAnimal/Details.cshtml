@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Models.LiveAnimalModels.LiveAnimalDetailsViewModel;
+@{
     ViewData["Title"] = "Live Animal";
 
 }
@@ -14,32 +15,51 @@
         <div class="span12">
             <div class="row">
                 <div class="span9">
-                    <a href="~/images/@ViewBag.LiveAnimalDetails.Images[0]" class="thumbnail" data-fancybox-group="group1" title="Description 1" id="big"><img alt="" src="~/images/@ViewBag.LiveAnimalDetails.Images[0]" id="big-img"></a>
-                    <ul class="thumbnails small">
-                        @foreach (var image in ViewBag.LiveAnimalDetails.Images)
+                    @{
+                        if (Model.LiveAnimalDetails.Images != null)
                         {
-                            <li class="span1">
-                                <a class="thumbnail" data-fancybox-group="group1" title="Description 2"><img src="~/images/@image" alt=""></a>
-                            </li>
+                            <a href="~/images/@Model.LiveAnimalDetails.Images[0]" class="thumbnail" data-fancybox-group="group1" title="Description 1" id="big">
+                                <img alt="" src="~/images/@Model.LiveAnimalDetails.Images[0]" id="big-img">
+                            </a>
                         }
+                        else
+                        {
+                            <a href="~/static/noimage.png" class="thumbnail" data-fancybox-group="group1" title="Description 1" id="big">
+                                <img alt="" src="~/static/noimage.png" id="big-img">
+                            </a>
+                        }
+                    }
+                    @{
+                        if (Model.LiveAnimalDetails.Images != null)
+                        {
+                            <ul class="thumbnails small">
+                                @foreach (var image in Model.LiveAnimalDetails.Images)
+                                {
+                                    <li class="span1">
+                                        <a class="thumbnail" data-fancybox-group="group1" title="Description 2"><img src="~/images/@image" alt=""></a>
+                                    </li>
+                                }
 
-                    </ul>
+                            </ul>
+                        }
+                    }
+                    
                 </div>
                 <div class="span3">
                     <div>
-                        <h4>@ViewBag.LiveAnimalDetails.Title</h4>
+                        <h4>@Model.LiveAnimalDetails.Title</h4>
                     </div>
                     <div style="margin-top: -1%;">
-                        <h5>@ViewBag.LiveAnimalDetails.Origin</h5>
+                        <h5>@Model.LiveAnimalDetails.Origin</h5>
                     </div>
 
                     <div>
-                        <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">@ViewBag.LiveAnimalDetails.Color</span>
+                        <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Color</span>
                     </div>
                     <div>
-                        <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">@ViewBag.LiveAnimalDetails.Location</span>
+                        <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span>
                     </div>
-                    @if (ViewBag.LiveAnimalDetails.Sold == false)
+                    @if (Model.LiveAnimalDetails.Sold == false)
                     {
                         <div style="margin-top: 15%;">
                             <strong style="font-size: medium; color: green;">In Stock </strong>
@@ -54,13 +74,13 @@
 
 
                     <div style="margin-top: 10%;">
-                        <strong style="font-size: x-large; ">&#2547 @ViewBag.LiveAnimalDetails.Price </strong>
+                        <strong style="font-size: x-large; ">&#2547 @Model.LiveAnimalDetails.Price </strong>
                     </div>
-                    @if (ViewBag.LiveAnimalDetails.Sold == false)
+                    @if (Model.LiveAnimalDetails.Sold == false)
                     {
                         <div style="margin-top: 10%;">
                             <form>
-                                <input class="btn btn-success" style="font-size: 16px; padding: 3%;" value="Order Now" onclick="location.href = '@Url.Action("Order", "LiveAnimal")?id=@ViewBag.LiveAnimalDetails.Id'" >
+                                <input class="btn btn-success" style="font-size: 16px; padding: 3%;" value="Order Now" onclick="location.href = '@Url.Action("Order", "LiveAnimal")?id=@Model.LiveAnimalDetails.Id'" >
 
                             </form>
                         </div>
@@ -76,7 +96,7 @@
                     <li class="active"><a href="#home">Description</a></li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="home">@ViewBag.LiveAnimalDetails.Description</div>
+                    <div class="tab-pane active" id="home">@Model.LiveAnimalDetails.Description</div>
                     <div class="tab-pane" id="profile">
                         <table class="table table-striped shop_attributes">
                             <tbody>
@@ -105,12 +125,21 @@
                     <div class="carousel-inner">
                         <div class="active item">
                             <ul class="thumbnails listing-products">
-                                @foreach (var animal in ViewBag.Related)
+                                @foreach (var animal in Model.Related)
                                 {
                                     <li class="span3">
                                         <div class="product-box">
                                             <span class="sale_tag"></span>
-                                            <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })'><img alt="" src="~/images/@animal.Images[0]"></a><br />
+                                            @{
+                                                if (animal.Images != null)
+                                                {
+                                                    <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })'><img alt="" src="~/images/@animal.Images[0]"></a><br />
+                                                }
+                                                else
+                                                {
+                                                    <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })'><img alt="" src="~/static/noimage.png"></a><br />
+                                                }
+                                            }
                                             <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })' class="title">@animal.Title</a><br />
                                             <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })'>@animal.Origin</a>
                                             <p class="price">@animal.Price</p>
