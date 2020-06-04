@@ -121,31 +121,42 @@
                     <div class="carousel-inner">
                         <div class="active item">
                             <ul class="thumbnails listing-products">
-                                @foreach (var animal in Model.Related)
+
+                                @for (int i = 0; i < Math.Min(@Model.Related.Count, 3); i++)
                                 {
                                     <li class="span3">
                                         <div class="product-box">
                                             <span class="sale_tag"></span>
-                                            @{
-                                                if (animal.Images != null)
-                                                {
-                                                    <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })'><img alt="" src="~/images/@animal.Images[0]"></a><br />
-                                                }
-                                                else
-                                                {
-                                                    <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })'><img alt="" src="~/static/noimage.png"></a><br />
-                                                }
-                                            }
-                                            
-                                            <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })' class="title">@animal.Title</a><br />
-                                            <a href='@Url.Action("Details", "LiveAnimal", new { Id = @animal.Id })'>@animal.Origin</a>
-                                            <p class="price">@animal.Price</p>
+                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img alt="" src="~/images/@Model.Related[i].Images[0]"></a><br />
+                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">@Model.Related[i].Title</a><br />
+                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>@Model.Related[i].Origin</a>
+                                            <p class="price">@Model.Related[i].Price</p>
                                         </div>
                                     </li>
                                 }
-
                             </ul>
                         </div>
+
+                        @for (int i = 1; i < Math.Ceiling(@Model.Related.Count / 3.00); i++)
+                        {
+                            <div class="item">
+                                <ul class="thumbnails listing-products">
+
+                                    @for (int j = i * 3; j < Math.Min(@Model.Related.Count, (i * 3) + 3); j++)
+                                    {
+                                        <li class="span3">
+                                            <div class="product-box">
+                                                <span class="sale_tag"></span>
+                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img alt="" src="~/images/@Model.Related[i].Images[0]"></a><br />
+                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">@Model.Related[i].Title</a><br />
+                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>@Model.Related[i].Origin</a>
+                                                <p class="price">@Model.Related[i].Price</p>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
