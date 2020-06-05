@@ -22,6 +22,7 @@ namespace Models.LiveAnimalModels
         public string Description { get; set; }
         public string Location { get; set; }
         public bool Sold { get; set; }
+        public bool Featured { get; set; }
         public List<string> Images { get; set; }
     }
 

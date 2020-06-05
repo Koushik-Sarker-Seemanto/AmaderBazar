@@ -115,11 +115,47 @@ namespace Services
             }
             catch (Exception e)
             {
-                _logger.LogError(e, $"GetAllAnimalById Failed: {e.Message}");
+                _logger.LogError(e, $"GetAllAnimalByCatagory Failed: {e.Message}");
                 return null;
             }
             
         }
+
+        public async Task<List<LiveAnimalViewModelFrontend>> GetFeaturedLiveAnimal()
+        {
+            try
+            {
+                var animals = await _repository.GetItemsAsync<LiveAnimal>(d => d.Featured == true && d.Sold == false);
+                var list = animals?.ToList();
+                var animalList = BuildList(list);
+                return animalList;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"GetAllFeaturedAnimal Failed: {e.Message}");
+                return null;
+            }
+        }
+
+        public async Task<List<LiveAnimalViewModelFrontend>> GetLatestAnimal()
+        {
+            try
+            {
+                var animals = await _repository.GetItemsAsync<LiveAnimal>(d => d.Featured == false && d.Sold == false);
+                var list = animals?.ToList();
+                list?.Reverse();
+                if (list.Count > 8) list.RemoveRange(8,list.Count - 8 );
+                
+                var animalList = BuildList(list);
+                return animalList;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"GetAllFeaturedAnimal Failed: {e.Message}");
+                return null;
+            }
+        }
+
         private List<LiveAnimalViewModelFrontend> BuildList(List<LiveAnimal> animals)
         {
             List<LiveAnimalViewModelFrontend> list = new List<LiveAnimalViewModelFrontend>();

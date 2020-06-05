@@ -49,6 +49,15 @@
                 <span asp-validation-for="Location" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label for="color">Is Featured ?</label>
+                <select asp-for="Featured" class="form-control" id="feature">
+                    <option disabled selected value=""> -- Please Select -- </option>
+                    <option value = "true">Yes</option>
+                    <option value = "false">False</option>
+                </select>
+                <span asp-validation-for="Featured" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label for="description">Description</label>
                 <textarea rows="5" asp-for="Description" class="form-control" id="description" placeholder="Enter Description"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>

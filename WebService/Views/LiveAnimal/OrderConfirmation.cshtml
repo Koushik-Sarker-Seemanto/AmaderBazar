@@ -1,0 +1,61 @@
+﻿@model Models.Entities.Order
+
+
+
+@{
+    ViewData["Title"] = "OrderConfirmation";
+    ViewBag.Detailes = Model;
+}
+@Html.Partial("_NavBar")
+<section class="header_text sub">
+    <img class="pageBanner" src="~/themes/images/pageBanner.png" alt="New products">
+    
+</section>
+<section class="main-content">
+<div class="row">
+    <div class="span12"style="text-align: center">
+        <h5>Your Inital Booking For The Product Is Done</h5>
+        <h5>We will Contact You Soon</h5><br/>
+        <h5 style="color: red">Please Download Booking Recipt For Complete Further Procedure</h5>
+        <form method="post" asp-action="OrderConfirmation">
+            <input style="display: none" asp-for="Id"/>
+            <input type="submit" value="Confirm" class="bt btn-success"/>
+        </form>
+    </div>
+</div>
+</section>
+<section id="footer-bar">
+    <div class="row">
+        <div class="span3">
+            <h4>Navigation</h4>
+            <ul class="nav">
+                <li><a href="./index.html">Homepage</a></li>
+                <li><a href="./about.html">About Us</a></li>
+                <li><a href="./contact.html">Contac Us</a></li>
+                <li><a href="./cart.html">Your Cart</a></li>
+                <li><a href="./register.html">Login</a></li>
+            </ul>
+        </div>
+        <div class="span4">
+            <h4>My Account</h4>
+            <ul class="nav">
+                <li><a href="#">My Account</a></li>
+                <li><a href="#">Order History</a></li>
+                <li><a href="#">Wish List</a></li>
+                <li><a href="#">Newsletter</a></li>
+            </ul>
+        </div>
+        <div class="span5">
+            <p class="logo"><img src="~/themes/images/logo.png" class="site_logo" alt=""></p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
+            <br />
+            <span class="social_icons">
+                <a class="facebook" href="#">Facebook</a>
+                <a class="twitter" href="#">Twitter</a>
+                <a class="skype" href="#">Skype</a>
+                <a class="vimeo" href="#">Vimeo</a>
+            </span>
+        </div>
+    </div>
+</section>
+

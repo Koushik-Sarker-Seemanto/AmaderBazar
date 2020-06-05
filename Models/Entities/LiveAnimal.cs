@@ -26,7 +26,7 @@ namespace Models.Entities
         public string Location { get; set; }
         [DefaultValue(false)]
         public bool Sold { get; set; }
-
+        public bool Featured { get; set; }
         public List<string> Images { get; set; }
     }
 }
