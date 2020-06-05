@@ -155,12 +155,28 @@ namespace WebService.Controllers
             await _orderService.AddOrder(order);
             if (order != null )
             {
-                
-                return View("OrderConfirmation", order);
-            } 
+                return RedirectToAction("OrderConfirmation", "LiveAnimal", new {orderId = order.Id});
+            }
             //Error
             return RedirectToAction("Index", "LiveAnimal");
             
+        }
+
+        public async Task<IActionResult> OrderConfirmation(string orderId)
+        {
+            if (orderId == null)
+            {
+                //Error
+                return RedirectToAction("Index", "LiveAnimal");
+            }
+
+            var order = await _orderService.FindOrderById(orderId);
+            if (order == null)
+            {
+                //Error
+                return RedirectToAction("Index", "LiveAnimal");
+            }
+            return View(order);
         }
 
         [HttpPost]
@@ -171,7 +187,15 @@ namespace WebService.Controllers
             if (order != null)
             {
                 order = await _orderService.FindOrderById(order.Id);
+                if (order == null)
+                {
+                    return View();
+                }
                 var animal = await _liveAnimalService.GetLiveAnimalById(order.LiveAnimalId);
+                if (animal == null)
+                {
+                    return View();
+                }
                 OrderViewModel orderDetailes = new OrderViewModel()
                 {
                     Order = order,
@@ -180,7 +204,6 @@ namespace WebService.Controllers
                 return _orderService.CreateReciept(orderDetailes);
 
             }
-            //Error Page
             return RedirectToAction("Index");
         }
 
