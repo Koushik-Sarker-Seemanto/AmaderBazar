@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Models.Entities;
 using Models.LiveAnimalModels;
+using Models.OrderModels;
 using Services.Contracts;
 using Syncfusion.Drawing;
 using Syncfusion.Pdf;
@@ -114,8 +115,21 @@ namespace WebService.Controllers
             var id = Guid.NewGuid().ToString();
             order.Id = id;
             await _orderService.AddOrder(order);
-            
+            if (order != null )
+            {
+                
+                return View("OrderConfirmation", order);
+            } 
+            //Error
             return RedirectToAction("Index", "LiveAnimal");
+            
+        }
+
+        [HttpPost]
+        public IActionResult OrderConfirmation([Bind] Order order)
+        {
+            Debug.Print(order.PhoneNumber+"");
+            return RedirectToAction("Index");
         }
 
         public IActionResult CreateReciept(LiveAnimalViewModelFrontend live)

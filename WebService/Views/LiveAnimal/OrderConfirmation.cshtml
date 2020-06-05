@@ -1,0 +1,16 @@
+﻿@model Models.Entities.Order
+
+
+
+@{
+    ViewData["Title"] = "OrderConfirmation";
+    ViewBag.Detailes = Model;
+}
+
+<h1>@ViewBag.Detailes.Name</h1>
+
+<form method="post" asp-action="OrderConfirmation">
+    <input style="visibility: hidden" asp-for="PhoneNumber" />
+    <input type="submit" value="Confirm"/>
+</form>
+

@@ -23,6 +23,7 @@ namespace Models.AdminModels
         public string Description { get; set; }
         public string Location { get; set; }
         public List<string> Images { get; set; }
+        public bool Featured { get; set; }
 
     }
 }

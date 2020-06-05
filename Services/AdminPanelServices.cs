@@ -88,6 +88,7 @@ namespace Services
                 Price = model.Price,
                 Description = model.Description,
                 Images = model.Images,
+                Featured = model.Featured,
             };
             return liveAnimal;
         }

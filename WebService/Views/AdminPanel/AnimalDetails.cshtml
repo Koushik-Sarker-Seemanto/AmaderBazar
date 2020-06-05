@@ -24,7 +24,7 @@
                         <p style="background: #eeeeee" class="p-1" id="title"> N/A </p>
                     </div>
                 }
-                
+
                 if (Model.Category != null)
                 {
                     <div class="mb-3">
@@ -39,7 +39,7 @@
                         <p style="background: #eeeeee" class="p-1" id="category"> N/A </p>
                     </div>
                 }
-                
+
                 if (!double.IsNaN(Model.Price))
                 {
                     <div class="mb-3">
@@ -54,7 +54,7 @@
                         <p style="background: #eeeeee" class="p-1" id="price"> N/A </p>
                     </div>
                 }
-                
+
                 if (Model.Origin != null)
                 {
                     <div class="mb-3">
@@ -69,7 +69,7 @@
                         <p style="background: #eeeeee" class="p-1" id="origin"> N/A </p>
                     </div>
                 }
-                
+
                 if (Model.Location != null)
                 {
                     <div class="mb-3">
@@ -84,7 +84,21 @@
                         <p style="background: #eeeeee" class="p-1" id="location"> N/A </p>
                     </div>
                 }
-                
+                if (Model.Featured != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="Featured">Featured</label>
+                        <p style="background: #eeeeee" class="p-1" id="location"> @Html.DisplayFor(model => model.Featured) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="location">Featured</label>
+                        <p style="background: #eeeeee" class="p-1" id="location"> N/A </p>
+                    </div>
+                }
+
                 if (Model.Description != null)
                 {
                     <div class="mb-3">
@@ -100,15 +114,15 @@
                     </div>
                 }
                 <div class="d-flex mt-3 mb-5">
-                    @Html.ActionLink("Update", "UpdateAnimal", "AdminPanel", new {itemId = Model?.Id}, new {@class = "btn btn-success w-45 float-left"})
-                    @Html.ActionLink("Delete", "AnimalDelete", "AdminPanel", new {itemId = Model?.Id}, new {@class = "animalDeleteBtn btn btn-danger w-45 float-right"})
+                    @Html.ActionLink("Update", "UpdateAnimal", "AdminPanel", new { itemId = Model?.Id }, new { @class = "btn btn-success w-45 float-left" })
+                    @Html.ActionLink("Delete", "AnimalDelete", "AdminPanel", new { itemId = Model?.Id }, new { @class = "animalDeleteBtn btn btn-danger w-45 float-right" })
                 </div>
 
                 if (Model.Images != null)
                 {
                     <h3 class="d-flex justify-content-center">Uploaded Images</h3>
                     <div class="row mt-5">
-                        
+
                         @{
                             foreach (var img in Model.Images)
                             {
@@ -128,7 +142,7 @@
             {
                 <h1>No data found!!!</h1>
             }
-            
+
         }
     </div>
 </div>
