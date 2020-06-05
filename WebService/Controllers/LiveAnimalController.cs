@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Models.Entities;
 using Models.LiveAnimalModels;
 using Services.Contracts;
+using Syncfusion.Drawing;
+using Syncfusion.Pdf;
+using Syncfusion.Pdf.Graphics;
+using Syncfusion.Pdf.Grid;
 using X.PagedList;
 using X.PagedList.Mvc.Core;
 
@@ -101,6 +106,7 @@ namespace WebService.Controllers
             viewModel.LiveAnimalDetails = liveAnimalDetails;
             viewModel.Related = await GetRelated(liveAnimalDetails.Category);
             viewModel.Order = order;
+            
             if (ModelState.IsValid == false)
             {
                 return View(viewModel);
@@ -108,7 +114,13 @@ namespace WebService.Controllers
             var id = Guid.NewGuid().ToString();
             order.Id = id;
             await _orderService.AddOrder(order);
+            
             return RedirectToAction("Index", "LiveAnimal");
+        }
+
+        public IActionResult CreateReciept(LiveAnimalViewModelFrontend live)
+        {
+            return  _orderService.CreateReciept(live);
         }
 
         private async Task<List<LiveAnimalViewModelFrontend>> GetRelated(string category)
