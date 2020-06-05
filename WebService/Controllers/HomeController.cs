@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Models.LiveAnimalModels;
+using Services.Contracts;
 using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
 using WebService.Models;
@@ -23,15 +25,28 @@ namespace WebService.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ILiveAnimalService _liveAnimalService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,ILiveAnimalService liveAnimalService)
         {
             _logger = logger;
+            _liveAnimalService = liveAnimalService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var Featured = await _liveAnimalService.GetFeaturedLiveAnimal();
+            var Latest = await _liveAnimalService.GetLatestAnimal();
+            if(Featured != null && Latest != null)
+            {
+                IndexViewModel animals = new IndexViewModel
+                {
+                    Featured = Featured,
+                    Latest = Latest,
+                };
+                return View(animals);
+            }
+            return RedirectToAction("Error");
         }
 
         public IActionResult Privacy()

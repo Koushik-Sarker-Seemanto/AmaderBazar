@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Animal Details";
     Layout = "_LayoutAdmin";
+    ViewBag.Featured = Model.Featured;
 }
 
 <div class="container m-auto">
@@ -88,7 +89,14 @@
                 {
                     <div class="mb-3">
                         <label class="h5" for="Featured">Featured</label>
-                        <p style="background: #eeeeee" class="p-1" id="location"> @Html.DisplayFor(model => model.Featured) </p>
+                        @if (@ViewBag.Featured == true)
+                        {
+                            <p style="background: #eeeeee" class="p-1" id="location"> YES </p>
+                        }
+                        else
+                        {
+                            <p style="background: #eeeeee" class="p-1" id="location"> NO </p>
+                        }
                     </div>
                 }
                 else
@@ -171,5 +179,5 @@
             }
         });
     });
-    
+
 </script>

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Models.LiveAnimalModels.IndexViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 @Html.Partial("_NavBar")
@@ -10,15 +11,11 @@
             </li>
             <li>
                 <img src="~/themes/images/carousel/banner-2.jpg" alt="" />
-                <div class="intro">
-                    <h1>Mid season sale</h1>
-                    <p><span>Up to 50% Off</span></p>
-                    <p><span>On selected items online and in stores</span></p>
-                </div>
             </li>
         </ul>
     </div>
 </section>
+ 
 <section class="header_text">
     We stand for top quality templates. Our genuine developers always optimized bootstrap commercial templates.
     <br />Don't miss to use our cheap abd best bootstrap templates.
@@ -26,6 +23,8 @@
 <section class="main-content">
     <div class="row">
         <div class="span12">
+            if (Model != null)
+            {
             <div class="row">
                 <div class="span12">
                     <h4 class="title">
@@ -34,86 +33,77 @@
                             <a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
                         </span>
                     </h4>
+                    
                     <div id="myCarousel" class="myCarousel carousel slide">
                         <div class="carousel-inner">
                             <div class="active item">
-                                <ul class="thumbnails">
-                                    <li class="span3">
-                                        <div class="product-box">
-                                            <span class="sale_tag"></span>
-                                            <p><a href="product_detail.html"><img src="~/themes/images/ladies/1.jpg" alt="" /></a></p>
-                                            <a href="product_detail.html" class="title">Ut wisi enim ad</a><br />
-                                            <a href="products.html" class="category">Commodo consequat</a>
-                                            <p class="price">$17.25</p>
-                                        </div>
-                                    </li>
-                                    <li class="span3">
-                                        <div class="product-box">
-                                            <span class="sale_tag"></span>
-                                            <p><a href="product_detail.html"><img src="~/themes/images/ladies/2.jpg" alt="" /></a></p>
-                                            <a href="product_detail.html" class="title">Quis nostrud exerci tation</a><br />
-                                            <a href="products.html" class="category">Quis nostrud</a>
-                                            <p class="price">$32.50</p>
-                                        </div>
-                                    </li>
-                                    <li class="span3">
-                                        <div class="product-box">
-                                            <p><a href="product_detail.html"><img src="~/themes/images/ladies/3.jpg" alt="" /></a></p>
-                                            <a href="product_detail.html" class="title">Know exactly turned</a><br />
-                                            <a href="products.html" class="category">Quis nostrud</a>
-                                            <p class="price">$14.20</p>
-                                        </div>
-                                    </li>
-                                    <li class="span3">
-                                        <div class="product-box">
-                                            <p><a href="product_detail.html"><img src="~/themes/images/ladies/4.jpg" alt="" /></a></p>
-                                            <a href="product_detail.html" class="title">You think fast</a><br />
-                                            <a href="products.html" class="category">World once</a>
-                                            <p class="price">$31.45</p>
-                                        </div>
-                                    </li>
+                                <ul class="thumbnails listing-products">
+
+                                    @for (int i = 0; i < Math.Min(@Model.Featured.Count, 3); i++)
+                                    {
+                                        <li class="span3">
+                                            <div class="product-box">
+                                                <span class="sale_tag"></span>
+                                                @{
+                                                    if (Model.Featured[i].Images != null)
+                                                    {
+                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})'><img alt="" src="~/images/@Model.Featured[i].Images[0]"></a><br />
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})'><img alt="" src="~/static/noimage.png"></a><br />
+                                                    }
+                                                }
+
+                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})' class="title">@Model.Featured[i].Title</a><br />
+                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})'>@Model.Featured[i].Origin</a>
+                                                <p class="price">@Model.Featured[i].Price</p>
+                                            </div>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
-                            <div class="item">
-                                <ul class="thumbnails">
-                                    <li class="span3">
-                                        <div class="product-box">
-                                            <p><a href="product_detail.html"><img src="~/themes/images/ladies/5.jpg" alt="" /></a></p>
-                                            <a href="product_detail.html" class="title">Know exactly</a><br />
-                                            <a href="products.html" class="category">Quis nostrud</a>
-                                            <p class="price">$22.30</p>
-                                        </div>
-                                    </li>
-                                    <li class="span3">
-                                        <div class="product-box">
-                                            <p><a href="product_detail.html"><img src="~/themes/images/ladies/6.jpg" alt="" /></a></p>
-                                            <a href="product_detail.html" class="title">Ut wisi enim ad</a><br />
-                                            <a href="products.html" class="category">Commodo consequat</a>
-                                            <p class="price">$40.25</p>
-                                        </div>
-                                    </li>
-                                    <li class="span3">
-                                        <div class="product-box">
-                                            <p><a href="product_detail.html"><img src="~/themes/images/ladies/7.jpg" alt="" /></a></p>
-                                            <a href="product_detail.html" class="title">You think water</a><br />
-                                            <a href="products.html" class="category">World once</a>
-                                            <p class="price">$10.45</p>
-                                        </div>
-                                    </li>
-                                    <li class="span3">
-                                        <div class="product-box">
-                                            <p><a href="product_detail.html"><img src="~/themes/images/ladies/8.jpg" alt="" /></a></p>
-                                            <a href="product_detail.html" class="title">Quis nostrud exerci</a><br />
-                                            <a href="products.html" class="category">Quis nostrud</a>
-                                            <p class="price">$35.50</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+
+                            @for (int i = 1; i < Math.Ceiling(@Model.Featured.Count / 4.00); i++)
+                            {
+                                <div class="item">
+                                    <ul class="thumbnails listing-products">
+
+                                        @for (int j = i * 4; j < Math.Min(@Model.Featured.Count, (i * 4) + 4); j++)
+                                        {
+                                            <li class="span3">
+                                                <div class="product-box">
+                                                    <span class="sale_tag"></span>
+                                                    @{
+                                                        if (Model.Featured[j].Images != null)
+                                                        {
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})'><img alt="" src="~/images/@Model.Featured[j].Images[0]"></a><br />
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})'><img alt="" src="~/static/noimage.png"></a><br />
+                                                        }
+                                                    }
+                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})' class="title">@Model.Featured[j].Title</a><br />
+                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})'>@Model.Featured[j].Origin</a>
+                                                    <p class="price">@Model.Featured[j].Price</p>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+
+                            
                         </div>
                     </div>
                 </div>
             </div>
+            }
+            else{
+            <h2>No DAATA Found</h2>
+            }
+            
             <br />
             <div class="row">
                 <div class="span12">
@@ -126,78 +116,62 @@
                     <div id="myCarousel-2" class="myCarousel carousel slide">
                         <div class="carousel-inner">
                             <div class="active item">
-                                <ul class="thumbnails">
-                                    <li class="span3">
-                                        <div class="product-box">
-                                            <span class="sale_tag"></span>
-                                            <p><a href="product_detail.html"><img src="themes/images/cloth/bootstrap-women-ware2.jpg" alt="" /></a></p>
-                                            <a href="product_detail.html" class="title">Ut wisi enim ad</a><br />
-                                            <a href="products.html" class="category">Commodo consequat</a>
-                                            <p class="price">$25.50</p>
-                                        </div>
-                                    </li>
-                                    <li class="span3">
-                                        <div class="product-box">
-                                            <p><a href="product_detail.html"><img src="themes/images/cloth/bootstrap-women-ware1.jpg" alt="" /></a></p>
-                                            <a href="product_detail.html" class="title">Quis nostrud exerci tation</a><br />
-                                            <a href="products.html" class="category">Quis nostrud</a>
-                                            <p class="price">$17.55</p>
-                                        </div>
-                                    </li>
-                                    <li class="span3">
-                                        <div class="product-box">
-                                            <p><a href="product_detail.html"><img src="themes/images/cloth/bootstrap-women-ware6.jpg" alt="" /></a></p>
-                                            <a href="product_detail.html" class="title">Know exactly turned</a><br />
-                                            <a href="products.html" class="category">Quis nostrud</a>
-                                            <p class="price">$25.30</p>
-                                        </div>
-                                    </li>
-                                    <li class="span3">
-                                        <div class="product-box">
-                                            <p><a href="product_detail.html"><img src="themes/images/cloth/bootstrap-women-ware5.jpg" alt="" /></a></p>
-                                            <a href="product_detail.html" class="title">You think fast</a><br />
-                                            <a href="products.html" class="category">World once</a>
-                                            <p class="price">$25.60</p>
-                                        </div>
-                                    </li>
+                                <ul class="thumbnails listing-products">
+
+                                    @for (int i = 0; i < Math.Min(@Model.Latest.Count, 3); i++)
+                                    {
+                                        <li class="span3">
+                                            <div class="product-box">
+                                                <span class="sale_tag"></span>
+                                                @{
+                                                    if (Model.Latest[i].Images != null)
+                                                    {
+                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'><img alt="" src="~/images/@Model.Latest[i].Images[0]"></a><br />
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'><img alt="" src="~/static/noimage.png"></a><br />
+                                                    }
+                                                }
+
+                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})' class="title">@Model.Latest[i].Title</a><br />
+                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'>@Model.Latest[i].Origin</a>
+                                                <p class="price">@Model.Latest[i].Price</p>
+                                            </div>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
-                            <div class="item">
-                                <ul class="thumbnails">
-                                    <li class="span3">
-                                        <div class="product-box">
-                                            <p><a href="product_detail.html"><img src="themes/images/cloth/bootstrap-women-ware4.jpg" alt="" /></a></p>
-                                            <a href="product_detail.html" class="title">Know exactly</a><br />
-                                            <a href="products.html" class="category">Quis nostrud</a>
-                                            <p class="price">$45.50</p>
-                                        </div>
-                                    </li>
-                                    <li class="span3">
-                                        <div class="product-box">
-                                            <p><a href="product_detail.html"><img src="themes/images/cloth/bootstrap-women-ware3.jpg" alt="" /></a></p>
-                                            <a href="product_detail.html" class="title">Ut wisi enim ad</a><br />
-                                            <a href="products.html" class="category">Commodo consequat</a>
-                                            <p class="price">$33.50</p>
-                                        </div>
-                                    </li>
-                                    <li class="span3">
-                                        <div class="product-box">
-                                            <p><a href="product_detail.html"><img src="themes/images/cloth/bootstrap-women-ware2.jpg" alt="" /></a></p>
-                                            <a href="product_detail.html" class="title">You think water</a><br />
-                                            <a href="products.html" class="category">World once</a>
-                                            <p class="price">$45.30</p>
-                                        </div>
-                                    </li>
-                                    <li class="span3">
-                                        <div class="product-box">
-                                            <p><a href="product_detail.html"><img src="themes/images/cloth/bootstrap-women-ware1.jpg" alt="" /></a></p>
-                                            <a href="product_detail.html" class="title">Quis nostrud exerci</a><br />
-                                            <a href="products.html" class="category">Quis nostrud</a>
-                                            <p class="price">$25.20</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+
+                            @for (int i = 1; i < Math.Ceiling(@Model.Latest.Count / 4.00); i++)
+                            {
+                                <div class="item">
+                                    <ul class="thumbnails listing-products">
+
+                                        @for (int j = i * 4; j < Math.Min(@Model.Latest.Count, (i * 4) + 4); j++)
+                                        {
+                                            <li class="span3">
+                                                <div class="product-box">
+                                                    <span class="sale_tag"></span>
+                                                    @{
+                                                        if (Model.Latest[j].Images != null)
+                                                        {
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'><img alt="" src="~/images/@Model.Latest[j].Images[0]"></a><br />
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'><img alt="" src="~/static/noimage.png"></a><br />
+                                                        }
+                                                    }
+                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})' class="title">@Model.Latest[j].Title</a><br />
+                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'>@Model.Latest[j].Origin</a>
+                                                    <p class="price">@Model.Latest[j].Price</p>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -235,7 +209,7 @@
     </div>
 </section>
 <section class="our_client">
-    <h4 class="title"><span class="text">Manufactures</span></h4>
+    <h4 class="title"><span class="text">Our Partners</span></h4>
     <div class="row">
         <div class="span2">
             <a href="#"><img alt="" src="themes/images/clients/14.png"></a>

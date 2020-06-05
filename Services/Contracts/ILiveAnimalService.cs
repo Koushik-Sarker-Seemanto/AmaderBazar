@@ -16,5 +16,7 @@ namespace Services.Contracts
         Task<LiveAnimalViewModelFrontend> GetLiveAnimalById(string Id);
 
         Task<List<LiveAnimalViewModelFrontend>> GetLiveAnimalByCategory(string category);
+        Task<List<LiveAnimalViewModelFrontend>> GetFeaturedLiveAnimal();
+        Task<List<LiveAnimalViewModelFrontend>> GetLatestAnimal();
     }
 }
