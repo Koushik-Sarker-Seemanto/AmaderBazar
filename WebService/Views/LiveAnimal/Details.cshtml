@@ -163,18 +163,18 @@
                                             <div class="product-box">
                                                 <span class="sale_tag"></span>
                                                 @{
-                                                    if (Model.Related[i].Images != null)
+                                                    if (Model.Related[j].Images != null)
                                                     {
-                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img alt="" src="~/images/@Model.Related[i].Images[0]"></a><br />
+                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img alt="" src="~/images/@Model.Related[j].Images[0]"></a><br />
                                                     }
                                                     else
                                                     {
-                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img alt="" src="~/static/noimage.png"></a><br />
+                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img alt="" src="~/static/noimage.png"></a><br />
                                                     }
                                                 }
-                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">@Model.Related[i].Title</a><br />
-                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>@Model.Related[i].Origin</a>
-                                                <p class="price">@Model.Related[i].Price</p>
+                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})' class="title">@Model.Related[j].Title</a><br />
+                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'>@Model.Related[j].Origin</a>
+                                                <p class="price">@Model.Related[j].Price</p>
                                             </div>
                                         </li>
                                     }
