@@ -126,16 +126,27 @@ namespace WebService.Controllers
         }
 
         [HttpPost]
-        public IActionResult OrderConfirmation([Bind] Order order)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> OrderConfirmation([Bind] Order order)
         {
-            Debug.Print(order.PhoneNumber+"");
+            
+            if (order != null)
+            {
+                order = await _orderService.FindOrderById(order.Id);
+                var animal = await _liveAnimalService.GetLiveAnimalById(order.LiveAnimalId);
+                OrderViewModel orderDetailes = new OrderViewModel()
+                {
+                    Order = order,
+                    LiveAnimal = animal,
+                };
+                return _orderService.CreateReciept(orderDetailes);
+
+            }
+            //Error Page
             return RedirectToAction("Index");
         }
 
-        public IActionResult CreateReciept(LiveAnimalViewModelFrontend live)
-        {
-            return  _orderService.CreateReciept(live);
-        }
+        
 
         private async Task<List<LiveAnimalViewModelFrontend>> GetRelated(string category)
         {

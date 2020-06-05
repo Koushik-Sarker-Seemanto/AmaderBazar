@@ -13,10 +13,11 @@ namespace Services.Contracts
     public interface IOrderService
     {
         Task<bool> AddOrder(Order order);
+        Task<Order> FindOrderById(string id);
         Task<List<OrderViewModel>> PlacedOrders();
         Task<bool> ContactClient(string OrderId);
         Task<bool> DeleteOrder(string OrderId);
-        public FileStreamResult CreateReciept(LiveAnimalViewModelFrontend live);
+        public FileStreamResult CreateReciept(OrderViewModel orderDetailes);
 
 
     }

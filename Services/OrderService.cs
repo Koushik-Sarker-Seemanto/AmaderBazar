@@ -44,6 +44,20 @@ namespace Services
             }
         }
 
+        public async Task<Order> FindOrderById(string id)
+        {
+            try
+            {
+                var order = await _repository.GetItemAsync<Order>(d=>d.Id == id);
+                return order;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"GetOrder Failed: {e.Message}");
+                return null;
+            }
+        }
+
         public async Task<List<OrderViewModel>> PlacedOrders()
         {
             try
@@ -106,7 +120,7 @@ namespace Services
             }
         }
 
-        public  FileStreamResult CreateReciept(LiveAnimalViewModelFrontend live)
+        public  FileStreamResult CreateReciept(OrderViewModel model)
         {
             PdfDocument document = new PdfDocument();
             //Adds page settings
@@ -156,7 +170,7 @@ namespace Services
             // Object row3 = new { ID = "E03", Name = "Andrew" };
             // Object row4 = new { ID = "E04", Name = "Paul" };
             // Object row5 = new { ID = "E05", Name = "Gray" };
-            data.Add(live);
+            data.Add(model);
 
             //Creates a PDF grid
             PdfGrid grid = new PdfGrid();
