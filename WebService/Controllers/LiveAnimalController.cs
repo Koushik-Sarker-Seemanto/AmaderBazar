@@ -9,10 +9,6 @@ using Models.Entities;
 using Models.LiveAnimalModels;
 using Models.OrderModels;
 using Services.Contracts;
-using Syncfusion.Drawing;
-using Syncfusion.Pdf;
-using Syncfusion.Pdf.Graphics;
-using Syncfusion.Pdf.Grid;
 using X.PagedList;
 using X.PagedList.Mvc.Core;
 
@@ -38,6 +34,45 @@ namespace WebService.Controllers
 
             Dictionary<string, string> queryParam = new Dictionary<string, string>();
             
+            if (min != null)
+            {
+                allAnimals = allAnimals.Where(e => e.Price > min).ToList();
+                queryParam.Add("min", min.ToString());
+            }
+
+            if (max != null)
+            {
+                allAnimals = allAnimals.Where(e => e.Price < max).ToList();
+                queryParam.Add("max", max.ToString());
+            }
+
+            if (category != null)
+            {
+                allAnimals = allAnimals.Where(e => e.Category == category).ToList();
+                queryParam.Add("category", category);
+            }
+
+            if (color != null)
+            {
+                allAnimals = allAnimals.Where(e => e.Color == color).ToList();
+                queryParam.Add("color", color);
+            }
+
+            ViewBag.QueryParam = queryParam;
+            var list = allAnimals?.ToPagedList(page ?? 1, 9);
+            return View(list);
+        }
+        public async Task<IActionResult> FeatureProduct(int? page, int? min, int? max, string category = null, string color = null)
+        {
+            Dictionary<string, int> categoryWise = await _liveAnimalService.GetCategoryCount();
+            Dictionary<string, int> colorWise = await _liveAnimalService.GetColorCount();
+            ViewBag.CategoryCount = categoryWise;
+            ViewBag.ColorCount = colorWise;
+            var allAnimals = await _liveAnimalService.GetAllLiveAnimals();
+            allAnimals = allAnimals.Where(e => e.Sold == false && e.Featured == true).ToList();
+
+            Dictionary<string, string> queryParam = new Dictionary<string, string>();
+
             if (min != null)
             {
                 allAnimals = allAnimals.Where(e => e.Price > min).ToList();
@@ -97,6 +132,9 @@ namespace WebService.Controllers
             
             return View(viewModel);
         }
+
+
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
