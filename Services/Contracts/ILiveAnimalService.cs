@@ -10,6 +10,8 @@ namespace Services.Contracts
 {
     public interface ILiveAnimalService
     {
+        Task<Dictionary<string, int>> GetCategoryCount();
+        Task<Dictionary<string, int>> GetColorCount();
         Task<List<LiveAnimalViewModelFrontend>> GetAllLiveAnimals();
         Task<LiveAnimalViewModelFrontend> GetLiveAnimalById(string Id);
 

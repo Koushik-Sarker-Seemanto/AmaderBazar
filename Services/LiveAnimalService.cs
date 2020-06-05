@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Models.AdminModels;
 using Models.Entities;
 using Models.LiveAnimalModels;
+using Newtonsoft.Json;
 using Repositories;
 using Services.Contracts;
 
@@ -21,6 +22,51 @@ namespace Services
             _repository = repository;
             _logger = logger;
         }
+
+        public async Task<Dictionary<string, int>> GetCategoryCount()
+        {
+            try
+            {
+                Dictionary<string, int> data = new Dictionary<string, int>();
+                var categories =  await _repository.GetItemsAsync<Category>();
+                foreach (var item in categories)
+                {
+                    var temp = await GetLiveAnimalByCategory(item.Name);
+                    data.Add(item.Name, temp.Count);
+                }
+
+                return data;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"GetCategoryCount Failed: {e.Message}");
+                return null;
+            }
+        }
+
+        public async Task<Dictionary<string, int>> GetColorCount()
+        {
+            try
+            {
+                Dictionary<string, int> data = new Dictionary<string, int>();
+                var animals = await _repository.GetItemsAsync<LiveAnimal>();
+                var colors = animals.Select(e => e.Color).Distinct().ToList();
+
+                foreach (var item in colors)
+                {
+                    var temp = await _repository.GetItemsAsync<LiveAnimal>(e => e.Color == item && e.Sold == false);
+                    data.Add(item, temp.Count());
+                }
+
+                return data;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"GetColorCount Failed: {e.Message}");
+                return null;
+            }
+        }
+
         public async Task<List<LiveAnimalViewModelFrontend>> GetAllLiveAnimals()
         {
             try

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Models.Entities;
 using Models.LiveAnimalModels;
 using Services.Contracts;
+using X.PagedList;
+using X.PagedList.Mvc.Core;
 
 namespace WebService.Controllers
 {
@@ -19,10 +21,44 @@ namespace WebService.Controllers
             _liveAnimalService = liveAnimalService;
             _orderService = orderService;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page, int? min, int? max, string category = null, string color = null)
         {
-            var animals = await _liveAnimalService.GetAllLiveAnimals();
-            return View(animals);
+            Dictionary<string, int> categoryWise = await _liveAnimalService.GetCategoryCount();
+            Dictionary<string, int> colorWise = await _liveAnimalService.GetColorCount();
+            ViewBag.CategoryCount = categoryWise;
+            ViewBag.ColorCount = colorWise;
+            var allAnimals = await _liveAnimalService.GetAllLiveAnimals();
+            allAnimals = allAnimals.Where(e => e.Sold == false).ToList();
+
+            Dictionary<string, string> queryParam = new Dictionary<string, string>();
+            
+            if (min != null)
+            {
+                allAnimals = allAnimals.Where(e => e.Price > min).ToList();
+                queryParam.Add("min", min.ToString());
+            }
+
+            if (max != null)
+            {
+                allAnimals = allAnimals.Where(e => e.Price < max).ToList();
+                queryParam.Add("max", max.ToString());
+            }
+
+            if (category != null)
+            {
+                allAnimals = allAnimals.Where(e => e.Category == category).ToList();
+                queryParam.Add("category", category);
+            }
+
+            if (color != null)
+            {
+                allAnimals = allAnimals.Where(e => e.Color == color).ToList();
+                queryParam.Add("color", color);
+            }
+
+            ViewBag.QueryParam = queryParam;
+            var list = allAnimals?.ToPagedList(page ?? 1, 9);
+            return View(list);
         }
 
         public async Task<IActionResult> Details(string Id)
