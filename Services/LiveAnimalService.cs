@@ -182,6 +182,7 @@ namespace Services
                     Description = animal.Description,
                     Images = animal.Images,
                     Sold = animal.Sold,
+                    Featured = animal.Featured,
                 };
             
 

@@ -6,16 +6,16 @@
 
 @model X.PagedList.IPagedList<Models.LiveAnimalModels.LiveAnimalViewModelFrontend>
 @{
-    ViewData["Title"] = "Kurbani";
+    ViewData["Title"] = "Feature Products";
 
 }
 
 @Html.Partial("_NavBar")
 
-<section class="header_text sub">
-    <img class="pageBanner" src="~/themes/images/rsz_maxresdefault_2 (1).jpg" alt="New products">
-    <h2 style="margin-top: 3% "><span>Kurbani</span></h2>
-</section>
+    <section class="header_text sub">
+        <img class="pageBanner" src="~/themes/images/rsz_maxresdefault_2 (1).jpg" alt="New products">
+        <h2 style="margin-top: 3%"><span>Feature Products</span></h2>
+    </section>
 <section class="main-content">
 
     <div class="row">
@@ -30,15 +30,16 @@
 
                 </section>
                 <section class="priceExpand2 range-slider">
-                
-                    <input class="" id="min" type="text" placeholder="Minimum" value="0"/>
-                    <input id="max" type="text" placeholder="Maximum" value="300000"/>
+
+                    <input class="" id="min" type="text" placeholder="Minimum" value="0" />
+                    <input id="max" type="text" placeholder="Maximum" value="300000" />
                     <button id="priceSelect" class="btn btn-success"><i class="fa fa-play"></i></button>
 
                 </section>
-                
+
             </div>
-            <div class="brands_products" style="padding: 10%; margin-bottom: -20%"><!--brands_products-->
+            <div class="brands_products" style="padding: 10%; margin-bottom: -20%">
+                <!--brands_products-->
                 <h3 id="categoryExpandBtn" style="text-align: center;color: orange; background: #eeeeee; cursor: pointer"><i style="margin-top: 3%; margin-left: 3%" class="fa fa-bars pull-left"></i>Category</h3>
                 <div id="categoryExpand" class="brands-name">
                     <ul class="nav nav-pills nav-stacked">
@@ -47,14 +48,14 @@
                             {
                                 foreach (var category in ViewBag.CategoryCount)
                                 {
-                                    <li><a id="categorySelect" name="@category.Key" > <span class="pull-right">(@category.Value)</span>@category.Key</a></li>
+                                    <li><a id="categorySelect" name="@category.Key"> <span class="pull-right">(@category.Value)</span>@category.Key</a></li>
                                 }
                             }
                         }
                     </ul>
                 </div>
             </div>
-            
+
             <div class="brands_products" style="padding: 10%; margin-bottom: -20%">
                 <h3 id="colorExpandBtn" style="text-align: center;color: orange; background: #eeeeee; cursor: pointer"><i style="margin-top: 3%; margin-left: 3%" class="fa fa-bars pull-left"></i> Color</h3>
                 <div id="colorExpand" class="brands-name">
@@ -64,16 +65,16 @@
                             {
                                 foreach (var color in ViewBag.ColorCount)
                                 {
-                                    <li><a id="colorSelect" name="@color.Key" > <span class="pull-right">(@color.Value)</span>@color.Key</a></li>
+                                    <li><a id="colorSelect" name="@color.Key"> <span class="pull-right">(@color.Value)</span>@color.Key</a></li>
                                 }
                             }
                         }
                     </ul>
                 </div>
             </div>
-            
+
             <div class="brands_products" style="padding: 10%">
-                @if(ViewBag.QueryParam != null){}
+                @if (ViewBag.QueryParam != null) { }
                 <h4 style="text-align: center;color: orange">Selected Filters</h4>
                 <div id="allFilters" class="brands-name">
                     @{
@@ -81,7 +82,8 @@
                         {
                             foreach (var item in ViewBag.QueryParam)
                             {
-                                <p id="@item.Key" name="@item.Value" style="padding: 3%; background: #eeeeee; border-radius: 10px">@item.Key : @item.Value
+                                <p id="@item.Key" name="@item.Value" style="padding: 3%; background: #eeeeee; border-radius: 10px">
+                                    @item.Key : @item.Value
                                     <i id="removeItem" style="padding: 3%; color: red; cursor: pointer" class="fa fa-times pull-right"></i>
                                 </p>
                             }
@@ -89,12 +91,12 @@
                     }
                 </div>
             </div>
-            
+
         </div>
         <div class="span9">
             <ul class="thumbnails listing-products">
                 @{
-                    if (Model != null && Model.Count > 0 )
+                    if (Model != null && Model.Count > 0)
                     {
                         @foreach (var animal in Model)
                         {
@@ -104,14 +106,14 @@
                                     @{
                                         if (animal.Images != null)
                                         {
-                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'><img alt="" src="~/images/@animal.Images[0]"></a><br/>
+                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'><img alt="" src="~/images/@animal.Images[0]"></a><br />
                                         }
                                         else
                                         {
-                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'><img alt="" src="~/static/noimage.png"></a><br/>
+                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'><img alt="" src="~/static/noimage.png"></a><br />
                                         }
                                     }
-                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})' class="title">@animal.Title</a><br/>
+                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})' class="title">@animal.Title</a><br />
                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>@animal.Origin</a>
                                     <p class="price">@animal.Price</p>
                                 </div>
@@ -128,25 +130,31 @@
 
             </ul>
             @{
-                if (Model == null || Model.Count == 0 )
+                if (Model == null || Model.Count == 0)
                 {
                 }
                 else
                 {
                     <hr>
                     <div class="pagination pagination-small pagination-centered">
-                        @Html.PagedListPager(Model, page => Url.Action("Index", new{ 
-                            min = Context.Request.Query["min"], max = Context.Request.Query["max"],
-                            category = Context.Request.Query["category"], color = Context.Request.Query["color"], page}), 
-                            new PagedListRenderOptions {
-                                LiElementClasses = new string[] { "page-item" }, 
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new
+                        {
+                            min = Context.Request.Query["min"],
+                            max = Context.Request.Query["max"],
+                            category = Context.Request.Query["category"],
+                            color = Context.Request.Query["color"],
+                            page
+                        }),
+                            new PagedListRenderOptions
+                                 {
+                                LiElementClasses = new string[] { "page-item" },
                                 PageClasses = new string[] { "page-link" },
                             })
                     </div>
                 }
             }
         </div>
-        
+
     </div>
 </section>
 <section id="footer-bar">
@@ -186,8 +194,8 @@
 <section id="copyright">
     <span>Copyright 2013 bootstrappage template  All right reserved.</span>
 </section>
-		
-<script src="~/themes/js/common.js"></script> 
+
+<script src="~/themes/js/common.js"></script>
 <script src="~/js/priceRange.js"></script>
 
 <script>
@@ -202,7 +210,7 @@
             $(".priceExpand1").fadeOut();
             $(".priceExpand2").fadeOut();
         }
-        
+
         try {
             $(document).on("change","#minRange",function() {
                 $("#min").val($(this).val());
@@ -210,7 +218,7 @@
         }catch (e) {
             console.log(e);
         }
-        
+
         try {
             $(document).on("change","#maxRange",function() {
                 $("#max").val($(this).val());
@@ -218,8 +226,8 @@
         }catch (e) {
             console.log(e);
         }
-        
-        
+
+
         try {
             $(document).on("click", "#categoryExpandBtn", function() {
                 $("#categoryExpand").fadeToggle();
@@ -227,7 +235,7 @@
         }catch (e) {
             console.log(e);
         }
-        
+
         try {
             $(document).on("click", "#colorExpandBtn", function() {
                 $("#colorExpand").fadeToggle();
@@ -235,7 +243,7 @@
         }catch (e) {
             console.log(e);
         }
-        
+
         try {
             $(document).on("click", "#priceExpandBtn", function() {
                 $(".priceExpand1").fadeToggle();
@@ -244,7 +252,7 @@
         }catch (e) {
             console.log(e);
         }
-        
+
         try {
             $(document).on("click", "#priceSelect", function() {
                 let minVal = $("#min").val();
@@ -256,7 +264,7 @@
         }catch (e) {
             console.log(e);
         }
-    
+
         try {
             $(document).on("click", "#categorySelect", function() {
                 let value = $(this).attr('name');
@@ -266,7 +274,7 @@
         }catch (e) {
             console.log(e);
         }
-    
+
         try {
             $(document).on("click", "#colorSelect", function() {
                 let value = $(this).attr('name');
@@ -276,7 +284,7 @@
         }catch (e) {
             console.log(e);
         }
-        
+
         try {
             $(document).on("click", "#removeItem", function() {
                 $(this).parent().remove();
@@ -286,7 +294,7 @@
             console.log(e);
         }
     });
-    
+
     function BuildQuery() {
         let filters = $("#allFilters");
         let categoryValue = "";
@@ -316,7 +324,7 @@
             window.location.href = '/LiveAnimal?'+minValue+maxValue+categoryValue+colorValue;
         }
     }
-    
+
     function BuildFilterSection(key, value) {
         let dom = $("#allFilters");
         let newData = `<p id="${key}" hidden name="${value}" style="padding: 3%; background: #eeeeee; border-radius: 10px">${key} : ${value}
