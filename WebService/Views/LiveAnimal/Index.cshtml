@@ -13,7 +13,7 @@
 @Html.Partial("_NavBar")
 
 <section class="header_text sub">
-    <img class="pageBanner" src="themes/images/pageBanner.png" alt="New products">
+    <img class="pageBanner" src="~/themes/images/pageBanner.png" alt="New products">
     <h2 style="margin-top: 3% "><span>New products</span></h2>
 </section>
 <section class="main-content">
@@ -31,7 +31,7 @@
                 </section>
                 <section class="priceExpand2 range-slider">
                 
-                    <input id="min" type="text" placeholder="Minimum" value="0"/>
+                    <input class="" id="min" type="text" placeholder="Minimum" value="0"/>
                     <input id="max" type="text" placeholder="Maximum" value="300000"/>
                     <button id="priceSelect" class="btn btn-success"><i class="fa fa-play"></i></button>
 
@@ -55,7 +55,7 @@
                 </div>
             </div>
             
-            <div class="brands_products" style="padding: 10%; margin-bottom: -20%"><!--brands_products-->
+            <div class="brands_products" style="padding: 10%; margin-bottom: -20%">
                 <h3 id="colorExpandBtn" style="text-align: center;color: orange; background: #eeeeee; cursor: pointer"><i style="margin-top: 3%; margin-left: 3%" class="fa fa-bars pull-left"></i> Color</h3>
                 <div id="colorExpand" class="brands-name">
                     <ul class="nav nav-pills nav-stacked">
@@ -171,7 +171,7 @@
             </ul>
         </div>
         <div class="span5">
-            <p class="logo"><img src="themes/images/logo.png" class="site_logo" alt=""></p>
+            <p class="logo"><img src="~/themes/images/logo.png" class="site_logo" alt=""></p>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
             <br />
             <span class="social_icons">
@@ -202,45 +202,89 @@
             $(".priceExpand1").fadeOut();
             $(".priceExpand2").fadeOut();
         }
-    });
-
-    $(document).on("click", "#categoryExpandBtn", function() {
-        $("#categoryExpand").fadeToggle();
-    });
+        
+        try {
+            $(document).on("change","#minRange",function() {
+                $("#min").val($(this).val());
+            });
+        }catch (e) {
+            console.log(e);
+        }
+        
+        try {
+            $(document).on("change","#maxRange",function() {
+                $("#max").val($(this).val());
+            });
+        }catch (e) {
+            console.log(e);
+        }
+        
+        
+        try {
+            $(document).on("click", "#categoryExpandBtn", function() {
+                $("#categoryExpand").fadeToggle();
+            });
+        }catch (e) {
+            console.log(e);
+        }
+        
+        try {
+            $(document).on("click", "#colorExpandBtn", function() {
+                $("#colorExpand").fadeToggle();
+            });
+        }catch (e) {
+            console.log(e);
+        }
+        
+        try {
+            $(document).on("click", "#priceExpandBtn", function() {
+                $(".priceExpand1").fadeToggle();
+                $(".priceExpand2").fadeToggle();
+            });
+        }catch (e) {
+            console.log(e);
+        }
+        
+        try {
+            $(document).on("click", "#priceSelect", function() {
+                let minVal = $("#min").val();
+                let maxVal = $("#max").val();
+                BuildFilterSection("min", minVal);
+                BuildFilterSection("max", maxVal);
+                BuildQuery();
+            });
+        }catch (e) {
+            console.log(e);
+        }
     
-    $(document).on("click", "#colorExpandBtn", function() {
-        $("#colorExpand").fadeToggle();
-    });
+        try {
+            $(document).on("click", "#categorySelect", function() {
+                let value = $(this).attr('name');
+                BuildFilterSection("category", value);
+                BuildQuery();
+            });
+        }catch (e) {
+            console.log(e);
+        }
     
-    $(document).on("click", "#priceExpandBtn", function() {
-        $(".priceExpand1").fadeToggle();
-        $(".priceExpand2").fadeToggle();
-    });
-
-
-    $(document).on("click", "#priceSelect", function() {
-        let minVal = $("#min").val();
-        let maxVal = $("#max").val();
-        BuildFilterSection("min", minVal);
-        BuildFilterSection("max", maxVal);
-        BuildQuery();
-    });
-
-    $(document).on("click", "#categorySelect", function() {
-        let value = $(this).attr('name');
-        BuildFilterSection("category", value);
-        BuildQuery();
-    });
-    
-    $(document).on("click", "#colorSelect", function() {
-        let value = $(this).attr('name');
-        BuildFilterSection("color", value);
-        BuildQuery();
-    });
-    
-    $(document).on("click", "#removeItem", function() {
-        $(this).parent().remove();
-        BuildQuery();
+        try {
+            $(document).on("click", "#colorSelect", function() {
+                let value = $(this).attr('name');
+                BuildFilterSection("color", value);
+                BuildQuery();
+            });
+        }catch (e) {
+            console.log(e);
+        }
+        
+        try {
+            $(document).on("click", "#removeItem", function() {
+                $(this).parent().remove();
+                BuildQuery();
+            });
+        }catch (e) {
+            console.log(e);
+        }
     });
     
     function BuildQuery() {
@@ -280,16 +324,4 @@
                         </p>`;
         dom.append(newData);
     }
-</script>
-
-<script>
-    $(document).ready(function() {
-        $(document).on("change","#minRange",function() {
-            $("#min").val($(this).val());
-        });
-        $(document).on("change","#maxRange",function() {
-            $("#max").val($(this).val());
-        });
-        
-    });
 </script>
