@@ -51,23 +51,23 @@
                     </ul>
                 </div>
                 <div class="span5">
-                    <div>
+                    <div class="mobile-text-center">
                         <h4>@Model.LiveAnimalDetails.Title </h4>
                     </div>
-                    <div style="margin-top: -1%;">
+                    <div class="mobile-text-center" style="margin-top: -1%;">
                         <h5>@Model.LiveAnimalDetails.Origin</h5>
                     </div>
 
-                    <div>
+                    <div class="mobile-text-center">
                         <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Color</span>
                     </div>
-                    <div>
+                    <div class="mobile-text-center">
                         <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span>
                     </div>
-                    <div style="margin-top: 3%;">
+                    <div class="mobile-text-center" style="margin-top: 3%;">
                         <strong style="font-size: x-large; ">&#2547 @Model.LiveAnimalDetails.Price </strong>
                     </div>
-                    <div style="margin-top: 7%;">
+                    <div class="mobile-text-center" style="margin-top: 7%;">
                         <h5 style="text-align: center;">Confirm Order</h5>
                     </div>
                     <div style="margin-top: -4%;">
@@ -223,6 +223,15 @@
 </section>
 
 <script src="~/themes/js/common.js"></script>
+
+<style>
+    @@media (min-width: 0px) and (max-width: 767px) {
+        .mobile-text-center{
+            text-align: center;
+        }
+    }
+</style>
+
 <script>
 
     $(document).ready(function () {

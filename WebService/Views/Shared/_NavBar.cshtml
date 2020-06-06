@@ -1,6 +1,6 @@
 ﻿    <section class="navbar main-menu">
         <div class="navbar-inner main-menu" style="padding: 1%;">
-            <a href="index.html" class="logo pull-left"><img src="~/themes/images/logo.png" class="site_logo" alt=""></a>
+            <a href="@Url.Action("Index", "Home")" class="logo pull-left"><img src="~/themes/images/logo.png" class="site_logo" alt=""></a>
             <nav id="menu" class="pull-right">
                 <ul>
                     
@@ -16,7 +16,7 @@
 
                     <li><a href='@Url.Action("FeatureProduct", "LiveAnimal")'>Feature Product</a></li>
                     <li><a href="#">New Product</a></li>
-                    <li><a href="#">Payment</a></li>
+                    <li><a href="@Url.Action("Index", "Payment")">Payment</a></li>
                 </ul>
             </nav>
         </div>
