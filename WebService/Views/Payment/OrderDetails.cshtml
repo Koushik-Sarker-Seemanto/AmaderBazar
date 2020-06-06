@@ -1,0 +1,174 @@
+@model Models.LiveAnimalModels.LiveAnimalDetailsViewModel;
+@{
+    ViewData["Title"] = "Animal Details";
+}
+
+
+@Html.Partial("_NavBar")
+
+<section class="header_text sub">
+    <img class="pageBanner" src="~/themes/images/rsz_maxresdefault_2 (1).jpg" alt="New products">
+    <h4><span>Product Detail</span></h4>
+</section>
+<section class="main-content">
+    <div class="row">
+        <div class="span12">
+            <div class="row">
+                <div class="span9">
+                    @{
+                        if (Model.LiveAnimalDetails.Images != null)
+                        {
+                            <a href="~/images/@Model.LiveAnimalDetails.Images[0]" class="thumbnail" data-fancybox-group="group1" title="Description 1" id="big">
+                                <img alt="" src="~/images/@Model.LiveAnimalDetails.Images[0]" id="big-img">
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="~/static/noimage.png" class="thumbnail" data-fancybox-group="group1" title="Description 1" id="big">
+                                <img alt="" src="~/static/noimage.png" id="big-img">
+                            </a>
+                        }
+                    }
+                    @{
+                        if (Model.LiveAnimalDetails.Images != null)
+                        {
+                            <ul class="thumbnails small">
+                                @foreach (var image in Model.LiveAnimalDetails.Images)
+                                {
+                                    <li class="span1">
+                                        <a class="thumbnail" data-fancybox-group="group1" title="Description 2"><img src="~/images/@image" alt=""></a>
+                                    </li>
+                                }
+
+                            </ul>
+                        }
+                    }
+
+                </div>
+                <div class="span3">
+                    <div>
+                        <h4>@Model.LiveAnimalDetails.Title</h4>
+                    </div>
+                    <div style="margin-top: -1%;">
+                        <h5>@Model.LiveAnimalDetails.Origin</h5>
+                    </div>
+
+                    <div>
+                        <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Color</span>
+                    </div>
+                    <div>
+                        <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span>
+                    </div>
+                    @if (Model.LiveAnimalDetails.Sold == false)
+                    {
+                        <div style="margin-top: 15%;">
+                            <strong style="font-size: large; color: green;">In Stock </strong>
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="margin-top: 15%;">
+                            <strong style="font-size: medium; color: red;">Sold Out </strong>
+                        </div>
+                    }
+                    <div style="margin-top: 5%;">
+                        <strong style="font-size: x-large; ">&#2547 @Model.LiveAnimalDetails.Price </strong>
+                    </div>
+                    
+                    @if (Model.Order.Contacted)
+                    {
+                        <div style="margin-top: 15%;">
+                            <strong style="font-size: x-large; color: white;background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> Order Status </strong>
+                        </div>
+                        <div style="margin-top: 5%;">
+                            <strong style="font-size: x-large; color: green;"> Accpted </strong>
+                        </div>
+                        
+                        <div style="margin-top: 10%;">
+                            <button class="btn btn-success" style = "font-size: 16px; padding: 3%;width: 70%; margin: auto">Pay Bill</button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="margin-top: 15%;">
+                            <strong style="font-size: x-large; color: white;background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> Order Status </strong>
+                        </div>
+                        <div style="margin-top: 5%;">
+                            <strong style="font-size: x-large; color: red;"> Pending </strong>
+                        </div>
+                        
+                        <div style="margin-top: 10%;">
+                            <button class="btn btn-success disabled" style = "font-size: 16px; padding: 3%;width: 70%; margin: auto">Pay Bill</button>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row" style="margin-left: 0%; ">
+            <div class="span9">
+                <ul class="nav nav-tabs" id="myTab">
+                    <li class="active"><a href="#home">Description</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home">@Model.LiveAnimalDetails.Description</div>
+                    <div class="tab-pane" id="profile">
+                        <table class="table table-striped shop_attributes">
+                            <tbody>
+                            <tr class="">
+                                <th>Size</th>
+                                <td>Large, Medium, Small, X-Large</td>
+                            </tr>
+                            <tr class="alt">
+                                <th>Colour</th>
+                                <td>Orange, Yellow</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="footer-bar">
+    <div class="row">
+        <div class="span3">
+            <h4>Navigation</h4>
+            <ul class="nav">
+                <li><a href="./index.html">Homepage</a></li>
+                <li><a href="./about.html">About Us</a></li>
+                <li><a href="./contact.html">Contac Us</a></li>
+                <li><a href="./cart.html">Your Cart</a></li>
+                <li><a href="./register.html">Login</a></li>
+            </ul>
+        </div>
+        <div class="span4">
+            <h4>My Account</h4>
+            <ul class="nav">
+                <li><a href="#">My Account</a></li>
+                <li><a href="#">Order History</a></li>
+                <li><a href="#">Wish List</a></li>
+                <li><a href="#">Newsletter</a></li>
+            </ul>
+        </div>
+        <div class="span5">
+            <p class="logo"><img src="~/themes/images/logo.png" class="site_logo" alt=""></p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
+            <br />
+            <span class="social_icons">
+                <a class="facebook" href="#">Facebook</a>
+                <a class="twitter" href="#">Twitter</a>
+                <a class="skype" href="#">Skype</a>
+                <a class="vimeo" href="#">Vimeo</a>
+            </span>
+        </div>
+    </div>
+</section>
+<section id="copyright">
+    <span>Copyright 2013 bootstrappage template  All right reserved.</span>
+</section>
+
+<script src="~/themes/js/common.js"></script>

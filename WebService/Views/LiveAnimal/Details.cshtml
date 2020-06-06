@@ -79,10 +79,7 @@
                     @if (Model.LiveAnimalDetails.Sold == false)
                     {
                         <div style="margin-top: 10%;">
-                            <form>
-                                <input class="btn btn-success" style="font-size: 16px; padding: 3%;" value="Order Now" onclick="location.href = '@Url.Action("Order", "LiveAnimal")?id=@Model.LiveAnimalDetails.Id'">
-
-                            </form>
+                            @Html.ActionLink("Order Now", "Order", "LiveAnimal", new { Id = Model.LiveAnimalDetails.Id}, new {@class = "btn btn-success", @style="background: orangered;font-size: 16px; padding: 3%;width:93%" })
                         </div>
                     }
 

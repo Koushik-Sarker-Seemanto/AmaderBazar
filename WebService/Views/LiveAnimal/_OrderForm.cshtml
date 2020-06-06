@@ -29,8 +29,8 @@
 
         </div>
     </div>
-    <div class="control-group" style="visibility: hidden">
-        <label class="control-label"><strong>Address</strong></label>
+    <div class="control-group" style="display: none;">
+        <label class="control-label"><strong>LiveAnimalId</strong></label>
         <div class="controls">
             <input type="text" asp-for="LiveAnimalId" placeholder="Enter your Address" style="width: 90%;" value="@ViewBag.LiveAnimalDetailsId">
             <span asp-validation-for="LiveAnimalId" class="text-danger"></span>
@@ -41,7 +41,7 @@
     {
         <div class="control-group">
             <div class="controls">
-                <input type="submit" class="btn btn-inverse large" value="Confirm Order">
+                <button type="submit" style="font-size: 16px; padding: 1%;width: 94%" class="btn btn-success">Confirm Order</button>
             </div>
         </div>
     }
