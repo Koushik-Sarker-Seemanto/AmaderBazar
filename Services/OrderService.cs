@@ -141,7 +141,7 @@ namespace Services
             //Creates a font for adding the heading in the page
             PdfFont subHeadingFont = new PdfStandardFont(PdfFontFamily.TimesRoman, 14);
             //Creates a text element to add the invoice number
-            PdfTextElement element = new PdfTextElement("INVOICE " + "223223", subHeadingFont);
+            PdfTextElement element = new PdfTextElement("INVOICE " + model.Order.Id, subHeadingFont);
             element.Brush = PdfBrushes.White;
 
             //Draws the heading on the page
@@ -156,21 +156,33 @@ namespace Services
             //Creates text elements to add the address and draw it to the page.
             element = new PdfTextElement("BILL TO ", timesRoman);
             element.Brush = new PdfSolidBrush(new PdfColor(126, 155, 203));
-            result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 25));
+            result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 15));
+            // Address
+            element = new PdfTextElement(model.Order.Name,timesRoman);
+            element.Brush = new PdfSolidBrush(new PdfColor(Color.Black));
+            result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 3));
+            //
+            element = new PdfTextElement(model.Order.PhoneNumber, timesRoman);
+            element.Brush = new PdfSolidBrush(new PdfColor(Color.Black));
+            result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 3));
+            //
+            element = new PdfTextElement(model.Order.Address, timesRoman);
+            element.Brush = new PdfSolidBrush(new PdfColor(Color.Black));
+            result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 3));
+
+
             PdfPen linePen = new PdfPen(new PdfColor(126, 151, 173), 0.70f);
             PointF startPoint = new PointF(0, result.Bounds.Bottom + 3);
-            PointF endPoint = new PointF(graphics.ClientSize.Width, result.Bounds.Bottom + 3);
+            PointF endPoint = new PointF(graphics.ClientSize.Width, result.Bounds.Bottom + 6);
             //Draws a line at the bottom of the address
             graphics.DrawLine(linePen, startPoint, endPoint);
 
             //Data Source
             List<object> data = new List<object>();
-            // Object row1 = new { ID = "E01", Name = "Clay" };
-            // Object row2 = new { ID = "E02", Name = "Thomas" };
-            // Object row3 = new { ID = "E03", Name = "Andrew" };
-            // Object row4 = new { ID = "E04", Name = "Paul" };
-            // Object row5 = new { ID = "E05", Name = "Gray" };
-            data.Add(model);
+            Object row1 = new { Title = model.LiveAnimal.Title, Category = model.LiveAnimal.Category, Origin = model.LiveAnimal.Origin,
+                Color = model.LiveAnimal.Color,Location = model.LiveAnimal.Location,Price = "   "+model.LiveAnimal.Price  };
+
+            data.Add(row1);
 
             //Creates a PDF grid
             PdfGrid grid = new PdfGrid();
@@ -191,16 +203,17 @@ namespace Services
             for (int i = 0; i < header.Cells.Count; i++)
             {
                 if (i == 0 || i == 1)
-                    header.Cells[i].StringFormat = new PdfStringFormat(PdfTextAlignment.Left, PdfVerticalAlignment.Middle);
+                    header.Cells[i].StringFormat = new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);
                 else
-                    header.Cells[i].StringFormat = new PdfStringFormat(PdfTextAlignment.Right, PdfVerticalAlignment.Middle);
+                    header.Cells[i].StringFormat = new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);
             }
 
             //Applies the header style
             header.ApplyStyle(headerStyle);
-            cellStyle.Borders.Bottom = new PdfPen(new PdfColor(217, 217, 217), 0.70f);
-            cellStyle.Font = new PdfStandardFont(PdfFontFamily.TimesRoman, 12f);
+            cellStyle.Borders.Bottom = new PdfPen(new PdfColor(217, 217, 217), 1.00f);
+            cellStyle.Font = new PdfStandardFont(PdfFontFamily.TimesRoman, 13f);
             cellStyle.TextBrush = new PdfSolidBrush(new PdfColor(131, 130, 136));
+            
             //Creates the layout format for grid
             PdfGridLayoutFormat layoutFormat = new PdfGridLayoutFormat();
             // Creates layout format settings to allow the table pagination
@@ -216,7 +229,7 @@ namespace Services
 
             //Download the PDF document in the browser
             FileStreamResult fileStreamResult = new FileStreamResult(stream, "application/pdf");
-
+            
             fileStreamResult.FileDownloadName = "Sample.pdf";
             return fileStreamResult;
         }
