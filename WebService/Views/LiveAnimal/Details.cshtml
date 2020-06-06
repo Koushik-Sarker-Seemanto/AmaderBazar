@@ -46,40 +46,40 @@
 
                 </div>
                 <div class="span3">
-                    <div>
+                    <div class="mobile-text-center">
                         <h4>@Model.LiveAnimalDetails.Title</h4>
                     </div>
-                    <div style="margin-top: -1%;">
+                    <div class="mobile-text-center" style="margin-top: -1%;">
                         <h5>@Model.LiveAnimalDetails.Origin</h5>
                     </div>
 
-                    <div>
+                    <div class="mobile-text-center">
                         <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Color</span>
                     </div>
-                    <div>
+                    <div class="mobile-text-center">
                         <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span>
                     </div>
                     @if (Model.LiveAnimalDetails.Sold == false)
                     {
-                        <div style="margin-top: 15%;">
+                        <div class="mobile-text-center" style="margin-top: 15%;">
                             <strong style="font-size: medium; color: green;">In Stock </strong>
                         </div>
                     }
                     else
                     {
-                        <div style="margin-top: 15%;">
+                        <div class="mobile-text-center" style="margin-top: 15%;">
                             <strong style="font-size: medium; color: red;">Sold Out </strong>
                         </div>
                     }
 
 
-                    <div style="margin-top: 10%;">
+                    <div class="mobile-text-center" style="margin-top: 10%;">
                         <strong style="font-size: x-large; ">&#2547 @Model.LiveAnimalDetails.Price </strong>
                     </div>
                     @if (Model.LiveAnimalDetails.Sold == false)
                     {
-                        <div style="margin-top: 10%;">
-                            @Html.ActionLink("Order Now", "Order", "LiveAnimal", new { Id = Model.LiveAnimalDetails.Id}, new {@class = "btn btn-success", @style="background: orangered;font-size: 16px; padding: 3%;width:93%" })
+                        <div class="mobile-text-center" style="margin-top: 10%">
+                            @Html.ActionLink("Order Now", "Order", "LiveAnimal", new { Id = Model.LiveAnimalDetails.Id}, new {@class = "btn btn-success", @style="background: orangered;font-size: 16px; padding: 3%;width:60%" })
                         </div>
                     }
 
@@ -222,6 +222,16 @@
 <section id="copyright">
     <span>Copyright 2013 bootstrappage template  All right reserved.</span>
 </section>
+
+
+<style>
+    @@media (min-width: 0px) and (max-width: 767px) {
+        .mobile-text-center{
+            text-align: center;
+        }
+    }
+</style>
+
 
 <script src="~/themes/js/common.js"></script>
 <script>
