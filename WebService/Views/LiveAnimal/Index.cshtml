@@ -21,7 +21,8 @@
     <div class="row">
         <div class="span3 col">
             <div id="upperDiv" style="padding: 10%; margin-bottom: -20%">
-                <h3 id="priceExpandBtn" style="text-align: center;color: orange; background: #eeeeee; cursor: pointer"><i style="margin-top: 3%; margin-left: 3%" class="fa fa-bars pull-left"></i>Price Range</h3>
+                <h3 id="priceExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer; border-radius: 5px">Price</h3>
+                <h4 id="priceExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;padding: 2%; border-radius: 3px">Price</h4>
                 <section class="priceExpand1 range-slider" id="facet-price-range-slider">
 
                     <input id="minRange" name="range-1" value="0" min="0" max="300001" step="2" type="range">
@@ -29,17 +30,19 @@
                     <input id="maxRange" name="range-2" value="300000" min="0" max="300001" step="2" type="range">
 
                 </section>
-                <section class="priceExpand2 range-slider">
+                <section style="margin-top: -20%" class="priceExpand2 range-slider">
                 
-                    <input class="" id="min" type="text" placeholder="Minimum" value="0"/>
+                    <input id="min" type="text" placeholder="Minimum" value="0"/>
                     <input id="max" type="text" placeholder="Maximum" value="300000"/>
-                    <button id="priceSelect" class="btn btn-success"><i class="fa fa-play"></i></button>
+                    <button id="priceSelect" style="background: orangered" class="btn btn-success">Search <i class="fa fa-search"></i></button>
 
                 </section>
                 
             </div>
+            
             <div class="brands_products" style="padding: 10%; margin-bottom: -20%"><!--brands_products-->
-                <h3 id="categoryExpandBtn" style="text-align: center;color: orange; background: #eeeeee; cursor: pointer"><i style="margin-top: 3%; margin-left: 3%" class="fa fa-bars pull-left"></i>Category</h3>
+                <h3 id="categoryExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;border-radius: 5px">Category</h3>
+                <h4 id="categoryExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;padding: 2%;border-radius: 3px">Category</h4>
                 <div id="categoryExpand" class="brands-name">
                     <ul class="nav nav-pills nav-stacked">
                         @{
@@ -56,7 +59,8 @@
             </div>
             
             <div class="brands_products" style="padding: 10%; margin-bottom: -20%">
-                <h3 id="colorExpandBtn" style="text-align: center;color: orange; background: #eeeeee; cursor: pointer"><i style="margin-top: 3%; margin-left: 3%" class="fa fa-bars pull-left"></i> Color</h3>
+                <h3 id="colorExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;border-radius: 5px">Color</h3>
+                <h4 id="colorExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;padding: 2%;border-radius: 3px"> Color</h4>
                 <div id="colorExpand" class="brands-name">
                     <ul class="nav nav-pills nav-stacked">
                         @{
@@ -73,11 +77,14 @@
             </div>
             
             <div class="brands_products" style="padding: 10%">
-                @if(ViewBag.QueryParam != null){}
-                <h4 style="text-align: center;color: orange">Selected Filters</h4>
-                <div id="allFilters" class="brands-name">
+                @if(ViewBag.QueryParam.Count > 0)
+                {
+                    <h3 style="text-align: center;color: white; background: orangered; border-radius: 5px">Filters</h3>
+                    <h4 style="text-align: center;color: white; background: orangered; border-radius: 3px; padding: 2%">Filters</h4>
+                }
+                <div id="allFilters" class="">
                     @{
-                        if (ViewBag.QueryParam != null)
+                        if (ViewBag.QueryParam.Count > 0)
                         {
                             foreach (var item in ViewBag.QueryParam)
                             {
@@ -120,7 +127,7 @@
                     }
                     else
                     {
-                        <div style="display: flex; justify-content: center;text-align: center; margin-top: 50%">
+                        <div style="display: flex; justify-content: center;text-align: center; margin-top: 20%">
                             <h1>No Data Found!!!</h1>
                         </div>
                     }
@@ -182,6 +189,7 @@
             </span>
         </div>
     </div>
+    
 </section>
 <section id="copyright">
     <span>Copyright 2013 bootstrappage template  All right reserved.</span>
@@ -190,17 +198,51 @@
 <script src="~/themes/js/common.js"></script> 
 <script src="~/js/priceRange.js"></script>
 
+<style>
+    @@media (min-width: 768px) and (max-width: 1199px) {
+        #min{
+            width: 120px;
+        }
+        #max{
+            width: 120px;
+        }
+        h3{
+            display: none;
+        }
+        h4{
+            display: block;
+        }
+    }
+    @@media (min-width: 0px) and (max-width: 767px) {
+        h3{
+            display: none;
+        }
+        h4{
+            display: block;
+        }
+    }
+    @@media only screen and (min-width: 1200px){
+        h4{
+            display: none;
+        }
+        h3{
+            display: block;
+        }
+    }
+</style>
+
+
 <script>
 
     $(document).ready(function() {
-        let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+        let isMobile = window.matchMedia("(min-width: 0px) and (max-width: 600px)").matches;
         console.log("isMobile: " +isMobile);
         if (isMobile){
-            $("#upperDiv").css('marginTop', '-30%');
-            $("#categoryExpand").fadeOut();
-            $("#colorExpand").fadeOut();
-            $(".priceExpand1").fadeOut();
-            $(".priceExpand2").fadeOut();
+            $("#upperDiv").css('marginTop', '-20%');
+            $("#categoryExpand").fadeOut(1);
+            $("#colorExpand").fadeOut(1);
+            $(".priceExpand1").fadeOut(1);
+            $(".priceExpand2").fadeOut(1);
         }
         
         try {
