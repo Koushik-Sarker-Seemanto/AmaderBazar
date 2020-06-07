@@ -168,7 +168,7 @@
                         <p style="background: #eeeeee" class="p-1" id="location"> N/A </p>
                     </div>
                 }
-                
+
                 if (Model.Featured != null)
                 {
                     <div class="mb-3">
@@ -205,20 +205,20 @@
                         <p style="background: #eeeeee" class="p-1" id="description"> N/A </p>
                     </div>
                 }
-                
+
                 @if (Model.DescriptionBn != null)
                 {
-                <div class="mb-3">
-                    <label class="h5" for="description">Description (বাংলায়)</label>
-                <p style="background: #eeeeee" class="p-1" id="description"> @Html.DisplayFor(model => model.DescriptionBn) </p>
-                </div>
+                    <div class="mb-3">
+                        <label class="h5" for="description">Description (বাংলায়)</label>
+                        <p style="background: #eeeeee" class="p-1" id="description"> @Html.DisplayFor(model => model.DescriptionBn) </p>
+                    </div>
                 }
                 else
                 {
-                <div class="mb-3">
-                <label class="h5" for="description">Location</label>
-                <p style="background: #eeeeee" class="p-1" id="description"> N/A </p>
-                </div>
+                    <div class="mb-3">
+                        <label class="h5" for="description">Location</label>
+                        <p style="background: #eeeeee" class="p-1" id="description"> N/A </p>
+                    </div>
                 }
                 if (Model.Description != null)
                 {
