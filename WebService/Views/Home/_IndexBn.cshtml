@@ -45,6 +45,11 @@
                                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})' class="title">@Model.Featured[i].TitleBn</a><br />
                                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})'>@Model.Featured[i].OriginBn</a>
                                                     <p class="price">@Model.Featured[i].Price</p>
+                                                    <script>
+                                                        var num = @Model.Featured[i].Price;
+                                                        console.log(replaceNumbers(num.toString()));
+                                                        
+                                                    </script>
                                                 </div>
                                             </li>
                                         }
