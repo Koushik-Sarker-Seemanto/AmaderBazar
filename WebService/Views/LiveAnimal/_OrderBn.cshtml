@@ -4,7 +4,7 @@
 @model Models.LiveAnimalModels.LiveAnimalDetailsViewModel;
 <section class="header_text sub">
     <img class="pageBanner" src="~/themes/images/rsz_maxresdefault_2 (1).jpg" alt="New products">
-    <h4><span>Product Detail</span></h4>
+    <h4><span>প্রোডাক্ট বিস্তারিত</span></h4>
 </section>
 <section class="main-content">
     <div class="row">
@@ -42,10 +42,10 @@
 
                 </div>
                 <div class="span3">
-                    @if (Model.LiveAnimalDetails.Title != null)
+                    @if (Model.LiveAnimalDetails.TitleBn != null)
                     {
                         <div class="mobile-text-center">
-                            <h4>@Model.LiveAnimalDetails.Title</h4>
+                            <h4>@Model.LiveAnimalDetails.TitleBn</h4>
                         </div>
                     }
                     else
@@ -54,10 +54,10 @@
                             <h4>N/A</h4>
                         </div>
                     }
-                    @if (Model.LiveAnimalDetails.Origin != null)
+                    @if (Model.LiveAnimalDetails.OriginBn != null)
                     {
                         <div class="mobile-text-center" style="margin-top: -1%;">
-                            <h5>@Model.LiveAnimalDetails.Origin</h5>
+                            <h5>@Model.LiveAnimalDetails.OriginBn</h5>
                         </div>
                     }
                     else
@@ -66,65 +66,86 @@
                             <h5>N/A</h5>
                         </div>
                     }
-                    @if (Model.LiveAnimalDetails.Color != null)
+                    @if (Model.LiveAnimalDetails.ColorBn != null)
                     {
                         <div class="mobile-text-center">
-                            <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Color</span>
+                            <strong style="font-size: medium;">রং : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.ColorBn</span>
                         </div>
                     }
                     else
                     {
                         <div class="mobile-text-center">
-                            <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">N/A</span>
+                            <strong style="font-size: medium;">রং : </strong> <span style="font-size: medium;">N/A</span>
                         </div>
                     }
 
-                    @if (Model.LiveAnimalDetails.Location != null)
+                    @if (Model.LiveAnimalDetails.LocationBn != null)
                     {
                         <div class="mobile-text-center">
-                            <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span>
+                            <strong style="font-size: medium;">ঠিকানা  : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.LocationBn</span>
                         </div>
                     }
                     else
                     {
                         <div class="mobile-text-center">
-                            <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">N/A</span>
+                            <strong style="font-size: medium;">ঠিকানা : </strong> <span style="font-size: medium;">N/A</span>
                         </div>
                     }
                     @if (!double.IsNaN(Model.LiveAnimalDetails.Height))
                     {
                         <div class="mobile-text-center">
-                            <strong style="font-size: medium;">Height : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Height Feet</span>
+                            <strong style="font-size: medium;">উচ্চতা : </strong> <span style="font-size: medium;" id="height">@Model.LiveAnimalDetails.Height Feet</span>
                         </div>
+                        <script>
+                            var num = @Model.LiveAnimalDetails.Height;
+                            $("#height")
+                                .text(replaceNumbers(num.toString()) +" ফুট");
+                            console.log(replaceNumbers(num.toString()));
+
+                        </script>
                     }
                     else
                     {
                         <div class="mobile-text-center">
-                            <strong style="font-size: medium;">Height : </strong> <span style="font-size: medium;">N/A</span>
+                            <strong style="font-size: medium;">উচ্চতা : </strong> <span style="font-size: medium;">N/A</span>
                         </div>
                     }
                     @if (!double.IsNaN(Model.LiveAnimalDetails.Weight))
                     {
                         <div class="mobile-text-center">
-                            <strong style="font-size: medium;">Weight : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Weight KG</span>
+                            <strong style="font-size: medium;">ওজন : </strong> <span style="font-size: medium;" id="weight">@Model.LiveAnimalDetails.Weight KG</span>
                         </div>
+                        <script>
+                            var num = @Model.LiveAnimalDetails.Weight;
+                            $("#weight")
+                                .text(replaceNumbers(num.toString()) +" কেজি");
+                            console.log(replaceNumbers(num.toString()));
+
+                        </script>
                     }
                     else
                     {
                         <div class="mobile-text-center">
-                            <strong style="font-size: medium;">Weight : </strong> <span style="font-size: medium;">N/A</span>
+                            <strong style="font-size: medium;">ওজন : </strong> <span style="font-size: medium;">N/A</span>
                         </div>
                     }
                     @if (!double.IsNaN(Model.LiveAnimalDetails.Teeth))
                     {
                         <div class="mobile-text-center">
-                            <strong style="font-size: medium;">Teeth : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Teeth</span>
+                            <strong style="font-size: medium;"> দাঁত : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Teeth</span>
                         </div>
+                        <script>
+                            var num = @Model.LiveAnimalDetails.Teeth;
+                            $("#weight")
+                                .text(replaceNumbers(num.toString()) );
+                            console.log(replaceNumbers(num.toString()));
+
+                        </script>
                     }
                     else
                     {
                         <div class="mobile-text-center">
-                            <strong style="font-size: medium;">Teeth : </strong> <span style="font-size: medium;">N/A</span>
+                            <strong style="font-size: medium;"> দাঁত : </strong> <span style="font-size: medium;">N/A</span>
                         </div>
                     }
                     @if (Model.LiveAnimalDetails.Sold != null)
@@ -132,12 +153,11 @@
 
                         @if (Model.LiveAnimalDetails.Sold == false)
                         {
-
                         }
                         else
                         {
                             <div class="mobile-text-center" style="margin-top: 15%;">
-                                <strong style="font-size: medium; color: red;">Sold Out </strong>
+                                <strong style="font-size: medium; color: red;">বিক্রয় হয়ে গেছে </strong>
                             </div>
                         }
 
@@ -146,8 +166,16 @@
                     @if (!double.IsNaN(Model.LiveAnimalDetails.Price))
                     {
                         <div class="mobile-text-center" style="margin-top: 10%;">
-                            <strong style="font-size: x-large;">&#2547 @Model.LiveAnimalDetails.Price </strong>
+                            <strong style="font-size: x-large;" id="priceM">&#2547 @Model.LiveAnimalDetails.Price </strong>
                         </div>
+                        <script>
+                            var num = @Model.LiveAnimalDetails.Price;
+
+                            $("#priceM")
+                                .text("৳ " +replaceNumbers(num.toString()));
+                            console.log(replaceNumbers(num.toString()));
+
+                        </script>
                     }
                     else
                     {
@@ -155,18 +183,21 @@
                             <strong style="font-size: x-large;">&#2547 N/A </strong>
                         </div>
                     }
+                    <div class="mobile-text-center" style="margin-top: 7%;">
+                        <h5 style="text-align: center;">Confirm Order</h5>
+                    </div>
+                    <div style="margin-top: -4%;">
+                        <hr>
 
-                    @if (Model.LiveAnimalDetails.Sold != null)
-                    {
-                        @if (Model.LiveAnimalDetails.Sold == false)
-                        {
-                            <div class="mobile-text-center" style="margin-top: 10%">
-                                @Html.ActionLink("Book Now", "Order", "LiveAnimal", new { Id = Model.LiveAnimalDetails.Id }, new { @class = "btn btn-success", @style = "background: orangered;font-size: 16px; padding: 3%;width:60%" })
-                            </div>
-                        }
-                    }
+                    </div>
+                    <div style="margin-top: -4%;">
+                        <hr>
 
+                    </div>
 
+                    <div style="margin-top: 5%;">
+                        @{ await Html.RenderPartialAsync("_OrderForm", Model.Order); }
+                    </div>
                 </div>
             </div>
 
@@ -177,7 +208,7 @@
                     <li class="active"><a href="#home">Description</a></li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="home">@Model.LiveAnimalDetails.Description</div>
+                    <div class="tab-pane active" id="home">@Model.LiveAnimalDetails.DescriptionBn</div>
                     <div class="tab-pane" id="profile">
                         <table class="table table-striped shop_attributes">
                             <tbody>
@@ -197,7 +228,7 @@
             <div class="span9" style="margin-left: 2.5%; ">
                 <br>
                 <h4 class="title">
-                    <span class="pull-left"><span class="text"><strong>Related</strong> Products</span></span>
+                    <span class="pull-left"><span class="text"><strong>রিলেটেড</strong> প্রোডাক্ট</span></span>
                     <span class="pull-right">
                         <a class="left button" href="#myCarousel-1" data-slide="prev"></a><a class="right button" href="#myCarousel-1" data-slide="next"></a>
                     </span>
@@ -224,9 +255,16 @@
                                                 }
                                             }
 
-                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">@Model.Related[i].Title</a><br />
-                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>@Model.Related[i].Origin</a>
-                                            <p class="price">@Model.Related[i].Price</p>
+                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">@Model.Related[i].TitleBn</a><br />
+                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>@Model.Related[i].OriginBn</a>
+                                            <p class="price" id="@Model.Related[i].Id">&#2547 @Model.Related[i].Price</p>
+                                            <script>
+                                                var num = @Model.Related[i].Price;
+                                                $("#@Model.Related[i].Id")
+                                                    .text("৳ " +replaceNumbers(num.toString()));
+                                                console.log(replaceNumbers(num.toString()));
+
+                                            </script>
                                         </div>
                                     </li>
                                 }
@@ -253,9 +291,16 @@
                                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img alt="" src="~/static/noimage.png"></a><br />
                                                     }
                                                 }
-                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})' class="title">@Model.Related[j].Title</a><br />
-                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'>@Model.Related[j].Origin</a>
-                                                <p class="price">&#2547 @Model.Related[j].Price</p>
+                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})' class="title">@Model.Related[j].TitleBn</a><br />
+                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'>@Model.Related[j].OriginBn</a>
+                                                <p class="price" id="@Model.Related[j].Id">&#2547 @Model.Related[j].Price</p>
+                                                <script>
+                                                    var num = @Model.Related[j].Price;
+                                                    $("#@Model.Related[j].Id")
+                                                        .text("৳ " +replaceNumbers(num.toString()));
+                                                    console.log(replaceNumbers(num.toString()));
+
+                                                </script>
                                             </div>
                                         </li>
                                     }

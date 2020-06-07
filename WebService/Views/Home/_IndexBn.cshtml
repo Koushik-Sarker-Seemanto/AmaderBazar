@@ -44,11 +44,13 @@
 
                                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})' class="title">@Model.Featured[i].TitleBn</a><br />
                                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})'>@Model.Featured[i].OriginBn</a>
-                                                    <p class="price">@Model.Featured[i].Price</p>
+                                                    <p class="price" id="@Model.Featured[i].Id">&#2547 @Model.Featured[i].Price</p>
                                                     <script>
                                                         var num = @Model.Featured[i].Price;
+                                                        $("#@Model.Featured[i].Id")
+                                                            .text(replaceNumbers("৳ "+num.toString()));
                                                         console.log(replaceNumbers(num.toString()));
-                                                        
+
                                                     </script>
                                                 </div>
                                             </li>
@@ -78,8 +80,14 @@
                                                         }
                                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})' class="title">@Model.Featured[j].TitleBn</a><br />
                                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})'>@Model.Featured[j].OriginBn</a>
-                                                        <p id="price" class="price">@Model.Featured[j].Price</p>
-                                                        
+                                                        <p id="@Model.Featured[j].Id" class="price">&#2547 @Model.Featured[j].Price</p>
+                                                        <script>
+                                                            var num = @Model.Featured[j].Price;
+                                                            $("#@Model.Featured[j].Id")
+                                                                .text("৳ " +replaceNumbers(num.toString()));
+                                                            console.log(replaceNumbers(num.toString()));
+
+                                                        </script>
                                                     </div>
                                                 </li>
                                             }
@@ -130,7 +138,14 @@
 
                                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})' class="title">@Model.Latest[i].TitleBn</a><br />
                                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'>@Model.Latest[i].OriginBn</a>
-                                                <p class="price">@Model.Latest[i].Price</p>
+                                                <p id="@Model.Latest[i].Id" class="price">&#2547 @Model.Latest[i].Price</p>
+                                                <script>
+                                                    var num = @Model.Latest[i].Price;
+                                                    $("#@Model.Latest[i].Id")
+                                                        .text("৳ " +replaceNumbers(num.toString()));
+                                                    console.log(replaceNumbers(num.toString()));
+
+                                                </script>
                                             </div>
                                         </li>
                                     }
@@ -159,7 +174,14 @@
                                                     }
                                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})' class="title">@Model.Latest[j].TitleBn</a><br />
                                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'>@Model.Latest[j].OriginBn</a>
-                                                    <p class="price">@Model.Latest[j].Price</p>
+                                                    <p id="@Model.Latest[j].Id" class="price">&#2547 @Model.Latest[j].Price</p>
+                                                    <script>
+                                                        var num = @Model.Latest[j].Price;
+                                                        $("#@Model.Latest[j].Id")
+                                                            .text("৳ " +replaceNumbers(num.toString()));
+                                                        console.log(replaceNumbers(num.toString()));
+
+                                                    </script>
                                                 </div>
                                             </li>
                                         }

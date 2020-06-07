@@ -117,7 +117,14 @@
                                     }
                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})' class="title">@animal.TitleBn</a><br />
                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>@animal.OriginBn</a>
-                                    <p class="price">@animal.Price</p>
+                                    <p class="price" id="@animal.Id">&#2547 @animal.Price</p>
+                                    <script>
+                                        var num = @animal.Price;
+                                        $("#@animal.Id")
+                                            .text("৳ "+replaceNumbers(num.toString()));
+                                        console.log(replaceNumbers(num.toString()));
+
+                                    </script>
                                 </div>
                             </li>
                         }
