@@ -11,221 +11,61 @@
 }
 
 @Html.Partial("_NavBar")
+@if (@TempData["Is_English"] != null)
+{
+    @if (@TempData["Is_English"].Equals(true))
+    {
+        await Html.RenderPartialAsync("_IndexEn", Model);
+    }
+    else
+    {
+        await Html.RenderPartialAsync("_IndexBn", Model);
+    }
+    TempData.Keep("Is_English");
+}
+else
+{
+    await Html.RenderPartialAsync("_IndexEn", Model);
+}
 
-<section class="header_text sub">
-    <img class="pageBanner" src="~/themes/images/rsz_maxresdefault_2 (1).jpg" alt="New products">
-    <h2 style="margin-top: 3% "><span>Kurbani</span></h2>
-</section>
-<section class="main-content">
-
-    <div class="row">
-        <div class="span3 col">
-            <div id="upperDiv" style="padding: 10%; margin-bottom: -20%">
-                <h3 id="priceExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer; border-radius: 5px">Price</h3>
-                <h4 id="priceExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;padding: 2%; border-radius: 3px">Price</h4>
-                <section class="priceExpand1 range-slider" id="facet-price-range-slider">
-
-                    <input id="minRange" name="range-1" value="0" min="0" max="300001" step="2" type="range">
-
-                    <input id="maxRange" name="range-2" value="300000" min="0" max="300001" step="2" type="range">
-
-                </section>
-                <section style="margin-top: -20%" class="priceExpand2 range-slider">
-                
-                    <input id="min" type="text" placeholder="Minimum" value="0"/>
-                    <input id="max" type="text" placeholder="Maximum" value="300000"/>
-                    <button id="priceSelect" style="background: orangered" class="btn btn-success">Search <i class="fa fa-search"></i></button>
-
-                </section>
-                
-            </div>
-            
-            <div class="brands_products" style="padding: 10%; margin-bottom: -20%"><!--brands_products-->
-                <h3 id="categoryExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;border-radius: 5px">Category</h3>
-                <h4 id="categoryExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;padding: 2%;border-radius: 3px">Category</h4>
-                <div id="categoryExpand" class="brands-name">
-                    <ul class="nav nav-pills nav-stacked">
-                        @{
-                            if (ViewBag.CategoryCount != null)
-                            {
-                                foreach (var category in ViewBag.CategoryCount)
-                                {
-                                    <li><a id="categorySelect" name="@category.Key" > <span class="pull-right">(@category.Value)</span>@category.Key</a></li>
-                                }
-                            }
-                        }
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="brands_products" style="padding: 10%; margin-bottom: -20%">
-                <h3 id="colorExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;border-radius: 5px">Color</h3>
-                <h4 id="colorExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;padding: 2%;border-radius: 3px"> Color</h4>
-                <div id="colorExpand" class="brands-name">
-                    <ul class="nav nav-pills nav-stacked">
-                        @{
-                            if (ViewBag.ColorCount != null)
-                            {
-                                foreach (var color in ViewBag.ColorCount)
-                                {
-                                    <li><a id="colorSelect" name="@color.Key" > <span class="pull-right">(@color.Value)</span>@color.Key</a></li>
-                                }
-                            }
-                        }
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="brands_products" style="padding: 10%">
-                @if(ViewBag.QueryParam.Count > 0)
-                {
-                    <h3 style="text-align: center;color: white; background: orangered; border-radius: 5px">Filters</h3>
-                    <h4 style="text-align: center;color: white; background: orangered; border-radius: 3px; padding: 2%">Filters</h4>
-                }
-                <div id="allFilters" class="">
-                    @{
-                        if (ViewBag.QueryParam.Count > 0)
-                        {
-                            foreach (var item in ViewBag.QueryParam)
-                            {
-                                <p id="@item.Key" name="@item.Value" style="padding: 3%; background: #eeeeee; border-radius: 10px">@item.Key : @item.Value
-                                    <i id="removeItem" style="padding: 3%; color: red; cursor: pointer" class="fa fa-times pull-right"></i>
-                                </p>
-                            }
-                        }
-                    }
-                </div>
-            </div>
-            
-        </div>
-        <div class="span9">
-            <ul class="thumbnails listing-products">
-                @{
-                    if (Model != null && Model.Count > 0 )
-                    {
-                        @foreach (var animal in Model)
-                        {
-                            <li class="span3">
-                                <div class="product-box">
-                                    <span class="sale_tag"></span>
-                                    @{
-                                        if (animal.Images != null)
-                                        {
-                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'><img alt="" src="~/images/@animal.Images[0]"></a><br/>
-                                        }
-                                        else
-                                        {
-                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'><img alt="" src="~/static/noimage.png"></a><br/>
-                                        }
-                                    }
-                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})' class="title">@animal.Title</a><br/>
-                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>@animal.Origin</a>
-                                    <p class="price">@animal.Price</p>
-                                </div>
-                            </li>
-                        }
-                    }
-                    else
-                    {
-                        <div style="display: flex; justify-content: center;text-align: center; margin-top: 20%">
-                            <h1>No Data Found!!!</h1>
-                        </div>
-                    }
-                }
-
-            </ul>
-            @{
-                if (Model == null || Model.Count == 0 )
-                {
-                }
-                else
-                {
-                    <hr>
-                    <div class="pagination pagination-small pagination-centered">
-                        @Html.PagedListPager(Model, page => Url.Action("Index", new{ 
-                            min = Context.Request.Query["min"], max = Context.Request.Query["max"],
-                            category = Context.Request.Query["category"], color = Context.Request.Query["color"], page}), 
-                            new PagedListRenderOptions {
-                                LiElementClasses = new string[] { "page-item" }, 
-                                PageClasses = new string[] { "page-link" },
-                            })
-                    </div>
-                }
-            }
-        </div>
-        
-    </div>
-</section>
-<section id="footer-bar">
-    <div class="row">
-        <div class="span3">
-            <h4>Navigation</h4>
-            <ul class="nav">
-                <li><a href="./index.html">Homepage</a></li>
-                <li><a href="./about.html">About Us</a></li>
-                <li><a href="./contact.html">Contac Us</a></li>
-                <li><a href="./cart.html">Your Cart</a></li>
-                <li><a href="./register.html">Login</a></li>
-            </ul>
-        </div>
-        <div class="span4">
-            <h4>My Account</h4>
-            <ul class="nav">
-                <li><a href="#">My Account</a></li>
-                <li><a href="#">Order History</a></li>
-                <li><a href="#">Wish List</a></li>
-                <li><a href="#">Newsletter</a></li>
-            </ul>
-        </div>
-        <div class="span5">
-            <p class="logo"><img src="~/themes/images/logo.png" class="site_logo" alt=""></p>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
-            <br />
-            <span class="social_icons">
-                <a class="facebook" href="#">Facebook</a>
-                <a class="twitter" href="#">Twitter</a>
-                <a class="skype" href="#">Skype</a>
-                <a class="vimeo" href="#">Vimeo</a>
-            </span>
-        </div>
-    </div>
-    
-</section>
-<section id="copyright">
-    <span>Copyright 2013 bootstrappage template  All right reserved.</span>
-</section>
-		
-<script src="~/themes/js/common.js"></script> 
+<script src="~/themes/js/common.js"></script>
 <script src="~/js/priceRange.js"></script>
 
 <style>
     @@media (min-width: 768px) and (max-width: 1199px) {
-        #min{
+        #min {
             width: 120px;
         }
-        #max{
+
+        #max {
             width: 120px;
         }
-        h3{
+
+        h3 {
             display: none;
         }
-        h4{
+
+        h4 {
             display: block;
         }
     }
+
     @@media (min-width: 0px) and (max-width: 767px) {
-        h3{
+        h3 {
             display: none;
         }
-        h4{
+
+        h4 {
             display: block;
         }
     }
-    @@media only screen and (min-width: 1200px){
-        h4{
+
+    @@media only screen and (min-width: 1200px) {
+        h4 {
             display: none;
         }
-        h3{
+
+        h3 {
             display: block;
         }
     }
@@ -234,131 +74,131 @@
 
 <script>
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         let isMobile = window.matchMedia("(min-width: 0px) and (max-width: 600px)").matches;
-        console.log("isMobile: " +isMobile);
-        if (isMobile){
+        console.log("isMobile: " + isMobile);
+        if (isMobile) {
             $("#upperDiv").css('marginTop', '-20%');
             $("#categoryExpand").fadeOut(1);
             $("#colorExpand").fadeOut(1);
             $(".priceExpand1").fadeOut(1);
             $(".priceExpand2").fadeOut(1);
         }
-        
+
         try {
-            $(document).on("change","#minRange",function() {
+            $(document).on("change", "#minRange", function () {
                 $("#min").val($(this).val());
             });
-        }catch (e) {
+        } catch (e) {
             console.log(e);
         }
-        
+
         try {
-            $(document).on("change","#maxRange",function() {
+            $(document).on("change", "#maxRange", function () {
                 $("#max").val($(this).val());
             });
-        }catch (e) {
+        } catch (e) {
             console.log(e);
         }
-        
-        
+
+
         try {
-            $(document).on("click", "#categoryExpandBtn", function() {
+            $(document).on("click", "#categoryExpandBtn", function () {
                 $("#categoryExpand").fadeToggle();
             });
-        }catch (e) {
+        } catch (e) {
             console.log(e);
         }
-        
+
         try {
-            $(document).on("click", "#colorExpandBtn", function() {
+            $(document).on("click", "#colorExpandBtn", function () {
                 $("#colorExpand").fadeToggle();
             });
-        }catch (e) {
+        } catch (e) {
             console.log(e);
         }
-        
+
         try {
-            $(document).on("click", "#priceExpandBtn", function() {
+            $(document).on("click", "#priceExpandBtn", function () {
                 $(".priceExpand1").fadeToggle();
                 $(".priceExpand2").fadeToggle();
             });
-        }catch (e) {
+        } catch (e) {
             console.log(e);
         }
-        
+
         try {
-            $(document).on("click", "#priceSelect", function() {
+            $(document).on("click", "#priceSelect", function () {
                 let minVal = $("#min").val();
                 let maxVal = $("#max").val();
                 BuildFilterSection("min", minVal);
                 BuildFilterSection("max", maxVal);
                 BuildQuery();
             });
-        }catch (e) {
+        } catch (e) {
             console.log(e);
         }
-    
+
         try {
-            $(document).on("click", "#categorySelect", function() {
+            $(document).on("click", "#categorySelect", function () {
                 let value = $(this).attr('name');
                 BuildFilterSection("category", value);
                 BuildQuery();
             });
-        }catch (e) {
+        } catch (e) {
             console.log(e);
         }
-    
+
         try {
-            $(document).on("click", "#colorSelect", function() {
+            $(document).on("click", "#colorSelect", function () {
                 let value = $(this).attr('name');
                 BuildFilterSection("color", value);
                 BuildQuery();
             });
-        }catch (e) {
+        } catch (e) {
             console.log(e);
         }
-        
+
         try {
-            $(document).on("click", "#removeItem", function() {
+            $(document).on("click", "#removeItem", function () {
                 $(this).parent().remove();
                 BuildQuery();
             });
-        }catch (e) {
+        } catch (e) {
             console.log(e);
         }
     });
-    
+
     function BuildQuery() {
         let filters = $("#allFilters");
         let categoryValue = "";
         let colorValue = "";
         let minValue = "";
         let maxValue = "";
-        filters.children().each(function() {
+        filters.children().each(function () {
             let key = $(this).attr('id');
             let value = $(this).attr('name').trim();
-            if (key === "category"){
-                categoryValue = "&category="+value;
+            if (key === "category") {
+                categoryValue = "&category=" + value;
             }
-            if (key === "color"){
-                colorValue = "&color="+value;
+            if (key === "color") {
+                colorValue = "&color=" + value;
             }
-            if (key === "min"){
-                minValue = "&min="+value;
+            if (key === "min") {
+                minValue = "&min=" + value;
             }
-            if (key === "max"){
-                maxValue = "&max="+value;
+            if (key === "max") {
+                maxValue = "&max=" + value;
             }
         });
-        if ( minValue === "" && maxValue === "" && colorValue ==="" && categoryValue === ""){
+        if (minValue === "" && maxValue === "" && colorValue === "" && categoryValue === "") {
             window.location.href = '/LiveAnimal';
         }
-        else{
-            window.location.href = '/LiveAnimal?'+minValue+maxValue+categoryValue+colorValue;
+        else {
+            window.location.href = '/LiveAnimal?' + minValue + maxValue + categoryValue + colorValue;
         }
     }
-    
+
     function BuildFilterSection(key, value) {
         let dom = $("#allFilters");
         let newData = `<p id="${key}" hidden name="${value}" style="padding: 3%; background: #eeeeee; border-radius: 10px">${key} : ${value}
