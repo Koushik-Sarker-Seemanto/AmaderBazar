@@ -5,11 +5,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="MongoDB.Bson" Version="2.10.4" />
+      <Compile Remove="PaymentModels\**" />
+      <EmbeddedResource Remove="PaymentModels\**" />
+      <None Remove="PaymentModels\**" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="PaymentModels" />
+      <PackageReference Include="MongoDB.Bson" Version="2.10.4" />
     </ItemGroup>
 
 </Project>

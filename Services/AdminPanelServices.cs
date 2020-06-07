@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -81,15 +81,30 @@ namespace Services
             {
                 Id = model.Id,
                 Title = model.Title,
+                TitleBn =  model.TitleBn,
                 Category = category,
                 Color = model.Color,
                 Location = model.Location,
+                LocationBn = model.LocationBn,
                 Origin = model.Origin,
+                OriginBn = model.OriginBn,
                 Price = model.Price,
                 Description = model.Description,
+                DescriptionBn = model.DescriptionBn,
                 Images = model.Images,
                 Featured = model.Featured,
+                Weight = model.Weight,
+                Height = model.Height,
+                Teeth = model.Teeth,
             };
+            Dictionary<string,string> color = new Dictionary<string, string>
+            {
+                {"Black", "কালো"},
+                {"White","সাদা" },
+                {"Red","লাল" },
+                {"Mixed","মিশ্র" }
+            };
+            liveAnimal.ColorBn = color[model.Color];
             return liveAnimal;
         }
 

@@ -1,4 +1,4 @@
-@model Models.AdminModels.LiveAnimalViewModel;
+﻿@model Models.AdminModels.LiveAnimalViewModel;
 
 @{
     ViewData["Title"] = "Add Animal";
@@ -10,17 +10,38 @@
     <div class="m-auto col-lg-9 p-5 bg-white">
         <h1 class="d-flex justify-content-center">Add Animal</h1>
         @Html.ValidationSummary(true, "", new {@class = "text-danger alert alert-danger"})
-    <form id="registerForm" method ="post" asp-action="AddAnimal" class="" autocomplete="off" enctype="multipart/form-data">
+    <form id="registerForm" method="post" asp-action="AddAnimal" class="" autocomplete="off" enctype="multipart/form-data">
         @Html.AntiForgeryToken()
         <div class="form-group">
             <label for="title">Title</label>
-            <input asp-for="Title" class="form-control" id="title" placeholder="Enter Animal Title">
+            <input asp-for="Title" class="form-control" id="title" placeholder="Enter Product Title">
             <span asp-validation-for="Title" class="text-danger"></span>
         </div>
+        <div class="form-group">
+            <label for="titleBn">Title ( বাংলায় লিখুন )</label>
+            <input asp-for="TitleBn" class="form-control" id="title" placeholder="Enter Product Title ( বাংলায় লিখুন )">
+            <span asp-validation-for="TitleBn" class="text-danger"></span>
+        </div>
+
         <div class="form-group">
             <label for="price">Price</label>
             <input asp-for="Price" class="form-control" id="price" placeholder="Enter Price">
             <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="height">Height</label>
+            <input asp-for="Height" class="form-control" id="height" placeholder="Enter Height (In Feet)">
+            <span asp-validation-for="Height" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="weight">Weight</label>
+            <input asp-for="Weight" class="form-control" id="price" placeholder="Enter Weight">
+            <span asp-validation-for="Weight" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="teeth">Teeth</label>
+            <input asp-for="Teeth" class="form-control" id="price" placeholder="Enter Teeth Number">
+            <span asp-validation-for="Teeth" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label for="category">Category</label>
@@ -35,9 +56,14 @@
             <span asp-validation-for="Origin" class="text-danger"></span>
         </div>
         <div class="form-group">
+            <label for="originbn">Origin ( বাংলায় লিখুন ) </label>
+            <input asp-for="OriginBn" class="form-control" id="origin" placeholder="Enter Origin ( বাংলায় লিখুন )">
+            <span asp-validation-for="OriginBn" class="text-danger"></span>
+        </div>
+        <div class="form-group">
             <label for="color">Select Color</label>
-            
-            <select asp-for="Color" class="form-control" id="color" >
+
+            <select asp-for="Color" class="form-control" id="color">
                 <option disabled selected value=""> -- Please Select -- </option>
                 <option value="Black">Black</option>
                 <option value="White">White</option>
@@ -48,18 +74,24 @@
         </div>
 
         <div class="form-group">
-            <label for="location">Location</label>
+            <label for="location">Location </label>
             <input asp-for="Location" class="form-control" id="location" placeholder="Enter Location">
             <span asp-validation-for="Location" class="text-danger"></span>
         </div>
+        <div class="form-group">
+            <label for="locationbn">Location ( বাংলায় লিখুন )</label>
+            <input asp-for="LocationBn" class="form-control" id="locationbn" placeholder="Enter Location ( বাংলায় লিখুন )">
+            <span asp-validation-for="LocationBn" class="text-danger"></span>
+        </div>
+
         <div class="form-group">
             <label for="color">Is Featured ?</label>
 
             <select asp-for="Featured" class="form-control" id="feature">
                 <option disabled selected value=""> -- Please Select -- </option>
-                <option value = "true">Yes</option>
-                <option value = "false">No</option>
-                
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+
             </select>
             <span asp-validation-for="Featured" class="text-danger"></span>
         </div>
@@ -68,13 +100,19 @@
             <textarea rows="5" asp-for="Description" class="form-control" id="description" placeholder="Enter Description"></textarea>
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
+        <div class="form-group">
+            <label for="descriptionbn">Description ( বাংলায় লিখুন )</label>
+            <textarea rows="5" asp-for="DescriptionBn" class="form-control" id="descriptionbn" placeholder="Enter Description ( বাংলায় লিখুন )"></textarea>
+            <span asp-validation-for="DescriptionBn" class="text-danger"></span>
+        </div>
+        
 
         <div class="form-group">
             <label for="files">Upload Images</label>
-            <input type="file" class="form-control" accept=".png, .jpg, .jpeg" id="files" name="files" multiple required/>
-            
+            <input type="file" class="form-control" accept=".png, .jpg, .jpeg" id="files" name="files" multiple required />
+
         </div>
-        
+
 
         <div class="text-center">
             <button class="btn btn-block btn-success m-b-20" type="submit">Add Animal</button>

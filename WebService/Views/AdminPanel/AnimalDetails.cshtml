@@ -1,4 +1,4 @@
-@model Models.Entities.LiveAnimal;
+﻿@model Models.Entities.LiveAnimal;
 @{
     ViewData["Title"] = "Animal Details";
     Layout = "_LayoutAdmin";
@@ -25,7 +25,20 @@
                         <p style="background: #eeeeee" class="p-1" id="title"> N/A </p>
                     </div>
                 }
-
+                if (Model.TitleBn != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="title">Title ( বাংলায় )</label>
+                        <p style="background: #eeeeee" class="p-1" id="title"> @Html.DisplayFor(model => model.TitleBn) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="title">Title ( বাংলায় )</label>
+                        <p style="background: #eeeeee" class="p-1" id="title"> N/A </p>
+                    </div>
+                }
                 if (Model.Category != null)
                 {
                     <div class="mb-3">
@@ -55,6 +68,48 @@
                         <p style="background: #eeeeee" class="p-1" id="price"> N/A </p>
                     </div>
                 }
+                if (!double.IsNaN(Model.Height))
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="height">Height</label>
+                        <p style="background: #eeeeee" class="p-1" id="height"> @Html.DisplayFor(model => model.Height) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="height">Height</label>
+                        <p style="background: #eeeeee" class="p-1" id="height"> N/A </p>
+                    </div>
+                }
+                if (!double.IsNaN(Model.Weight))
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="weight">Weight</label>
+                        <p style="background: #eeeeee" class="p-1" id="weight"> @Html.DisplayFor(model => model.Weight) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="weight">Weight</label>
+                        <p style="background: #eeeeee" class="p-1" id="weight"> N/A </p>
+                    </div>
+                }
+                if (!double.IsNaN(Model.Teeth))
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="teeth">Teeth</label>
+                        <p style="background: #eeeeee" class="p-1" id="teeth"> @Html.DisplayFor(model => model.Teeth) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="teeth">Teeth</label>
+                        <p style="background: #eeeeee" class="p-1" id="teeth"> N/A </p>
+                    </div>
+                }
 
                 if (Model.Origin != null)
                 {
@@ -71,6 +126,20 @@
                     </div>
                 }
 
+                if (Model.OriginBn != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="origin">Origin ( বাংলায় )</label>
+                        <p style="background: #eeeeee" class="p-1" id="origin"> @Html.DisplayFor(model => model.OriginBn) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="origin">Origin ( বাংলায় )</label>
+                        <p style="background: #eeeeee" class="p-1" id="origin"> N/A </p>
+                    </div>
+                }
                 if (Model.Location != null)
                 {
                     <div class="mb-3">
@@ -85,6 +154,21 @@
                         <p style="background: #eeeeee" class="p-1" id="location"> N/A </p>
                     </div>
                 }
+                if (Model.LocationBn != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="location">Location (বাংলায়)</label>
+                        <p style="background: #eeeeee" class="p-1" id="location"> @Html.DisplayFor(model => model.LocationBn) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="location">Location (বাংলায়)</label>
+                        <p style="background: #eeeeee" class="p-1" id="location"> N/A </p>
+                    </div>
+                }
+                
                 if (Model.Featured != null)
                 {
                     <div class="mb-3">
@@ -107,6 +191,35 @@
                     </div>
                 }
 
+                if (Model.Description != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="description">Description</label>
+                        <p style="background: #eeeeee" class="p-1" id="description"> @Html.DisplayFor(model => model.Description) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="description">Location</label>
+                        <p style="background: #eeeeee" class="p-1" id="description"> N/A </p>
+                    </div>
+                }
+                
+                @if (Model.DescriptionBn != null)
+                {
+                <div class="mb-3">
+                    <label class="h5" for="description">Description (বাংলায়)</label>
+                <p style="background: #eeeeee" class="p-1" id="description"> @Html.DisplayFor(model => model.DescriptionBn) </p>
+                </div>
+                }
+                else
+                {
+                <div class="mb-3">
+                <label class="h5" for="description">Location</label>
+                <p style="background: #eeeeee" class="p-1" id="description"> N/A </p>
+                </div>
+                }
                 if (Model.Description != null)
                 {
                     <div class="mb-3">

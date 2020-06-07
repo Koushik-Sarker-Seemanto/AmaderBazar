@@ -59,6 +59,7 @@ namespace WebService.Controllers
 
             var id = Guid.NewGuid().ToString();
             model.Id = id;
+            
             var images = await _adminPanelServices.UploadImage(files);
             model.Images = images;
             

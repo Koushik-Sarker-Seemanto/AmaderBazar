@@ -174,6 +174,7 @@ namespace Services
                 {
                     Id = animal.Id,
                     Title = animal.Title,
+                    
                     Category = animal.Category.Name,
                     Color = animal.Color,
                     Location = animal.Location,
@@ -183,6 +184,9 @@ namespace Services
                     Images = animal.Images,
                     Sold = animal.Sold,
                     Featured = animal.Featured,
+                    Height = animal.Height,
+                    Weight = animal.Weight,
+                    Teeth = animal.Teeth,
                 };
             
 

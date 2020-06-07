@@ -64,8 +64,44 @@
                     <div class="mobile-text-center">
                         <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span>
                     </div>
+                    @if (!double.IsNaN(Model.LiveAnimalDetails.Height))
+                    {
+                        <div class="mobile-text-center">
+                            <strong style="font-size: medium;">Height : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Height Feet</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="mobile-text-center">
+                            <strong style="font-size: medium;">Height : </strong> <span style="font-size: medium;">N/A</span>
+                        </div>
+                    }
+                    @if (!double.IsNaN(Model.LiveAnimalDetails.Weight))
+                    {
+                        <div class="mobile-text-center">
+                            <strong style="font-size: medium;">Weight : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Weight KG</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="mobile-text-center">
+                            <strong style="font-size: medium;">Weight : </strong> <span style="font-size: medium;">N/A</span>
+                        </div>
+                    }
+                    @if (!double.IsNaN(Model.LiveAnimalDetails.Teeth))
+                    {
+                        <div class="mobile-text-center">
+                            <strong style="font-size: medium;">Teeth : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Teeth</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="mobile-text-center">
+                            <strong style="font-size: medium;">Teeth : </strong> <span style="font-size: medium;">N/A</span>
+                        </div>
+                    }
                     <div class="mobile-text-center" style="margin-top: 3%;">
-                        <strong style="font-size: x-large; ">&#2547 @Model.LiveAnimalDetails.Price </strong>
+                        <strong style="font-size: x-large;">&#2547 @Model.LiveAnimalDetails.Price </strong>
                     </div>
                     <div class="mobile-text-center" style="margin-top: 7%;">
                         <h5 style="text-align: center;">Confirm Order</h5>
@@ -80,7 +116,7 @@
                     </div>
 
                     <div style="margin-top: 5%;">
-                        @{ await Html.RenderPartialAsync("_OrderForm", Model.Order ); }
+                        @{ await Html.RenderPartialAsync("_OrderForm", Model.Order); }
                     </div>
                 </div>
             </div>
