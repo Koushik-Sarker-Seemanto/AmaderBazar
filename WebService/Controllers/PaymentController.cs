@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Models.Entities;
@@ -22,12 +23,14 @@ namespace WebService.Controllers
         private IOrderService _orderService;
         private ILiveAnimalService _liveAnimalService;
         private ISSLCommerzService _sslCommerzService;
-        public PaymentController(ILogger<PaymentController> logger, IOrderService orderService, ILiveAnimalService liveAnimalService, ISSLCommerzService sslCommerzService)
+        private IPaymentService _paymentService;
+        public PaymentController(ILogger<PaymentController> logger, IOrderService orderService, ILiveAnimalService liveAnimalService, ISSLCommerzService sslCommerzService, IPaymentService paymentService)
         {
             _logger = logger;
             _orderService = orderService;
             _liveAnimalService = liveAnimalService;
             _sslCommerzService = sslCommerzService;
+            _paymentService = paymentService;
         }
 
         public IActionResult Index()
@@ -99,9 +102,9 @@ namespace WebService.Controllers
             //Basic Infos.
             PostData.Add("total_amount", model.LiveAnimalDetails.Price.ToString());
             PostData.Add("tran_id", model.Order.Id);
-            PostData.Add("success_url", "http://localhost:5000/payment/success");
-            PostData.Add("fail_url", "http://localhost:5000/payment/fail");
-            PostData.Add("cancel_url", "http://localhost:5000/payment/cancel");
+            PostData.Add("success_url", "http://localhost:5000/Payment/PaymentCheck");
+            PostData.Add("fail_url", "http://localhost:5000/Payment/PaymentCheck");
+            PostData.Add("cancel_url", "http://localhost:5000/Payment/PaymentCheck");
             
             //Customer Info.
             PostData.Add("cus_name", model.Order.Name);
@@ -119,56 +122,56 @@ namespace WebService.Controllers
             return Redirect(response.GatewayPageURL);
         }
         
-        public async Task<IActionResult> Success()
+        public async Task<IActionResult> PaymentCheck()
         {
             if (!String.IsNullOrEmpty(Request.Form["status"]) && Request.Form["status"] == "VALID")
             {
-                _logger.LogInformation($"Request.Form: {JsonConvert.SerializeObject(Request.Form)}");
-                string TrxID = Request.Form["tran_id"];
-                string valId = Request.Form["val_id"];
-                
-                // AMOUNT and Currency FROM DB FOR THIS TRANSACTION
-                string amount = "";
-                if (!string.IsNullOrEmpty(TrxID))
+                var result = await _paymentService.ValidatePaymentRequest(Request.Form);
+                if (result)
                 {
-                    var orderData = await _orderService.FindOrderById(TrxID);
-                    if (orderData == null)
-                    {
-                        _logger.LogInformation("OderData is null for this Trxid");
-                        return RedirectToAction("Index", "Payment");
-                    }
-                    var liveAnimal = await _liveAnimalService.GetLiveAnimalById(orderData.LiveAnimalId);
-                    if (liveAnimal == null)
-                    {
-                        _logger.LogInformation("Live Animal is null for this Trxid");
-                        return RedirectToAction("Index", "Payment");
-                    }
-
-                    amount = liveAnimal.Price.ToString();
-                }
-                string currency = "BDT";
-                
-                NameValueCollection collection = new NameValueCollection();
-                foreach (var pair in Request.Form)
-                {
-                    collection.Add(pair.Key, pair.Value);
-                }
-
-                
-                _logger.LogInformation($"NameValueCollection: {JsonConvert.SerializeObject(collection)}");
-
-                var validate = _sslCommerzService.OrderValidate(collection, valId,TrxID, amount, currency);
-                if (validate)
-                {
-                    return View();
+                    _logger.LogInformation($"Success page");
+                    return RedirectToAction("Success", "Payment");
                 }
                 else
                 {
-                    _logger.LogInformation($"validate = _sslCommerzService.OrderValidate: false");
+                    _logger.LogInformation($"Invalid page");
+                    return RedirectToAction("InvalidPayment", "Payment");
                 }
+            }
+            if (!String.IsNullOrEmpty(Request.Form["status"]) && Request.Form["status"] == "FAILED")
+            {
+                _logger.LogInformation($"Failed page");
+                _logger.LogInformation($"Failed Response: {JsonConvert.SerializeObject(Request.Form)}");
+                return RedirectToAction("Failed", "Payment");
+            }
+            if (!String.IsNullOrEmpty(Request.Form["status"]) && Request.Form["status"] == "CANCELLED")
+            {
+                _logger.LogInformation($"Cancel page");
+                _logger.LogInformation($"Failed Response: {JsonConvert.SerializeObject(Request.Form)}");
+                return RedirectToAction("Cancelled", "Payment");
             }
 
             return RedirectToAction("Index", "Payment");
+        }
+
+        public IActionResult Success(IFormCollection formCollection)
+        {
+            return View(formCollection);
+        }
+
+        public IActionResult InvalidPayment()
+        {
+            return View();
+        }
+
+        public IActionResult Failed()
+        {
+            return View();
+        }
+
+        public IActionResult Cancelled()
+        {
+            return View();
         }
 
         public void IPNListener()
