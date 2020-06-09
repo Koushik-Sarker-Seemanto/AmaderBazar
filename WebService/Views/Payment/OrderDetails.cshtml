@@ -84,9 +84,19 @@
                             <strong style="font-size: x-large; color: green;"> Accpted </strong>
                         </div>
                         
-                        <div style="margin-top: 10%;">
-                            <button class="btn btn-success" style = "font-size: 16px; padding: 3%;width: 70%; margin: auto">Pay Bill</button>
-                        </div>
+                        <form asp-action="OrderDetails">
+                            <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none">
+                            <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
+                            <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
+                            <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
+                            <input asp-for="LiveAnimalDetails" value="@Model.LiveAnimalDetails.Id" style="display: none">
+                            <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
+                            <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
+                            
+                            <div style="margin-top: 10%;">
+                                <button class="btn btn-success" style = "font-size: 16px; padding: 3%;width: 70%; margin: auto">Pay Bill</button>
+                            </div>
+                        </form>
                     }
                     else
                     {
@@ -96,10 +106,21 @@
                         <div style="margin-top: 5%;">
                             <strong style="font-size: x-large; color: red;"> Pending </strong>
                         </div>
+                        <form asp-action="OrderDetails">
+                            <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none" required="required">
+                            <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
+                            <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
+                            <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
+                            <input asp-for="LiveAnimalDetails" value="@Model.LiveAnimalDetails.Id" style="display: none" required="required">
+                            <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
+                            <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none" required="required">
+                            
+                             <div style="margin-top: 10%;">
+                                <button class="btn btn-danger" style = "font-size: 16px; padding: 3%;width: 70%; margin: auto">Pay Bill</button>
+                            </div>
+                        </form>
                         
-                        <div style="margin-top: 10%;">
-                            <button class="btn btn-success disabled" style = "font-size: 16px; padding: 3%;width: 70%; margin: auto">Pay Bill</button>
-                        </div>
+                       
                     }
 
                 </div>

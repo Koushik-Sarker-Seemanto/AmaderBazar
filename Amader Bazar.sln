@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{512964F1-8B01-4FAE-9305-471220EB5DD3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSLCommerz", "SSLCommerz\SSLCommerz.csproj", "{F5942F15-C3BA-4BEC-8CA4-F79A6AA4DA5C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{512964F1-8B01-4FAE-9305-471220EB5DD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{512964F1-8B01-4FAE-9305-471220EB5DD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{512964F1-8B01-4FAE-9305-471220EB5DD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5942F15-C3BA-4BEC-8CA4-F79A6AA4DA5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5942F15-C3BA-4BEC-8CA4-F79A6AA4DA5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5942F15-C3BA-4BEC-8CA4-F79A6AA4DA5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5942F15-C3BA-4BEC-8CA4-F79A6AA4DA5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
