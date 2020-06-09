@@ -49,4 +49,38 @@ else
                 });
             });
         });
+        $('#myCarousel-2-mobile').carousel({
+            interval: 3000,
+        });
+        $('#myCarousel-2').carousel({
+            interval: 4000,
+        });
+        $('#myCarousel-mobile').carousel({
+            interval: 3000,
+        });
+        $('#myCarousel').carousel({
+            interval: 4000,
+        });
     </script>
+
+<style>
+    @@media (min-width: 0px) and (max-width: 767px) {
+        .carousel-normal {
+            display: none;
+        }
+
+        .carousel-mobile {
+            display: block;
+        }
+    }
+
+    @@media only screen and (min-width: 768px) {
+        .carousel-mobile {
+            display: none;
+        }
+
+        .carousel-normal {
+            display: block;
+        }
+    }
+</style>
