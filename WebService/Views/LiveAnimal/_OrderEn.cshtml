@@ -139,74 +139,14 @@
             </div>
             <div class="span9" style="margin-left: 2.5%; ">
                 <br>
-                <h4 class="title">
-                    <span class="pull-left"><span class="text"><strong>Related</strong> Products</span></span>
-                    <span class="pull-right">
-                        <a class="left button" href="#myCarousel-1" data-slide="prev"></a><a class="right button" href="#myCarousel-1" data-slide="next"></a>
-                    </span>
-                </h4>
-                <div id="myCarousel-1" class="carousel slide">
-                    <div class="carousel-inner">
-                        <div class="active item">
-                            <ul class="thumbnails listing-products">
-
-                                @for (int i = 0; i < Math.Min(@Model.Related.Count, 3); i++)
-                                {
-                                    <li class="span3">
-                                        <div class="product-box">
-                                            <span class="sale_tag"></span>
-                                            @{
-                                                if (Model.Related[i].Images != null)
-                                                {
-                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img alt="" src="~/images/@Model.Related[i].Images[0]"></a><br />
-                                                }
-                                                else
-                                                {
-                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img alt="" src="~/static/noimage.png"></a><br />
-                                                }
-                                            }
+                
+                
+                @{
+                    await Html.RenderPartialAsync("_CarouselNormal", Model);
+                    await Html.RenderPartialAsync("_CarouselMobile", Model);
+                }
 
 
-                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">@Model.Related[i].Title</a><br />
-                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>@Model.Related[i].Origin</a>
-                                            <p class="price">@Model.Related[i].Price</p>
-                                        </div>
-                                    </li>
-                                }
-                            </ul>
-                        </div>
-
-                        @for (int i = 1; i < Math.Ceiling(@Model.Related.Count / 3.00); i++)
-                        {
-                            <div class="item">
-                                <ul class="thumbnails listing-products">
-
-                                    @for (int j = i * 3; j < Math.Min(@Model.Related.Count, (i * 3) + 3); j++)
-                                    {
-                                        <li class="span3">
-                                            <div class="product-box">
-                                                <span class="sale_tag"></span>
-                                                @{
-                                                    if (Model.Related[j].Images != null)
-                                                    {
-                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img alt="" src="~/images/@Model.Related[j].Images[0]"></a><br />
-                                                    }
-                                                    else
-                                                    {
-                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img alt="" src="~/static/noimage.png"></a><br />
-                                                    }
-                                                }
-                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})' class="title">@Model.Related[j].Title</a><br />
-                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'>@Model.Related[j].Origin</a>
-                                                <p class="price">@Model.Related[j].Price</p>
-                                            </div>
-                                        </li>
-                                    }
-                                </ul>
-                            </div>
-                        }
-                    </div>
-                </div>
             </div>
         </div>
     </div>
