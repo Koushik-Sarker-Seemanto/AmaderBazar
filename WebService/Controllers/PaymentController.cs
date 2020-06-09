@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Models.Entities;
@@ -109,19 +112,68 @@ namespace WebService.Controllers
             PostData.Add("product_name", model.LiveAnimalDetails.Id);
             PostData.Add("product_category",model.LiveAnimalDetails.Title);
             
-            /*PostData.Add("value_a", "ref00");
-            PostData.Add("value_b", "ref00");
-            PostData.Add("value_c", "ref00");
-            PostData.Add("value_d", "ref00");*/
+            _logger.LogInformation($"SSL COmerzzzzzzzzzzzzzzz NmaeValueCollection: {JsonConvert.SerializeObject(PostData)}");
             
             SSLCommerzInitResponse response = _sslCommerzService.InitiateTransaction(PostData);
             _logger.LogInformation($"SSL COmerzzzzzzzzzzzzzzz Responseeeeeee: {JsonConvert.SerializeObject(response)}");
             return Redirect(response.GatewayPageURL);
         }
-
-        public IActionResult Success()
+        
+        public async Task<IActionResult> Success()
         {
-            return View();
+            if (!String.IsNullOrEmpty(Request.Form["status"]) && Request.Form["status"] == "VALID")
+            {
+                _logger.LogInformation($"Request.Form: {JsonConvert.SerializeObject(Request.Form)}");
+                string TrxID = Request.Form["tran_id"];
+                string valId = Request.Form["val_id"];
+                
+                // AMOUNT and Currency FROM DB FOR THIS TRANSACTION
+                string amount = "";
+                if (!string.IsNullOrEmpty(TrxID))
+                {
+                    var orderData = await _orderService.FindOrderById(TrxID);
+                    if (orderData == null)
+                    {
+                        _logger.LogInformation("OderData is null for this Trxid");
+                        return RedirectToAction("Index", "Payment");
+                    }
+                    var liveAnimal = await _liveAnimalService.GetLiveAnimalById(orderData.LiveAnimalId);
+                    if (liveAnimal == null)
+                    {
+                        _logger.LogInformation("Live Animal is null for this Trxid");
+                        return RedirectToAction("Index", "Payment");
+                    }
+
+                    amount = liveAnimal.Price.ToString();
+                }
+                string currency = "BDT";
+                
+                NameValueCollection collection = new NameValueCollection();
+                foreach (var pair in Request.Form)
+                {
+                    collection.Add(pair.Key, pair.Value);
+                }
+
+                
+                _logger.LogInformation($"NameValueCollection: {JsonConvert.SerializeObject(collection)}");
+
+                var validate = _sslCommerzService.OrderValidate(collection, valId,TrxID, amount, currency);
+                if (validate)
+                {
+                    return View();
+                }
+                else
+                {
+                    _logger.LogInformation($"validate = _sslCommerzService.OrderValidate: false");
+                }
+            }
+
+            return RedirectToAction("Index", "Payment");
+        }
+
+        public void IPNListener()
+        {
+            _logger.LogInformation($"IPNListenerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
         }
     }
 }
