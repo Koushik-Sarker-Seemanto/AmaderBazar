@@ -87,13 +87,13 @@
 
 @* Mobile NavBar *@
 
-<div id="mySidenav" style="text-align: center;" class="sidenav-top">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+<div id="mySidenav" style="text-align: center;" class="sidenav-top sidenav">
+  <a style="margin-top: 5%;" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a style="padding: 8px 8px 8px 32px;" href="@Url.Action("Index", "Home")" class="logo pull-left"><img style="display: block;" src="~/themes/images/logo.png" class="site_logo" alt=""></a>
   
 </div>
 
-<div id="mySidenav-bottom" class="sidenav-bottom">
+<div id="mySidenav-bottom" class="sidenav-bottom sidenav">
   <li><a href='@Url.Action("Index", "Home")'><i class="fa fa-home"></i> Home</a></li>
 
   <li>
@@ -189,6 +189,18 @@
 	$(document).ready(function(){
 		$(".dropdown").click(function(){
 			$(".dropdown-content").fadeToggle();
+		});
+	});
+
+	$(document).ready(function () {
+		$(document).click(function (event) {
+			var clickover = $(event.target);
+			var _opened = $("#mySidenav").css("width");
+			var _openedBottom = $("#mySidenav-bottom").css('width');
+
+			if (_opened !== "0px" && _openedBottom !== "0px" && !clickover.hasClass("sidenav")) {
+				closeNav();
+			}
 		});
 	});
 </script>
