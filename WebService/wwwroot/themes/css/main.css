@@ -681,7 +681,7 @@ section.our_client .row{
 
 /* Toogle Menu
 ----------------------------------------------------------------------------- */
-._toggleMenu{
+/* ._toggleMenu{
 	margin:0 -10px;
 	display:none;
 	background:#eb4800;	
@@ -727,7 +727,7 @@ section.our_client .row{
 }
 ._toggleMenu .nav > li.hover > ul {
     display:block;
-}
+} */
 .range-slider {
 	*zoom: 1;
 	margin: 20px 0;

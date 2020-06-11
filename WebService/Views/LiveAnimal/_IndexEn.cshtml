@@ -5,7 +5,6 @@
 @using X.PagedList.Mvc.Core;
 @using X.PagedList.Mvc.Core.Common;
 @using System.Web;
-@using Microsoft.AspNetCore.Http;
 @model X.PagedList.IPagedList<Models.LiveAnimalModels.LiveAnimalViewModelFrontend>
 <section class="header_text sub">
     <img class="pageBanner" src="~/themes/images/rsz_maxresdefault_2 (1).jpg" alt="New products">
@@ -35,42 +34,42 @@
 
             </div>
 
-@*             <div class="brands_products" style="padding: 10%; margin-bottom: -20%"> *@
-@*                 <!--brands_products--> *@
-@*                 <h3 id="categoryExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;border-radius: 5px">Category</h3> *@
-@*                 <h4 id="categoryExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;padding: 2%;border-radius: 3px">Category</h4> *@
-@*                 <div id="categoryExpand" class="brands-name"> *@
-@*                     <ul class="nav nav-pills nav-stacked"> *@
-@*                         @{ *@
-@*                             if (ViewBag.CategoryCount != null) *@
-@*                             { *@
-@*                                 foreach (var category in ViewBag.CategoryCount) *@
-@*                                 { *@
-@*                                     <li><a id="categorySelect" name="@category.Key"> <span class="pull-right">(@category.Value)</span>@category.Key</a></li> *@
-@*                                 } *@
-@*                             } *@
-@*                         } *@
-@*                     </ul> *@
-@*                 </div> *@
-@*             </div> *@
-@* *@
-@*             <div class="brands_products" style="padding: 10%; margin-bottom: -20%"> *@
-@*                 <h3 id="colorExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;border-radius: 5px">Color</h3> *@
-@*                 <h4 id="colorExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;padding: 2%;border-radius: 3px"> Color</h4> *@
-@*                 <div id="colorExpand" class="brands-name"> *@
-@*                     <ul class="nav nav-pills nav-stacked"> *@
-@*                         @{ *@
-@*                             if (ViewBag.ColorCount != null) *@
-@*                             { *@
-@*                                 foreach (var color in ViewBag.ColorCount) *@
-@*                                 { *@
-@*                                     <li><a id="colorSelect" name="@color.Key"> <span class="pull-right">(@color.Value)</span>@color.Key</a></li> *@
-@*                                 } *@
-@*                             } *@
-@*                         } *@
-@*                     </ul> *@
-@*                 </div> *@
-@*             </div> *@
+            <div class="brands_products" style="padding: 10%; margin-bottom: -20%">
+                <!--brands_products-->
+                <h3 id="categoryExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;border-radius: 5px">Category</h3>
+                <h4 id="categoryExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;padding: 2%;border-radius: 3px">Category</h4>
+                <div id="categoryExpand" class="brands-name">
+                    <ul class="nav nav-pills nav-stacked">
+                        @{
+                            if (ViewBag.CategoryCount != null)
+                            {
+                                foreach (var category in ViewBag.CategoryCount)
+                                {
+                                    <li><a id="categorySelect" name="@category.Key"> <span class="pull-right">(@category.Value)</span>@category.Key</a></li>
+                                }
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+ 
+            <div class="brands_products" style="padding: 10%; margin-bottom: -20%">
+                <h3 id="colorExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;border-radius: 5px">Color</h3>
+                <h4 id="colorExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;padding: 2%;border-radius: 3px"> Color</h4>
+                <div id="colorExpand" class="brands-name">
+                    <ul class="nav nav-pills nav-stacked">
+                        @{
+                            if (ViewBag.ColorCount != null)
+                            {
+                                foreach (var color in ViewBag.ColorCount)
+                                {
+                                    <li><a id="colorSelect" name="@color.Key"> <span class="pull-right">(@color.Value)</span>@color.Key</a></li>
+                                }
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
 
             <div class="brands_products" style="padding: 10%">
                 @if (ViewBag.QueryParam.Count > 0)

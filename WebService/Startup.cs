@@ -14,6 +14,9 @@ using Models.Entities;
 using Repositories;
 using Services;
 using Services.Contracts;
+using SSLCommerz;
+using SSLCommerz.Contracts;
+using SSLCommerz.Services;
 
 namespace WebService
 {
@@ -58,7 +61,14 @@ namespace WebService
 
             services.AddSingleton<IAdminPanelServices, AdminPanelServices>();
             services.AddSingleton<ILiveAnimalService, LiveAnimalService>();
-            services.AddSingleton<IOrderService, OrderService>(); 
+            services.AddSingleton<IOrderService, OrderService>();
+            services.AddSingleton<IPaymentService, PaymentService>();
+
+            services.Configure<SSLCommerzConfig>(Configuration.GetSection(nameof(SSLCommerzConfig)));
+            services.AddSingleton<ISSLCommerzConfig>(sp => 
+                sp.GetRequiredService<IOptions<SSLCommerzConfig>>().Value);
+
+            services.AddTransient<ISSLCommerzService, SSLCommerzService>();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }

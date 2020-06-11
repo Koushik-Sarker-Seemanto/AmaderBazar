@@ -15,14 +15,17 @@
             {
                 <div class="row">
                     <div class="span12">
-                        <h4 class="title">
+                        
+                        @*---Feature Product---     [Carousel For PC and TAB]*@
+                        
+                        <h4 class="carousel-normal title">
                             <span class="pull-left"><span class="text"><span class="line">Feature <strong>Products</strong></span></span></span>
                             <span class="pull-right">
                                 <a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
                             </span>
                         </h4>
 
-                        <div id="myCarousel" class="myCarousel carousel slide">
+                        <div id="myCarousel" class="myCarousel carousel-normal carousel slide">
                             <div class="carousel-inner">
                                 <div class="active item">
                                     <ul class="thumbnails listing-products">
@@ -85,6 +88,83 @@
 
                             </div>
                         </div>
+                        
+                        
+                        @*---Feature Product---     [Carousel For Mobile]*@
+                        
+                        <h4 class="carousel-mobile title">
+                            <span class="pull-left"><span class="text"><span class="line">Feature <strong>Products</strong></span></span></span>
+                            <span class="pull-right">
+                                <a class="left button" href="#myCarousel-mobile" data-slide="prev"></a><a class="right button" href="#myCarousel-mobile" data-slide="next"></a>
+                            </span>
+                        </h4>
+
+                        <div id="myCarousel-mobile" class="myCarousel carousel-mobile carousel slide">
+                            <div class="carousel-inner">
+                                <div class="active item">
+                                    <ul class="thumbnails listing-products">
+                        
+                                        @for (int i = 0; i < Math.Min(@Model.Featured.Count, 1); i++)
+                                        {
+                                            <li class="span3">
+                                                <div class="product-box">
+                                                    <span class="sale_tag"></span>
+                                                    @{
+                                                        if (Model.Featured[i].Images != null)
+                                                        {
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})'><img alt="" src="~/images/@Model.Featured[i].Images[0]"></a><br />
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})'><img alt="" src="~/static/noimage.png"></a><br />
+                                                        }
+                                                    }
+                        
+                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})' class="title">@Model.Featured[i].Title</a><br />
+                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})'>@Model.Featured[i].Origin</a>
+                                                    <p class="price">&#2547 @Model.Featured[i].Price</p>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                        
+                                @for (int i = 1; i < Math.Ceiling(@Model.Featured.Count / 1.00); i++)
+                                {
+                                    <div class="item">
+                                        <ul class="thumbnails listing-products">
+                        
+                                            @for (int j = i * 1; j < Math.Min(@Model.Featured.Count, (i * 1) + 1); j++)
+                                            {
+                                                <li class="span3">
+                                                    <div class="product-box">
+                                                        <span class="sale_tag"></span>
+                                                        @{
+                                                            if (Model.Featured[j].Images != null)
+                                                            {
+                                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})'><img alt="" src="~/images/@Model.Featured[j].Images[0]"></a><br />
+                                                            }
+                                                            else
+                                                            {
+                                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})'><img alt="" src="~/static/noimage.png"></a><br />
+                                                            }
+                                                        }
+                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})' class="title">@Model.Featured[j].Title</a><br />
+                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})'>@Model.Featured[j].Origin</a>
+                                                        <p class="price">&#2547 @Model.Featured[j].Price</p>
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                }
+                        
+                        
+                            </div>
+                        </div>
+                        
+                        
+                        
                     </div>
                 </div>
             }
@@ -96,13 +176,16 @@
             <br />
             <div class="row">
                 <div class="span12">
-                    <h4 class="title">
+                    
+                    @*---Latest Product---     [Carousel For PC and TAB]*@
+                    
+                    <h4 class="carousel-normal title">
                         <span class="pull-left"><span class="text"><span class="line">Latest <strong>Products</strong></span></span></span>
                         <span class="pull-right">
                             <a class="left button" href="#myCarousel-2" data-slide="prev"></a><a class="right button" href="#myCarousel-2" data-slide="next"></a>
                         </span>
                     </h4>
-                    <div id="myCarousel-2" class="myCarousel carousel slide">
+                    <div id="myCarousel-2" class="myCarousel carousel-normal carousel slide">
                         <div class="carousel-inner">
                             <div class="active item">
                                 <ul class="thumbnails listing-products">
@@ -163,6 +246,81 @@
                             }
                         </div>
                     </div>
+                    
+                    
+                    @*---Latest Product---     [Carousel For MOBILE]*@
+                    
+                    <h4 class="carousel-mobile title">
+                        <span class="pull-left"><span class="text"><span class="line">Latest <strong>Products</strong></span></span></span>
+                        <span class="pull-right">
+                            <a class="left button" href="#myCarousel-2-mobile" data-slide="prev"></a><a class="right button" href="#myCarousel-2-mobile" data-slide="next"></a>
+                        </span>
+                    </h4>
+                    
+                    <div id="myCarousel-2-mobile" class="myCarousel carousel-mobile carousel slide">
+                        <div class="carousel-inner">
+                            <div class="active item">
+                                <ul class="thumbnails listing-products">
+                    
+                                    @for (int i = 0; i < Math.Min(@Model.Latest.Count, 1); i++)
+                                    {
+                                        <li class="span3">
+                                            <div class="product-box">
+                                                <span class="sale_tag"></span>
+                                                @{
+                                                    if (Model.Latest[i].Images != null)
+                                                    {
+                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'><img alt="" src="~/images/@Model.Latest[i].Images[0]"></a><br />
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'><img alt="" src="~/static/noimage.png"></a><br />
+                                                    }
+                                                }
+                    
+                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})' class="title">@Model.Latest[i].Title</a><br />
+                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'>@Model.Latest[i].Origin</a>
+                                                <p class="price">&#2547 @Model.Latest[i].Price</p>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                    
+                            @for (int i = 1; i < Math.Ceiling(@Model.Latest.Count / 1.00); i++)
+                            {
+                                <div class="item">
+                                    <ul class="thumbnails listing-products">
+                    
+                                        @for (int j = i * 1; j < Math.Min(@Model.Latest.Count, (i * 1) + 1); j++)
+                                        {
+                                            <li class="span3">
+                                                <div class="product-box">
+                                                    <span class="sale_tag"></span>
+                                                    @{
+                                                        if (Model.Latest[j].Images != null)
+                                                        {
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'><img alt="" src="~/images/@Model.Latest[j].Images[0]"></a><br />
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'><img alt="" src="~/static/noimage.png"></a><br />
+                                                        }
+                                                    }
+                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})' class="title">@Model.Latest[j].Title</a><br />
+                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'>@Model.Latest[j].Origin</a>
+                                                    <p class="price">&#2547 @Model.Latest[j].Price</p>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+
+
                 </div>
             </div>
             <div class="row feature_box">

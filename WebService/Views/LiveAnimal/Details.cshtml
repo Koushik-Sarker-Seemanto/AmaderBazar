@@ -25,11 +25,31 @@ else
 
 <style>
     @@media (min-width: 0px) and (max-width: 767px) {
+    
         .mobile-text-center {
             text-align: center;
         }
+    
+        .carousel-normal {
+            display: none;
+        }
+
+        .carousel-mobile {
+            display: block;
+        }
+    }
+
+    @@media only screen and (min-width: 768px) {
+        .carousel-mobile {
+            display: none;
+        }
+
+        .carousel-normal {
+            display: block;
+        }
     }
 </style>
+
 
 
 <script src="~/themes/js/common.js"></script>
@@ -46,8 +66,11 @@ else
 
         });
 
-        //        $('#myCarousel-2').carousel({
-        //            interval: 200
-        //        });
+        $('#myCarousel-mobile').carousel({
+            interval: 3000,
+        });
+        $('#myCarousel-1').carousel({
+            interval: 4000,
+        });
     });
 </script>
