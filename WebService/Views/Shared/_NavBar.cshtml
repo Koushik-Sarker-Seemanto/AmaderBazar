@@ -175,7 +175,32 @@
 
 @* Mobile navBar control script *@
 
+@* <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<script type="text/javascript">
+	$("body").on("swiperight",function(event){
+		console.log("Swiped");
+		// take 15% of screen good for diffrent screen size
+		var window_width_15p = $( window ).width() * 0.15;
+		console.log("window_width_15p: "+window_width_15p);
+		console.log("event.swipestart.coords[0]: "+ event.swipestart.coords[0]);
+		// check if the swipe right is from 15% of screen (coords[0] means X)
+		if ( event.swipestart.coords[0] < window_width_15p) {
+			console.log("Swiped If pass");
+			var _opened = $("#mySidenav").css("width");
+			var _openedBottom = $("#mySidenav-bottom").css('width');
+			console.log("_opened & _opened"+ _opened +" "+_openedBottom);
+
+			if (_opened == "0px" && _openedBottom == "0px") {
+				console.log("Open Navbar");
+				openNav();
+			}
+		}
+	});
+</script> *@
+
 <script>
+	
   function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
     document.getElementById("mySidenav-bottom").style.width = "250px";
@@ -186,7 +211,10 @@
     document.getElementById("mySidenav-bottom").style.width = "0";
   }
 
-	$(document).ready(function(){
+
+(function($){
+
+    $(document).ready(function(){
 		$(".dropdown").click(function(){
 			$(".dropdown-content").fadeToggle();
 		});
@@ -194,13 +222,24 @@
 
 	$(document).ready(function () {
 		$(document).click(function (event) {
+			let inside = false;
+			
 			var clickover = $(event.target);
+			if (clickover.parents('.sidenav').length) {
+				inside = true;
+			}
 			var _opened = $("#mySidenav").css("width");
 			var _openedBottom = $("#mySidenav-bottom").css('width');
 
-			if (_opened !== "0px" && _openedBottom !== "0px" && !clickover.hasClass("sidenav")) {
+			if (_opened !== "0px" && _openedBottom !== "0px" && !inside) {
+				console.log("Clicked Outside");
 				closeNav();
 			}
 		});
 	});
+
+}(jQuery));
+	
+
+
 </script>
