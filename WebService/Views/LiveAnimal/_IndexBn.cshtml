@@ -74,8 +74,8 @@
             <div class="brands_products" style="padding: 10%">
                 @if (ViewBag.QueryParam.Count > 0)
                 {
-                    <h3 style="text-align: center;color: white; background: var(--logoGreen); border-radius: 5px">Filters</h3>
-                    <h4 style="text-align: center;color: white; background: var(--logoGreen); border-radius: 3px; padding: 2%">Filters</h4>
+                    <h3 style="text-align: center;color: white; background: var(--logoGreen); border-radius: 5px">ফিল্টার</h3>
+                    <h4 style="text-align: center;color: white; background: var(--logoGreen); border-radius: 3px; padding: 2%">ফিল্টার</h4>
                 }
                 <div id="allFilters" class="">
                     @{
@@ -114,16 +114,38 @@
                                             <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'><img alt="" src="~/static/noimage.png"></a><br />
                                         }
                                     }
-                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})' class="title">@animal.TitleBn</a><br />
-                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>@animal.OriginBn</a>
-                                    <p class="price" id="@animal.Id">&#2547 @animal.Price</p>
+                                    @if(animal.TitleBn != null)
+                                    {
+                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})' class="title">@animal.TitleBn</a><br />
+                                    }
+                                    else
+                                    {
+                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})' class="title">শিরোনাম: নাই</a><br />
+                                    }
+                                    @if(animal.OriginBn != null)
+                                    {
+                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>@animal.OriginBn</a>
+                                    }
+                                    else
+                                    {
+                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>উত্স: নাই</a>
+                                    }
+                                    @if(!double.IsNaN(animal.Price))
+                                    {
+                                        <p class="price" id="@animal.Id">&#2547 @animal.Price</p>
+                                        
+                                    }
+                                    else
+                                    {
+                                        <p class="price">&#2547 নাই</p>
+                                    }
                                     <script>
                                         var num = @animal.Price;
                                         $("#@animal.Id")
                                             .text("৳ "+replaceNumbers(num.toString()));
                                         console.log(replaceNumbers(num.toString()));
-
                                     </script>
+
                                 </div>
                             </li>
                         }
@@ -131,7 +153,7 @@
                     else
                     {
                         <div style="display: flex; justify-content: center;text-align: center; margin-top: 20%">
-                            <h1>No Data Found!!!</h1>
+                            <h1>কোন তথ্য পাওয়া যায় নি!!!</h1>
                         </div>
                     }
                 }
