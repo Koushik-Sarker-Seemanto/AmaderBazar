@@ -1,0 +1,106 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@* Mobile NavBar *@
+
+<div class="sidenav">
+
+
+    <div id="mySidenav" style="text-align: center;overflow-y: scroll" class="sidenav-top sidenav">
+        <a style="margin-top: 5%;" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a style="padding: 8px 8px 8px 32px;" href="@Url.Action("Index", "Home")" class="logo pull-left"><img style="display: block;width: 150px; height: 150px; margin-top: -50%" src="~/themes/images/logo.png" class="img-responsive site_logo" alt=""></a>
+
+    </div>
+
+    <div style="overflow-y: scroll" id="mySidenav-bottom" class="sidenav-bottom sidenav">
+        <a href='@Url.Action("Index", "Home")'><i class="fa fa-home"></i> হোম</a>
+
+        <a style="cursor: pointer;"><i class="fa fa-shopping-cart"></i> প্রোডাক্ট </a>
+        @* <div class="dropdown-content"> *@
+        @* 	<a href='@Url.Action("Index", "LiveAnimal")'>All Type</a> *@
+        @* 	<a href="#">COW</a> *@
+        @* 	<a href="#">GOAT</a> *@
+        @* </div> *@
+
+        <a href='@Url.Action("FeatureProduct", "LiveAnimal")'><i class="fa fa-shopping-cart"></i> প্রিমিয়াম প্রোডাক্ট</a>
+        <a href="#"><i class="fa fa-shopping-cart"></i> নতুন প্রোডাক্ট</a>
+        <a href="@Url.Action("Index", "Payment")"><i class="fa fa-comment-dollar"></i> পেমেন্ট</a>
+        <a href="@Url.Action("ChangeLanguage", "Home",new {_language = true})"> <i class="fa fa-language"></i> English</a>
+    </div>
+
+</div>
+
+@* Mobile NavBar Opening Button *@
+
+<div class="sidenav">
+
+
+    <div id="mySidenav" style="text-align: center;overflow-y: scroll" class="sidenav-top sidenav">
+        <a style="margin-top: 5%;" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a style="padding: 8px 8px 8px 32px;" href="@Url.Action("Index", "Home")" class="logo pull-left"><img style="display: block;width: 150px; height: 150px; margin-top: -50%" src="~/themes/images/logo.png" class="img-responsive site_logo" alt=""></a>
+
+    </div>
+
+    <div style="overflow-y: scroll" id="mySidenav-bottom" class="sidenav-bottom sidenav">
+        <a href='@Url.Action("Index", "Home")'><i class="fa fa-home"></i> হোম</a>
+
+        <a style="cursor: pointer;" class="dropdown"><i class="fa fa-shopping-cart"></i> প্রোডাক্ট </a>
+        
+
+        <a href='@Url.Action("FeatureProduct", "LiveAnimal")'><i class="fa fa-shopping-cart"></i> প্রিমিয়াম প্রোডাক্ট</a>
+        <a href="#"><i class="fa fa-shopping-cart"></i> নতুন প্রোডাক্ট</a>
+        <a href="@Url.Action("Index", "Payment")"><i class="fa fa-comment-dollar"></i> পেমেন্ট</a>
+
+        <a href="@Url.Action("ChangeLanguage", "Home",new {_language = true})"> <i class="fa fa-language"></i> English</a>
+    </div>
+
+</div>
+
+@* Mobile NavBar Opening Button *@
+
+<span class="mobile_nav mobile_nav_icon" style="" onclick="openNav()">&#9776;</span>
+<p class="mobile_nav" style="padding-bottom: 5%;">This</p>
+
+
+
+@* PC NavBar *@
+
+<section class="pc_nav navbar main-menu">
+    <div class="navbar-inner main-menu" style="padding: 1%;">
+
+        <a href="@Url.Action("Index", "Home")" class="logo pull-left"><img style="width: 180px; height: 90px;margin-top: -20px" src="~/themes/images/logo.png" class="site_logo" alt=""></a>
+        <nav id="menu" class=" pull-right">
+            <ul>
+
+                <li><a href='@Url.Action("Index", "Home")'>হোম</a></li>
+                <li>
+                    <a href='@Url.Action("Index", "LiveAnimal")'>প্রোডাক্ট</a>
+                    
+                </li>
+
+                <li><a href='@Url.Action("FeatureProduct", "LiveAnimal")'>প্রিমিয়াম প্রোডাক্ট</a></li>
+                <li><a href="#">নতুন প্রোডাক্ট</a></li>
+                <li><a href="@Url.Action("Index", "Payment")">পেমেন্ট</a></li>
+ 
+                <li><a href="@Url.Action("ChangeLanguage", "Home",new {_language = true})">English</a></li>
+            </ul>
+        </nav>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="mobile_nav mobile_nav_icon" style="" onclick="openNav()">&#9776;</span>
+<p class="mobile_nav" style="padding-bottom: 5%;">This</p>
+
+
+

@@ -30,6 +30,10 @@ namespace WebService.Controllers
             _liveAnimalService = liveAnimalService;
 
         }
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
 
         public async Task<IActionResult> Index()
         {

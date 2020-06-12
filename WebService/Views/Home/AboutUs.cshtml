@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewData["Title"] = "AboutUs";
+}
+@Html.Partial("_NavBar")
+<section class="header_text sub">
+    <img class="pageBanner" src="~/themes/images/rsz_maxresdefault_2 (1).jpg" alt="New products">
+    <h3><span>About Us</span></h3>
+</section>
+<section class="main-content">
+    <div class="row">
+        <div class="span7">
+            @* <img  src="~/themes/images/logo.png" height="150" width="150"/> *@
+            @* <h4>FarmHut.com.bd</h4> *@
+            <p style="font-size: 100%"><strong style="font-size: 150%">FarmHut.com.bd </strong> started there business A business Wikis are enabled by wiki software, otherwise known as wiki engines. A wiki engine, being a form of a content management system, differs from other web-based systems such as blog software, in that the content is created without any defined owner or leader, and wikis have little inherent structure, allowing structure to emerge according to the needs of the users.[1] Wiki engines usually allow content to be written using a simplified markup language and sometimes edited with the help of a rich-text editor.[2] There are dozens of different wiki engines in use, both standalone and part of other software, such as bug tracking systems. Some wiki engines are open source, whereas others are proprietary. S</p>
+        </div>
+        <div class="span1"></div>
+        <div class="span3">
+            <div>
+                <h5>ADDITIONAL INFORMATION</h5>
+                <p>
+                    <strong>Phone:</strong>&nbsp;(123) 456-7890<br>
+                    <strong>Fax:</strong>&nbsp;+04 (123) 456-7890<br>
+                    <strong>Email:</strong>&nbsp;<a href="#">vietcuong_it@yahoo.com</a>
+                </p>
+                <br />
+                <h5>SECONDARY OFFICE IN VIETNAM</h5>
+                <p>
+                    <strong>Phone:</strong>&nbsp;(113) 023-1125<br>
+                    <strong>Fax:</strong>&nbsp;+04 (113) 023-1145<br>
+                    <strong>Email:</strong>&nbsp;<a href="#">vietcuong_it@yahoo.com</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="~/themes/js/common.js"></script>
+<script src="~/themes/js/jquery.flexslider-min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(document).ready(function () {
+            $('.flexslider').flexslider({
+                animation: "fade",
+                slideshowSpeed: 4000,
+                animationSpeed: 600,
+                controlNav: false,
+                directionNav: true,
+                controlsContainer: ".flex-container" // the container that holds the flexslider
+            });
+        });
+    });
+    $('#myCarousel-2-mobile').carousel({
+        interval: 3000,
+    });
+    $('#myCarousel-2').carousel({
+        interval: 4000,
+    });
+    $('#myCarousel-mobile').carousel({
+        interval: 3000,
+    });
+    $('#myCarousel').carousel({
+        interval: 4000,
+    });
+</script>
+
+<style>
+    @@media (min-width: 0px) and (max-width: 767px) {
+        .carousel-normal {
+            display: none;
+        }
+
+        .carousel-mobile {
+            display: block;
+        }
+    }
+
+    @@media only screen and (min-width: 768px) {
+        .carousel-mobile {
+            display: none;
+        }
+
+        .carousel-normal {
+            display: block;
+        }
+    }
+</style>
