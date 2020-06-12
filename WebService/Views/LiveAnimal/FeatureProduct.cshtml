@@ -20,8 +20,8 @@
     <div class="row">
         <div class="span3 col">
             <div id="upperDiv" style="padding: 10%; margin-bottom: -20%">
-                <h3 id="priceExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer; border-radius: 5px">Price</h3>
-                <h4 id="priceExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;padding: 2%; border-radius: 3px">Price</h4>
+                <h3 id="priceExpandBtn" style="text-align: center;color: white; background: var(--logoGreen); cursor: pointer; border-radius: 5px">Price</h3>
+                <h4 id="priceExpandBtn" style="text-align: center;color: white; background: var(--logoGreen); cursor: pointer;padding: 2%; border-radius: 3px">Price</h4>
                 <section class="priceExpand1 range-slider" id="facet-price-range-slider">
         
                     <input id="minRange" name="range-1" value="0" min="0" max="300001" step="2" type="range">
@@ -33,15 +33,15 @@
                         
                     <input id="min" type="text" placeholder="Minimum" value="0"/>
                     <input id="max" type="text" placeholder="Maximum" value="300000"/>
-                    <button id="priceSelect" style="background: orangered" class="btn btn-success">Search <i class="fa fa-search"></i></button>
+                    <button id="priceSelect" style="background: var(--logoGreen)" class="btn btn-success">Search <i class="fa fa-search"></i></button>
         
                 </section>
                         
             </div>
                     
             <div class="brands_products" style="padding: 10%; margin-bottom: -20%"><!--brands_products-->
-                <h3 id="categoryExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;border-radius: 5px">Category</h3>
-                <h4 id="categoryExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;padding: 2%;border-radius: 3px">Category</h4>
+                <h3 id="categoryExpandBtn" style="text-align: center;color: white; background: var(--logoGreen); cursor: pointer;border-radius: 5px">Category</h3>
+                <h4 id="categoryExpandBtn" style="text-align: center;color: white; background: var(--logoGreen); cursor: pointer;padding: 2%;border-radius: 3px">Category</h4>
                 <div id="categoryExpand" class="brands-name">
                     <ul class="nav nav-pills nav-stacked">
                         @{
@@ -58,8 +58,8 @@
             </div>
                     
             <div class="brands_products" style="padding: 10%; margin-bottom: -20%">
-                <h3 id="colorExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;border-radius: 5px">Color</h3>
-                <h4 id="colorExpandBtn" style="text-align: center;color: white; background: orangered; cursor: pointer;padding: 2%;border-radius: 3px"> Color</h4>
+                <h3 id="colorExpandBtn" style="text-align: center;color: white; background: var(--logoGreen); cursor: pointer;border-radius: 5px">Color</h3>
+                <h4 id="colorExpandBtn" style="text-align: center;color: white; background: var(--logoGreen); cursor: pointer;padding: 2%;border-radius: 3px"> Color</h4>
                 <div id="colorExpand" class="brands-name">
                     <ul class="nav nav-pills nav-stacked">
                         @{
@@ -78,8 +78,8 @@
             <div class="brands_products" style="padding: 10%">
                 @if(ViewBag.QueryParam.Count > 0)
                 {
-                    <h3 style="text-align: center;color: white; background: orangered; border-radius: 5px">Filters</h3>
-                    <h4 style="text-align: center;color: white; background: orangered; border-radius: 3px; padding: 2%">Filters</h4>
+                    <h3 style="text-align: center;color: white; background: var(--logoGreen); border-radius: 5px">Filters</h3>
+                    <h4 style="text-align: center;color: white; background: var(--logoGreen); border-radius: 3px; padding: 2%">Filters</h4>
                 }
                 <div id="allFilters" class="">
                     @{
@@ -161,43 +161,6 @@
         </div>
 
     </div>
-</section>
-<section id="footer-bar">
-    <div class="row">
-        <div class="span3">
-            <h4>Navigation</h4>
-            <ul class="nav">
-                <li><a href="./index.html">Homepage</a></li>
-                <li><a href="./about.html">About Us</a></li>
-                <li><a href="./contact.html">Contac Us</a></li>
-                <li><a href="./cart.html">Your Cart</a></li>
-                <li><a href="./register.html">Login</a></li>
-            </ul>
-        </div>
-        <div class="span4">
-            <h4>My Account</h4>
-            <ul class="nav">
-                <li><a href="#">My Account</a></li>
-                <li><a href="#">Order History</a></li>
-                <li><a href="#">Wish List</a></li>
-                <li><a href="#">Newsletter</a></li>
-            </ul>
-        </div>
-        <div class="span5">
-            <p class="logo"><img src="~/themes/images/logo.png" class="site_logo" alt=""></p>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
-            <br />
-            <span class="social_icons">
-                <a class="facebook" href="#">Facebook</a>
-                <a class="twitter" href="#">Twitter</a>
-                <a class="skype" href="#">Skype</a>
-                <a class="vimeo" href="#">Vimeo</a>
-            </span>
-        </div>
-    </div>
-</section>
-<section id="copyright">
-    <span>Copyright 2013 bootstrappage template  All right reserved.</span>
 </section>
 
 <script src="~/themes/js/common.js"></script>
