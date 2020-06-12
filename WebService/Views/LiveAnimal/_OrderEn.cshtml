@@ -142,7 +142,14 @@
                 
                 
                 @{
-                    await Html.RenderPartialAsync("_CarouselEn", Model);
+                    if(Model.Related != null)
+                    {
+                        await Html.RenderPartialAsync("_CarouselEn", Model);
+                    }
+                    else
+                    {
+                        <p>No Related Product!!!</p>
+                    }
                 }
 
 
