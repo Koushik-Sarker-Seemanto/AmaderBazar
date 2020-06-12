@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8'>
+    <title>Invoice</title>
+    <style>
+        .clearfix:after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+        a {
+            color: #5D6975;
+            text-decoration: underline;
+        }
+
+        body {
+            position: relative;
+            margin: 0 auto;
+            color: #001028;
+            background: #FFFFFF;
+            font-size: 12px;
+        }
+
+        header {
+            padding: 10px 0;
+        }
+        h1 {
+            border-top: 1px solid #73c067;;
+            border-bottom: 1px solid #73c067;;
+            color: #73c067;
+            font-size: 2.4em;
+            line-height: 1.4em;
+            font-weight: normal;
+            text-align: center;
+            margin: 0 0 20px 0;
+            background: url(dimension.png);
+        }
+        #project {
+            float: left;
+        }
+        #project span {
+            color: #5D6975;
+            text-align: right;
+            width: 52px;
+            margin-right: 10px;
+            display: inline-block;
+            font-size: 1em;
+        }
+        #project div{
+            white-space: nowrap;
+        }
+        
+        table, td, th {  
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        td, th {
+            padding: 2px;
+        }
+        tr:nth-child(even) {background-color: #a3d39c;}
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header class='clearfix'>
+        <h1 style='margin-top: 20px;'>INVOICE</h1>
+        <h3 style='color: #73c067'>Order Id: <a style='color:red;text-decoration: none;'>2251abc6-a3c9-4059-a9ac-4b4b900acc91</a></h3>
+        <div id='project'>
+            <div><span>Customer</span> John Doe</div>
+            <div><span>Phone No</span> +8801700000000</div>
+            <div><span>Address</span> 96 Silver Harbour, TX 79273, US</div>
+            <div><span>DATE</span> August 17, 2015</div>
+            <div><span>DUE DATE</span> September 17, 2015</div>
+        </div>
+    </header>
+    <div>
+
+        
+        <h3 style='color: #73c067;'>Product Details</h3>
+        <table style='margin: auto; width: 60%;'>
+            <tbody>
+                <tr>
+                    <td>Title</td>
+                    <td>Big Cow</td>
+                </tr>
+                <tr>
+                    <td>Category</td>
+                    <td>Cow</td>
+                </tr>
+                <tr>
+                    <td>Height</td>
+                    <td>4 feet</td>
+                </tr>
+                <tr>
+                    <td>Weight</td>
+                    <td>56 kg</td>
+                </tr>
+                <tr>
+                    <td>Teeth</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>Origin</td>
+                    <td>Indian</td>
+                </tr>
+                <tr>
+                    <td>Location</td>
+                    <td>Dhaka</td>
+                </tr>
+                <tr>
+                    <td>Color</td>
+                    <td>White</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3 style='color: #73c067'>Payment</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th class='service'>Title</th>
+                    <th>PRICE</th>
+                    <th>QUANTITY</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class='service'>Big White Cow</td>
+                    <td class='unit'>$70000</td>
+                    <td class='qty'>1</td>
+                    <td class='total'>$70000</td>
+                </tr>
+                
+                </tr>
+                <tr>
+                    <td style='text-align: right;' colspan='3'>SUBTOTAL</td>
+                    <td class='total'>$70000</td>
+                </tr>
+                <tr>
+                    <td style='text-align: right;' colspan='3'>TAX 0%</td>
+                    <td class='total'>$0</td>
+                </tr>
+                <tr>
+                    <td style='text-align: right;' colspan='3' class='grand total'>GRAND TOTAL</td>
+                    <td class='grand total'>$70000</td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <h3 style='color: red'>Notice:</h3>
+            <ul>
+                <li>Use the Order Id for online payment.</li>
+                <li>Keep the invoice safe.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
