@@ -31,10 +31,33 @@
                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img alt="" src="~/static/noimage.png"></a><br />
                                 }
                             }
-
-                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">@Model.Related[i].Title</a><br />
-                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>@Model.Related[i].Origin</a>
-                            <p class="price">@Model.Related[i].Price</p>
+                            @if(Model.Related[i].Title != null)
+                            {
+                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">@Model.Related[i].Title</a><br />
+                            }
+                            else
+                            {
+                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">Title: N/A</a><br />
+                            }
+                            @if(Model.Related[i].Origin != null)
+                            {
+                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>@Model.Related[i].Origin</a>
+                            }
+                            else
+                            {
+                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>Origin: N/A</a>
+                            }
+                            @if(!double.IsNaN(Model.Related[i].Price))
+                            {
+                                <p class="price">&#2547 @Model.Related[i].Price</p>
+                            }
+                            else
+                            {
+                                <p class="price">&#2547 Price: N/A</p>
+                            }
+                            
+                            
+                            
                         </div>
                     </li>
                 }
@@ -61,9 +84,30 @@
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img alt="" src="~/static/noimage.png"></a><br />
                                     }
                                 }
-                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})' class="title">@Model.Related[j].Title</a><br />
-                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'>@Model.Related[j].Origin</a>
-                                <p class="price">&#2547 @Model.Related[j].Price</p>
+                                @if(Model.Related[j].Title != null)
+                                {
+                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">@Model.Related[j].Title</a><br />
+                                }
+                                else
+                                {
+                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">Title: N/A</a><br />
+                                }
+                                @if(Model.Related[j].Origin != null)
+                                {
+                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>@Model.Related[j].Origin</a>
+                                }
+                                else
+                                {
+                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>Origin: N/A</a>
+                                }
+                                @if(!double.IsNaN(Model.Related[j].Price))
+                                {
+                                    <p class="price">&#2547 @Model.Related[j].Price</p>
+                                }
+                                else
+                                {
+                                    <p class="price">&#2547 N/A</p>
+                                }
                             </div>
                         </li>
                     }
@@ -105,10 +149,30 @@
                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img alt="" src="~/static/noimage.png"></a><br />
                                 }
                             }
-                
-                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">@Model.Related[i].Title</a><br />
-                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>@Model.Related[i].Origin</a>
-                            <p class="price">@Model.Related[i].Price</p>
+                            @if(Model.Related[i].Title != null)
+                            {
+                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">@Model.Related[i].Title</a><br />
+                            }
+                            else
+                            {
+                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">Title: N/A</a><br />
+                            }
+                            @if(Model.Related[i].Origin != null)
+                            {
+                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>@Model.Related[i].Origin</a>
+                            }
+                            else
+                            {
+                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>Origin: N/A</a>
+                            }
+                            @if(!double.IsNaN(Model.Related[i].Price))
+                            {
+                                <p class="price">&#2547 @Model.Related[i].Price</p>
+                            }
+                            else
+                            {
+                                <p class="price">&#2547 Price: N/A</p>
+                            }
                         </div>
                     </li>
                 }
@@ -135,9 +199,30 @@
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img alt="" src="~/static/noimage.png"></a><br />
                                     }
                                 }
-                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})' class="title">@Model.Related[j].Title</a><br />
-                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'>@Model.Related[j].Origin</a>
-                                <p class="price">&#2547 @Model.Related[j].Price</p>
+                                @if(Model.Related[j].Title != null)
+                                {
+                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">@Model.Related[j].Title</a><br />
+                                }
+                                else
+                                {
+                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">Title: N/A</a><br />
+                                }
+                                @if(Model.Related[j].Origin != null)
+                                {
+                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>@Model.Related[j].Origin</a>
+                                }
+                                else
+                                {
+                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>Origin: N/A</a>
+                                }
+                                @if(!double.IsNaN(Model.Related[j].Price))
+                                {
+                                    <p class="price">&#2547 @Model.Related[j].Price</p>
+                                }
+                                else
+                                {
+                                    <p class="price">&#2547 N/A</p>
+                                }
                             </div>
                         </li>
                     }

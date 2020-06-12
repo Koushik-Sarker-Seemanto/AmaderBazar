@@ -197,7 +197,14 @@
             <div class="span9" style="margin-left: 2.5%; ">
                 <br>
                 @{
-                    await Html.RenderPartialAsync("_CarouselEn", Model);
+                    if(Model.Related != null)
+                    {
+                        await Html.RenderPartialAsync("_CarouselEn", Model);
+                    }
+                    else
+                    {
+                        <p>No Related Product!!!</p>
+                    }
                 }
             </div>
         </div>

@@ -226,7 +226,14 @@
                 <br>
                 
                 @{
-                    await Html.RenderPartialAsync("_CarouselBn", Model);
+                    if(Model.Related != null)
+                    {
+                        await Html.RenderPartialAsync("_CarouselBn", Model);
+                    }
+                    else
+                    {
+                        <p>No Related Product!!!</p>
+                    }
                 }
 
 
