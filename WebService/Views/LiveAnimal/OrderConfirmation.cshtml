@@ -1,7 +1,4 @@
 ﻿@model Models.Entities.Order
-
-
-
 @{
     ViewData["Title"] = "OrderConfirmation";
     ViewBag.Detailes = Model;
@@ -11,16 +8,25 @@
     <img class="pageBanner" src="~/themes/images/pageBanner.png" alt="New products">
     
 </section>
-<section class="main-content">
-<div class="row">
-    <div class="span12"style="text-align: center">
-        <h5>Your Inital Booking For The Product Is Done</h5>
-        <h5>We will Contact You Soon</h5><br/>
-        <h5 style="color: red">Please Download Booking Recipt For Complete Further Procedure</h5>
-        <form method="post" asp-action="OrderConfirmation">
-            <input style="display: none" asp-for="Id"/>
-            <button type="submit" class="btn btn-success">Download</button>
-        </form>
-    </div>
-</div>
-</section>
+@if (Model != null)
+{
+    
+    <section class="main-content">
+        <div class="row">
+            <div class="span12"style="text-align: center">
+                <h5>Your Inital Booking For The Product Is Done</h5>
+                <h5>We will Contact You Soon</h5><br/>
+                <h5 style="color: red">Please Download Booking Recipt For Complete Further Procedure</h5>
+                <form method="post" asp-action="OrderConfirmation">
+                    <input style="display: none" asp-for="Id"/>
+                    <button type="submit" class="btn btn-success">Download</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+}
+else
+{
+    <h1>SomeThing Went Wrong</h1>
+}

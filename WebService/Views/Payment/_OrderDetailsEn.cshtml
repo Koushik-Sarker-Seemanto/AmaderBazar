@@ -1,0 +1,153 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Models.LiveAnimalModels.LiveAnimalDetailsViewModel;
+<section class="header_text sub">
+    <img class="pageBanner" src="~/themes/images/rsz_maxresdefault_2 (1).jpg" alt="New products">
+    <h4><span>Product Detail</span></h4>
+</section>
+
+@if (@Model.LiveAnimalDetails != null)
+{
+    <section class="main-content">
+        <div class="row">
+            <div class="span12">
+                <div class="row">
+                    <div class="span9">
+
+                        @{
+                            if (Model.LiveAnimalDetails.Images != null)
+                            {
+                                <a href="~/images/@Model.LiveAnimalDetails.Images[0]" class="thumbnail" data-fancybox-group="group1" title="Description 1" id="big">
+                                    <img alt="" src="~/images/@Model.LiveAnimalDetails.Images[0]" id="big-img">
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="~/static/noimage.png" class="thumbnail" data-fancybox-group="group1" title="Description 1" id="big">
+                                    <img alt="" src="~/static/noimage.png" id="big-img">
+                                </a>
+                            }
+                        }
+                        @{
+                            if (Model.LiveAnimalDetails.Images != null)
+                            {
+                                <ul class="thumbnails small">
+                                    @foreach (var image in Model.LiveAnimalDetails.Images)
+                                    {
+                                        <li class="span1">
+                                            <a class="thumbnail" data-fancybox-group="group1" title="Description 2"><img src="~/images/@image" alt=""></a>
+                                        </li>
+                                    }
+
+                                </ul>
+                            }
+                        }
+
+                    </div>
+                    <div class="span3">
+                        <div>
+                            <h4>@Model.LiveAnimalDetails.Title</h4>
+                        </div>
+                        <div style="margin-top: -1%;">
+                            <h5>@Model.LiveAnimalDetails.Origin</h5>
+                        </div>
+
+                        <div>
+                            <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Color</span>
+                        </div>
+                        <div>
+                            <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span>
+                        </div>
+                        @if (Model.LiveAnimalDetails.Sold == false)
+                        {
+                            <div style="margin-top: 15%;">
+                                <strong style="font-size: large; color: green;">In Stock </strong>
+                            </div>
+                        }
+                        else
+                        {
+                            <div style="margin-top: 15%;">
+                                <strong style="font-size: medium; color: red;">Sold Out </strong>
+                            </div>
+                        }
+                        <div style="margin-top: 5%;">
+                            <strong style="font-size: x-large; ">&#2547 @Model.LiveAnimalDetails.Price </strong>
+                        </div>
+
+                        @if (Model.Order.Contacted)
+                        {
+                            <div style="margin-top: 15%;">
+                                <strong style="font-size: x-large; color: white;background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> Order Status </strong>
+                            </div>
+                            <div style="margin-top: 5%;">
+                                <strong style="font-size: x-large; color: green;"> Accpted </strong>
+                            </div>
+
+                            <form asp-action="OrderDetails">
+                                <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none">
+                                <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
+                                <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
+                                <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
+                                <input asp-for="LiveAnimalDetails" value="@Model.LiveAnimalDetails.Id" style="display: none">
+                                <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
+                                <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
+
+                                <div style="margin-top: 10%;">
+                                    <button class="btn btn-success" style="font-size: 16px; padding: 3%;width: 70%; margin: auto">Pay Bill</button>
+                                </div>
+                            </form>
+                        }
+                        else
+                        {
+                            <div style="margin-top: 15%;">
+                                <strong style="font-size: x-large; color: white;background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> Order Status </strong>
+                            </div>
+                            <div style="margin-top: 5%;">
+                                <strong style="font-size: x-large; color: red;"> Pending </strong>
+                            </div>
+                            @if (Model.LiveAnimalDetails.Sold == false)
+                            {
+                                <div style="margin-top: 8%;">
+                                    <strong style="font-size: large; color: green;"> Please Wait !! </strong>
+                                </div>
+                                <div style="margin-top: 1%;">
+                                    <strong style="font-size: large; color: green;"> We will Contact Soon !! </strong>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div style="margin-top: 5%;">
+                                    <strong style="font-size: large; color: red;"> Product Is Sold Already </strong>
+                                </div>
+                            }
+
+                            <form asp-action="OrderDetails">
+                                <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none" required="required">
+                                <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
+                                <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
+                                <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
+                                <input asp-for="LiveAnimalDetails" value="@Model.LiveAnimalDetails.Id" style="display: none" required="required">
+                                <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
+                                <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none" required="required">
+
+
+                            </form>
+
+
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+}
+else
+{
+    <h1>Please Enter Valid Code</h1>
+}
