@@ -6,208 +6,215 @@
     <img class="pageBanner" src="~/themes/images/rsz_maxresdefault_2 (1).jpg" alt="New products">
     <h4><span>Product Detail</span></h4>
 </section>
-<section class="main-content">
-    <div class="row">
-        <div class="span12">
-            <div class="row">
-                <div class="span9">
-                    @{
-                        if (Model.LiveAnimalDetails.Images != null)
+@if (Model.LiveAnimalDetails != null)
+{
+    <section class="main-content">
+        <div class="row">
+            <div class="span12">
+                <div class="row">
+                    <div class="span9">
+                        @{
+                            if (Model.LiveAnimalDetails.Images != null)
+                            {
+                                <a href="~/images/@Model.LiveAnimalDetails.Images[0]" class="thumbnail" data-fancybox-group="group1" title="Description 1" id="big">
+                                    <img alt="" src="~/images/@Model.LiveAnimalDetails.Images[0]" id="big-img">
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="~/static/noimage.png" class="thumbnail" data-fancybox-group="group1" title="Description 1" id="big">
+                                    <img alt="" src="~/static/noimage.png" id="big-img">
+                                </a>
+                            }
+                        }
+                        @{
+                            if (Model.LiveAnimalDetails.Images != null)
+                            {
+                                <ul class="thumbnails small">
+                                    @foreach (var image in Model.LiveAnimalDetails.Images)
+                                    {
+                                        <li class="span1">
+                                            <a class="thumbnail" data-fancybox-group="group1" title="Description 2"><img src="~/images/@image" alt=""></a>
+                                        </li>
+                                    }
+
+                                </ul>
+                            }
+                        }
+
+                    </div>
+                    <div class="span3">
+                        @if (Model.LiveAnimalDetails.Title != null)
                         {
-                            <a href="~/images/@Model.LiveAnimalDetails.Images[0]" class="thumbnail" data-fancybox-group="group1" title="Description 1" id="big">
-                                <img alt="" src="~/images/@Model.LiveAnimalDetails.Images[0]" id="big-img">
-                            </a>
+                            <div class="mobile-text-center">
+                                <h4>@Model.LiveAnimalDetails.Title</h4>
+                            </div>
                         }
                         else
                         {
-                            <a href="~/static/noimage.png" class="thumbnail" data-fancybox-group="group1" title="Description 1" id="big">
-                                <img alt="" src="~/static/noimage.png" id="big-img">
-                            </a>
+                            <div class="mobile-text-center">
+                                <h4>N/A</h4>
+                            </div>
                         }
-                    }
-                    @{
-                        if (Model.LiveAnimalDetails.Images != null)
+                        @if (Model.LiveAnimalDetails.Origin != null)
                         {
-                            <ul class="thumbnails small">
-                                @foreach (var image in Model.LiveAnimalDetails.Images)
-                                {
-                                    <li class="span1">
-                                        <a class="thumbnail" data-fancybox-group="group1" title="Description 2"><img src="~/images/@image" alt=""></a>
-                                    </li>
-                                }
-
-                            </ul>
-                        }
-                    }
-
-                </div>
-                <div class="span3">
-                    @if (Model.LiveAnimalDetails.Title != null)
-                    {
-                        <div class="mobile-text-center">
-                            <h4>@Model.LiveAnimalDetails.Title</h4>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="mobile-text-center">
-                            <h4>N/A</h4>
-                        </div>
-                    }
-                    @if (Model.LiveAnimalDetails.Origin != null)
-                    {
-                        <div class="mobile-text-center" style="margin-top: -1%;">
-                            <h5>@Model.LiveAnimalDetails.Origin</h5>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="mobile-text-center" style="margin-top: -1%;">
-                            <h5>N/A</h5>
-                        </div>
-                    }
-                    @if (Model.LiveAnimalDetails.Color != null)
-                    {
-                        <div class="mobile-text-center">
-                            <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Color</span>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="mobile-text-center">
-                            <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">N/A</span>
-                        </div>
-                    }
-
-                    @if (Model.LiveAnimalDetails.Location != null)
-                    {
-                        <div class="mobile-text-center">
-                            <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="mobile-text-center">
-                            <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">N/A</span>
-                        </div>
-                    }
-                    @if (!double.IsNaN(Model.LiveAnimalDetails.Height))
-                    {
-                        <div class="mobile-text-center">
-                            <strong style="font-size: medium;">Height : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Height Feet</span>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="mobile-text-center">
-                            <strong style="font-size: medium;">Height : </strong> <span style="font-size: medium;">N/A</span>
-                        </div>
-                    }
-                    @if (!double.IsNaN(Model.LiveAnimalDetails.Weight))
-                    {
-                        <div class="mobile-text-center">
-                            <strong style="font-size: medium;">Weight : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Weight KG</span>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="mobile-text-center">
-                            <strong style="font-size: medium;">Weight : </strong> <span style="font-size: medium;">N/A</span>
-                        </div>
-                    }
-                    @if (!double.IsNaN(Model.LiveAnimalDetails.Teeth))
-                    {
-                        <div class="mobile-text-center">
-                            <strong style="font-size: medium;">Teeth : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Teeth</span>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="mobile-text-center">
-                            <strong style="font-size: medium;">Teeth : </strong> <span style="font-size: medium;">N/A</span>
-                        </div>
-                    }
-                    @if (Model.LiveAnimalDetails.Sold != null)
-                    {
-
-                        @if (Model.LiveAnimalDetails.Sold == false)
-                        {
-
+                            <div class="mobile-text-center" style="margin-top: -1%;">
+                                <h5>@Model.LiveAnimalDetails.Origin</h5>
+                            </div>
                         }
                         else
                         {
-                            <div class="mobile-text-center" style="margin-top: 15%;">
-                                <strong style="font-size: medium; color: red;">Sold Out </strong>
+                            <div class="mobile-text-center" style="margin-top: -1%;">
+                                <h5>N/A</h5>
                             </div>
                         }
-
-                    }
-
-                    @if (!double.IsNaN(Model.LiveAnimalDetails.Price))
-                    {
-                        <div class="mobile-text-center" style="margin-top: 10%;">
-                            <strong style="font-size: x-large;">&#2547 @Model.LiveAnimalDetails.Price </strong>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="mobile-text-center" style="margin-top: 10%;">
-                            <strong style="font-size: x-large;">&#2547 N/A </strong>
-                        </div>
-                    }
-
-                    @if (Model.LiveAnimalDetails.Sold != null)
-                    {
-                        @if (Model.LiveAnimalDetails.Sold == false)
+                        @if (Model.LiveAnimalDetails.Color != null)
                         {
-                            <div class="mobile-text-center" style="margin-top: 10%">
-                                @Html.ActionLink("Book Now", "Order", "LiveAnimal", new { Id = Model.LiveAnimalDetails.Id }, new { @class = "btn btn-success", @style = "font-size: 16px; padding: 3%;width:60%" })
+                            <div class="mobile-text-center">
+                                <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Color</span>
                             </div>
                         }
-                    }
+                        else
+                        {
+                            <div class="mobile-text-center">
+                                <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">N/A</span>
+                            </div>
+                        }
+
+                        @if (Model.LiveAnimalDetails.Location != null)
+                        {
+                            <div class="mobile-text-center">
+                                <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="mobile-text-center">
+                                <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">N/A</span>
+                            </div>
+                        }
+                        @if (!double.IsNaN(Model.LiveAnimalDetails.Height))
+                        {
+                            <div class="mobile-text-center">
+                                <strong style="font-size: medium;">Height : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Height Feet</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="mobile-text-center">
+                                <strong style="font-size: medium;">Height : </strong> <span style="font-size: medium;">N/A</span>
+                            </div>
+                        }
+                        @if (!double.IsNaN(Model.LiveAnimalDetails.Weight))
+                        {
+                            <div class="mobile-text-center">
+                                <strong style="font-size: medium;">Weight : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Weight KG</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="mobile-text-center">
+                                <strong style="font-size: medium;">Weight : </strong> <span style="font-size: medium;">N/A</span>
+                            </div>
+                        }
+                        @if (!double.IsNaN(Model.LiveAnimalDetails.Teeth))
+                        {
+                            <div class="mobile-text-center">
+                                <strong style="font-size: medium;">Teeth : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Teeth</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="mobile-text-center">
+                                <strong style="font-size: medium;">Teeth : </strong> <span style="font-size: medium;">N/A</span>
+                            </div>
+                        }
+                        @if (Model.LiveAnimalDetails.Sold != null)
+                        {
+
+                            @if (Model.LiveAnimalDetails.Sold == false)
+                            {
+
+                            }
+                            else
+                            {
+                                <div class="mobile-text-center" style="margin-top: 15%;">
+                                    <strong style="font-size: medium; color: red;">Sold Out </strong>
+                                </div>
+                            }
+
+                        }
+
+                        @if (!double.IsNaN(Model.LiveAnimalDetails.Price))
+                        {
+                            <div class="mobile-text-center" style="margin-top: 10%;">
+                                <strong style="font-size: x-large;">&#2547 @Model.LiveAnimalDetails.Price </strong>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="mobile-text-center" style="margin-top: 10%;">
+                                <strong style="font-size: x-large;">&#2547 N/A </strong>
+                            </div>
+                        }
+
+                        @if (Model.LiveAnimalDetails.Sold != null)
+                        {
+                            @if (Model.LiveAnimalDetails.Sold == false)
+                            {
+                                <div class="mobile-text-center" style="margin-top: 10%">
+                                    @Html.ActionLink("Book Now", "Order", "LiveAnimal", new { Id = Model.LiveAnimalDetails.Id }, new { @class = "btn btn-success", @style = "font-size: 16px; padding: 3%;width:60%" })
+                                </div>
+                            }
+                        }
 
 
-                </div>
-            </div>
-
-        </div>
-        <div class="row" style="margin-left: 0%; ">
-            <div class="span9">
-                <ul class="nav nav-tabs" id="myTab">
-                    <li class="active"><a href="#home">Description</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="home">@Model.LiveAnimalDetails.Description</div>
-                    <div class="tab-pane" id="profile">
-                        <table class="table table-striped shop_attributes">
-                            <tbody>
-                                <tr class="">
-                                    <th>Size</th>
-                                    <td>Large, Medium, Small, X-Large</td>
-                                </tr>
-                                <tr class="alt">
-                                    <th>Colour</th>
-                                    <td>Orange, Yellow</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
+
             </div>
-            <div class="span9" style="margin-left: 2.5%; ">
-                <br>
-                @{
-                    if(Model.Related != null)
-                    {
-                        await Html.RenderPartialAsync("_CarouselEn", Model);
+            <div class="row" style="margin-left: 0%; ">
+                <div class="span9">
+                    <ul class="nav nav-tabs" id="myTab">
+                        <li class="active"><a href="#home">Description</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="home">@Model.LiveAnimalDetails.Description</div>
+                        <div class="tab-pane" id="profile">
+                            <table class="table table-striped shop_attributes">
+                                <tbody>
+                                    <tr class="">
+                                        <th>Size</th>
+                                        <td>Large, Medium, Small, X-Large</td>
+                                    </tr>
+                                    <tr class="alt">
+                                        <th>Colour</th>
+                                        <td>Orange, Yellow</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="span9" style="margin-left: 2.5%; ">
+                    <br>
+                    @{
+                        if (Model.Related != null)
+                        {
+                            await Html.RenderPartialAsync("_CarouselEn", Model);
+                        }
+                        else
+                        {
+                            <p>No Related Product!!!</p>
+                        }
                     }
-                    else
-                    {
-                        <p>No Related Product!!!</p>
-                    }
-                }
+                </div>
             </div>
         </div>
-    </div>
 
-</section>
+    </section>
+}
+else
+{
+    <h1>Details Data Not Found</h1>
+}

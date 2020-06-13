@@ -6,13 +6,18 @@
     <img class="pageBanner" src="~/themes/images/rsz_maxresdefault_2 (1).jpg" alt="New products">
     <h4><span>প্রোডাক্ট বিস্তারিত</span></h4>
 </section>
-<section class="main-content">
-    <div class="row">
-        <div class="span12">
-            <div class="row">
-                <div class="span9">
-                    @{
-                        if (Model.LiveAnimalDetails.Images != null)
+
+
+@if (Model.LiveAnimalDetails != null)
+{
+
+    <section class="main-content">
+        <div class="row">
+            <div class="span12">
+                <div class="row">
+                    <div class="span9">
+
+                        @if (@Model.LiveAnimalDetails.Images != null)
                         {
                             <a href="~/images/@Model.LiveAnimalDetails.Images[0]" class="thumbnail" data-fancybox-group="group1" title="Description 1" id="big">
                                 <img alt="" src="~/images/@Model.LiveAnimalDetails.Images[0]" id="big-img">
@@ -24,9 +29,9 @@
                                 <img alt="" src="~/static/noimage.png" id="big-img">
                             </a>
                         }
-                    }
-                    @{
-                        if (Model.LiveAnimalDetails.Images != null)
+
+
+                        @if (Model.LiveAnimalDetails.Images != null)
                         {
                             <ul class="thumbnails small">
                                 @foreach (var image in Model.LiveAnimalDetails.Images)
@@ -38,208 +43,214 @@
 
                             </ul>
                         }
-                    }
 
-                </div>
-                <div class="span3">
-                    @if (Model.LiveAnimalDetails.TitleBn != null)
-                    {
-                        <div class="mobile-text-center">
-                            <h4>@Model.LiveAnimalDetails.TitleBn</h4>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="mobile-text-center">
-                            <h4>N/A</h4>
-                        </div>
-                    }
-                    @if (Model.LiveAnimalDetails.OriginBn != null)
-                    {
-                        <div class="mobile-text-center" style="margin-top: -1%;">
-                            <h5>@Model.LiveAnimalDetails.OriginBn</h5>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="mobile-text-center" style="margin-top: -1%;">
-                            <h5>N/A</h5>
-                        </div>
-                    }
-                    @if (Model.LiveAnimalDetails.ColorBn != null)
-                    {
-                        <div class="mobile-text-center">
-                            <strong style="font-size: medium;">রং : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.ColorBn</span>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="mobile-text-center">
-                            <strong style="font-size: medium;">রং : </strong> <span style="font-size: medium;">N/A</span>
-                        </div>
-                    }
 
-                    @if (Model.LiveAnimalDetails.LocationBn != null)
-                    {
-                        <div class="mobile-text-center">
-                            <strong style="font-size: medium;">ঠিকানা  : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.LocationBn</span>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="mobile-text-center">
-                            <strong style="font-size: medium;">ঠিকানা : </strong> <span style="font-size: medium;">N/A</span>
-                        </div>
-                    }
-                    @if (!double.IsNaN(Model.LiveAnimalDetails.Height))
-                    {
-                        <div class="mobile-text-center">
-                            <strong style="font-size: medium;">উচ্চতা : </strong> <span style="font-size: medium;" id="height">@Model.LiveAnimalDetails.Height Feet</span>
-                        </div>
-                        <script>
+                    </div>
+                    <div class="span3">
+                        @if (Model.LiveAnimalDetails.TitleBn != null)
+                        {
+                            <div class="mobile-text-center">
+                                <h4>@Model.LiveAnimalDetails.TitleBn</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="mobile-text-center">
+                                <h4>N/A</h4>
+                            </div>
+                        }
+                        @if (Model.LiveAnimalDetails.OriginBn != null)
+                        {
+                            <div class="mobile-text-center" style="margin-top: -1%;">
+                                <h5>@Model.LiveAnimalDetails.OriginBn</h5>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="mobile-text-center" style="margin-top: -1%;">
+                                <h5>N/A</h5>
+                            </div>
+                        }
+                        @if (Model.LiveAnimalDetails.ColorBn != null)
+                        {
+                            <div class="mobile-text-center">
+                                <strong style="font-size: medium;">রং : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.ColorBn</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="mobile-text-center">
+                                <strong style="font-size: medium;">রং : </strong> <span style="font-size: medium;">N/A</span>
+                            </div>
+                        }
+
+                        @if (Model.LiveAnimalDetails.LocationBn != null)
+                        {
+                            <div class="mobile-text-center">
+                                <strong style="font-size: medium;">ঠিকানা  : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.LocationBn</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="mobile-text-center">
+                                <strong style="font-size: medium;">ঠিকানা : </strong> <span style="font-size: medium;">N/A</span>
+                            </div>
+                        }
+                        @if (!double.IsNaN(Model.LiveAnimalDetails.Height))
+                        {
+                            <div class="mobile-text-center">
+                                <strong style="font-size: medium;">উচ্চতা : </strong> <span style="font-size: medium;" id="height">@Model.LiveAnimalDetails.Height Feet</span>
+                            </div>
+                            <script>
                             var num = @Model.LiveAnimalDetails.Height;
                             $("#height")
                                 .text(replaceNumbers(num.toString()) +" ফুট");
                             console.log(replaceNumbers(num.toString()));
 
-                        </script>
-                    }
-                    else
-                    {
-                        <div class="mobile-text-center">
-                            <strong style="font-size: medium;">উচ্চতা : </strong> <span style="font-size: medium;">N/A</span>
-                        </div>
-                    }
-                    @if (!double.IsNaN(Model.LiveAnimalDetails.Weight))
-                    {
-                        <div class="mobile-text-center">
-                            <strong style="font-size: medium;">ওজন : </strong> <span style="font-size: medium;" id="weight">@Model.LiveAnimalDetails.Weight KG</span>
-                        </div>
-                        <script>
+                            </script>
+                        }
+                        else
+                        {
+                            <div class="mobile-text-center">
+                                <strong style="font-size: medium;">উচ্চতা : </strong> <span style="font-size: medium;">N/A</span>
+                            </div>
+                        }
+                        @if (!double.IsNaN(Model.LiveAnimalDetails.Weight))
+                        {
+                            <div class="mobile-text-center">
+                                <strong style="font-size: medium;">ওজন : </strong> <span style="font-size: medium;" id="weight">@Model.LiveAnimalDetails.Weight KG</span>
+                            </div>
+                            <script>
                             var num = @Model.LiveAnimalDetails.Weight;
                             $("#weight")
                                 .text(replaceNumbers(num.toString()) + " কেজি");
                             console.log(replaceNumbers(num.toString()));
 
-                        </script>
-                    }
-                    else
-                    {
-                        <div class="mobile-text-center">
-                            <strong style="font-size: medium;">ওজন : </strong> <span style="font-size: medium;">N/A</span>
-                        </div>
-                    }
-                    @if (!double.IsNaN(Model.LiveAnimalDetails.Teeth))
-                    {
-                        <div class="mobile-text-center">
-                            <strong style="font-size: medium;"> দাঁত : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Teeth</span>
-                        </div>
-                        <script>
+                            </script>
+                        }
+                        else
+                        {
+                            <div class="mobile-text-center">
+                                <strong style="font-size: medium;">ওজন : </strong> <span style="font-size: medium;">N/A</span>
+                            </div>
+                        }
+                        @if (!double.IsNaN(Model.LiveAnimalDetails.Teeth))
+                        {
+                            <div class="mobile-text-center">
+                                <strong style="font-size: medium;"> দাঁত : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Teeth</span>
+                            </div>
+                            <script>
                             var num = @Model.LiveAnimalDetails.Teeth;
                             $("#weight")
                                 .text(replaceNumbers(num.toString()) );
                             console.log(replaceNumbers(num.toString()));
 
-                        </script>
-                    }
-                    else
-                    {
-                        <div class="mobile-text-center">
-                            <strong style="font-size: medium;"> দাঁত : </strong> <span style="font-size: medium;">N/A</span>
-                        </div>
-                    }
-                    @if (Model.LiveAnimalDetails.Sold != null)
-                    {
-
-                        @if (Model.LiveAnimalDetails.Sold == false)
-                        {
+                            </script>
                         }
                         else
                         {
-                            <div class="mobile-text-center" style="margin-top: 15%;">
-                                <strong style="font-size: medium; color: red;">বিক্রয় হয়ে গেছে </strong>
+                            <div class="mobile-text-center">
+                                <strong style="font-size: medium;"> দাঁত : </strong> <span style="font-size: medium;">N/A</span>
                             </div>
                         }
+                        @if (Model.LiveAnimalDetails.Sold != null)
+                        {
 
-                    }
+                            @if (Model.LiveAnimalDetails.Sold == false)
+                            {
+                            }
+                            else
+                            {
+                                <div class="mobile-text-center" style="margin-top: 15%;">
+                                    <strong style="font-size: medium; color: red;">বিক্রয় হয়ে গেছে </strong>
+                                </div>
+                            }
 
-                    @if (!double.IsNaN(Model.LiveAnimalDetails.Price))
-                    {
-                        <div class="mobile-text-center" style="margin-top: 10%;">
-                            <strong style="font-size: x-large;" id="priceM">&#2547 @Model.LiveAnimalDetails.Price </strong>
-                        </div>
-                        <script>
+                        }
+
+                        @if (!double.IsNaN(Model.LiveAnimalDetails.Price))
+                        {
+                            <div class="mobile-text-center" style="margin-top: 10%;">
+                                <strong style="font-size: x-large;" id="priceM">&#2547 @Model.LiveAnimalDetails.Price </strong>
+                            </div>
+                            <script>
                             var num = @Model.LiveAnimalDetails.Price;
 
                             $("#priceM")
                                 .text("৳ " +replaceNumbers(num.toString()));
                             console.log(replaceNumbers(num.toString()));
 
-                        </script>
-                    }
-                    else
-                    {
-                        <div class="mobile-text-center" style="margin-top: 10%;">
-                            <strong style="font-size: x-large;">&#2547 N/A </strong>
-                        </div>
-                    }
-
-                    @if (Model.LiveAnimalDetails.Sold != null)
-                    {
-                        @if (Model.LiveAnimalDetails.Sold == false)
+                            </script>
+                        }
+                        else
                         {
-                            <div class="mobile-text-center" style="margin-top: 10%">
-                                @Html.ActionLink("বুক করুন", "Order", "LiveAnimal", new { Id = Model.LiveAnimalDetails.Id }, new { @class = "btn btn-success", @style = "font-size: 16px; padding: 3%;width:60%" })
+                            <div class="mobile-text-center" style="margin-top: 10%;">
+                                <strong style="font-size: x-large;">&#2547 N/A </strong>
                             </div>
+                        }
+
+                        @if (Model.LiveAnimalDetails.Sold != null)
+                        {
+                            @if (Model.LiveAnimalDetails.Sold == false)
+                            {
+                                <div class="mobile-text-center" style="margin-top: 10%">
+                                    @Html.ActionLink("বুক করুন", "Order", "LiveAnimal", new { Id = Model.LiveAnimalDetails.Id }, new { @class = "btn btn-success", @style = "font-size: 16px; padding: 3%;width:60%" })
+                                </div>
+                            }
+                        }
+
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" style="margin-left: 0%; ">
+                <div class="span9">
+                    <ul class="nav nav-tabs" id="myTab">
+                        <li class="active"><a href="#home">Description</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="home">@Model.LiveAnimalDetails.DescriptionBn</div>
+                        <div class="tab-pane" id="profile">
+                            <table class="table table-striped shop_attributes">
+                                <tbody>
+                                    <tr class="">
+                                        <th>Size</th>
+                                        <td>Large, Medium, Small, X-Large</td>
+                                    </tr>
+                                    <tr class="alt">
+                                        <th>Colour</th>
+                                        <td>Orange, Yellow</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="span9" style="margin-left: 2.5%; ">
+                    <br>
+
+                    @{
+                        if (Model.Related != null)
+                        {
+                            await Html.RenderPartialAsync("_CarouselBn", Model);
+                        }
+                        else
+                        {
+                            <p>No Related Product!!!</p>
                         }
                     }
 
 
                 </div>
             </div>
-
         </div>
-        <div class="row" style="margin-left: 0%; ">
-            <div class="span9">
-                <ul class="nav nav-tabs" id="myTab">
-                    <li class="active"><a href="#home">Description</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="home">@Model.LiveAnimalDetails.DescriptionBn</div>
-                    <div class="tab-pane" id="profile">
-                        <table class="table table-striped shop_attributes">
-                            <tbody>
-                                <tr class="">
-                                    <th>Size</th>
-                                    <td>Large, Medium, Small, X-Large</td>
-                                </tr>
-                                <tr class="alt">
-                                    <th>Colour</th>
-                                    <td>Orange, Yellow</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="span9" style="margin-left: 2.5%; ">
-                <br>
-                
-                @{
-                    if(Model.Related != null)
-                    {
-                        await Html.RenderPartialAsync("_CarouselBn", Model);
-                    }
-                    else
-                    {
-                        <p>No Related Product!!!</p>
-                    }
-                }
+
+    </section>
 
 
-            </div>
-        </div>
-    </div>
-
-</section>
-
+}
+else
+{
+    <h1>Details Data Not Found</h1>
+}
