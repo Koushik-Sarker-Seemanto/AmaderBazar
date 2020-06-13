@@ -1,4 +1,4 @@
-@model Models.AdminModels.LiveAnimalViewModel;
+﻿@model Models.AdminModels.LiveAnimalViewModel;
 
 @{
     ViewData["Title"] = "Add Animal";
@@ -20,6 +20,11 @@
                 <label for="title">Title</label>
                 <input asp-for="Title" class="form-control" id="title" placeholder="Enter Animal Title">
                 <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="titleBn">Title ( বাংলায় লিখুন )</label>
+                <input asp-for="TitleBn" class="form-control" id="title" placeholder="Enter Product Title ( বাংলায় লিখুন )">
+                <span asp-validation-for="TitleBn" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label for="price">Price</label>
@@ -54,9 +59,26 @@
                 <span asp-validation-for="Origin" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label for="color">Color</label>
-                <input asp-for="Color" class="form-control" id="color" placeholder="Enter Color">
+                <label for="originbn">Origin ( বাংলায় লিখুন ) </label>
+                <input asp-for="OriginBn" class="form-control" id="origin" placeholder="Enter Origin ( বাংলায় লিখুন )">
+                <span asp-validation-for="OriginBn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="color">Select Color</label>
+
+                <select asp-for="Color" class="form-control" id="color">
+                    <option disabled selected value=""> -- Please Select -- </option>
+                    <option value="Black">Black</option>
+                    <option value="White">White</option>
+                    <option value="Red">Red</option>
+                    <option value="Mixed">Mixed</option>
+                </select>
                 <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="locationbn">Location ( বাংলায় লিখুন )</label>
+                <input asp-for="LocationBn" class="form-control" id="locationbn" placeholder="Enter Location ( বাংলায় লিখুন )">
+                <span asp-validation-for="LocationBn" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label for="location">Location</label>
@@ -64,7 +86,7 @@
                 <span asp-validation-for="Location" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label for="color">Is Featured ?</label>
+                <label for="color">Is Premium ?</label>
                 <select asp-for="Featured" class="form-control" id="feature">
                     <option disabled selected value=""> -- Please Select -- </option>
                     <option value = "true">Yes</option>
@@ -76,6 +98,11 @@
                 <label for="description">Description</label>
                 <textarea rows="5" asp-for="Description" class="form-control" id="description" placeholder="Enter Description"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="descriptionbn">Description ( বাংলায় লিখুন )</label>
+                <textarea rows="5" asp-for="DescriptionBn" class="form-control" id="descriptionbn" placeholder="Enter Description ( বাংলায় লিখুন )"></textarea>
+                <span asp-validation-for="DescriptionBn" class="text-danger"></span>
             </div>
             @{
                 if (Model.Images != null)

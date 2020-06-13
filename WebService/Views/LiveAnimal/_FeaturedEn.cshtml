@@ -1,0 +1,148 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Microsoft.AspNetCore.Http
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Core.Common;
+@using System.Web;
+@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<Models.LiveAnimalModels.LiveAnimalViewModelFrontend>
+
+<section class="header_text sub">
+    <img class="pageBanner" src="~/themes/images/rsz_maxresdefault_2 (1).jpg" alt="New products">
+    <h2 style="margin-top: 3%"><span>Premium Products</span></h2>
+</section>
+<section class="main-content">
+
+    <div class="row">
+        <div class="span3 col">
+            <div id="upperDiv" style="padding: 10%; margin-bottom: -20%">
+                <h3 id="priceExpandBtn" style="text-align: center;color: white; background: var(--logoGreen); cursor: pointer; border-radius: 5px">Price</h3>
+                <h4 id="priceExpandBtn" style="text-align: center;color: white; background: var(--logoGreen); cursor: pointer;padding: 2%; border-radius: 3px">Price</h4>
+                <section class="priceExpand1 range-slider" id="facet-price-range-slider">
+
+                    <input id="minRange" name="range-1" value="0" min="0" max="300001" step="2" type="range">
+
+                    <input id="maxRange" name="range-2" value="300000" min="0" max="300001" step="2" type="range">
+
+                </section>
+                <section style="margin-top: -20%" class="priceExpand2 range-slider">
+
+                    <input id="min" type="text" placeholder="Minimum" value="0" />
+                    <input id="max" type="text" placeholder="Maximum" value="300000" />
+                    <button id="priceSelect" style="background: var(--logoGreen)" class="btn btn-success">Search <i class="fa fa-search"></i></button>
+
+                </section>
+
+            </div>
+
+            <div class="brands_products" style="padding: 10%">
+                @if (ViewBag.QueryParam.Count > 0)
+                {
+                    <h3 style="text-align: center;color: white; background: var(--logoGreen); border-radius: 5px">Filters</h3>
+                    <h4 style="text-align: center;color: white; background: var(--logoGreen); border-radius: 3px; padding: 2%">Filters</h4>
+                }
+                <div id="allFilters" class="">
+                    @{
+                        if (ViewBag.QueryParam.Count > 0)
+                        {
+                            foreach (var item in ViewBag.QueryParam)
+                            {
+                                <p id="@item.Key" name="@item.Value" style="padding: 3%; background: #eeeeee; border-radius: 10px">
+                                    @item.Key : @item.Value
+                                    <i id="removeItem" style="padding: 3%; color: red; cursor: pointer" class="fa fa-times pull-right"></i>
+                                </p>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+
+        </div>
+
+        <div class="span9">
+            <ul class="thumbnails listing-products">
+                @{
+                    if (Model != null && Model.Count > 0)
+                    {
+                        @foreach (var animal in Model)
+                        {
+                            <li class="span3">
+                                <div class="product-box">
+                                    <span class="sale_tag"></span>
+                                    @{
+                                        if (animal.Images != null)
+                                        {
+                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'><img alt="" src="~/images/@animal.Images[0]"></a><br />
+                                        }
+                                        else
+                                        {
+                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'><img alt="" src="~/static/noimage.png"></a><br />
+                                        }
+                                    }
+                                    @if(animal.Title != null)
+                                    {
+                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})' class="title">@animal.Title</a><br />
+                                    }
+                                    else
+                                    {
+                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})' class="title">Title: N/A</a><br />
+                                    }
+                                    @if(animal.Origin != null)
+                                    {
+                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>@animal.Origin</a>
+                                    }
+                                    else
+                                    {
+                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>Origin: N/A</a>
+                                    }
+                                    @if(!double.IsNaN(animal.Price))
+                                    {
+                                        <p class="price">&#2547 @animal.Price</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="price">&#2547 N/A</p>
+                                    }
+
+                                </div>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <div style="display: flex; justify-content: center;text-align: center; margin-top: 50%">
+                            <h1>No Data Found!!!</h1>
+                        </div>
+                    }
+                }
+
+            </ul>
+            @{
+                if (Model == null || Model.Count == 0)
+                {
+                }
+                else
+                {
+                    <hr>
+                    <div class="pagination pagination-small pagination-centered">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new
+                        {
+                            min = Context.Request.Query["min"],
+                            max = Context.Request.Query["max"],
+                            category = Context.Request.Query["category"],
+                            color = Context.Request.Query["color"],
+                            page
+                        }),
+                            new PagedListRenderOptions
+                                 {
+                                LiElementClasses = new string[] { "page-item" },
+                                PageClasses = new string[] { "page-link" },
+                            })
+                    </div>
+                }
+            }
+        </div>
+
+    </div>
+</section>

@@ -108,13 +108,21 @@ namespace WebService.Controllers
             {
                 Id = result.Id,
                 Title = result.Title,
+                TitleBn = result.TitleBn,
                 Category = result.Category.Id,
                 Color = result.Color,
                 Location = result.Location,
+                LocationBn = result.LocationBn,
                 Origin = result.Origin,
+                OriginBn = result.OriginBn,
                 Description = result.Description,
+                DescriptionBn = result.DescriptionBn,
                 Price = result.Price,
                 Images = result.Images,
+                Height = result.Height,
+                Weight =  result.Weight,
+                Teeth = result.Teeth,
+                
             };
             _logger.LogInformation($"AnimalInfo: {JsonConvert.SerializeObject(result)}");
             //ViewBag.Images = liveAnimalViewModel.Images;
