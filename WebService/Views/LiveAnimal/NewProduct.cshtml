@@ -1,0 +1,206 @@
+﻿
+@model X.PagedList.IPagedList<Models.LiveAnimalModels.LiveAnimalViewModelFrontend>
+@{
+    ViewData["Title"] = "New Products";
+
+}
+
+@Html.Partial("_NavBar")
+
+@if (@TempData["Is_English"] != null)
+{
+    @if (@TempData["Is_English"].Equals(true))
+    {
+        await Html.RenderPartialAsync("_NewProductEn", Model);
+    }
+    else
+    {
+        await Html.RenderPartialAsync("_NewProductBn", Model);
+    }
+    TempData.Keep("Is_English");
+}
+else
+{
+    await Html.RenderPartialAsync("_NewProductEn", Model);
+}
+
+<script src="~/themes/js/common.js"></script>
+<script src="~/js/priceRange.js"></script>
+
+
+<style>
+    @@media (min-width: 768px) and (max-width: 1199px) {
+        #min {
+            width: 120px;
+        }
+
+        #max {
+            width: 120px;
+        }
+
+        h3 {
+            display: none;
+        }
+
+        h4 {
+            display: block;
+        }
+    }
+
+    @@media (min-width: 0px) and (max-width: 767px) {
+        h3 {
+            display: none;
+        }
+
+        h4 {
+            display: block;
+        }
+    }
+
+    @@media only screen and (min-width: 1200px) {
+        h4 {
+            display: none;
+        }
+
+        h3 {
+            display: block;
+        }
+    }
+</style>
+
+
+<script>
+
+    $(document).ready(function () {
+        let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+        console.log("isMobile: " + isMobile);
+        if (isMobile) {
+            $("#upperDiv").css('marginTop', '-30%');
+            $("#categoryExpand").fadeOut();
+            $("#colorExpand").fadeOut();
+            $(".priceExpand1").fadeOut();
+            $(".priceExpand2").fadeOut();
+        }
+
+        try {
+            $(document).on("change", "#minRange", function () {
+                $("#min").val($(this).val());
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+        try {
+            $(document).on("change", "#maxRange", function () {
+                $("#max").val($(this).val());
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+
+        try {
+            $(document).on("click", "#categoryExpandBtn", function () {
+                $("#categoryExpand").fadeToggle();
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+        try {
+            $(document).on("click", "#colorExpandBtn", function () {
+                $("#colorExpand").fadeToggle();
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+        try {
+            $(document).on("click", "#priceExpandBtn", function () {
+                $(".priceExpand1").fadeToggle();
+                $(".priceExpand2").fadeToggle();
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+        try {
+            $(document).on("click", "#priceSelect", function () {
+                let minVal = $("#min").val();
+                let maxVal = $("#max").val();
+                BuildFilterSection("min", minVal);
+                BuildFilterSection("max", maxVal);
+                BuildQuery();
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+        try {
+            $(document).on("click", "#categorySelect", function () {
+                let value = $(this).attr('name');
+                BuildFilterSection("category", value);
+                BuildQuery();
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+        try {
+            $(document).on("click", "#colorSelect", function () {
+                let value = $(this).attr('name');
+                BuildFilterSection("color", value);
+                BuildQuery();
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+        try {
+            $(document).on("click", "#removeItem", function () {
+                $(this).parent().remove();
+                BuildQuery();
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    });
+
+    function BuildQuery() {
+        let filters = $("#allFilters");
+        let categoryValue = "";
+        let colorValue = "";
+        let minValue = "";
+        let maxValue = "";
+        filters.children().each(function () {
+            let key = $(this).attr('id');
+            let value = $(this).attr('name').trim();
+            if (key === "category") {
+                categoryValue = "&category=" + value;
+            }
+            if (key === "color") {
+                colorValue = "&color=" + value;
+            }
+            if (key === "min") {
+                minValue = "&min=" + value;
+            }
+            if (key === "max") {
+                maxValue = "&max=" + value;
+            }
+        });
+        if (minValue === "" && maxValue === "" && colorValue === "" && categoryValue === "") {
+            window.location.href = '/LiveAnimal';
+        }
+        else {
+            window.location.href = '/LiveAnimal?' + minValue + maxValue + categoryValue + colorValue;
+        }
+    }
+
+    function BuildFilterSection(key, value) {
+        let dom = $("#allFilters");
+        let newData = `<p id="${key}" hidden name="${value}" style="padding: 3%; background: #eeeeee; border-radius: 10px">${key} : ${value}
+                            <i id="removeItem" style="padding: 3%; color: red; cursor: pointer" class="fa fa-times pull-right"></i>
+                        </p>`;
+        dom.append(newData);
+    }
+</script>

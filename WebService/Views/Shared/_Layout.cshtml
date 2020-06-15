@@ -69,49 +69,27 @@
     <div id="wrapper" class="container">
         @RenderBody()
 
-        <section id="footer-bar" style="margin-top: 8%; padding-left: 3%; padding-top: 2%">
-            <div class="row">
-                <div class="span2">
-                    <h4>Navigation</h4>
-                    <ul class="nav">
-                        <li><a href='@Url.Action("Index", "Home")'>Homepage</a></li>
-                        <li><a href='@Url.Action("Index", "LiveAnimal")'>All Products</a></li>
-                        <li><a href='@Url.Action("FeatureProduct", "LiveAnimal")'>Featured Products</a></li>
-                        <li><a href='@Url.Action("Index", "Payment")'>Payment</a></li>
-                        <li><a href='@Url.Action("AboutUs", "Home")'>About Us</a></li>
-                        <li><a href='@Url.Action("AboutUs", "Home")'>Contact Us</a></li>
-                        <li><a href="#">Login</a></li>
-                    </ul>
-                </div>
-                <div class="span2">
-                    <h4>Products</h4>
-                    <ul class="nav">
-                        <li><a href='@Url.Action("Index", "LiveAnimal")'>All Products</a></li>
-                        <li><a href='@Url.Action("FeatureProduct", "LiveAnimal")'>Premium Products</a></li>
-                        <li><a href='@Url.Action("FeatureProduct", "LiveAnimal")'>Latest Products</a></li>
+        @if (@TempData["Is_English"] != null)
+        {
+            @if (@TempData["Is_English"].Equals(true))
+            {
+                // For English
+                await Html.RenderPartialAsync("_FooterEn");
 
-                    </ul>
-                </div>
+            }
+            else
+            {
+                // For Bangla
+                await Html.RenderPartialAsync("_FooterBn");
 
-                <div class="span2">
-                    <h4>Contact</h4>
-                    <span>Nazrul Islam</span>
-                    <span>+88 0191280838</span>
-                    <span>8, East Lichubagan</span>
-                    <span>Tejgoan,Dhaka</span>
-                </div>
-                <div class="span1"></div>
-                <div class="span4">
-                    <p class="logo" style="margin-top:-1%"><img src="~/themes/images/logo_white.png" class="site_logo" alt=""></p>
-                    <p style="margin-top: -7% ">Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been nd typesetting industry. the  Lorem Ipsum has been nd typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
-                    <br />
-                </div>
-            </div>
-        </section>
-        <section id="copyright">
-            <span>Developed By Team PiedPiper.  &nbsp; &nbsp;  Contact : +88 0149749434 </span>
-        </section>
-
+            }
+            TempData.Keep("Is_English");
+        }
+        else
+        {
+            // Exception
+            await Html.RenderPartialAsync("_FooterEn");
+        }
     </div>
 
 </body>
