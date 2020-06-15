@@ -131,7 +131,7 @@ namespace Services
                 var customerPhone = model.Order?.PhoneNumber;
                 var customerAddress = model.Order?.Address;
                 var orderId = model.Order.Id;
-                string html = 
+                string html =
                     @"<!DOCTYPE html>
 <html lang='en'>
 
@@ -205,7 +205,7 @@ namespace Services
 <body>
     <header class='clearfix'>
         <h1 style='margin-top: 20px;'>INVOICE</h1>
-        <h3 style='color: #73c067'>Order Id: <a style='color:red;text-decoration: none;'>"+orderId+@"</a></h3>
+        <h3 style='color: #73c067'>Order Id: <a style='cursor: none;color:red;text-decoration: none;'>" + orderId+@"</a></h3>
         <div id='project'>
             <div><span>Customer</span> "+customerName+@"</div>
             <div><span>Phone No</span> "+customerPhone+@"</div>
