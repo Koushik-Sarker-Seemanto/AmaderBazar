@@ -36,7 +36,7 @@ namespace WebService.Controllers
         public async Task<IActionResult> Index(int? page)
         {
             AdminIndexViewModel results = await _adminPanelServices.GetAnimalList();
-            var list = results.LiveAnimalList.ToPagedList(page ?? 1, 2);
+            var list = results.LiveAnimalList.ToPagedList(page ?? 1, 9);
             return View(list);
         }
 
@@ -229,7 +229,7 @@ namespace WebService.Controllers
         public async Task<IActionResult> PlacedOrder(int? page)
         {
             var OrderViews =  await _orderServices.PlacedOrders();
-            var list = OrderViews.ToPagedList(page ?? 1, 2);
+            var list = OrderViews.ToPagedList(page ?? 1, 9);
             return View(list);
         }
 

@@ -72,7 +72,8 @@ namespace Services
                 foreach (var order in orders)
                 {
                     var orderView = await BuildOrderViewModel(order);
-                    orderViewModels.Add(orderView);
+                    if(orderView.Order != null && orderView.LiveAnimal != null)
+                        orderViewModels.Add(orderView);
                 }
 
                 return orderViewModels;

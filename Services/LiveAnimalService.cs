@@ -107,7 +107,7 @@ namespace Services
         {
             try
             {
-                var animals = await _repository.GetItemsAsync<LiveAnimal>(d => d.Category.Name == category && d.Sold == false);
+                var animals = await _repository.GetItemsAsync<LiveAnimal>(d => d.Category.Name == category );
                 var list = animals?.ToList();
                 list?.Reverse();
                 var animalList = BuildList(list);
@@ -125,7 +125,7 @@ namespace Services
         {
             try
             {
-                var animals = await _repository.GetItemsAsync<LiveAnimal>(d => d.Featured == true && d.Sold == false);
+                var animals = await _repository.GetItemsAsync<LiveAnimal>(d => d.Featured == true );
                 var list = animals?.ToList();
                 var animalList = BuildList(list);
                 return animalList;
@@ -141,7 +141,7 @@ namespace Services
         {
             try
             {
-                var animals = await _repository.GetItemsAsync<LiveAnimal>(d => d.Featured == false && d.Sold == false);
+                var animals = await _repository.GetItemsAsync<LiveAnimal>(d => d.Featured == false );
                 var list = animals?.ToList();
                 list?.Reverse();
                 if (list.Count > 8) list.RemoveRange(8,list.Count - 8 );
@@ -162,14 +162,16 @@ namespace Services
             foreach (var animal in animals)
             {
                 LiveAnimalViewModelFrontend liveAnimal = BuildLiveAnimalViewModelFrontend(animal);
-                list.Add(liveAnimal);
+                if(liveAnimal!= null)
+                    list.Add(liveAnimal);
             }
 
             return list;
         }
         private LiveAnimalViewModelFrontend BuildLiveAnimalViewModelFrontend(LiveAnimal animal)
         {
-            
+
+            if (animal == null) return null;
                 LiveAnimalViewModelFrontend liveAnimal = new LiveAnimalViewModelFrontend
                 {
                     Id = animal.Id,

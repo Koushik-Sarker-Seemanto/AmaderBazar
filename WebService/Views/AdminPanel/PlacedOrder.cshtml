@@ -9,7 +9,7 @@
 
 <div class="container-fluid m-auto">
     <div class="m-auto col-lg-9 bg-white p-5 mt-3 mb-3">
-        <h1 class="d-flex justify-content-center">Animal List</h1>
+        <h1 class="d-flex justify-content-center">Placed Orders</h1>
         <div class="table-responsive-md">
             <table class="table-bordered table table-striped">
                 <thead>
@@ -120,11 +120,11 @@
                                                             @{
                                                                 if (item.Order.Contacted)
                                                                 {
-                                                                    @Html.ActionLink("Contacted", "", "", "", new { @class = "btn btn-secondary disabled mr-2", })
+                                                                    @Html.ActionLink("Order Confirmed", "", "", "", new { @class = "btn btn-secondary disabled mr-2", })
                                                                 }
                                                                 else
                                                                 {
-                                                                    @Html.ActionLink(" Contact ", "ContactClient", "AdminPanel", new { Id = item.Order.Id }, new { @class = "btn btn-success mr-2", })
+                                                                    @Html.ActionLink(" Confirm Order ", "ContactClient", "AdminPanel", new { Id = item.Order.Id }, new { @class = "btn btn-success mr-2", })
                                                                 }
                                                             }
                                                             @Html.ActionLink("  Delete ", "OrderDelete", "AdminPanel", new { itemId = item.Order.Id }, new { @class = "btn btn-danger mr-2" })

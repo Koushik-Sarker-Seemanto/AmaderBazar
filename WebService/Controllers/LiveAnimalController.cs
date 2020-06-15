@@ -30,7 +30,7 @@ namespace WebService.Controllers
             ViewBag.CategoryCount = categoryWise;
             ViewBag.ColorCount = colorWise;
             var allAnimals = await _liveAnimalService.GetAllLiveAnimals();
-            allAnimals = allAnimals.Where(e => e.Sold == false).ToList();
+            allAnimals = allAnimals.ToList();
 
             Dictionary<string, string> queryParam = new Dictionary<string, string>();
             
@@ -69,7 +69,7 @@ namespace WebService.Controllers
             ViewBag.CategoryCount = categoryWise;
             ViewBag.ColorCount = colorWise;
             var allAnimals = await _liveAnimalService.GetAllLiveAnimals();
-            allAnimals = allAnimals.Where(e => e.Sold == false && e.Featured == true).ToList();
+            allAnimals = allAnimals.Where(e=> e.Featured == true).ToList();
 
             Dictionary<string, string> queryParam = new Dictionary<string, string>();
 
