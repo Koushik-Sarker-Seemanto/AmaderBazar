@@ -270,27 +270,53 @@
 
 <script>
 
-    $(document).on('click', '.animalDeleteBtn', function (e) {
-        e.preventDefault();
-        var clicked = $(this);
-        alert("Worked!");
-        $(this).unbind('click');
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.value) {
-                console.log("Clicked YES!");
-                clicked.unbind('click').click();
-                console.log("It Won't work");
-                //clicked.unbind('click').submit();
+    $(document).on('click',
+        '.animalDeleteBtn',
+        function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: '@Url.Action("AnimalDelete", "AdminPanel")',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        type: 'GET',
+                        data: "itemId=" + @Model.Id ,
+                        success: function(response) {
+                            if (response === true) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                );
+
+
+                            } else {
+                                Swal.fire(
+                                    'Ops!',
+                                    "Couldn't delete image!",
+                                    'Failed'
+                                );
+                            }
+                        },
+                        error: function(response) {
+                            Swal.fire(
+                                'Ops!',
+                                'Internal Error!',
+                                'Failed'
+                            );
+                        }
+                    });
             }
-        });
-    });
+        }
+   );
 
 </script>
