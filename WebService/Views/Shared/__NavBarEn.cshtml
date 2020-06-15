@@ -15,17 +15,13 @@
     <div style="overflow-y: scroll" id="mySidenav-bottom" class="sidenav-bottom sidenav">
         <a href='@Url.Action("Index", "Home")'><i class="fa fa-home"></i> Home</a>
 
-        <a style="cursor: pointer;" class="dropdown"><i class="fa fa-shopping-cart"></i> Kurbani <i class="fa fa-caret-down"></i></a>
-        <div class="dropdown-content">
-            <a href='@Url.Action("Index", "LiveAnimal")'>All Type</a>
-            <a href="#">COW</a>
-            <a href="#">GOAT</a>
-        </div>
+        <a style="cursor: pointer;" class="dropdown" href='@Url.Action("Index", "LiveAnimal")'><i class="fa fa-shopping-cart"></i> All Products </a>
+        
 
         <a href='@Url.Action("FeatureProduct", "LiveAnimal")'><i class="fa fa-shopping-cart"></i> Premium Product</a>
-        <a href="#"><i class="fa fa-shopping-cart"></i> New Product</a>
+        <a href='@Url.Action("NewProduct", "LiveAnimal")'><i class="fa fa-shopping-cart"></i> New Product</a>
         <a href="@Url.Action("Index", "Payment")"><i class="fa fa-comment-dollar"></i> Payment</a>
-        <a href="@Url.Action("ChangeLanguage", "Home",new {_language = false})"> <i class="fa fa-language"></i> Bangla</a>
+        <a href="@Url.Action("ChangeLanguage", "Home",new {_language = false})"> <i class="fa fa-language"></i> বাংলা</a>
 
     </div>
 
@@ -34,7 +30,7 @@
 @* Mobile NavBar Opening Button *@
 
 <span class="mobile_nav mobile_nav_icon" style="" onclick="openNav()">&#9776;</span>
-<p class="mobile_nav" style="padding-bottom: 5%;">This</p>
+
 
 
 
@@ -49,16 +45,14 @@
 
                 <li><a href='@Url.Action("Index", "Home")'>Home</a></li>
                 <li>
-                    <a href='@Url.Action("Index", "LiveAnimal")'>Kurbani</a>
-                    <ul>
-                        <li><a href='@Url.Action("Index", "LiveAnimal")'>Cow</a></li>
-                    </ul>
+                    <a href='@Url.Action("Index", "LiveAnimal")'>All Products</a>
+                    
                 </li>
 
-                <li><a href='@Url.Action("FeatureProduct", "LiveAnimal")'>Feature Product</a></li>
-                <li><a href="#">New Product</a></li>
+                <li><a href='@Url.Action("FeatureProduct", "LiveAnimal")'>Premium Product</a></li>
+                <li><a href='@Url.Action("NewProduct", "LiveAnimal")'>New Product</a></li>
                 <li><a href="@Url.Action("Index", "Payment")">Payment</a></li>
-                <li><a href="@Url.Action("ChangeLanguage", "Home",new {_language = false})">Bangla</a></li>
+                <li><a href="@Url.Action("ChangeLanguage", "Home",new {_language = false})">বাংলা</a></li>
 
             </ul>
         </nav>

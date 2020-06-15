@@ -15,15 +15,11 @@
     <div style="overflow-y: scroll" id="mySidenav-bottom" class="sidenav-bottom sidenav">
         <a href='@Url.Action("Index", "Home")'><i class="fa fa-home"></i> হোম</a>
 
-        <a style="cursor: pointer;"><i class="fa fa-shopping-cart"></i> প্রোডাক্ট </a>
-        @* <div class="dropdown-content"> *@
-        @* 	<a href='@Url.Action("Index", "LiveAnimal")'>All Type</a> *@
-        @* 	<a href="#">COW</a> *@
-        @* 	<a href="#">GOAT</a> *@
-        @* </div> *@
+        <a style="cursor: pointer;" href='@Url.Action("Index", "LiveAnimal")'><i class="fa fa-shopping-cart"></i> প্রোডাক্ট </a>
+        
 
         <a href='@Url.Action("FeatureProduct", "LiveAnimal")'><i class="fa fa-shopping-cart"></i> প্রিমিয়াম প্রোডাক্ট</a>
-        <a href="#"><i class="fa fa-shopping-cart"></i> নতুন প্রোডাক্ট</a>
+        <a href='@Url.Action("NewProduct", "LiveAnimal")'><i class="fa fa-shopping-cart"></i> নতুন প্রোডাক্ট</a>
         <a href="@Url.Action("Index", "Payment")"><i class="fa fa-comment-dollar"></i> পেমেন্ট</a>
         <a href="@Url.Action("ChangeLanguage", "Home",new {_language = true})"> <i class="fa fa-language"></i> English</a>
     </div>
@@ -43,12 +39,10 @@
 
     <div style="overflow-y: scroll" id="mySidenav-bottom" class="sidenav-bottom sidenav">
         <a href='@Url.Action("Index", "Home")'><i class="fa fa-home"></i> হোম</a>
-
-        <a style="cursor: pointer;" class="dropdown"><i class="fa fa-shopping-cart"></i> প্রোডাক্ট </a>
-        
+        <a style="cursor: pointer;" class="dropdown" href='@Url.Action("Index", "LiveAnimal")'><i class="fa fa-shopping-cart"></i> প্রোডাক্ট </a>
 
         <a href='@Url.Action("FeatureProduct", "LiveAnimal")'><i class="fa fa-shopping-cart"></i> প্রিমিয়াম প্রোডাক্ট</a>
-        <a href="#"><i class="fa fa-shopping-cart"></i> নতুন প্রোডাক্ট</a>
+        <a href='@Url.Action("NewProduct", "LiveAnimal")'><i class="fa fa-shopping-cart"></i> নতুন প্রোডাক্ট</a>
         <a href="@Url.Action("Index", "Payment")"><i class="fa fa-comment-dollar"></i> পেমেন্ট</a>
 
         <a href="@Url.Action("ChangeLanguage", "Home",new {_language = true})"> <i class="fa fa-language"></i> English</a>
@@ -59,7 +53,7 @@
 @* Mobile NavBar Opening Button *@
 
 <span class="mobile_nav mobile_nav_icon" style="" onclick="openNav()">&#9776;</span>
-<p class="mobile_nav" style="padding-bottom: 5%;">This</p>
+
 
 
 
@@ -79,7 +73,7 @@
                 </li>
 
                 <li><a href='@Url.Action("FeatureProduct", "LiveAnimal")'>প্রিমিয়াম প্রোডাক্ট</a></li>
-                <li><a href='@Url.Action("FeatureProduct", "LiveAnimal")'>নতুন প্রোডাক্ট</a></li>
+                <li><a href='@Url.Action("NewProduct", "LiveAnimal")'>নতুন প্রোডাক্ট</a></li>
                 <li><a href="@Url.Action("Index", "Payment")">পেমেন্ট</a></li>
  
                 <li><a href="@Url.Action("ChangeLanguage", "Home",new {_language = true})">English</a></li>
@@ -87,20 +81,8 @@
         </nav>
     </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
 <span class="mobile_nav mobile_nav_icon" style="" onclick="openNav()">&#9776;</span>
-<p class="mobile_nav" style="padding-bottom: 5%;">This</p>
+
 
 
 
