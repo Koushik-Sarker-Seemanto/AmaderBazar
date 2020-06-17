@@ -6,6 +6,18 @@
 }
 
 @Html.Partial("_NavBar")
+    <section class="homepage-slider" id="home-slider">
+        <div class="flexslider">
+            <ul class="slides">
+                <li>
+                    <img src="~/themes/images/banner1.png" alt="" />
+                </li>
+                <li>
+                    <img src="~/themes/images/banner.png" alt="" />
+                </li>
+            </ul>
+        </div>
+    </section>
 
 @if (@TempData["Is_English"] != null)
 {
@@ -204,3 +216,61 @@ else
         dom.append(newData);
     }
 </script>
+<script src="~/themes/js/common.js"></script>
+<script src="~/themes/js/jquery.flexslider-min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(document).ready(function () {
+            $('.flexslider').flexslider({
+                animation: "fade",
+                slideshowSpeed: 4000,
+                animationSpeed: 600,
+                controlNav: false,
+                directionNav: true,
+                controlsContainer: ".flex-container" // the container that holds the flexslider
+            });
+        });
+    });
+    $('#myCarousel-2-mobile').carousel({
+        interval: 3000,
+    });
+    $('#myCarousel-2').carousel({
+        interval: 4000,
+    });
+    $('#myCarousel-mobile').carousel({
+        interval: 3000,
+    });
+    $('#myCarousel').carousel({
+        interval: 4000,
+    });
+</script>
+
+<style>
+    @@media (min-width: 0px) and (max-width: 767px) {
+        .carousel-normal {
+            display: none;
+        }
+
+        .carousel-mobile {
+            display: block;
+        }
+
+        .banner-text {
+            margin-top: 0% !important;
+        }
+    }
+
+    @@media only screen and (min-width: 768px) {
+        .carousel-mobile {
+            display: none;
+        }
+
+        .carousel-normal {
+            display: block;
+        }
+
+        .banner-text {
+            margin-top: 0%;
+        }
+    }
+</style>
