@@ -1043,7 +1043,8 @@ section.our_client .row{
 		border-bottom:0 !important;
 	}
 	section.homepage-slider{
-		display:none;
+		display:block;
+		margin-top: 12%;
 	}
 	.account.pull-right{
 		width:100%;
