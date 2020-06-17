@@ -16,7 +16,7 @@
         <a href='@Url.Action("Index", "Home")'><i class="fa fa-home"></i> Home</a>
 
         <a style="cursor: pointer;" class="dropdown" href='@Url.Action("Index", "LiveAnimal")'><i class="fa fa-shopping-cart"></i> All Products </a>
-        
+
 
         <a href='@Url.Action("FeatureProduct", "LiveAnimal")'><i class="fa fa-shopping-cart"></i> Premium Product</a>
         <a href='@Url.Action("NewProduct", "LiveAnimal")'><i class="fa fa-shopping-cart"></i> New Product</a>
@@ -28,10 +28,11 @@
 </div>
 
 @* Mobile NavBar Opening Button *@
-
-<span class="mobile_nav mobile_nav_icon" style="" onclick="openNav()">&#9776;</span>
-
-
+<div class="mobile_nav mobile_nav_icon">
+    <span style="" onclick="openNav()">&#9776;</span>
+    @* <img src="~/themes/images/logorsz.png"/> *@
+    <span style="margin-left: 30%; font-size: 80%;font-family: 'Comic Sans MS', cursive, sans-serif" >farmhut.com.bd</span>
+</div>
 
 
 @* PC NavBar *@
@@ -46,7 +47,7 @@
                 <li><a href='@Url.Action("Index", "Home")'>Home</a></li>
                 <li>
                     <a href='@Url.Action("Index", "LiveAnimal")'>All Products</a>
-                    
+
                 </li>
 
                 <li><a href='@Url.Action("FeatureProduct", "LiveAnimal")'>Premium Product</a></li>
