@@ -4,7 +4,7 @@
 @model Models.LiveAnimalModels.LiveAnimalDetailsViewModel;
 <section class="header_text sub">
     <img class="pageBanner" src="~/themes/images/banner.png" alt="New products">
-    <h4><span>প্রোডাক্ট বিস্তারিত</span></h4>
+    <h4><span>কনফার্ম অর্ডার</span></h4>
 </section>
 @if (Model.LiveAnimalDetails != null)
 {
@@ -13,7 +13,23 @@
         <div class="row">
             <div class="span12">
                 <div class="row">
-                    <div class="span9">
+                    <div class=" span4 product-box">
+                        <div class="mobile-text-center" style="margin-top: 7%;">
+                            <h5 style="text-align: center;">Confirm Order</h5>
+                        </div>
+                        <div style="margin-top: -4%;">
+                            <hr>
+
+                        </div>
+                        <div style="margin-top: -4%;">
+                            <hr>
+
+                        </div>
+                        <div style="margin-top: 5%;">
+                            @{ await Html.RenderPartialAsync("_OrderForm", Model.Order); }
+                        </div>
+                    </div>
+                    <div class="span5">
                         @{
                             if (Model.LiveAnimalDetails.Images != null)
                             {
@@ -42,7 +58,6 @@
                                 </ul>
                             }
                         }
-
                     </div>
                     <div class="span3">
                         @if (Model.LiveAnimalDetails.TitleBn != null)
@@ -85,7 +100,7 @@
                         @if (Model.LiveAnimalDetails.LocationBn != null)
                         {
                             <div class="mobile-text-center">
-                                <strong style="font-size: medium;">ঠিকানা  : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.LocationBn</span>
+                                <strong style="font-size: medium;">ঠিকানা : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.LocationBn</span>
                             </div>
                         }
                         else
@@ -100,10 +115,10 @@
                                 <strong style="font-size: medium;">উচ্চতা : </strong> <span style="font-size: medium;" id="height">@Model.LiveAnimalDetails.Height Feet</span>
                             </div>
                             <script>
-                            var num = @Model.LiveAnimalDetails.Height;
-                            $("#height")
-                                .text(replaceNumbers(num.toString()) +" ফুট");
-                            console.log(replaceNumbers(num.toString()));
+                                var num = @Model.LiveAnimalDetails.Height;
+                                $("#height")
+                                    .text(replaceNumbers(num.toString()) + " ফুট");
+                                console.log(replaceNumbers(num.toString()));
 
                             </script>
                         }
@@ -119,10 +134,10 @@
                                 <strong style="font-size: medium;">ওজন : </strong> <span style="font-size: medium;" id="weight">@Model.LiveAnimalDetails.Weight KG</span>
                             </div>
                             <script>
-                            var num = @Model.LiveAnimalDetails.Weight;
-                            $("#weight")
-                                .text(replaceNumbers(num.toString()) +" কেজি");
-                            console.log(replaceNumbers(num.toString()));
+                                var num = @Model.LiveAnimalDetails.Weight;
+                                $("#weight")
+                                    .text(replaceNumbers(num.toString()) + " কেজি");
+                                console.log(replaceNumbers(num.toString()));
 
                             </script>
                         }
@@ -138,10 +153,10 @@
                                 <strong style="font-size: medium;"> দাঁত : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Teeth</span>
                             </div>
                             <script>
-                            var num = @Model.LiveAnimalDetails.Teeth;
-                            $("#weight")
-                                .text(replaceNumbers(num.toString()) );
-                            console.log(replaceNumbers(num.toString()));
+                                var num = @Model.LiveAnimalDetails.Teeth;
+                                $("#weight")
+                                    .text(replaceNumbers(num.toString()));
+                                console.log(replaceNumbers(num.toString()));
 
                             </script>
                         }
@@ -172,11 +187,11 @@
                                 <strong style="font-size: x-large;" id="priceM">&#2547 @Model.LiveAnimalDetails.Price </strong>
                             </div>
                             <script>
-                            var num = @Model.LiveAnimalDetails.Price;
+                                var num = @Model.LiveAnimalDetails.Price;
 
-                            $("#priceM")
-                                .text("৳ " +replaceNumbers(num.toString()));
-                            console.log(replaceNumbers(num.toString()));
+                                $("#priceM")
+                                    .text("৳ " + replaceNumbers(num.toString()));
+                                console.log(replaceNumbers(num.toString()));
 
                             </script>
                         }
@@ -186,22 +201,25 @@
                                 <strong style="font-size: x-large;">&#2547 N/A </strong>
                             </div>
                         }
-                        <div class="mobile-text-center" style="margin-top: 7%;">
-                            <h5 style="text-align: center;">Confirm Order</h5>
-                        </div>
-                        <div style="margin-top: -4%;">
-                            <hr>
+                        @* <div class="mobile-text-center" style="margin-top: 7%;"> *@
+                        @*     <h5 style="text-align: center;">Confirm Order</h5> *@
+                        @* </div> *@
+                        @* <div style="margin-top: -4%;"> *@
+                        @*     <hr> *@
+                        @* *@
+                        @* </div> *@
+                        @* <div style="margin-top: -4%;"> *@
+                        @*     <hr> *@
+                        @* *@
+                        @* </div> *@
+                        @* *@
+                        @* <div style="margin-top: 5%;"> *@
+                        @*     @{ await Html.RenderPartialAsync("_OrderForm", Model.Order); } *@
+                        @* </div> *@
 
-                        </div>
-                        <div style="margin-top: -4%;">
-                            <hr>
-
-                        </div>
-
-                        <div style="margin-top: 5%;">
-                            @{ await Html.RenderPartialAsync("_OrderForm", Model.Order); }
-                        </div>
                     </div>
+                    @* DIV 9 END *@
+                    
                 </div>
 
             </div>
