@@ -37,7 +37,7 @@
                                     @foreach (var image in Model.LiveAnimalDetails.Images)
                                     {
                                         <li class="span1">
-                                            <a class="thumbnail" data-fancybox-group="group1" title="Description 2"><img src="~/images/@image" alt=""></a>
+                                            <a class="thumbnail" data-fancybox-group="group1" title="Description 2" href="~/images/@image"><img src="~/images/@image" alt=""></a>
                                         </li>
                                     }
 
@@ -57,9 +57,9 @@
                         <div>
                             <strong style="font-size: medium;">রং  : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.ColorBn</span>
                         </div>
-                        <div>
-                            <strong style="font-size: medium;">ঠিকানা : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span>
-                        </div>
+                        @* <div> *@
+                        @*     <strong style="font-size: medium;">ঠিকানা : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span> *@
+                        @* </div> *@
                         @if (Model.LiveAnimalDetails.Sold == false)
                         {
                             
