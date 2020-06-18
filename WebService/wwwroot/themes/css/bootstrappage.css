@@ -93,6 +93,9 @@
 */
 
 @media (max-width: 767px) {
+    .thumbnail-main{
+        display: none;
+    }
     .pageBanner{
         width: 100%; margin-top: 8%; padding-bottom:8px;
     }

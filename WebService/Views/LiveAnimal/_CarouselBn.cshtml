@@ -1,3 +1,4 @@
+@model Models.LiveAnimalModels.LiveAnimalDetailsViewModel;
 
 <h4 class="carousel-normal title">
     <span class="pull-left"><span class="text"><strong>রিলেটেড</strong> প্রোডাক্ট</span></span>
@@ -18,7 +19,7 @@
                         <div class="product-box">
                             <span class="sale_tag"></span>
                             @{
-                                if (Model.Related[i].Images != null)
+                                if (Model.Related[i].Images != null && Model.Related[i].Images.Count > 0)
                                 {
                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img alt="" src="~/images/@Model.Related[i].Images[0]"></a><br />
                                 }
@@ -77,7 +78,7 @@
                             <div class="product-box">
                                 <span class="sale_tag"></span>
                                 @{
-                                    if (Model.Related[j].Images != null)
+                                    if (Model.Related[j].Images != null && Model.Related[j].Images.Count > 0)
                                     {
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img alt="" src="~/images/@Model.Related[j].Images[0]"></a><br />
                                     }
@@ -149,7 +150,7 @@
                         <div class="product-box">
                             <span class="sale_tag"></span>
                             @{
-                                if (Model.Related[i].Images != null)
+                                if (Model.Related[i].Images != null && Model.Related[i].Images.Count > 0)
                                 {
                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img alt="" src="~/images/@Model.Related[i].Images[0]"></a><br />
                                 }
@@ -206,7 +207,7 @@
                             <div class="product-box">
                                 <span class="sale_tag"></span>
                                 @{
-                                    if (Model.Related[j].Images != null)
+                                    if (Model.Related[j].Images != null && Model.Related[j].Images.Count > 0)
                                     {
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img alt="" src="~/images/@Model.Related[j].Images[0]"></a><br />
                                     }

@@ -105,7 +105,7 @@
                                 <div class="product-box">
                                     <span class="sale_tag"></span>
                                     @{
-                                        if (animal.Images != null)
+                                        if (animal.Images != null && animal.Images.Count>0)
                                         {
                                             <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'><img alt="" src="~/images/@animal.Images[0]"></a><br />
                                         }

@@ -36,7 +36,7 @@
                                                 <div class="product-box">
                                                     <span class="sale_tag"></span>
                                                     @{
-                                                        if (Model.Featured[i].Images != null)
+                                                        if (Model.Featured[i].Images != null && Model.Featured[i].Images.Count > 0)
                                                         {
                                                             <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})'><img alt="" src="~/images/@Model.Featured[i].Images[0]"></a><br />
                                                         }
@@ -93,7 +93,7 @@
                                                     <div class="product-box">
                                                         <span class="sale_tag"></span>
                                                         @{
-                                                            if (Model.Featured[j].Images != null)
+                                                            if (Model.Featured[j].Images != null && Model.Featured[j].Images.Count > 0)
                                                             {
                                                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})'><img alt="" src="~/images/@Model.Featured[j].Images[0]"></a><br />
                                                             }
@@ -163,7 +163,7 @@
                                                 <div class="product-box">
                                                     <span class="sale_tag"></span>
                                                     @{
-                                                        if (Model.Featured[i].Images != null)
+                                                        if (Model.Featured[i].Images != null && Model.Featured[i].Images.Count > 0)
                                                         {
                                                             <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})'><img alt="" src="~/images/@Model.Featured[i].Images[0]"></a><br />
                                                         }
@@ -221,7 +221,7 @@
                                                     <div class="product-box">
                                                         <span class="sale_tag"></span>
                                                         @{
-                                                            if (Model.Featured[j].Images != null)
+                                                            if (Model.Featured[j].Images != null && Model.Featured[j].Images.Count > 0)
                                                             {
                                                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})'><img alt="" src="~/images/@Model.Featured[j].Images[0]"></a><br />
                                                             }
@@ -277,13 +277,14 @@
             }
             else
             {
-                <h2>No DAATA Found</h2>
+                <h2>No DATA Found</h2>
             }
 
             <br />
             <div class="row">
                 <div class="span12">
-                
+                @if(Model != null)
+                {
                     
                     @*---Latest Product---     [Carousel For PC and TAB]*@
                 
@@ -304,7 +305,7 @@
                                             <div class="product-box">
                                                 <span class="sale_tag"></span>
                                                 @{
-                                                    if (Model.Latest[i].Images != null)
+                                                    if (Model.Latest[i].Images != null && Model.Latest[i].Images.Count > 0 )
                                                     {
                                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'><img alt="" src="~/images/@Model.Latest[i].Images[0]"></a><br />
                                                     }
@@ -362,7 +363,7 @@
                                                 <div class="product-box">
                                                     <span class="sale_tag"></span>
                                                     @{
-                                                        if (Model.Latest[j].Images != null)
+                                                        if (Model.Latest[j].Images != null && Model.Latest[j].Images.Count > 0)
                                                         {
                                                             <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'><img alt="" src="~/images/@Model.Latest[j].Images[0]"></a><br />
                                                         }
@@ -434,7 +435,7 @@
                                             <div class="product-box">
                                                 <span class="sale_tag"></span>
                                                 @{
-                                                    if (Model.Latest[i].Images != null)
+                                                    if (Model.Latest[i].Images != null && Model.Latest[i].Images.Count > 0)
                                                     {
                                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'><img alt="" src="~/images/@Model.Latest[i].Images[0]"></a><br />
                                                     }
@@ -492,7 +493,7 @@
                                                 <div class="product-box">
                                                     <span class="sale_tag"></span>
                                                     @{
-                                                        if (Model.Latest[j].Images != null)
+                                                        if (Model.Latest[j].Images != null && Model.Latest[j].Images.Count > 0)
                                                         {
                                                             <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'><img alt="" src="~/images/@Model.Latest[j].Images[0]"></a><br />
                                                         }
@@ -540,7 +541,11 @@
                             }
                         </div>
                     </div>
-
+                }
+                else
+                {
+                    <h2>No DATA Found</h2>
+                }
                 </div>
             </div>
             <div class="row feature_box">
