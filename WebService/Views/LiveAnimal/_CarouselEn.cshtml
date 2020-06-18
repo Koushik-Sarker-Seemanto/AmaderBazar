@@ -24,7 +24,14 @@
                             @{
                                 if (Model.Related[i].Images != null)
                                 {
-                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img alt="" src="~/images/@Model.Related[i].Images[0]"></a><br />
+                                                        <div style="position: relative; left: 0; top: 0;">
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img class="card-pic" alt="" src="~/images/@Model.Related[i].Images[0]"></a>
+                                                            @if (Model.Related[i].Sold)
+                                                            {
+                                                                <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                                            }
+
+                                                        </div>
                                 }
                                 else
                                 {
@@ -77,14 +84,21 @@
                                 @{
                                     if (Model.Related[j].Images != null)
                                     {
-                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img alt="" src="~/images/@Model.Related[j].Images[0]"></a><br />
+                                        <div style="position: relative; left: 0; top: 0;">
+                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img class="card-pic" alt="" src="~/images/@Model.Related[j].Images[0]"></a>
+                                            @if (Model.Related[j].Sold)
+                                            {
+                                                <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                            }
+
+                                        </div>
                                     }
                                     else
                                     {
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img alt="" src="~/static/noimage.png"></a><br />
                                     }
                                 }
-                                @if(Model.Related[j].Title != null)
+                                @if (Model.Related[j].Title != null)
                                 {
                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">@Model.Related[j].Title</a><br />
                                 }
@@ -92,7 +106,7 @@
                                 {
                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">Title: N/A</a><br />
                                 }
-                                @if(Model.Related[j].Origin != null)
+                                @if (Model.Related[j].Origin != null)
                                 {
                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>@Model.Related[j].Origin</a>
                                 }
@@ -100,7 +114,7 @@
                                 {
                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>Origin: N/A</a>
                                 }
-                                @if(!double.IsNaN(Model.Related[j].Price))
+                                @if (!double.IsNaN(Model.Related[j].Price))
                                 {
                                     <p class="price">&#2547 @Model.Related[j].Price</p>
                                 }
@@ -142,14 +156,21 @@
                             @{
                                 if (Model.Related[i].Images != null)
                                 {
-                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img alt="" src="~/images/@Model.Related[i].Images[0]"></a><br />
+                                    <div style="position: relative; left: 0; top: 0;">
+                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img class="card-pic" alt="" src="~/images/@Model.Related[i].Images[0]"></a>
+                                        @if (Model.Related[i].Sold)
+                                        {
+                                            <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                        }
+
+                                    </div>
                                 }
                                 else
                                 {
                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img alt="" src="~/static/noimage.png"></a><br />
                                 }
                             }
-                            @if(Model.Related[i].Title != null)
+                            @if (Model.Related[i].Title != null)
                             {
                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">@Model.Related[i].Title</a><br />
                             }
@@ -157,7 +178,7 @@
                             {
                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">Title: N/A</a><br />
                             }
-                            @if(Model.Related[i].Origin != null)
+                            @if (Model.Related[i].Origin != null)
                             {
                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>@Model.Related[i].Origin</a>
                             }
@@ -165,7 +186,7 @@
                             {
                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>Origin: N/A</a>
                             }
-                            @if(!double.IsNaN(Model.Related[i].Price))
+                            @if (!double.IsNaN(Model.Related[i].Price))
                             {
                                 <p class="price">&#2547 @Model.Related[i].Price</p>
                             }
@@ -192,14 +213,21 @@
                                 @{
                                     if (Model.Related[j].Images != null)
                                     {
-                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img alt="" src="~/images/@Model.Related[j].Images[0]"></a><br />
+                                        <div style="position: relative; left: 0; top: 0;">
+                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img class="card-pic" alt="" src="~/images/@Model.Related[j].Images[0]"></a>
+                                            @if (Model.Related[j].Sold)
+                                            {
+                                                <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                            }
+
+                                        </div>
                                     }
                                     else
                                     {
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img alt="" src="~/static/noimage.png"></a><br />
                                     }
                                 }
-                                @if(Model.Related[j].Title != null)
+                                @if (Model.Related[j].Title != null)
                                 {
                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">@Model.Related[j].Title</a><br />
                                 }
@@ -207,7 +235,7 @@
                                 {
                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">Title: N/A</a><br />
                                 }
-                                @if(Model.Related[j].Origin != null)
+                                @if (Model.Related[j].Origin != null)
                                 {
                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>@Model.Related[j].Origin</a>
                                 }
@@ -215,7 +243,7 @@
                                 {
                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>Origin: N/A</a>
                                 }
-                                @if(!double.IsNaN(Model.Related[j].Price))
+                                @if (!double.IsNaN(Model.Related[j].Price))
                                 {
                                     <p class="price">&#2547 @Model.Related[j].Price</p>
                                 }
