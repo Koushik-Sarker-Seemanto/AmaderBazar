@@ -23,7 +23,7 @@ namespace WebService.Controllers
             _liveAnimalService = liveAnimalService;
             _orderService = orderService;
         }
-        public async Task<IActionResult> Index(int? page, int? min, int? max, string category = null, string color = null)
+        public async Task<IActionResult> Index(int? page, int? min, int? max, string category = null, string color = null, string title = null)
         {
             Dictionary<string, int> categoryWise = await _liveAnimalService.GetCategoryCount();
             Dictionary<string, int> colorWise = await _liveAnimalService.GetColorCount();
@@ -38,6 +38,11 @@ namespace WebService.Controllers
             {
                 allAnimals = allAnimals.Where(e => e.Price > min).ToList();
                 queryParam.Add("min", min.ToString());
+            }
+            if (title != null)
+            {
+                allAnimals = allAnimals.Where(e => e.Title.Contains(title)).ToList();
+                queryParam.Add("title", title);
             }
 
             if (max != null)
