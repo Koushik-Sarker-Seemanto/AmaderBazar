@@ -189,6 +189,30 @@ else
 
     (function ($) {
 
+
+        $(document).ready(function(){
+
+            $("#product-dropdown").click(function(){
+                let main = $(this);
+                console.log("Toggled");
+                $(".showDropdown").each(function(){
+                    if($(this).css("visibility") === "hidden" && $(this).css('display') === 'none')
+                    {
+                        main.addClass("sfHover");
+                        $(this).css("visibility", "inherit");
+                        $(this).css('display', 'block');
+                    }
+                    else
+                    {
+                        main.removeClass("sfHover");
+                        $(this).css("visibility", "hidden");
+                        $(this).css('display', 'none');
+                    }
+                });
+                
+            });
+        });
+
         $(document).ready(function(){
             $("#search-btn").click(function(e){
                 

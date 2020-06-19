@@ -316,6 +316,16 @@ section.navbar{
 	text-align: center;
 	padding: 10px 14px;
 	}
+	#menu > ul > li > form {
+		font-size: 11px;
+		color: #111;
+		display: block;
+		text-transform: uppercase;
+		font-weight: bold;
+		text-align: center;
+		padding: 5px 5px;
+		}
+
 #menu > ul > li.active{
 	background-color:var(--logoGreen);
 }

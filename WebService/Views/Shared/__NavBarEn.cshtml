@@ -30,7 +30,7 @@
 @* Mobile NavBar Opening Button *@
 <div class="mobile_nav mobile_nav_icon" style="display: inline-block">
     <i class="fa fa-bars hamBurger" style="" onclick="openNav()"></i>
-    <span id="nav-name" class="" style="margin-left: 10px;font-size: 100%;font-family: 'Oleo Script Swash Caps', cursive;" >FarmHut</span>
+    <span id="nav-name" class="hamBurger" style="margin-left: 10px;font-size: 100%;font-family: 'Oleo Script Swash Caps', cursive;" >FarmHut</span>
     <form id="search-form" class="inline searchBar" method="get" asp-action="Index" asp-controller="LiveAnimal" style="margin-bottom: 0px; margin-right: 25px; float: right">
         <input id="title-input" name="title" style="width: 55vw; margin-bottom: 0px;margin-right: 0;display: none;" type="text" class="form-search" placeholder="Search"/>
         <i id="search-btn" type="submit" style="margin-left: 0" class="fa fa-search"></i>
@@ -46,16 +46,23 @@
         <a href="@Url.Action("Index", "Home")" class="logo pull-left"><img style="width: 180px; height: 90px;margin-top: -20px" src="~/themes/images/logo.png" class="site_logo" alt=""></a>
         <nav id="menu" class=" pull-right">
             <ul>
-
                 <li><a href='@Url.Action("Index", "Home")'>Home</a></li>
-                <li>
-                    <a href='@Url.Action("Index", "LiveAnimal")'>All Products</a>
+                <li id="product-dropdown">
+                    <a style="cursor: pointer;">Products <i class="fa fa-caret-down"></i></a>
+                    <ul class="showDropdown" style="z-index: 100;">
+                        <li><a href='@Url.Action("Index", "LiveAnimal")'>All Products</a></li>
+                        <li><a href='@Url.Action("FeatureProduct", "LiveAnimal")'>Premium Product</a></li>
+                        <li><a href='@Url.Action("NewProduct", "LiveAnimal")'>New Product</a></li>
+                    </ul>
 
                 </li>
-
-                <li><a href='@Url.Action("FeatureProduct", "LiveAnimal")'>Premium Product</a></li>
-                <li><a href='@Url.Action("NewProduct", "LiveAnimal")'>New Product</a></li>
                 <li><a href="@Url.Action("Index", "Payment")">Payment</a></li>
+                <li>
+                    <form class="inline form-horizontal" method="get" asp-action="Index" asp-controller="LiveAnimal" style="float: right">
+                        <input id="pc-title-input" name="title" style="margin-bottom: 0;margin-right: 0;" type="text" class="form-inline" placeholder="Search"/>
+                        <button class="btn btn-success" id="pc-search-btn" type="submit" style="margin-left: 0;margin-top: 0; background: var(--logoGreen);"><i class="fa fa-search"></i></button>
+                    </form>
+                </li>
                 <li><a href="@Url.Action("ChangeLanguage", "Home",new {_language = false})">বাংলা</a></li>
 
             </ul>
