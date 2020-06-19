@@ -189,6 +189,24 @@ else
 
     (function ($) {
 
+        $(document).ready(function(){
+            $("#search-btn").click(function(e){
+                
+                let inp = $("#title-input");
+                let name = $("#nav-name");
+                if(inp.val() == "")
+                {
+                    e.preventDefault();
+                    name.animate({width:'toggle'},350);
+                    inp.animate({width:'toggle'},350);
+                }
+                else
+                {
+                    $("#search-form").submit();
+                }
+            });
+        });
+
         $(document).ready(function () {
             $(".dropdown").click(function () {
                 $(".dropdown-content").fadeToggle();
