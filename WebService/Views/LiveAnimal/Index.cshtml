@@ -186,6 +186,7 @@ else
         let colorValue = "";
         let minValue = "";
         let maxValue = "";
+        let titleValue = "";
         filters.children().each(function () {
             let key = $(this).attr('id');
             let value = $(this).attr('name').trim();
@@ -201,12 +202,15 @@ else
             if (key === "max") {
                 maxValue = "&max=" + value;
             }
+            if (key === "title") {
+                titleValue = "&title=" + value;
+            }
         });
-        if (minValue === "" && maxValue === "" && colorValue === "" && categoryValue === "") {
+        if (minValue === "" && maxValue === "" && colorValue === "" && categoryValue === "" && titleValue === "") {
             window.location.href = '/LiveAnimal';
         }
         else {
-            window.location.href = '/LiveAnimal?' + minValue + maxValue + categoryValue + colorValue;
+            window.location.href = '/LiveAnimal?' + minValue + maxValue + categoryValue + colorValue + titleValue;
         }
     }
 

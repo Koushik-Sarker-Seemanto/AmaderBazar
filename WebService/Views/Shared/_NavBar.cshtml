@@ -58,7 +58,7 @@
         color: white;
         top: 0%;
         z-index: 100;
-        padding: 4%;
+        padding: 15px;
         width: 100vw;
         position: fixed;
         margin-left: -50vw;
@@ -110,7 +110,7 @@ else
 @* Media Query For (Mobile & Tab) or Pc *@
 
 <style>
-    @@media (min-width: 0px) and (max-width: 766px) {
+    @@media (min-width: 0px) and (max-width: 767px) {
         .pc_nav {
             display: none;
         }
@@ -119,13 +119,23 @@ else
         }
     }
 
-    @@media (min-width: 766px) {
+    @@media (min-width: 768px) {
         .pc_nav {
             display: block;
         }
 
         .mobile_nav {
             display: none;
+        }
+        
+        .searchBar {
+            display: none;
+        }
+        .hamBurger {
+            display: none;
+        }
+        .mobile_nav_icon {
+            background: none;
         }
     }
 

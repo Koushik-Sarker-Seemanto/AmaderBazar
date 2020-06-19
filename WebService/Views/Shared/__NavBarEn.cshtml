@@ -28,10 +28,13 @@
 </div>
 
 @* Mobile NavBar Opening Button *@
-<div class="mobile_nav mobile_nav_icon">
-    <span style="" onclick="openNav()">&#9776;</span>
-    @* <img src="~/themes/images/logorsz.png"/> *@
-    <span class="farmhut-com-bd" style="font-size: 80%;font-family: 'Oleo Script Swash Caps', cursive;" >FarmHut</span>
+<div class="mobile_nav mobile_nav_icon" style="display: block">
+    <span class="hamBurger" style="" onclick="openNav()">&#9776;</span>
+    <form class="inline searchBar" method="get" asp-action="Index" asp-controller="LiveAnimal" style="margin-bottom: 0px; margin-right: 25px; float: right">
+        <input name="title" style="margin-bottom: 0px;margin-right: 0" type="text" class="form-search" placeholder="Search"/>
+        <button type="submit" style="margin-left: 0" class="btn btn-success"><i class="fa fa-search"></i></button>
+    </form>
+    @*<span class="farmhut-com-bd" style="font-size: 80%;font-family: 'Oleo Script Swash Caps', cursive;" >FarmHut</span>*@
 </div>
 
 

@@ -7,7 +7,7 @@
     <h4><span>Product Detail</span></h4>
 </section>
 
-@if (@Model.LiveAnimalDetails != null)
+@if (@Model?.LiveAnimalDetails != null)
 {
     <section class="main-content">
         <div class="row">
@@ -16,9 +16,9 @@
                     <div class="span9">
 
                         @{
-                            if (Model.LiveAnimalDetails.Images != null)
+                            if (Model.LiveAnimalDetails.Images != null && Model.LiveAnimalDetails.Images.Count > 0)
                             {
-                                <a href="~/images/@Model.LiveAnimalDetails.Images[0]" class="thumbnail" data-fancybox-group="group1" title="Description 1" id="big">
+                                <a href="~/images/@Model.LiveAnimalDetails.Images[0]" class="thumbnail thumbnail-main" data-fancybox-group="group1" title="Description 1" id="big">
                                     <img alt="" src="~/images/@Model.LiveAnimalDetails.Images[0]" id="big-img">
                                 </a>
                             }
@@ -30,7 +30,7 @@
                             }
                         }
                         @{
-                            if (Model.LiveAnimalDetails.Images != null)
+                            if (Model.LiveAnimalDetails.Images != null && Model.LiveAnimalDetails.Images.Count > 0)
                             {
                                 <ul class="thumbnails small">
                                     @foreach (var image in Model.LiveAnimalDetails.Images)
