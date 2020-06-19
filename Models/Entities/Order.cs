@@ -33,5 +33,8 @@ namespace Models.Entities
         public DateTime DeliveryDate { get; set; }
         [DefaultValue(false)]
         public bool Contacted { get; set; }
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime PaymentExpire { get; set; }
+
     }
 }

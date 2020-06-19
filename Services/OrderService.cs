@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -100,6 +101,12 @@ namespace Services
                     return false;
                 }
                 order.Contacted = true;
+                DateTime paymentExpire = DateTime.Now;
+                paymentExpire = paymentExpire.AddMinutes(30);
+                order.PaymentExpire = paymentExpire;
+                Debug.Print(order.PaymentExpire + "");
+                
+                Debug.Print(order.PaymentExpire + "");
                 await _repository.UpdateAsync<Order>(e => e.Id == order.Id, order);
                 return true;
             }
