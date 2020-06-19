@@ -188,11 +188,13 @@ namespace WebService.Controllers
             viewModel.LiveAnimalDetails = liveAnimalDetails;
             viewModel.Related = await GetRelated(liveAnimalDetails.Category);
             viewModel.Order = order;
+            // Debug.Print(order.DeliveryDate);
             
             if (ModelState.IsValid == false)
             {
                 return View(viewModel);
             }
+
             var id = Guid.NewGuid().ToString();
             order.Id = id;
             await _orderService.AddOrder(order);

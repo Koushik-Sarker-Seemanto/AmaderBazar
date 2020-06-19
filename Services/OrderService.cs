@@ -131,6 +131,7 @@ namespace Services
                 var customerPhone = model.Order?.PhoneNumber;
                 var customerAddress = model.Order?.Address;
                 var orderId = model.Order.Id;
+                var deliveryDAte = model.Order?.DeliveryDate.ToString("yyyy MMMM dd");
                 string html =
                     @"<!DOCTYPE html>
 <html lang='en'>
@@ -211,7 +212,7 @@ namespace Services
             <div><span>Phone No</span> "+customerPhone+@"</div>
             <div><span>Address</span> "+customerAddress+@"</div>
             <div><span>DATE</span> "+DateTime.Now.ToString("MM/dd/yyyy")+@"</div>
-            <div><span>DUE DATE</span> September 17, 2015</div>
+            <div><span>Delivery DATE</span> "+deliveryDAte+@" </div>
         </div>
     </header>
     <div>
@@ -267,24 +268,24 @@ namespace Services
             </thead>
             <tbody>
                 <tr>
-                    <td class='service'>"+model.LiveAnimal.Title+@"</td>
-                    <td class='unit'>$"+model.LiveAnimal.Price+@"</td>
+                    <td class='service'>"+model.LiveAnimal.Title+ @"</td>
+                    <td class='unit'>৳ " + model.LiveAnimal.Price+ @"</td>
                     <td class='qty'>1</td>
-                    <td class='total'>$"+model.LiveAnimal.Price+@"</td>
+                    <td class='total'>৳ " + model.LiveAnimal.Price+ @"</td>
                 </tr>
                 
                 </tr>
                 <tr>
                     <td style='text-align: right;' colspan='3'>SUBTOTAL</td>
-                    <td class='total'>$"+model.LiveAnimal.Price+@"</td>
+                    <td class='total'>৳ " + model.LiveAnimal.Price+ @"</td>
                 </tr>
                 <tr>
                     <td style='text-align: right;' colspan='3'>TAX 0%</td>
-                    <td class='total'>$0</td>
+                    <td class='total'>৳ 0</td>
                 </tr>
                 <tr>
                     <td style='text-align: right;' colspan='3' class='grand total'>GRAND TOTAL</td>
-                    <td class='grand total'>$"+model.LiveAnimal.Price+@"</td>
+                    <td class='grand total'>৳ " + model.LiveAnimal.Price+@"</td>
                 </tr>
             </tbody>
         </table>

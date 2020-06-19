@@ -3,47 +3,56 @@
 
 @Html.ValidationSummary(true, "", new { @class = "text-danger alert alert-danger" })
 
-<form autocomplete="Off" method="post"  asp-action="Order" class="form-stacked">
-    @Html.AntiForgeryToken()
-    <div class="control-group">
-        <label class="control-label"><strong>Name</strong></label>
-        <div class="controls">
-            <input asp-for="Name" type="text" placeholder="Enter your Name" style="width: 90%;"><br/>
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="control-group">
-        <label class="control-label"><strong>Phone Number</strong></label>
-        <div class="controls">
-            <input asp-for="PhoneNumber" type="text" placeholder="Enter your Phone Number" style="width: 90%;"><br/>
-            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label"><strong>Delivery Address</strong></label>
-        <div class="controls">
-            <input type="text" asp-for="Address" placeholder="Enter your Delivery Address (Please Provide Full Detailes)" style="width: 90%;">
-            <span asp-validation-for="Address" class="text-danger"></span>
-
-        </div>
-    </div>
-    <div class="control-group" style="display: none;">
-        <label class="control-label"><strong>LiveAnimalId</strong></label>
-        <div class="controls">
-            <input type="text" asp-for="LiveAnimalId" placeholder="Enter your Address" style="width: 90%;" value="@ViewBag.LiveAnimalDetailsId">
-            <span asp-validation-for="LiveAnimalId" class="text-danger"></span>
-
-        </div>
-    </div>
-    @if (@ViewBag.LiveAnimalDetailsSold == false)
-    {
+    <form autocomplete="Off" method="post" asp-action="Order" class="form-stacked">
+        @Html.AntiForgeryToken()
         <div class="control-group">
+            <label class="control-label"><strong>Name</strong></label>
             <div class="controls">
-                <button type="submit" style="font-size: 16px; padding: 1%;width: 94%" class="btn btn-success">Confirm Order</button>
+                <input asp-for="Name" type="text" placeholder="Enter your Name" style="width: 90%;"><br />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
         </div>
-    }
 
-</form>
+        <div class="control-group">
+            <label class="control-label"><strong>Phone Number</strong></label>
+            <div class="controls">
+                <input asp-for="PhoneNumber" type="text" placeholder="Enter your Phone Number" style="width: 90%;"><br />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label"><strong>Delivery Address</strong></label>
+            <div class="controls">
+                <input type="text" asp-for="Address" placeholder="Enter your Delivery Address (Please Provide Full Detailes)" style="width: 90%;">
+                <span asp-validation-for="Address" class="text-danger"></span>
+
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label"><strong>Delivery Date</strong></label>
+            <div class="controls">
+                <input type="Date" asp-for="DeliveryDate"  style="width: 90%;">
+                <span asp-validation-for="DeliveryDate" class="text-danger"></span>
+
+            </div>
+        </div>
+        <div class="control-group" style="display: none;">
+            <label class="control-label"><strong>LiveAnimalId</strong></label>
+            <div class="controls">
+                <input type="text" asp-for="LiveAnimalId" placeholder="Enter your Address" style="width: 90%;" value="@ViewBag.LiveAnimalDetailsId">
+                <span asp-validation-for="LiveAnimalId" class="text-danger"></span>
+
+            </div>
+        </div>
+
+        @if (@ViewBag.LiveAnimalDetailsSold == false)
+        {
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" style="font-size: 16px; padding: 1%;width: 94%" class="btn btn-success">Confirm Order</button>
+                </div>
+            </div>
+        }
+
+    </form>
