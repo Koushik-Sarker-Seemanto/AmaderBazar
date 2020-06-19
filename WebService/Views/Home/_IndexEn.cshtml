@@ -38,7 +38,14 @@
                                                     @{
                                                         if (Model.Featured[i].Images != null && Model.Featured[i].Images.Count > 0)
                                                         {
-                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})'><img alt="" src="~/images/@Model.Featured[i].Images[0]"></a><br />
+                                                            <div style="position: relative; left: 0; top: 0;">
+                                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})'><img class="card-pic" alt="" src="~/images/@Model.Featured[i].Images[0]"></a>
+                                                                @if (Model.Featured[i].Sold)
+                                                                {
+                                                                    <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                                                }
+
+                                                            </div>
                                                         }
                                                         else
                                                         {
@@ -88,7 +95,14 @@
                                                         @{
                                                             if (Model.Featured[j].Images != null && Model.Featured[j].Images.Count > 0)
                                                             {
-                                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})'><img alt="" src="~/images/@Model.Featured[j].Images[0]"></a><br />
+                                                                <div style="position: relative; left: 0; top: 0;">
+                                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})'><img class="card-pic" alt="" src="~/images/@Model.Featured[j].Images[0]"></a>
+                                                                    @if (Model.Featured[j].Sold)
+                                                                    {
+                                                                        <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                                                    }
+
+                                                                </div>
                                                             }
                                                             else
                                                             {
@@ -134,7 +148,7 @@
                         @*---Feature Product---     [Carousel For Mobile]*@
                         
                         <h4 class="carousel-mobile title">
-                            <span class="pull-left"><span class="text"><span class="line">Feature <strong>Products</strong></span></span></span>
+                            <span class="pull-left"><span class="text"><span class="line">Premium <strong>Products</strong></span></span></span>
                             <span class="pull-right">
                                 <a class="left button" href="#myCarousel-mobile" data-slide="prev"></a><a class="right button" href="#myCarousel-mobile" data-slide="next"></a>
                             </span>
@@ -153,7 +167,14 @@
                                                     @{
                                                         if (Model.Featured[i].Images != null && Model.Featured[i].Images.Count > 0)
                                                         {
-                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})'><img alt="" src="~/images/@Model.Featured[i].Images[0]"></a><br />
+                                                            <div style="position: relative; left: 0; top: 0;">
+                                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})'><img class="card-pic" alt="" src="~/images/@Model.Featured[i].Images[0]"></a>
+                                                                @if (Model.Featured[i].Sold)
+                                                                {
+                                                                    <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                                                }
+
+                                                            </div>
                                                         }
                                                         else
                                                         {
@@ -203,7 +224,14 @@
                                                         @{
                                                             if (Model.Featured[j].Images != null && Model.Featured[j].Images.Count > 0)
                                                             {
-                                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})'><img alt="" src="~/images/@Model.Featured[j].Images[0]"></a><br />
+                                                                <div style="position: relative; left: 0; top: 0;">
+                                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})'><img class="card-pic" alt="" src="~/images/@Model.Featured[j].Images[0]"></a>
+                                                                    @if (Model.Featured[j].Sold)
+                                                                    {
+                                                                        <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                                                    }
+
+                                                                </div>
                                                             }
                                                             else
                                                             {
@@ -282,7 +310,14 @@
                                                 @{
                                                     if (Model.Latest[i].Images != null && Model.Latest[i].Images.Count > 0)
                                                     {
-                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'><img alt="" src="~/images/@Model.Latest[i].Images[0]"></a><br />
+                                                        <div style="position: relative; left: 0; top: 0;">
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'><img class="card-pic" alt="" src="~/images/@Model.Latest[i].Images[0]"></a>
+                                                            @if (Model.Latest[i].Sold)
+                                                            {
+                                                                <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                                            }
+
+                                                        </div>
                                                     }
                                                     else
                                                     {
@@ -332,7 +367,14 @@
                                                     @{
                                                         if (Model.Latest[j].Images != null && Model.Latest[j].Images.Count > 0)
                                                         {
-                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'><img alt="" src="~/images/@Model.Latest[j].Images[0]"></a><br />
+                                                            <div style="position: relative; left: 0; top: 0;">
+                                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'><img class="card-pic" alt="" src="~/images/@Model.Latest[j].Images[0]"></a>
+                                                                @if (Model.Latest[j].Sold)
+                                                                {
+                                                                    <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                                                }
+
+                                                            </div>
                                                         }
                                                         else
                                                         {
@@ -395,7 +437,14 @@
                                                 @{
                                                     if (Model.Latest[i].Images != null && Model.Latest[i].Images.Count > 0)
                                                     {
-                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'><img alt="" src="~/images/@Model.Latest[i].Images[0]"></a><br />
+                                                        <div style="position: relative; left: 0; top: 0;">
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'><img class="card-pic" alt="" src="~/images/@Model.Latest[i].Images[0]"></a>
+                                                            @if (Model.Latest[i].Sold)
+                                                            {
+                                                                <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                                            }
+
+                                                        </div>
                                                     }
                                                     else
                                                     {
@@ -445,7 +494,14 @@
                                                     @{
                                                         if (Model.Latest[j].Images != null && Model.Latest[j].Images.Count > 0)
                                                         {
-                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'><img alt="" src="~/images/@Model.Latest[j].Images[0]"></a><br />
+                                                            <div style="position: relative; left: 0; top: 0;">
+                                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'><img class="card-pic" alt="" src="~/images/@Model.Latest[j].Images[0]"></a>
+                                                                @if (Model.Latest[j].Sold)
+                                                                {
+                                                                    <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                                                }
+
+                                                            </div>
                                                         }
                                                         else
                                                         {

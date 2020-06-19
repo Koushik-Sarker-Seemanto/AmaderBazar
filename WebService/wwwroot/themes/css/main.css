@@ -437,6 +437,16 @@ section.navbar{
 	-webkit-border-radius: 4px;
 	border-bottom:1px solid #eee;
 }
+.form-box {
+    text-align: center;
+    padding-bottom: 15px;
+    position: relative;
+    background-color: #f8f8f8;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-bottom: 1px solid #eee;
+}
 .product-box span.sale_tag {
 	background: url(../images/sprites.png) no-repeat scroll 0 0 transparent;
 	height: 54px;
