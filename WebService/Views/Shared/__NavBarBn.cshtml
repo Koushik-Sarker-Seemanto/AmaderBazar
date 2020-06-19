@@ -51,13 +51,13 @@
 </div>
 
 @* Mobile NavBar Opening Button *@
-<div class="mobile_nav mobile_nav_icon" style="display: block">
-    <span class="hamBurger" style="" onclick="openNav()">&#9776;</span>
-    <form class="inline searchBar" method="get" asp-action="Index" asp-controller="LiveAnimal" style="margin-bottom: 0px; margin-right: 25px; float: right">
-        <input name="title" style="margin-bottom: 0px;margin-right: 0" type="text" class="form-search" placeholder="Search"/>
-        <button type="submit" style="margin-left: 0" class="btn btn-success"><i class="fa fa-search"></i></button>
+<div class="mobile_nav mobile_nav_icon" style="display: inline-block">
+    <i class="fa fa-bars hamBurger" style="" onclick="openNav()"></i>
+    <span id="nav-name" class="hamBurger" style="margin-left: 10px;font-size: 100%;font-family: 'Oleo Script Swash Caps', cursive;" >FarmHut</span>
+    <form id="search-form" class="inline searchBar" method="get" asp-action="Index" asp-controller="LiveAnimal" style="margin-bottom: 0px; margin-right: 25px; float: right">
+        <input id="title-input" name="title" style="width: 55vw; margin-bottom: 0px;margin-right: 0;display: none;" type="text" class="form-search" placeholder="Search"/>
+        <i id="search-btn" type="submit" style="margin-left: 0" class="fa fa-search"></i>
     </form>
-    @*<span class="farmhut-com-bd" style="font-size: 80%;font-family: 'Oleo Script Swash Caps', cursive;" >FarmHut</span>*@
 </div>
 
 
@@ -72,16 +72,38 @@
             <ul>
 
                 <li><a href='@Url.Action("Index", "Home")'>হোম</a></li>
+                <li id="product-dropdown">
+                    <a style="cursor: pointer;">প্রোডাক্ট <i class="fa fa-caret-down"></i></a>
+                    <ul class="showDropdown" style="z-index: 100;">
+                        <li><a href='@Url.Action("Index", "LiveAnimal")'>সকল প্রোডাক্ট</a></li>
+                        <li><a href='@Url.Action("FeatureProduct", "LiveAnimal")'>প্রিমিয়াম প্রোডাক্ট</a></li>
+                        <li><a href='@Url.Action("NewProduct", "LiveAnimal")'>নতুন প্রোডাক্ট</a></li>
+                    </ul>
+
+                </li>
+                <li><a href="@Url.Action("Index", "Payment")">পেমেন্ট</a></li>
+
                 <li>
+                    <form class="inline form-horizontal" method="get" asp-action="Index" asp-controller="LiveAnimal" style="float: right">
+                        <input id="pc-title-input" name="title" style="margin-bottom: 0;margin-right: 0;" type="text" class="form-inline" placeholder="খুজুন"/>
+                        <button class="btn btn-success" id="pc-search-btn" type="submit" style="margin-left: 0;margin-top: 0; background: var(--logoGreen);"><i class="fa fa-search"></i></button>
+                    </form>
+                </li>
+                <li><a href="@Url.Action("ChangeLanguage", "Home",new {_language = true})">English</a></li>
+
+
+
+                
+                @* <li>
                     <a href='@Url.Action("Index", "LiveAnimal")'>প্রোডাক্ট</a>
                     
                 </li>
 
                 <li><a href='@Url.Action("FeatureProduct", "LiveAnimal")'>প্রিমিয়াম প্রোডাক্ট</a></li>
                 <li><a href='@Url.Action("NewProduct", "LiveAnimal")'>নতুন প্রোডাক্ট</a></li>
-                <li><a href="@Url.Action("Index", "Payment")">পেমেন্ট</a></li>
+                <li><a href="@Url.Action("Index", "Payment")">পেমেন্ট</a></li> *@
  
-                <li><a href="@Url.Action("ChangeLanguage", "Home",new {_language = true})">English</a></li>
+                @* <li><a href="@Url.Action("ChangeLanguage", "Home",new {_language = true})">English</a></li> *@
             </ul>
         </nav>
     </div>
