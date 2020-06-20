@@ -204,7 +204,8 @@ namespace Services
 
 <body>
     <header class='clearfix'>
-        <h1 style='margin-top: 20px;'>INVOICE</h1>
+        <h1 style='margin-top: 10px;'>INVOICE</h1>
+        <h3 style='color: #73c067'>Payment Link: <a href='http://www.farmhut.com.bd/Payment/OrderDetails/" + orderId+@"' style='text-decoration: none;'> (Click Me)</a></h3>
         <h3 style='color: #73c067'>Order Id: <a style='cursor: none;color:red;text-decoration: none;'>" + orderId+@"</a></h3>
         <div id='project'>
             <div><span>Customer</span> "+customerName+@"</div>
