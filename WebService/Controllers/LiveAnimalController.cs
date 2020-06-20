@@ -41,7 +41,7 @@ namespace WebService.Controllers
             }
             if (title != null)
             {
-                allAnimals = allAnimals.Where(e => e.Title.Contains(title)).ToList();
+                allAnimals = allAnimals.Where(e => e.Title.Contains(title, StringComparison.OrdinalIgnoreCase)).ToList();
                 queryParam.Add("title", title);
             }
 
