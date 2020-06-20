@@ -12,16 +12,161 @@
 {
     @if (Model.Order != null)
     {
-        @if (Model.Order.PaymentExpire != null)
+        @if (Model.Order.Contacted == false)
+        {
+            <section class="main-content">
+                <div class="row">
+                    <div class="span12">
+                        <div class="row">
+                            <div class="span9">
+
+                                @{
+                                    if (Model.LiveAnimalDetails.Images != null && Model.LiveAnimalDetails.Images.Count > 0)
+                                    {
+                                        <a href="~/images/@Model.LiveAnimalDetails.Images[0]" class="thumbnail thumbnail-main" data-fancybox-group="group1" title="Description 1" id="big">
+                                            <img alt="" src="~/images/@Model.LiveAnimalDetails.Images[0]" id="big-img">
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="~/static/noimage.png" class="thumbnail" data-fancybox-group="group1" title="Description 1" id="big">
+                                            <img alt="" src="~/static/noimage.png" id="big-img">
+                                        </a>
+                                    }
+                                }
+                                @{
+                                    if (Model.LiveAnimalDetails.Images != null && Model.LiveAnimalDetails.Images.Count > 0)
+                                    {
+                                        <ul class="thumbnails small">
+                                            @foreach (var image in Model.LiveAnimalDetails.Images)
+                                            {
+                                                <li class="span1">
+                                                    <a class="thumbnail" data-fancybox-group="group1" title="Description 2" href="~/images/@image"><img src="~/images/@image" alt=""></a>
+                                                </li>
+                                            }
+
+                                        </ul>
+                                    }
+                                }
+
+                            </div>
+                            <div class="span3">
+                                <div>
+                                    <h4>@Model.LiveAnimalDetails.TitleBn</h4>
+                                </div>
+                                <div style="margin-top: -1%;">
+                                    <h5>@Model.LiveAnimalDetails.OriginBn</h5>
+                                </div>
+
+                                <div>
+                                    <strong style="font-size: medium;">রং : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.ColorBn</span>
+                                </div>
+                                @* <div> *@
+                                @*     <strong style="font-size: medium;">ঠিকানা : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span> *@
+                                @* </div> *@
+                                @if (Model.LiveAnimalDetails.Sold == false)
+                                {
+
+                                }
+                                else
+                                {
+                                    <div style="margin-top: 15%;">
+                                        <strong style="font-size: medium; color: red;">বিক্রয় হয়ে গেছে </strong>
+                                    </div>
+                                }
+                                <div style="margin-top: 5%;">
+                                    <strong style="font-size: x-large;" id="priceM">&#2547 @Model.LiveAnimalDetails.Price </strong>
+                                </div>
+                                <script>
+                                        var num = @Model.LiveAnimalDetails.Price;
+
+                                        $("#priceM")
+                                            .text("৳ " + replaceNumbers(num.toString()));
+                                        console.log(replaceNumbers(num.toString()));
+
+                                </script>
+
+                                @if (Model.Order.Contacted)
+                                {
+                                    <div style="margin-top: 15%;">
+                                        <strong style="font-size: x-large; color: white; background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
+                                    </div>
+                                    <div style="margin-top: 5%;">
+                                        <strong style="font-size: x-large; color: green;"> একসেপ্টেড </strong>
+                                    </div>
+
+                                    <form asp-action="OrderDetails">
+                                        <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none">
+                                        <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
+                                        <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
+                                        <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
+                                        <input asp-for="LiveAnimalDetails" value="@Model.LiveAnimalDetails.Id" style="display: none">
+                                        <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
+                                        <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
+
+                                        <div style="margin-top: 10%;">
+                                            <button class="btn btn-success" style="font-size: 16px; padding: 3%; width: 70%; margin: auto">পরিশোধ করুন</button>
+                                        </div>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <div style="margin-top: 15%;">
+                                        <strong style="font-size: x-large; color: white; background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
+                                    </div>
+                                    <div style="margin-top: 5%;">
+                                        <strong style="font-size: x-large; color: red;"> পেন্ডিং </strong>
+                                    </div>
+                                    @if (Model.LiveAnimalDetails.Sold == false)
+                                    {
+                                        <div style="margin-top: 8%;">
+                                            <strong style="font-size: large; color: green;"> অপেক্ষা করুন !! </strong>
+                                        </div>
+                                        <div style="margin-top: 1%;">
+                                            <strong style="font-size: large; color: green;">শীগ্রই আপনার সাথে যোগাযোগ করা হবে </strong>
+                                        </div>
+
+                                    }
+                                    else
+                                    {
+                                        <div style="margin-top: 5%;">
+                                            <strong style="font-size: large; color: red;"> দুঃখিত প্রোডাক্ট বিক্রি হয়ে গেছে </strong>
+                                        </div>
+                                    }
+
+                                    <form asp-action="OrderDetails">
+                                        <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none" required="required">
+                                        <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
+                                        <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
+                                        <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
+                                        <input asp-for="LiveAnimalDetails" value="@Model.LiveAnimalDetails.Id" style="display: none" required="required">
+                                        <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
+                                        <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none" required="required">
+
+
+                                    </form>
+
+
+                                }
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+        }
+        else
         {
             @if (Model.Order.PaymentExpire < DateTime.UtcNow)
             {
                 <section class="main-content">
                     <div class="row">
-                        <div class="span12"style="text-align: center">
+                        <div class="span12" style="text-align: center">
                             <h5>Your Order Is Expired</h5>
-                            <h5>Pay between 1 hour After Confirmation</h5><br/>
-                            <h5 style="color: red">Please Order Again @Model.Order.PaymentExpire @DateTime.Now @Model.Order.PaymentExpire </h5>
+                            <h5>Pay between 1 hour After Confirmation</h5><br />
+                            <h5 style="color: red">Please Order Again  </h5>
                         </div>
                     </div>
                 </section>
@@ -74,7 +219,7 @@
                                     </div>
 
                                     <div>
-                                        <strong style="font-size: medium;">রং  : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.ColorBn</span>
+                                        <strong style="font-size: medium;">রং : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.ColorBn</span>
                                     </div>
                                     @* <div> *@
                                     @*     <strong style="font-size: medium;">ঠিকানা : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span> *@
@@ -90,21 +235,21 @@
                                         </div>
                                     }
                                     <div style="margin-top: 5%;">
-                                        <strong style="font-size: x-large; " id="priceM">&#2547 @Model.LiveAnimalDetails.Price </strong>
+                                        <strong style="font-size: x-large;" id="priceM">&#2547 @Model.LiveAnimalDetails.Price </strong>
                                     </div>
                                     <script>
-                            var num = @Model.LiveAnimalDetails.Price;
+                                        var num = @Model.LiveAnimalDetails.Price;
 
-                            $("#priceM")
-                                .text("৳ " +replaceNumbers(num.toString()));
-                            console.log(replaceNumbers(num.toString()));
+                                        $("#priceM")
+                                            .text("৳ " + replaceNumbers(num.toString()));
+                                        console.log(replaceNumbers(num.toString()));
 
                                     </script>
 
                                     @if (Model.Order.Contacted)
                                     {
                                         <div style="margin-top: 15%;">
-                                            <strong style="font-size: x-large; color: white;background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
+                                            <strong style="font-size: x-large; color: white; background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
                                         </div>
                                         <div style="margin-top: 5%;">
                                             <strong style="font-size: x-large; color: green;"> একসেপ্টেড </strong>
@@ -120,14 +265,14 @@
                                             <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
 
                                             <div style="margin-top: 10%;">
-                                                <button class="btn btn-success" style="font-size: 16px; padding: 3%;width: 70%; margin: auto">পরিশোধ করুন</button>
+                                                <button class="btn btn-success" style="font-size: 16px; padding: 3%; width: 70%; margin: auto">পরিশোধ করুন</button>
                                             </div>
                                         </form>
                                     }
                                     else
                                     {
                                         <div style="margin-top: 15%;">
-                                            <strong style="font-size: x-large; color: white;background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
+                                            <strong style="font-size: x-large; color: white; background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
                                         </div>
                                         <div style="margin-top: 5%;">
                                             <strong style="font-size: x-large; color: red;"> পেন্ডিং </strong>
@@ -173,156 +318,6 @@
                 </section>
             }
         }
-        else
-        {
-            <section class="main-content">
-                <div class="row">
-                    <div class="span12">
-                        <div class="row">
-                            <div class="span9">
-
-                                @{
-                                    if (Model.LiveAnimalDetails.Images != null && Model.LiveAnimalDetails.Images.Count > 0)
-                                    {
-                                        <a href="~/images/@Model.LiveAnimalDetails.Images[0]" class="thumbnail thumbnail-main" data-fancybox-group="group1" title="Description 1" id="big">
-                                            <img alt="" src="~/images/@Model.LiveAnimalDetails.Images[0]" id="big-img">
-                                        </a>
-                                    }
-                                    else
-                                    {
-                                        <a href="~/static/noimage.png" class="thumbnail" data-fancybox-group="group1" title="Description 1" id="big">
-                                            <img alt="" src="~/static/noimage.png" id="big-img">
-                                        </a>
-                                    }
-                                }
-                                @{
-                                    if (Model.LiveAnimalDetails.Images != null && Model.LiveAnimalDetails.Images.Count > 0)
-                                    {
-                                        <ul class="thumbnails small">
-                                            @foreach (var image in Model.LiveAnimalDetails.Images)
-                                            {
-                                                <li class="span1">
-                                                    <a class="thumbnail" data-fancybox-group="group1" title="Description 2" href="~/images/@image"><img src="~/images/@image" alt=""></a>
-                                                </li>
-                                            }
-
-                                        </ul>
-                                    }
-                                }
-
-                            </div>
-                            <div class="span3">
-                                <div>
-                                    <h4>@Model.LiveAnimalDetails.TitleBn</h4>
-                                </div>
-                                <div style="margin-top: -1%;">
-                                    <h5>@Model.LiveAnimalDetails.OriginBn</h5>
-                                </div>
-
-                                <div>
-                                    <strong style="font-size: medium;">রং  : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.ColorBn</span>
-                                </div>
-                                @* <div> *@
-                                @*     <strong style="font-size: medium;">ঠিকানা : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span> *@
-                                @* </div> *@
-                                @if (Model.LiveAnimalDetails.Sold == false)
-                                {
-
-                                }
-                                else
-                                {
-                                    <div style="margin-top: 15%;">
-                                        <strong style="font-size: medium; color: red;">বিক্রয় হয়ে গেছে </strong>
-                                    </div>
-                                }
-                                <div style="margin-top: 5%;">
-                                    <strong style="font-size: x-large; " id="priceM">&#2547 @Model.LiveAnimalDetails.Price </strong>
-                                </div>
-                                <script>
-                            var num = @Model.LiveAnimalDetails.Price;
-
-                            $("#priceM")
-                                .text("৳ " +replaceNumbers(num.toString()));
-                            console.log(replaceNumbers(num.toString()));
-
-                                </script>
-
-                                @if (Model.Order.Contacted)
-                                {
-                                    <div style="margin-top: 15%;">
-                                        <strong style="font-size: x-large; color: white;background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
-                                    </div>
-                                    <div style="margin-top: 5%;">
-                                        <strong style="font-size: x-large; color: green;"> একসেপ্টেড </strong>
-                                    </div>
-
-                                    <form asp-action="OrderDetails">
-                                        <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none">
-                                        <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
-                                        <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
-                                        <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
-                                        <input asp-for="LiveAnimalDetails" value="@Model.LiveAnimalDetails.Id" style="display: none">
-                                        <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
-                                        <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
-
-                                        <div style="margin-top: 10%;">
-                                            <button class="btn btn-success" style="font-size: 16px; padding: 3%;width: 70%; margin: auto">পরিশোধ করুন</button>
-                                        </div>
-                                    </form>
-                                }
-                                else
-                                {
-                                    <div style="margin-top: 15%;">
-                                        <strong style="font-size: x-large; color: white;background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
-                                    </div>
-                                    <div style="margin-top: 5%;">
-                                        <strong style="font-size: x-large; color: red;"> পেন্ডিং </strong>
-                                    </div>
-                                    @if (Model.LiveAnimalDetails.Sold == false)
-                                    {
-                                        <div style="margin-top: 8%;">
-                                            <strong style="font-size: large; color: green;"> অপেক্ষা করুন !! </strong>
-                                        </div>
-                                        <div style="margin-top: 1%;">
-                                            <strong style="font-size: large; color: green;">শীগ্রই আপনার সাথে যোগাযোগ করা হবে </strong>
-                                        </div>
-
-                                    }
-                                    else
-                                    {
-                                        <div style="margin-top: 5%;">
-                                            <strong style="font-size: large; color: red;"> দুঃখিত প্রোডাক্ট বিক্রি হয়ে গেছে </strong>
-                                        </div>
-                                    }
-
-                                    <form asp-action="OrderDetails">
-                                        <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none" required="required">
-                                        <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
-                                        <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
-                                        <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
-                                        <input asp-for="LiveAnimalDetails" value="@Model.LiveAnimalDetails.Id" style="display: none" required="required">
-                                        <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
-                                        <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none" required="required">
-
-
-                                    </form>
-
-
-                                }
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </section>
-        }
     }
-
-
 }
-else
-{
-    <h1>Please Enter Valid Code</h1>
-}
+
