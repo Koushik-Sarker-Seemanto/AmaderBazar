@@ -277,23 +277,23 @@ namespace Services
             <tbody>
                 <tr>
                     <td class='service'>"+model.LiveAnimal.Title+ @"</td>
-                    <td class='unit'>৳ " + model.LiveAnimal.Price+ @"</td>
+                    <td class='unit'>" + model.LiveAnimal.Price+ @"</td>
                     <td class='qty'>1</td>
-                    <td class='total'>৳ " + model.LiveAnimal.Price+ @"</td>
+                    <td class='total'>" + model.LiveAnimal.Price+ @"</td>
                 </tr>
                 
                 </tr>
                 <tr>
                     <td style='text-align: right;' colspan='3'>SUBTOTAL</td>
-                    <td class='total'>৳ " + model.LiveAnimal.Price+ @"</td>
+                    <td class='total'>" + model.LiveAnimal.Price+ @"</td>
                 </tr>
                 <tr>
                     <td style='text-align: right;' colspan='3'>TAX 0%</td>
-                    <td class='total'>৳ 0</td>
+                    <td class='total'>0</td>
                 </tr>
                 <tr>
                     <td style='text-align: right;' colspan='3' class='grand total'>GRAND TOTAL</td>
-                    <td class='grand total'>৳ " + model.LiveAnimal.Price+@"</td>
+                    <td class='grand total'>" + model.LiveAnimal.Price+@"</td>
                 </tr>
             </tbody>
         </table>
