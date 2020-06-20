@@ -212,7 +212,8 @@ namespace Services
 
 <body>
     <header class='clearfix'>
-        <h1 style='margin-top: 20px;'>INVOICE</h1>
+        <h1 style='margin-top: 10px;'>INVOICE</h1>
+        <h3 style='color: #73c067'>Payment Link: <a href='http://www.farmhut.com.bd/Payment/OrderDetails/" + orderId+@"' style='text-decoration: none;'> (Click Me)</a></h3>
         <h3 style='color: #73c067'>Order Id: <a style='cursor: none;color:red;text-decoration: none;'>" + orderId+@"</a></h3>
         <div id='project'>
             <div><span>Customer</span> "+customerName+@"</div>
@@ -276,23 +277,23 @@ namespace Services
             <tbody>
                 <tr>
                     <td class='service'>"+model.LiveAnimal.Title+ @"</td>
-                    <td class='unit'>৳ " + model.LiveAnimal.Price+ @"</td>
+                    <td class='unit'>" + model.LiveAnimal.Price+ @"</td>
                     <td class='qty'>1</td>
-                    <td class='total'>৳ " + model.LiveAnimal.Price+ @"</td>
+                    <td class='total'>" + model.LiveAnimal.Price+ @"</td>
                 </tr>
                 
                 </tr>
                 <tr>
                     <td style='text-align: right;' colspan='3'>SUBTOTAL</td>
-                    <td class='total'>৳ " + model.LiveAnimal.Price+ @"</td>
+                    <td class='total'>" + model.LiveAnimal.Price+ @"</td>
                 </tr>
                 <tr>
                     <td style='text-align: right;' colspan='3'>TAX 0%</td>
-                    <td class='total'>৳ 0</td>
+                    <td class='total'>0</td>
                 </tr>
                 <tr>
                     <td style='text-align: right;' colspan='3' class='grand total'>GRAND TOTAL</td>
-                    <td class='grand total'>৳ " + model.LiveAnimal.Price+@"</td>
+                    <td class='grand total'>" + model.LiveAnimal.Price+@"</td>
                 </tr>
             </tbody>
         </table>
