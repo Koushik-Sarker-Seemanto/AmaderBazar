@@ -232,8 +232,13 @@
                                     <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
                                     <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
 
-                                    <div class="mobile-text-center" style="margin-top: 10%;">
-                                        <button class="btn btn-success" style="font-size: 16px; padding: 3%; width: 70%; margin: auto">পরিশোধ করুন</button>
+                                    <div class="mobile-text-center" style="margin-top: 10%">
+                                        <label for="checkboxId" style="word-wrap: break-word">
+                                        <input type="checkbox" id="checkboxId" class="accept-tnc"/> আমি <a>শর্তাদি</a> মেনে নিচ্ছি
+                                        </label>
+                                    </div>
+                                    <div class="mobile-text-center" style="margin-top: 3%;">
+                                        <button class="paybill btn btn-success" disabled="disabled" style="background: #5D6975;font-size: 16px; padding: 3%; width: 70%; margin: auto">পরিশোধ করুন</button>
                                     </div>
                                 </form>
                             }
@@ -519,8 +524,13 @@
                                             <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
                                             <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
 
-                                            <div class="mobile-text-center" style="margin-top: 10%;">
-                                                <button class="btn btn-success" style="font-size: 16px; padding: 3%; width: 70%; margin: auto">পরিশোধ করুন</button>
+                                            <div class="mobile-text-center" style="margin-top: 10%">
+                                                <label for="checkboxId" style="word-wrap: break-word">
+                                                <input type="checkbox" id="checkboxId" class="accept-tnc"/> আমি <a>শর্তাদি</a> মেনে নিচ্ছি
+                                                </label>
+                                            </div>
+                                            <div class="mobile-text-center" style="margin-top: 3%;">
+                                                <button class="paybill btn btn-success" disabled="disabled" style="background: #5D6975;font-size: 16px; padding: 3%; width: 70%; margin: auto">পরিশোধ করুন</button>
                                             </div>
                                         </form>
                                     }

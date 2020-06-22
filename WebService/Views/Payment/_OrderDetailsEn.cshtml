@@ -153,7 +153,7 @@
                                     </div>
                                 }
                                 <div style="margin-top: 15%;margin-bottom: 3%" class="mobile-text-center">
-                                    <strong style="font-size: x-large;font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Recipient Info</strong>
+                                    <strong style="font-size: x-large;font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Recipient</strong>
                                 </div>
                                 @if (Model.Order.Name != null)
                                 {
@@ -210,8 +210,14 @@
                                         <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
                                         <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
 
-                                        <div class="mobile-text-center" style="margin-top: 10%;">
-                                            <button class="btn btn-success" style="font-size: 16px; padding: 3%;width: 70%; margin: auto">Pay Bill</button>
+                                        <div class="mobile-text-center" style="margin-top: 10%">
+                                            <label for="checkboxId" style="word-wrap: break-word">
+                                                <input type="checkbox" id="checkboxId" class="accept-tnc"/> I accept the <a>Terms and Conditions</a>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="mobile-text-center" style="margin-top: 3%;display: flex">
+                                            <button class="paybill Btn btn btn-success" disabled="disabled" style="background: #5D6975;font-size: 16px; padding: 3%; width: 70%; margin: auto">Pay Bill</button>
                                         </div>
                                     </form>
                                 }
@@ -435,7 +441,7 @@
                                     
                                     
                                     <div style="margin-top: 15%;margin-bottom: 3%" class="mobile-text-center">
-                                        <strong style="font-size: x-large;font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Recipient Info</strong>
+                                        <strong style="font-size: x-large;font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Recipient</strong>
                                     </div>
                                     @if (Model.Order.Name != null)
                                     {
@@ -491,9 +497,14 @@
                                             <input asp-for="LiveAnimalDetails" value="@Model.LiveAnimalDetails.Id" style="display: none">
                                             <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
                                             <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
-
-                                            <div class="mobile-text-center" style="margin-top: 10%;">
-                                                <button class="btn btn-success" style="font-size: 16px; padding: 3%; width: 70%; margin: auto">Pay Bill</button>
+                                            <div class="mobile-text-center" style="margin-top: 10%">
+                                                <label for="checkboxId" style="word-wrap: break-word">
+                                                    <input type="checkbox" id="checkboxId" class="accept-tnc"/> I accept the <a>Terms and Conditions</a>
+                                                </label>
+                                            </div>
+                                            
+                                            <div class="mobile-text-center" style="margin-top: 3%;display: flex">
+                                                <button class="paybill Btn btn btn-success" disabled="disabled" style="background: #5D6975;font-size: 16px; padding: 3%; width: 70%; margin: auto">Pay Bill</button>
                                             </div>
                                         </form>
                                     }
