@@ -50,34 +50,122 @@
                                 }
 
                             </div>
-                            <div class="span3">
-                                <div>
+                        <div class="span3">
+                            <div style="margin-top: 0%" class="mobile-text-center">
+                                <strong style="font-size: x-large;font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> প্রোডাক্ট বিস্তারিত</strong>
+                            </div>
+                            @if (Model.LiveAnimalDetails.TitleBn != null)
+                            {
+                                <div class="mobile-text-center">
                                     <h4>@Model.LiveAnimalDetails.TitleBn</h4>
                                 </div>
-                                <div style="margin-top: -1%;">
+                            }
+                            else
+                            {
+                                <div class="mobile-text-center">
+                                    <h4>N/A</h4>
+                                </div>
+                            }
+                            @if (Model.LiveAnimalDetails.OriginBn != null)
+                            {
+                                <div class="mobile-text-center" style="margin-top: -1%;">
                                     <h5>@Model.LiveAnimalDetails.OriginBn</h5>
                                 </div>
-
-                                <div>
+                            }
+                            else
+                            {
+                                <div class="mobile-text-center" style="margin-top: -1%;">
+                                    <h5>N/A</h5>
+                                </div>
+                            }
+                            @if (Model.LiveAnimalDetails.ColorBn != null)
+                            {
+                                <div class="mobile-text-center">
                                     <strong style="font-size: medium;">রং : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.ColorBn</span>
                                 </div>
-                                @* <div> *@
-                                @*     <strong style="font-size: medium;">ঠিকানা : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span> *@
-                                @* </div> *@
-                                @if (Model.LiveAnimalDetails.Sold == false)
-                                {
-
-                                }
-                                else
-                                {
-                                    <div style="margin-top: 15%;">
-                                        <strong style="font-size: medium; color: red;">বিক্রয় হয়ে গেছে </strong>
-                                    </div>
-                                }
-                                <div style="margin-top: 5%;">
-                                    <strong style="font-size: x-large;" id="priceM">&#2547 @Model.LiveAnimalDetails.Price </strong>
+                            }
+                            else
+                            {
+                                <div class="mobile-text-center">
+                                    <strong style="font-size: medium;">রং : </strong> <span style="font-size: medium;">N/A</span>
+                                </div>
+                            }
+                            @if (!double.IsNaN(Model.LiveAnimalDetails.Height))
+                            {
+                                <div class="mobile-text-center">
+                                    <strong style="font-size: medium;">উচ্চতা : </strong> <span style="font-size: medium;" id="height">@Model.LiveAnimalDetails.Height Feet</span>
                                 </div>
                                 <script>
+                                    var num = @Model.LiveAnimalDetails.Height;
+                                    $("#height")
+                                        .text(replaceNumbers(num.toString()) +" ফুট");
+                                    console.log(replaceNumbers(num.toString()));
+        
+                                    </script>
+                            }
+                            else
+                            {
+                                <div class="mobile-text-center">
+                                    <strong style="font-size: medium;">উচ্চতা : </strong> <span style="font-size: medium;">N/A</span>
+                                </div>
+                            }
+                            @if (!double.IsNaN(Model.LiveAnimalDetails.Weight))
+                            {
+                                <div class="mobile-text-center">
+                                    <strong style="font-size: medium;">ওজন : </strong> <span style="font-size: medium;" id="weight">@Model.LiveAnimalDetails.Weight KG</span>
+                                </div>
+                                <script>
+                                    var num = @Model.LiveAnimalDetails.Weight;
+                                    $("#weight")
+                                        .text(replaceNumbers(num.toString()) + " কেজি");
+                                    console.log(replaceNumbers(num.toString()));
+        
+                                    </script>
+                            }
+                            else
+                            {
+                                <div class="mobile-text-center">
+                                    <strong style="font-size: medium;">ওজন : </strong> <span style="font-size: medium;">N/A</span>
+                                </div>
+                            }
+                            @if (!double.IsNaN(Model.LiveAnimalDetails.Teeth))
+                            {
+                                <div class="mobile-text-center">
+                                    <strong style="font-size: medium;"> দাঁত : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Teeth</span>
+                                </div>
+                                <script>
+                                    var num = @Model.LiveAnimalDetails.Teeth;
+                                    $("#weight")
+                                        .text(replaceNumbers(num.toString()) );
+                                    console.log(replaceNumbers(num.toString()));
+        
+                                    </script>
+                            }
+                            else
+                            {
+                                <div class="mobile-text-center">
+                                    <strong style="font-size: medium;"> দাঁত : </strong> <span style="font-size: medium;">N/A</span>
+                                </div>
+                            }
+                            
+                            
+                            @* <div> *@
+                            @*     <strong style="font-size: medium;">ঠিকানা : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span> *@
+                            @* </div> *@
+                            @if (Model.LiveAnimalDetails.Sold == false)
+                            {
+
+                            }
+                            else
+                            {
+                                <div class="mobile-text-center" style="margin-top: 15%;">
+                                    <strong style="font-size: medium; color: red;">বিক্রয় হয়ে গেছে </strong>
+                                </div>
+                            }
+                            <div class="mobile-text-center" style="margin-top: 5%;">
+                                <strong style="font-size: x-large;" id="priceM">&#2547 @Model.LiveAnimalDetails.Price </strong>
+                            </div>
+                            <script>
                                         var num = @Model.LiveAnimalDetails.Price;
 
                                         $("#priceM")
@@ -85,71 +173,116 @@
                                         console.log(replaceNumbers(num.toString()));
 
                                 </script>
+                            
+                            <div style="margin-top: 15%;margin-bottom: 3%" class="mobile-text-center">
+                                <strong style="font-size: x-large;font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> গ্রহণকারীর তথ্য</strong>
+                            </div>
+                            @if (Model.Order.Name != null)
+                            {
+                                <div class="mobile-text-center">
+                                    <strong style="font-size: medium;">নাম : </strong> <span style="font-size: medium;">@Model.Order.Name</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="mobile-text-center">
+                                    <strong style="font-size: medium;">নাম : </strong> <span style="font-size: medium;">N/A</span>
+                                </div>
+                            }
+                            @if (Model.Order.PhoneNumber != null)
+                            {
+                                <div class="mobile-text-center">
+                                    <strong style="font-size: medium;">ফোন : </strong> <span style="font-size: medium;">@Model.Order.PhoneNumber</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="mobile-text-center">
+                                    <strong style="font-size: medium;">ফোন : </strong> <span style="font-size: medium;">N/A</span>
+                                </div>
+                            }
+                            @if (Model.Order.Address != null)
+                            {
+                                <div class="mobile-text-center">
+                                    <strong style="font-size: medium;">ঠিকানা : </strong> <span style="font-size: medium;">@Model.Order.Address</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="mobile-text-center">
+                                    <strong style="font-size: medium;">ঠিকানা : </strong> <span style="font-size: medium;">N/A</span>
+                                </div>
+                            }
 
-                                @if (Model.Order.Contacted)
+                            @if (Model.Order.Contacted)
+                            {
+                                <div class="mobile-text-center" style="margin-top: 15%;">
+                                    <strong style="font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
+                                </div>
+                                <div class="mobile-text-center" style="margin-top: 5%;">
+                                    <strong style="font-size: x-large; color: green;"> একসেপ্টেড </strong>
+                                </div>
+
+                                <form asp-action="OrderDetails">
+                                    <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none">
+                                    <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
+                                    <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
+                                    <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
+                                    <input asp-for="LiveAnimalDetails" value="@Model.LiveAnimalDetails.Id" style="display: none">
+                                    <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
+                                    <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
+
+                                    <div class="mobile-text-center" style="margin-top: 10%">
+                                        <label for="checkboxId" style="word-wrap: break-word">
+                                        <input type="checkbox" id="checkboxId" class="accept-tnc"/> আমি <a>শর্তাদি</a> মেনে নিচ্ছি
+                                        </label>
+                                    </div>
+                                    <div class="mobile-text-center" style="margin-top: 3%;">
+                                        <button class="paybill btn btn-success" disabled="disabled" style="background: #5D6975;font-size: 16px; padding: 3%; width: 70%; margin: auto">পরিশোধ করুন</button>
+                                    </div>
+                                </form>
+                            }
+                            else
+                            {
+                                <div class="mobile-text-center" style="margin-top: 15%;">
+                                    <strong style="font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
+                                </div>
+                                <div class="mobile-text-center" style="margin-top: 5%;">
+                                    <strong style="font-size: x-large; color: red;"> পেন্ডিং </strong>
+                                </div>
+                                @if (Model.LiveAnimalDetails.Sold == false)
                                 {
-                                    <div style="margin-top: 15%;">
-                                        <strong style="font-size: x-large; color: white; background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
+                                    <div class="mobile-text-center" style="margin-top: 8%;">
+                                        <strong style="font-size: large; color: green;"> অপেক্ষা করুন !! </strong>
                                     </div>
-                                    <div style="margin-top: 5%;">
-                                        <strong style="font-size: x-large; color: green;"> একসেপ্টেড </strong>
+                                    <div class="mobile-text-center" style="margin-top: 1%;">
+                                        <strong style="font-size: large; color: green;">শীগ্রই আপনার সাথে যোগাযোগ করা হবে </strong>
                                     </div>
 
-                                    <form asp-action="OrderDetails">
-                                        <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none">
-                                        <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
-                                        <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
-                                        <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
-                                        <input asp-for="LiveAnimalDetails" value="@Model.LiveAnimalDetails.Id" style="display: none">
-                                        <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
-                                        <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
-
-                                        <div style="margin-top: 10%;">
-                                            <button class="btn btn-success" style="font-size: 16px; padding: 3%; width: 70%; margin: auto">পরিশোধ করুন</button>
-                                        </div>
-                                    </form>
                                 }
                                 else
                                 {
-                                    <div style="margin-top: 15%;">
-                                        <strong style="font-size: x-large; color: white; background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
+                                    <div class="mobile-text-center" style="margin-top: 5%;">
+                                        <strong style="font-size: large; color: red;"> দুঃখিত প্রোডাক্ট বিক্রি হয়ে গেছে </strong>
                                     </div>
-                                    <div style="margin-top: 5%;">
-                                        <strong style="font-size: x-large; color: red;"> পেন্ডিং </strong>
-                                    </div>
-                                    @if (Model.LiveAnimalDetails.Sold == false)
-                                    {
-                                        <div style="margin-top: 8%;">
-                                            <strong style="font-size: large; color: green;"> অপেক্ষা করুন !! </strong>
-                                        </div>
-                                        <div style="margin-top: 1%;">
-                                            <strong style="font-size: large; color: green;">শীগ্রই আপনার সাথে যোগাযোগ করা হবে </strong>
-                                        </div>
-
-                                    }
-                                    else
-                                    {
-                                        <div style="margin-top: 5%;">
-                                            <strong style="font-size: large; color: red;"> দুঃখিত প্রোডাক্ট বিক্রি হয়ে গেছে </strong>
-                                        </div>
-                                    }
-
-                                    <form asp-action="OrderDetails">
-                                        <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none" required="required">
-                                        <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
-                                        <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
-                                        <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
-                                        <input asp-for="LiveAnimalDetails" value="@Model.LiveAnimalDetails.Id" style="display: none" required="required">
-                                        <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
-                                        <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none" required="required">
-
-
-                                    </form>
-
-
                                 }
 
-                            </div>
+                                <form asp-action="OrderDetails">
+                                    <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none" required="required">
+                                    <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
+                                    <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
+                                    <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
+                                    <input asp-for="LiveAnimalDetails" value="@Model.LiveAnimalDetails.Id" style="display: none" required="required">
+                                    <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
+                                    <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none" required="required">
+
+
+                                </form>
+
+
+                            }
+
+                        </div>
                         </div>
 
                     </div>
@@ -211,16 +344,103 @@
 
                                 </div>
                                 <div class="span3">
-                                    <div>
-                                        <h4>@Model.LiveAnimalDetails.TitleBn</h4>
+                                    <div style="margin-top: 0%" class="mobile-text-center">
+                                        <strong style="font-size: x-large;font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> প্রোডাক্ট বিস্তারিত</strong>
                                     </div>
-                                    <div style="margin-top: -1%;">
-                                        <h5>@Model.LiveAnimalDetails.OriginBn</h5>
-                                    </div>
-
-                                    <div>
-                                        <strong style="font-size: medium;">রং : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.ColorBn</span>
-                                    </div>
+                                    @if (Model.LiveAnimalDetails.TitleBn != null)
+                                    {
+                                        <div class="mobile-text-center">
+                                            <h4>@Model.LiveAnimalDetails.TitleBn</h4>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="mobile-text-center">
+                                            <h4>N/A</h4>
+                                        </div>
+                                    }
+                                    @if (Model.LiveAnimalDetails.OriginBn != null)
+                                    {
+                                        <div class="mobile-text-center" style="margin-top: -1%;">
+                                            <h5>@Model.LiveAnimalDetails.OriginBn</h5>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="mobile-text-center" style="margin-top: -1%;">
+                                            <h5>N/A</h5>
+                                        </div>
+                                    }
+                                    @if (Model.LiveAnimalDetails.ColorBn != null)
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">রং : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.ColorBn</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">রং : </strong> <span style="font-size: medium;">N/A</span>
+                                        </div>
+                                    }
+                                    @if (!double.IsNaN(Model.LiveAnimalDetails.Height))
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">উচ্চতা : </strong> <span style="font-size: medium;" id="height">@Model.LiveAnimalDetails.Height Feet</span>
+                                        </div>
+                                        <script>
+                                            var num = @Model.LiveAnimalDetails.Height;
+                                            $("#height")
+                                                .text(replaceNumbers(num.toString()) +" ফুট");
+                                            console.log(replaceNumbers(num.toString()));
+                
+                                            </script>
+                                    }
+                                    else
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">উচ্চতা : </strong> <span style="font-size: medium;">N/A</span>
+                                        </div>
+                                    }
+                                    @if (!double.IsNaN(Model.LiveAnimalDetails.Weight))
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">ওজন : </strong> <span style="font-size: medium;" id="weight">@Model.LiveAnimalDetails.Weight KG</span>
+                                        </div>
+                                        <script>
+                                            var num = @Model.LiveAnimalDetails.Weight;
+                                            $("#weight")
+                                                .text(replaceNumbers(num.toString()) + " কেজি");
+                                            console.log(replaceNumbers(num.toString()));
+                
+                                            </script>
+                                    }
+                                    else
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">ওজন : </strong> <span style="font-size: medium;">N/A</span>
+                                        </div>
+                                    }
+                                    @if (!double.IsNaN(Model.LiveAnimalDetails.Teeth))
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;"> দাঁত : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Teeth</span>
+                                        </div>
+                                        <script>
+                                            var num = @Model.LiveAnimalDetails.Teeth;
+                                            $("#weight")
+                                                .text(replaceNumbers(num.toString()) );
+                                            console.log(replaceNumbers(num.toString()));
+                
+                                            </script>
+                                    }
+                                    else
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;"> দাঁত : </strong> <span style="font-size: medium;">N/A</span>
+                                        </div>
+                                    }
+                                                                
                                     @* <div> *@
                                     @*     <strong style="font-size: medium;">ঠিকানা : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span> *@
                                     @* </div> *@
@@ -230,11 +450,11 @@
                                     }
                                     else
                                     {
-                                        <div style="margin-top: 15%;">
+                                        <div class="mobile-text-center" style="margin-top: 15%;">
                                             <strong style="font-size: medium; color: red;">বিক্রয় হয়ে গেছে </strong>
                                         </div>
                                     }
-                                    <div style="margin-top: 5%;">
+                                    <div class="mobile-text-center" style="margin-top: 5%;">
                                         <strong style="font-size: x-large;" id="priceM">&#2547 @Model.LiveAnimalDetails.Price </strong>
                                     </div>
                                     <script>
@@ -245,13 +465,53 @@
                                         console.log(replaceNumbers(num.toString()));
 
                                     </script>
+                                    
+                                    <div style="margin-top: 15%;margin-bottom: 3%" class="mobile-text-center">
+                                        <strong style="font-size: x-large;font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> গ্রহণকারীর তথ্য</strong>
+                                    </div>
+                                    @if (Model.Order.Name != null)
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">নাম : </strong> <span style="font-size: medium;">@Model.Order.Name</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">নাম : </strong> <span style="font-size: medium;">N/A</span>
+                                        </div>
+                                    }
+                                    @if (Model.Order.PhoneNumber != null)
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">ফোন : </strong> <span style="font-size: medium;">@Model.Order.PhoneNumber</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">ফোন : </strong> <span style="font-size: medium;">N/A</span>
+                                        </div>
+                                    }
+                                    @if (Model.Order.Address != null)
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">ঠিকানা : </strong> <span style="font-size: medium;">@Model.Order.Address</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">ঠিকানা : </strong> <span style="font-size: medium;">N/A</span>
+                                        </div>
+                                    }
 
                                     @if (Model.Order.Contacted)
                                     {
-                                        <div style="margin-top: 15%;">
-                                            <strong style="font-size: x-large; color: white; background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
+                                        <div class="mobile-text-center" style="margin-top: 15%;">
+                                            <strong style="font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
                                         </div>
-                                        <div style="margin-top: 5%;">
+                                        <div class="mobile-text-center" style="margin-top: 5%;">
                                             <strong style="font-size: x-large; color: green;"> একসেপ্টেড </strong>
                                         </div>
 
@@ -264,32 +524,37 @@
                                             <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
                                             <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
 
-                                            <div style="margin-top: 10%;">
-                                                <button class="btn btn-success" style="font-size: 16px; padding: 3%; width: 70%; margin: auto">পরিশোধ করুন</button>
+                                            <div class="mobile-text-center" style="margin-top: 10%">
+                                                <label for="checkboxId" style="word-wrap: break-word">
+                                                <input type="checkbox" id="checkboxId" class="accept-tnc"/> আমি <a>শর্তাদি</a> মেনে নিচ্ছি
+                                                </label>
+                                            </div>
+                                            <div class="mobile-text-center" style="margin-top: 3%;">
+                                                <button class="paybill btn btn-success" disabled="disabled" style="background: #5D6975;font-size: 16px; padding: 3%; width: 70%; margin: auto">পরিশোধ করুন</button>
                                             </div>
                                         </form>
                                     }
                                     else
                                     {
-                                        <div style="margin-top: 15%;">
-                                            <strong style="font-size: x-large; color: white; background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
+                                        <div class="mobile-text-center" style="margin-top: 15%;">
+                                            <strong style="font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
                                         </div>
-                                        <div style="margin-top: 5%;">
+                                        <div class="mobile-text-center" style="margin-top: 5%;">
                                             <strong style="font-size: x-large; color: red;"> পেন্ডিং </strong>
                                         </div>
                                         @if (Model.LiveAnimalDetails.Sold == false)
                                         {
-                                            <div style="margin-top: 8%;">
+                                            <div class="mobile-text-center" style="margin-top: 8%;">
                                                 <strong style="font-size: large; color: green;"> অপেক্ষা করুন !! </strong>
                                             </div>
-                                            <div style="margin-top: 1%;">
+                                            <div class="mobile-text-center" style="margin-top: 1%;">
                                                 <strong style="font-size: large; color: green;">শীগ্রই আপনার সাথে যোগাযোগ করা হবে </strong>
                                             </div>
 
                                         }
                                         else
                                         {
-                                            <div style="margin-top: 5%;">
+                                            <div class="mobile-text-center" style="margin-top: 5%;">
                                                 <strong style="font-size: large; color: red;"> দুঃখিত প্রোডাক্ট বিক্রি হয়ে গেছে </strong>
                                             </div>
                                         }

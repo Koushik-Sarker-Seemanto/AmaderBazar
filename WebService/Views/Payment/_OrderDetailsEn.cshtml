@@ -50,41 +50,154 @@
 
                             </div>
                             <div class="span3">
-                                <div>
-                                    <h4>@Model.LiveAnimalDetails.Title</h4>
+                                <div style="margin-top: 0%" class="mobile-text-center">
+                                    <strong style="font-size: x-large;font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Product Info</strong>
                                 </div>
-                                <div style="margin-top: -1%;">
-                                    <h5>@Model.LiveAnimalDetails.Origin</h5>
-                                </div>
-
-                                <div>
-                                    <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Color</span>
-                                </div>
+                                @if (Model.LiveAnimalDetails.Title != null)
+                                {
+                                    <div class="mobile-text-center">
+                                        <h4>@Model.LiveAnimalDetails.Title</h4>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="mobile-text-center">
+                                        <h4>N/A</h4>
+                                    </div>
+                                }
+                                @if (Model.LiveAnimalDetails.Origin != null)
+                                {
+                                    <div class="mobile-text-center" style="margin-top: -1%;">
+                                        <h5>@Model.LiveAnimalDetails.Origin</h5>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="mobile-text-center" style="margin-top: -1%;">
+                                        <h5>N/A</h5>
+                                    </div>
+                                }
+                                @if (Model.LiveAnimalDetails.Color != null)
+                                {
+                                    <div class="mobile-text-center">
+                                        <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Color</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="mobile-text-center">
+                                        <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">N/A</span>
+                                    </div>
+                                }
+                                @if (!double.IsNaN(Model.LiveAnimalDetails.Height))
+                                {
+                                    <div class="mobile-text-center">
+                                        <strong style="font-size: medium;">Height : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Height Feet</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="mobile-text-center">
+                                        <strong style="font-size: medium;">Height : </strong> <span style="font-size: medium;">N/A</span>
+                                    </div>
+                                }
+                                @if (!double.IsNaN(Model.LiveAnimalDetails.Weight))
+                                {
+                                    <div class="mobile-text-center">
+                                        <strong style="font-size: medium;">Weight : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Weight KG</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="mobile-text-center">
+                                        <strong style="font-size: medium;">Weight : </strong> <span style="font-size: medium;">N/A</span>
+                                    </div>
+                                }
+                                @if (!double.IsNaN(Model.LiveAnimalDetails.Teeth))
+                                {
+                                    <div class="mobile-text-center">
+                                        <strong style="font-size: medium;">Teeth : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Teeth</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="mobile-text-center">
+                                        <strong style="font-size: medium;">Teeth : </strong> <span style="font-size: medium;">N/A</span>
+                                    </div>
+                                }
                                 @* <div> *@
                                 @*     <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span> *@
                                 @* </div> *@
                                 @if (Model.LiveAnimalDetails.Sold == false)
                                 {
-                                    <div style="margin-top: 15%;">
+                                    <div class="mobile-text-center" style="margin-top: 5%;">
                                         <strong style="font-size: large; color: green;">In Stock </strong>
                                     </div>
                                 }
                                 else
                                 {
-                                    <div style="margin-top: 15%;">
+                                    <div class="mobile-text-center" style="margin-top: 15%;">
                                         <strong style="font-size: medium; color: red;">Sold Out </strong>
                                     </div>
                                 }
-                                <div style="margin-top: 5%;">
-                                    <strong style="font-size: x-large; ">&#2547 @Model.LiveAnimalDetails.Price </strong>
+                                @if (!double.IsNaN(Model.LiveAnimalDetails.Price))
+                                {
+                                    <div class="mobile-text-center" style="">
+                                        <strong style="font-size: x-large;">&#2547 @Model.LiveAnimalDetails.Price </strong>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="mobile-text-center">
+                                        <strong style="font-size: x-large;">&#2547 N/A </strong>
+                                    </div>
+                                }
+                                <div style="margin-top: 15%;margin-bottom: 3%" class="mobile-text-center">
+                                    <strong style="font-size: x-large;font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Recipient</strong>
                                 </div>
+                                @if (Model.Order.Name != null)
+                                {
+                                    <div class="mobile-text-center">
+                                        <strong style="font-size: medium;">Name : </strong> <span style="font-size: medium;">@Model.Order.Name</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="mobile-text-center">
+                                        <strong style="font-size: medium;">Name : </strong> <span style="font-size: medium;">N/A</span>
+                                    </div>
+                                }
+                                @if (Model.Order.PhoneNumber != null)
+                                {
+                                    <div class="mobile-text-center">
+                                        <strong style="font-size: medium;">Phone : </strong> <span style="font-size: medium;">@Model.Order.PhoneNumber</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="mobile-text-center">
+                                        <strong style="font-size: medium;">Phone : </strong> <span style="font-size: medium;">N/A</span>
+                                    </div>
+                                }
+                                @if (Model.Order.Address != null)
+                                {
+                                    <div class="mobile-text-center">
+                                        <strong style="font-size: medium;">Address : </strong> <span style="font-size: medium;">@Model.Order.Address</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="mobile-text-center">
+                                        <strong style="font-size: medium;">Address : </strong> <span style="font-size: medium;">N/A</span>
+                                    </div>
+                                }
 
                                 @if (Model.Order.Contacted)
                                 {
-                                    <div style="margin-top: 15%;">
-                                        <strong style="font-size: x-large; color: white;background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> Order Status </strong>
+                                    <div class="mobile-text-center" style="margin-top: 15%;">
+                                        <strong style="font-size: x-large; color: white;background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Order Status </strong>
                                     </div>
-                                    <div style="margin-top: 5%;">
+                                    <div class="mobile-text-center" style="margin-top: 5%;">
                                         <strong style="font-size: x-large; color: green;"> Accpted </strong>
                                     </div>
 
@@ -97,32 +210,38 @@
                                         <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
                                         <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
 
-                                        <div style="margin-top: 10%;">
-                                            <button class="btn btn-success" style="font-size: 16px; padding: 3%;width: 70%; margin: auto">Pay Bill</button>
+                                        <div class="mobile-text-center" style="margin-top: 10%">
+                                            <label for="checkboxId" style="word-wrap: break-word">
+                                                <input type="checkbox" id="checkboxId" class="accept-tnc"/> I accept the <a>Terms and Conditions</a>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="mobile-text-center" style="margin-top: 3%;display: flex">
+                                            <button class="paybill Btn btn btn-success" disabled="disabled" style="background: #5D6975;font-size: 16px; padding: 3%; width: 70%; margin: auto">Pay Bill</button>
                                         </div>
                                     </form>
                                 }
                                 else
                                 {
-                                    <div style="margin-top: 15%;">
-                                        <strong style="font-size: x-large; color: white;background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> Order Status </strong>
+                                    <div class="mobile-text-center" style="margin-top: 15%;">
+                                        <strong style="font-size: x-large; color: white;background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Order Status </strong>
                                     </div>
-                                    <div style="margin-top: 5%;">
+                                    <div class="mobile-text-center" style="margin-top: 5%;">
                                         <strong style="font-size: x-large; color: red;"> Pending </strong>
                                     </div>
                                     @if (Model.LiveAnimalDetails.Sold == false)
                                     {
-                                        <div style="margin-top: 8%;">
+                                        <div class="mobile-text-center" style="margin-top: 8%;">
                                             <strong style="font-size: large; color: green;"> Please Wait !! </strong>
                                         </div>
-                                        <div style="margin-top: 1%;">
+                                        <div class="mobile-text-center" style="margin-top: 1%;">
                                             <strong style="font-size: large; color: green;"> We will Contact Soon !! </strong>
                                         </div>
 
                                     }
                                     else
                                     {
-                                        <div style="margin-top: 5%;">
+                                        <div class="mobile-text-center" style="margin-top: 5%;">
                                             <strong style="font-size: large; color: red;"> Product Is Sold Already </strong>
                                         </div>
                                     }
@@ -204,41 +323,169 @@
 
                                 </div>
                                 <div class="span3">
-                                    <div>
-                                        <h4>@Model.LiveAnimalDetails.Title</h4>
+                                    <div style="margin-top: 0%" class="mobile-text-center">
+                                        <strong style="font-size: x-large;font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Product Info</strong>
                                     </div>
-                                    <div style="margin-top: -1%;">
-                                        <h5>@Model.LiveAnimalDetails.Origin</h5>
-                                    </div>
-
-                                    <div>
-                                        <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Color</span>
-                                    </div>
+                                    @if (Model.LiveAnimalDetails.Title != null)
+                                    {
+                                        <div class="mobile-text-center">
+                                            <h4>@Model.LiveAnimalDetails.Title</h4>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="mobile-text-center">
+                                            <h4>N/A</h4>
+                                        </div>
+                                    }
+                                    @if (Model.LiveAnimalDetails.Origin != null)
+                                    {
+                                        <div class="mobile-text-center" style="margin-top: -1%;">
+                                            <h5>@Model.LiveAnimalDetails.Origin</h5>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="mobile-text-center" style="margin-top: -1%;">
+                                            <h5>N/A</h5>
+                                        </div>
+                                    }
+                                    @if (Model.LiveAnimalDetails.Color != null)
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Color</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">N/A</span>
+                                        </div>
+                                    }
+            
+            @*                         @if (Model.LiveAnimalDetails.Location != null) *@
+            @*                         { *@
+            @*                             <div class="mobile-text-center"> *@
+            @*                                 <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span> *@
+            @*                             </div> *@
+            @*                         } *@
+            @*                         else *@
+            @*                         { *@
+            @*                             <div class="mobile-text-center"> *@
+            @*                                 <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">N/A</span> *@
+            @*                             </div> *@
+            @*                         } *@
+                                    @if (!double.IsNaN(Model.LiveAnimalDetails.Height))
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">Height : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Height Feet</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">Height : </strong> <span style="font-size: medium;">N/A</span>
+                                        </div>
+                                    }
+                                    @if (!double.IsNaN(Model.LiveAnimalDetails.Weight))
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">Weight : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Weight KG</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">Weight : </strong> <span style="font-size: medium;">N/A</span>
+                                        </div>
+                                    }
+                                    @if (!double.IsNaN(Model.LiveAnimalDetails.Teeth))
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">Teeth : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Teeth</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">Teeth : </strong> <span style="font-size: medium;">N/A</span>
+                                        </div>
+                                    }
                                     @* <div> *@
                                     @*     <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span> *@
                                     @* </div> *@
                                     @if (Model.LiveAnimalDetails.Sold == false)
                                     {
-                                        <div style="margin-top: 15%;">
+                                        <div class="mobile-text-center" style="margin-top: 5%">
                                             <strong style="font-size: large; color: green;">In Stock </strong>
                                         </div>
                                     }
                                     else
                                     {
-                                        <div style="margin-top: 15%;">
+                                        <div class="mobile-text-center" style="margin-top: 5%">
                                             <strong style="font-size: medium; color: red;">Sold Out </strong>
                                         </div>
                                     }
-                                    <div style="margin-top: 5%;">
-                                        <strong style="font-size: x-large;">&#2547 @Model.LiveAnimalDetails.Price </strong>
+                                    @if (!double.IsNaN(Model.LiveAnimalDetails.Price))
+                                    {
+                                        <div class="mobile-text-center" style="">
+                                            <strong style="font-size: x-large;">&#2547 @Model.LiveAnimalDetails.Price </strong>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: x-large;">&#2547 N/A </strong>
+                                        </div>
+                                    }
+                                    
+                                    
+                                    <div style="margin-top: 15%;margin-bottom: 3%" class="mobile-text-center">
+                                        <strong style="font-size: x-large;font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Recipient</strong>
                                     </div>
+                                    @if (Model.Order.Name != null)
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">Name : </strong> <span style="font-size: medium;">@Model.Order.Name</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">Name : </strong> <span style="font-size: medium;">N/A</span>
+                                        </div>
+                                    }
+                                    @if (Model.Order.PhoneNumber != null)
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">Phone : </strong> <span style="font-size: medium;">@Model.Order.PhoneNumber</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">Phone : </strong> <span style="font-size: medium;">N/A</span>
+                                        </div>
+                                    }
+                                    @if (Model.Order.Address != null)
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">Address : </strong> <span style="font-size: medium;">@Model.Order.Address</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="mobile-text-center">
+                                            <strong style="font-size: medium;">Address : </strong> <span style="font-size: medium;">N/A</span>
+                                        </div>
+                                    }
 
                                     @if (Model.Order.Contacted)
                                     {
-                                        <div style="margin-top: 15%;">
-                                            <strong style="font-size: x-large; color: white; background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> Order Status </strong>
+                                        <div class="mobile-text-center" style="margin-top: 15%;">
+                                            <strong style="font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Order Status </strong>
                                         </div>
-                                        <div style="margin-top: 5%;">
+                                        <div class="mobile-text-center" style="margin-top: 5%;">
                                             <strong style="font-size: x-large; color: green;"> Accpted </strong>
                                         </div>
 
@@ -250,33 +497,38 @@
                                             <input asp-for="LiveAnimalDetails" value="@Model.LiveAnimalDetails.Id" style="display: none">
                                             <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
                                             <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
-
-                                            <div style="margin-top: 10%;">
-                                                <button class="btn btn-success" style="font-size: 16px; padding: 3%; width: 70%; margin: auto">Pay Bill</button>
+                                            <div class="mobile-text-center" style="margin-top: 10%">
+                                                <label for="checkboxId" style="word-wrap: break-word">
+                                                    <input type="checkbox" id="checkboxId" class="accept-tnc"/> I accept the <a>Terms and Conditions</a>
+                                                </label>
+                                            </div>
+                                            
+                                            <div class="mobile-text-center" style="margin-top: 3%;display: flex">
+                                                <button class="paybill Btn btn btn-success" disabled="disabled" style="background: #5D6975;font-size: 16px; padding: 3%; width: 70%; margin: auto">Pay Bill</button>
                                             </div>
                                         </form>
                                     }
                                     else
                                     {
-                                        <div style="margin-top: 15%;">
-                                            <strong style="font-size: x-large; color: white; background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> Order Status </strong>
+                                        <div class="mobile-text-center" style="margin-top: 15%;">
+                                            <strong style="font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Order Status </strong>
                                         </div>
-                                        <div style="margin-top: 5%;">
+                                        <div class="mobile-text-center" style="margin-top: 5%;">
                                             <strong style="font-size: x-large; color: red;"> Pending </strong>
                                         </div>
                                         @if (Model.LiveAnimalDetails.Sold == false)
                                         {
-                                            <div style="margin-top: 8%;">
+                                            <div class="mobile-text-center" style="margin-top: 8%;">
                                                 <strong style="font-size: large; color: green;"> Please Wait !! </strong>
                                             </div>
-                                            <div style="margin-top: 1%;">
+                                            <div class="mobile-text-center" style="margin-top: 1%;">
                                                 <strong style="font-size: large; color: green;"> We will Contact Soon !! </strong>
                                             </div>
 
                                         }
                                         else
                                         {
-                                            <div style="margin-top: 5%;">
+                                            <div class="mobile-text-center" style="margin-top: 5%;">
                                                 <strong style="font-size: large; color: red;"> Product Is Sold Already </strong>
                                             </div>
                                         }

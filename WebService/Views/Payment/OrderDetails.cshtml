@@ -4,6 +4,15 @@
 }
 
 
+<style>
+@@media (max-width: 767px){
+    .mobile-text-center {
+        text-align: center;
+    }
+}
+</style>
+
+
 @Html.Partial("_NavBar")
 
 
@@ -23,4 +32,20 @@ else
 {
     await Html.RenderPartialAsync("_OrderDetailsEn", Model);
 }
+<script>
+$(document).ready(function(){
+    $('.accept-tnc').change(function() {
+        if (this.checked){
+            console.log("Checked: "+this.checked);
+            $('.paybill').attr('disabled', false);
+            $('.paybill').css('background', "");
+        }
+        else{
+            console.log("Checked: "+this.checked);
+            $('.paybill').attr('disabled', true);
+            $('.paybill').css('background', "#5D6975");
+        }
+    });
+});
+</script>
 <script src="~/themes/js/common.js"></script>
