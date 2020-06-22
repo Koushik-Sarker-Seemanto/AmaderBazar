@@ -102,9 +102,9 @@ namespace WebService.Controllers
             //Basic Infos.
             postData.Add("total_amount", model.LiveAnimalDetails.Price.ToString());
             postData.Add("tran_id", model.Order.Id);
-            postData.Add("success_url", "http://localhost:5000/Payment/PaymentCheck");
-            postData.Add("fail_url", "http://localhost:5000/Payment/PaymentCheck");
-            postData.Add("cancel_url", "http://localhost:5000/Payment/PaymentCheck");
+            postData.Add("success_url", "http://farmhut.com.bd/Payment/PaymentCheck");
+            postData.Add("fail_url", "http://farmhut.com.bd/Payment/PaymentCheck");
+            postData.Add("cancel_url", "http://farmhut.com.bd/Payment/PaymentCheck");
             
             //Customer Info.
             postData.Add("cus_name", model.Order.Name);
