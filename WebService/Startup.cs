@@ -63,6 +63,7 @@ namespace WebService
             services.AddSingleton<ILiveAnimalService, LiveAnimalService>();
             services.AddSingleton<IOrderService, OrderService>();
             services.AddSingleton<IPaymentService, PaymentService>();
+            services.AddSingleton<ITransactionService, TransactionService>();
 
             services.Configure<SSLCommerzConfig>(Configuration.GetSection(nameof(SSLCommerzConfig)));
             services.AddSingleton<ISSLCommerzConfig>(sp => 
