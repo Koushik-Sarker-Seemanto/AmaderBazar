@@ -51,14 +51,14 @@
 
                             </div>
                             <div class="span3">
-                                <div>
+                                <div class="mobile-text-center">
                                     <h4>@Model.LiveAnimalDetails.TitleBn</h4>
                                 </div>
-                                <div style="margin-top: -1%;">
+                                <div class="mobile-text-center" style="margin-top: -1%;">
                                     <h5>@Model.LiveAnimalDetails.OriginBn</h5>
                                 </div>
 
-                                <div>
+                                <div class="mobile-text-center">
                                     <strong style="font-size: medium;">রং : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.ColorBn</span>
                                 </div>
                                 @* <div> *@
@@ -70,11 +70,11 @@
                                 }
                                 else
                                 {
-                                    <div style="margin-top: 15%;">
+                                    <div class="mobile-text-center" style="margin-top: 15%;">
                                         <strong style="font-size: medium; color: red;">বিক্রয় হয়ে গেছে </strong>
                                     </div>
                                 }
-                                <div style="margin-top: 5%;">
+                                <div class="mobile-text-center" style="margin-top: 5%;">
                                     <strong style="font-size: x-large;" id="priceM">&#2547 @Model.LiveAnimalDetails.Price </strong>
                                 </div>
                                 <script>
@@ -88,10 +88,10 @@
 
                                 @if (Model.Order.Contacted)
                                 {
-                                    <div style="margin-top: 15%;">
+                                    <div class="mobile-text-center" style="margin-top: 15%;">
                                         <strong style="font-size: x-large; color: white; background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
                                     </div>
-                                    <div style="margin-top: 5%;">
+                                    <div class="mobile-text-center" style="margin-top: 5%;">
                                         <strong style="font-size: x-large; color: green;"> একসেপ্টেড </strong>
                                     </div>
 
@@ -104,32 +104,32 @@
                                         <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
                                         <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
 
-                                        <div style="margin-top: 10%;">
+                                        <div class="mobile-text-center" style="margin-top: 10%;">
                                             <button class="btn btn-success" style="font-size: 16px; padding: 3%; width: 70%; margin: auto">পরিশোধ করুন</button>
                                         </div>
                                     </form>
                                 }
                                 else
                                 {
-                                    <div style="margin-top: 15%;">
+                                    <div class="mobile-text-center" style="margin-top: 15%;">
                                         <strong style="font-size: x-large; color: white; background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
                                     </div>
-                                    <div style="margin-top: 5%;">
+                                    <div class="mobile-text-center" style="margin-top: 5%;">
                                         <strong style="font-size: x-large; color: red;"> পেন্ডিং </strong>
                                     </div>
                                     @if (Model.LiveAnimalDetails.Sold == false)
                                     {
-                                        <div style="margin-top: 8%;">
+                                        <div class="mobile-text-center" style="margin-top: 8%;">
                                             <strong style="font-size: large; color: green;"> অপেক্ষা করুন !! </strong>
                                         </div>
-                                        <div style="margin-top: 1%;">
+                                        <div class="mobile-text-center" style="margin-top: 1%;">
                                             <strong style="font-size: large; color: green;">শীগ্রই আপনার সাথে যোগাযোগ করা হবে </strong>
                                         </div>
 
                                     }
                                     else
                                     {
-                                        <div style="margin-top: 5%;">
+                                        <div class="mobile-text-center" style="margin-top: 5%;">
                                             <strong style="font-size: large; color: red;"> দুঃখিত প্রোডাক্ট বিক্রি হয়ে গেছে </strong>
                                         </div>
                                     }
@@ -211,14 +211,14 @@
 
                                 </div>
                                 <div class="span3">
-                                    <div>
+                                    <div class="mobile-text-center">
                                         <h4>@Model.LiveAnimalDetails.TitleBn</h4>
                                     </div>
-                                    <div style="margin-top: -1%;">
+                                    <div class="mobile-text-center" style="margin-top: -1%;">
                                         <h5>@Model.LiveAnimalDetails.OriginBn</h5>
                                     </div>
 
-                                    <div>
+                                    <div class="mobile-text-center">
                                         <strong style="font-size: medium;">রং : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.ColorBn</span>
                                     </div>
                                     @* <div> *@
@@ -230,11 +230,11 @@
                                     }
                                     else
                                     {
-                                        <div style="margin-top: 15%;">
+                                        <div class="mobile-text-center" style="margin-top: 15%;">
                                             <strong style="font-size: medium; color: red;">বিক্রয় হয়ে গেছে </strong>
                                         </div>
                                     }
-                                    <div style="margin-top: 5%;">
+                                    <div class="mobile-text-center" style="margin-top: 5%;">
                                         <strong style="font-size: x-large;" id="priceM">&#2547 @Model.LiveAnimalDetails.Price </strong>
                                     </div>
                                     <script>
@@ -248,10 +248,10 @@
 
                                     @if (Model.Order.Contacted)
                                     {
-                                        <div style="margin-top: 15%;">
+                                        <div class="mobile-text-center" style="margin-top: 15%;">
                                             <strong style="font-size: x-large; color: white; background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
                                         </div>
-                                        <div style="margin-top: 5%;">
+                                        <div class="mobile-text-center" style="margin-top: 5%;">
                                             <strong style="font-size: x-large; color: green;"> একসেপ্টেড </strong>
                                         </div>
 
@@ -264,32 +264,32 @@
                                             <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
                                             <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
 
-                                            <div style="margin-top: 10%;">
+                                            <div class="mobile-text-center" style="margin-top: 10%;">
                                                 <button class="btn btn-success" style="font-size: 16px; padding: 3%; width: 70%; margin: auto">পরিশোধ করুন</button>
                                             </div>
                                         </form>
                                     }
                                     else
                                     {
-                                        <div style="margin-top: 15%;">
+                                        <div class="mobile-text-center" style="margin-top: 15%;">
                                             <strong style="font-size: x-large; color: white; background: #3c403f; padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
                                         </div>
-                                        <div style="margin-top: 5%;">
+                                        <div class="mobile-text-center" style="margin-top: 5%;">
                                             <strong style="font-size: x-large; color: red;"> পেন্ডিং </strong>
                                         </div>
                                         @if (Model.LiveAnimalDetails.Sold == false)
                                         {
-                                            <div style="margin-top: 8%;">
+                                            <div class="mobile-text-center" style="margin-top: 8%;">
                                                 <strong style="font-size: large; color: green;"> অপেক্ষা করুন !! </strong>
                                             </div>
-                                            <div style="margin-top: 1%;">
+                                            <div class="mobile-text-center" style="margin-top: 1%;">
                                                 <strong style="font-size: large; color: green;">শীগ্রই আপনার সাথে যোগাযোগ করা হবে </strong>
                                             </div>
 
                                         }
                                         else
                                         {
-                                            <div style="margin-top: 5%;">
+                                            <div class="mobile-text-center" style="margin-top: 5%;">
                                                 <strong style="font-size: large; color: red;"> দুঃখিত প্রোডাক্ট বিক্রি হয়ে গেছে </strong>
                                             </div>
                                         }
