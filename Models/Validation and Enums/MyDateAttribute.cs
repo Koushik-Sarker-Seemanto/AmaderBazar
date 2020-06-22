@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace ModelsModels
+namespace Models.Validation_and_Enums
 {
     class MyDateAttribute : ValidationAttribute
     {

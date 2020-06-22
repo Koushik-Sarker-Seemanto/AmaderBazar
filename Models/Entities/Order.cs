@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using ModelsModels;
+using Models.Validation_and_Enums;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Models.Entities
