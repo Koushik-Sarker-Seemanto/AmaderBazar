@@ -22,6 +22,7 @@ namespace Services
         }
         public async Task<bool> AddTransection(string TranxId, string Name, double Amount, StatusEnum Status, LiveAnimal liveAnimal, Order order)
         {
+
             Transaction transaction = new Transaction
             {
                 TranxId = TranxId,
@@ -29,6 +30,8 @@ namespace Services
                 Amount = Amount,
                 Status = Status,
             };
+            var id = Guid.NewGuid().ToString();
+            transaction.Id = id;
             if (liveAnimal != null) transaction.Product = liveAnimal;
             if (order != null) transaction.Order = order;
             transaction.transactionTime = DateTime.Now;

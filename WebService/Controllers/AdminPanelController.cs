@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Models.AdminModels;
 using Models.Entities;
+using Models.Validation_and_Enums;
 using Newtonsoft.Json;
 using Services.Contracts;
 using X.PagedList;
@@ -263,18 +264,18 @@ namespace WebService.Controllers
             return BadRequest("Couldn't delete");
         }
          public async Task<IActionResult> SuccessfulTransaction(int? page)
-         {
-            var results = await _transactionService.GetAllTransaction();
-            var list = results.ToPagedList(page ?? 1, 9);
+         { 
+             var results = await _transactionService.GetAllTransaction();
+             var res = results?.ToList();
 
-            return View(list);
+             return View(res);
          }
 
          public async Task<IActionResult> ProblemeticTransaction(int? page)
          {
 
              var results = await _transactionService.GetAllFailureTransaction();
-             var list = results.ToPagedList(page ?? 1, 9);
+             var list = results?.ToList();
 
              return View(list);
          }

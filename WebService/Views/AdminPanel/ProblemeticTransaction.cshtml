@@ -1,13 +1,15 @@
 ﻿@using X.PagedList.Mvc.Core;
 @using X.PagedList.Mvc.Core.Common
-@model X.PagedList.IPagedList<Models.Entities.Transaction>;
+@model List<Models.Entities.Transaction>
 @{
     ViewData["Title"] = "ProblemeticTransaction";
+    Layout = "_LayoutAdmin";
 }
+
 
 <div class="container-fluid m-auto">
     <div class="m-auto col-lg-9 bg-white p-5 mt-3 mb-3">
-        <h1 class="d-flex justify-content-center">Successfull Transactions</h1>
+        <h1 class="d-flex justify-content-center">Failed Transactions</h1>
         <div class="table-responsive-md">
             <table class="table-bordered table table-striped">
                 <thead>
@@ -52,7 +54,7 @@
                                         {
                                             <td class="text-center">N/A</td>
                                         }
-                                        if (item.Product.Id != null)
+                                        if (item.Product != null)
                                         {
                                             <td class="text-center">@item.Product.Id</td>
                                         }
@@ -80,14 +82,7 @@
                     </tbody>
 
                 </table>
-                <div class="d-flex justify-content-center">
-                    @Html.PagedListPager(Model, page => Url.Action("ProblemeticTransaction", new { page }),
-                        new PagedListRenderOptions
-                             {
-                            LiElementClasses = new string[] { "page-item" },
-                            PageClasses = new string[] { "page-link" },
-                        })
-                </div>
+                
             </div>
 
         </div>
