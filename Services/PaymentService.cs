@@ -84,7 +84,7 @@ namespace Services
                         var result = await _transactionService.AddTransection(trxId,Name,Amount,StatusEnum.Success,animal,orderData);
                         return result;
                     }
-                    var resultF = await _transactionService.AddTransection(trxId, Name, Amount, StatusEnum.Success, animal, orderData);
+                    var resultF = await _transactionService.AddTransection(trxId, Name, Amount, StatusEnum.Failure, animal, orderData);
                     return res;
                 }
                 else

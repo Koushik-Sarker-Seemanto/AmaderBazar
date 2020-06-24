@@ -10,5 +10,7 @@ namespace Services.Contracts
     public interface ITransactionService
     {
         public Task<bool> AddTransection(string TranxId,string Name,double Amount,StatusEnum Status,LiveAnimal liveAnimal,Order order);
+        public Task<List<Transaction>> GetAllTransaction();
+        public Task<List<Transaction>> GetAllFailureTransaction();
     }
 }

@@ -14,6 +14,7 @@ namespace Models.Entities
         
         [Required]
         public double Amount { get; set; }
+        public DateTime transactionTime { get; set; }
 
         [Required] public StatusEnum Status;
         public LiveAnimal Product;

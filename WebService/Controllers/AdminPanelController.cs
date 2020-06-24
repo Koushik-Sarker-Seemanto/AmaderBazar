@@ -23,14 +23,17 @@ namespace WebService.Controllers
         private readonly ILogger<AdminAuthController> _logger;
 
         private readonly IOrderService _orderServices;
+        private readonly ITransactionService _transactionService;
         
 
         public AdminPanelController(IAdminPanelServices adminPanelServices,
-            ILogger<AdminAuthController> logger,IOrderService orderService)
+            ILogger<AdminAuthController> logger,IOrderService orderService,ITransactionService
+                transactionService)
         {
             _adminPanelServices = adminPanelServices;
             _orderServices = orderService;
             _logger = logger;
+            _transactionService = transactionService;
         }
         
         public async Task<IActionResult> Index(int? page)
@@ -259,6 +262,22 @@ namespace WebService.Controllers
 
             return BadRequest("Couldn't delete");
         }
+         public async Task<IActionResult> SuccessfulTransaction(int? page)
+         {
+            var results = await _transactionService.GetAllTransaction();
+            var list = results.ToPagedList(page ?? 1, 9);
+
+            return View(list);
+         }
+
+         public async Task<IActionResult> ProblemeticTransaction(int? page)
+         {
+
+             var results = await _transactionService.GetAllFailureTransaction();
+             var list = results.ToPagedList(page ?? 1, 9);
+
+             return View(list);
+         }
 
 
     }
