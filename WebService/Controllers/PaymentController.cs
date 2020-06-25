@@ -103,6 +103,7 @@ namespace WebService.Controllers
             
             //Basic Infos.
             postData.Add("total_amount", model.LiveAnimalDetails.Price.ToString());
+            postData.Add("currency","BDT");
             postData.Add("tran_id", model.Order.Id);
             postData.Add("success_url", "http://farmhut.com.bd/Payment/PaymentCheck");
             postData.Add("fail_url", "http://farmhut.com.bd/Payment/PaymentCheck");
@@ -112,15 +113,30 @@ namespace WebService.Controllers
             postData.Add("cus_name", model.Order.Name);
             postData.Add( "cus_add1", model.Order.Address);
             postData.Add("cus_phone", model.Order.PhoneNumber);
+            postData.Add("cus_email","nayeemahmed24@gmail.com");
+            postData.Add("cus_city","Dhaka");
+            postData.Add("cus_postcode","1000");
+            postData.Add("cus_country","Bangladesh");
+            postData.Add("shipping_method","NO");
+            postData.Add("num_of_item","1");
+
+            postData.Add("emi_option","0");
+
+
             
             //Product Infos.
             postData.Add("product_name", model.LiveAnimalDetails.Id);
             postData.Add("product_category",model.LiveAnimalDetails.Title);
-            
+            postData.Add("product_profile", "physical-goods");
             _logger.LogInformation($"SSL COmerzzzzzzzzzzzzzzz NmaeValueCollection: {JsonConvert.SerializeObject(postData)}");
             
             SSLCommerzInitResponse response = _sslCommerzService.InitiateTransaction(postData);
             _logger.LogInformation($"SSL COmerzzzzzzzzzzzzzzz Responseeeeeee: {JsonConvert.SerializeObject(response)}");
+            if (response == null)
+            {
+                // ERROR PAGE
+                return Redirect(response.GatewayPageURL);
+            }
             return Redirect(response.GatewayPageURL);
         }
         
