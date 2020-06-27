@@ -104,10 +104,12 @@ namespace WebService.Controllers
             //Basic Infos.
             postData.Add("total_amount", model.LiveAnimalDetails.Price.ToString());
             postData.Add("currency","BDT");
-            postData.Add("tran_id", model.Order.Id);
-            postData.Add("success_url", "http://farmhut.com.bd/Payment/PaymentCheck");
-            postData.Add("fail_url", "http://farmhut.com.bd/Payment/PaymentCheck");
-            postData.Add("cancel_url", "http://farmhut.com.bd/Payment/PaymentCheck");
+            string ID = Guid.NewGuid().ToString();
+            postData.Add("tran_id", ID);
+            postData.Add("value_a",model.Order.Id);
+            postData.Add("success_url", "https://farmhut.com.bd/Payment/PaymentCheck");
+            postData.Add("fail_url", "https://farmhut.com.bd/Payment/PaymentCheck");
+            postData.Add("cancel_url", "https://farmhut.com.bd/Payment/PaymentCheck");
             
             //Customer Info.
             postData.Add("cus_name", model.Order.Name);
@@ -122,22 +124,26 @@ namespace WebService.Controllers
 
             postData.Add("emi_option","0");
 
-
-            
             //Product Infos.
             postData.Add("product_name", model.LiveAnimalDetails.Id);
             postData.Add("product_category",model.LiveAnimalDetails.Title);
-            postData.Add("product_profile", "physical-goods");
+            postData.Add("product_profile", "general");
             _logger.LogInformation($"SSL COmerzzzzzzzzzzzzzzz NmaeValueCollection: {JsonConvert.SerializeObject(postData)}");
-            
-            SSLCommerzInitResponse response = _sslCommerzService.InitiateTransaction(postData);
-            _logger.LogInformation($"SSL COmerzzzzzzzzzzzzzzz Responseeeeeee: {JsonConvert.SerializeObject(response)}");
-            if (response == null)
+
+            if (model.LiveAnimalDetails.Sold == false)
             {
-                // ERROR PAGE
+                SSLCommerzInitResponse response = _sslCommerzService.InitiateTransaction(postData);
+                _logger.LogInformation($"SSL COmerzzzzzzzzzzzzzzz Responseeeeeee: {JsonConvert.SerializeObject(response)}");
+                if (response == null)
+                {
+                    // ERROR PAGE
+                    return RedirectToAction("Index","Payment");
+                }
                 return Redirect(response.GatewayPageURL);
+
             }
-            return Redirect(response.GatewayPageURL);
+
+            return RedirectToAction("Index", "Home");
         }
         
         public async Task<IActionResult> PaymentCheck()

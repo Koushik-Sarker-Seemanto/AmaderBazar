@@ -2,38 +2,29 @@
 @{
     ViewData["Title"] = "AboutUs";
 }
+
+@{
+    ViewData["Title"] = "Home Page";
+}
 @Html.Partial("_NavBar")
-<section class="header_text sub">
-    <img class="pageBanner" src="~/themes/images/banner1.png" alt="New products">
-    <h3><span>About Us</span></h3>
-</section>
-<section class="main-content">
-    <div class="row">
-        <div class="span7">
-            @* <img  src="~/themes/images/logo.png" height="150" width="150"/> *@
-            @* <h4>FarmHut.com.bd</h4> *@
-            <p style="font-size: 100%"><strong style="font-size: 150%">FarmHut.com.bd </strong> was established with a view to develop a connection between the ranchers and consumers. In the crisis moment of COVID 19, it is very important for all of us to stay home and take care of our families. To ensure the safety and provide the best quality products to our customers we are continuously trying to collaborate with new farms so that we can offer multiple options to our customers from where they can choice the best products for them. All products we are showing here has been collected from the top level farms and sell to customer’s home with extensive care. Our prime objective is to help the society by creating a win-win situation for consumers as well as ranchers.</p>
-</div>
-        <div class="span1"></div>
-        <div class="span3">
-            <div>
-                <h5>ADDITIONAL INFORMATION</h5>
-                <p>
-                    <strong>Phone:</strong>&nbsp;(+88) 01633014949 <br>
-                    @* <strong>Fax:</strong>&nbsp;+04 (123) 456-7890<br> *@
-                    <strong>Email:</strong>&nbsp;<a href="#">farmhut.bd@gmail.com</a>
-                </p>
-                <br />
-                <h5>SECONDARY CONTACT INFORMATION</h5>
-                <p>
-                    <strong>Phone:</strong>&nbsp;(+88) 01532522961<br>
-                    @* <strong>Fax:</strong>&nbsp;+04 (113) 023-1145<br> *@
-                    <strong>Email:</strong>&nbsp;<a href="#">nayeemahmed24@gmail.com</a>
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
+
+
+@if (@TempData["Is_English"] != null)
+{
+    @if (@TempData["Is_English"].Equals(true))
+    {
+        await Html.RenderPartialAsync("_AboutUsEn");
+    }
+    else
+    {
+        await Html.RenderPartialAsync("_AboutUsBn");
+    }
+    TempData.Keep("Is_English");
+}
+else
+{
+    await Html.RenderPartialAsync("_AboutUsEn");
+}
 
 
 <script src="~/themes/js/common.js"></script>

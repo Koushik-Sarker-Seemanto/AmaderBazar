@@ -40,6 +40,7 @@ namespace Services
             string valId = "" + request["val_id"];
             string _amount = "" + request["amount"].ToString();
             double Amount = ConvertToDouble(_amount);
+            string orderId = "" + request["value_a"];
             
             string  Name = "" + request["cus_name"];
 
@@ -47,7 +48,11 @@ namespace Services
             string amount = "";
             if (!string.IsNullOrEmpty(trxId))
             {
-                var orderData = await _repository.GetItemAsync<Order>(e => e.Id == trxId);
+
+            }
+            if (!string.IsNullOrEmpty(orderId) )
+            {
+                var orderData = await _repository.GetItemAsync<Order>(e => e.Id == orderId);
                 if (orderData == null)
                 {
                     await _transactionService.AddTransection(trxId, Name, Amount, StatusEnum.Failure, null,null);
@@ -84,7 +89,7 @@ namespace Services
                         var result = await _transactionService.AddTransection(trxId,Name,Amount,StatusEnum.Success,animal,orderData);
                         return result;
                     }
-                    var resultF = await _transactionService.AddTransection(trxId, Name, Amount, StatusEnum.Failure, animal, orderData);
+                    var resultF = await _transactionService.AddTransection(trxId, Name, Amount, StatusEnum.Success, animal, orderData);
                     return res;
                 }
                 else

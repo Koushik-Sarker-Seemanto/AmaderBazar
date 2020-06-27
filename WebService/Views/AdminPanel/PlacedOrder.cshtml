@@ -80,7 +80,7 @@
                                                     {
                                                         <td class="text-center">N/A</td>
                                                     }
-                                                    @if (double.IsNaN(item.LiveAnimal.Price))
+                                                    @if (!double.IsNaN(item.LiveAnimal.Price))
                                                     {
                                                         <td class="text-center">@item.LiveAnimal.Price</td>
                                                     }

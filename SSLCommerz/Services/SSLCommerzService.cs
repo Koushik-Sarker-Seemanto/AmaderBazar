@@ -4,8 +4,10 @@ using System;
 using System.Collections.Specialized;
 using System.IO;
 using System.Net;
+ using System.Security.Authentication;
  using SSLCommerz.Contracts;
  using SSLCommerz.Models;
+     
 
  namespace SSLCommerz.Services
 {
@@ -14,9 +16,13 @@ using System.Net;
         private readonly ILogger<SSLCommerzService> logger;
         private readonly ISSLCommerzConfig config;
         private readonly string SSLCommerzBaseUrl;
-
+        public const SslProtocols _Tls12 = (SslProtocols)0x00000C00;
+        public const SecurityProtocolType Tls12 = (SecurityProtocolType)_Tls12;
         public SSLCommerzService(ISSLCommerzConfig config, ILogger<SSLCommerzService> logger)
         {
+            
+       
+            System.Net.ServicePointManager.SecurityProtocol = Tls12;
             this.logger = logger;
             this.config = config;
 
@@ -40,6 +46,11 @@ using System.Net;
                 byte[] response = null;
                 string requestUrl = $"{SSLCommerzBaseUrl}{config.SubmitUri}";
                 logger.LogInformation("Requestttttttttttt: "+requestUrl);
+
+                foreach (string key in postData)
+                {
+                    logger.LogInformation("{0} {1}", key, postData[key]);
+                }
 
                 using (WebClient client = new WebClient())
                 {
