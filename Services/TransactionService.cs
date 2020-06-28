@@ -70,6 +70,21 @@ namespace Services
             }
 
         }
+        public async Task<Transaction> GetTransactionByOrderId(string OrderId)
+        {
+            try
+            {
+                var transction = await _repository.GetItemAsync<Transaction>(e => e.Order.Id == OrderId);
+                
+                return transction;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"GetAllTransactionList Failed: {e.Message}");
+                return null;
+            }
+
+        }
 
     }
 }

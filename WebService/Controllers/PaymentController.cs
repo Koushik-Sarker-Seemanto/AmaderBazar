@@ -24,10 +24,12 @@ namespace WebService.Controllers
         private readonly ILiveAnimalService _liveAnimalService;
         private readonly ISSLCommerzService _sslCommerzService;
         private readonly IPaymentService _paymentService;
+        private readonly ITransactionService _transactionService;
   
-        public PaymentController(ILogger<PaymentController> logger, IOrderService orderService, ILiveAnimalService liveAnimalService, ISSLCommerzService sslCommerzService, IPaymentService paymentService)
+        public PaymentController(ILogger<PaymentController> logger,ITransactionService transactionService, IOrderService orderService, ILiveAnimalService liveAnimalService, ISSLCommerzService sslCommerzService, IPaymentService paymentService)
         {
             _logger = logger;
+            _transactionService = transactionService;
             _orderService = orderService;
             _liveAnimalService = liveAnimalService;
             _sslCommerzService = sslCommerzService;
@@ -106,7 +108,7 @@ namespace WebService.Controllers
             postData.Add("currency","BDT");
             string ID = Guid.NewGuid().ToString();
             postData.Add("tran_id", ID);
-            postData.Add("value_a",model.Order.Id);
+            
             postData.Add("success_url", "https://farmhut.com.bd/Payment/PaymentCheck");
             postData.Add("fail_url", "https://farmhut.com.bd/Payment/PaymentCheck");
             postData.Add("cancel_url", "https://farmhut.com.bd/Payment/PaymentCheck");
@@ -128,6 +130,12 @@ namespace WebService.Controllers
             postData.Add("product_name", model.LiveAnimalDetails.Id);
             postData.Add("product_category",model.LiveAnimalDetails.Title);
             postData.Add("product_profile", "general");
+
+            postData.Add("value_a", model.Order.Id);
+            postData.Add("value_b",model.LiveAnimalDetails.Title);
+            postData.Add("value_c",model.LiveAnimalDetails.Category);
+            postData.Add("value_d",model.LiveAnimalDetails.Color);
+
             _logger.LogInformation($"SSL COmerzzzzzzzzzzzzzzz NmaeValueCollection: {JsonConvert.SerializeObject(postData)}");
 
             if (model.LiveAnimalDetails.Sold == false)
@@ -148,14 +156,21 @@ namespace WebService.Controllers
         
         public async Task<IActionResult> PaymentCheck()
         {
+            foreach (string key in Request.Form.Keys)
+            {
+                _logger.LogInformation(key + ": " + Request.Form[key] );
+            }
             if (!string.IsNullOrEmpty(Request.Form["status"]) && Request.Form["status"] == "VALID")
             {
                 var result = await _paymentService.ValidatePaymentRequest(Request.Form);
                 if (result)
                 {
+                    string orderId = ""+Request.Form["value_a"];
+                    
+                    Order order = await _orderService.FindOrderById(orderId);
                     
                     _logger.LogInformation($"Success page");
-                    return RedirectToAction("Success", "Payment");
+                    return RedirectToAction("Success", "Payment",order);
                 }
                 else
                 {
@@ -178,11 +193,55 @@ namespace WebService.Controllers
 
             return RedirectToAction("Index", "Payment");
         }
-
-        public IActionResult Success()
+        [HttpPost]
+        public IActionResult Success(Order order)
         {
-            return View();
+            return View(order);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> TransactionSlip(Order order)
+        {
+            
+
+                if (order != null)
+                {
+                    order = await _orderService.FindOrderById(order.Id);
+                    if (order == null)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+
+                    var animal = await _liveAnimalService.GetLiveAnimalById(order.LiveAnimalId);
+                    if (animal == null)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+
+                    var transaction = await _transactionService.GetTransactionByOrderId(order.Id);
+                    if (transaction != null)
+                    {
+                        OrderViewModel orderDetailes = new OrderViewModel()
+                        {
+                            Order = order,
+                            LiveAnimal = animal,
+                        };
+                        return _paymentService.CreateReciept(orderDetailes,transaction);
+
+                    }
+                    else
+                    { 
+                        return RedirectToAction("Index", "Home");
+
+                    }
+
+                }
+
+                return RedirectToAction("Index", "Home");
+
+        }
+
+        
 
         public IActionResult InvalidPayment()
         {

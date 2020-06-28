@@ -1,4 +1,4 @@
-
+@model Models.Entities.Order
 @{
     ViewData["Title"] = "Success";
     ViewBag.Detailes = Model;
@@ -6,13 +6,31 @@
 @Html.Partial("_NavBar")
 <section class="header_text sub">
     <img class="pageBanner" src="~/themes/images/pageBanner.png" alt="New products">
-    
+
 </section>
 <section class="main-content">
-<div class="row">
-    <div class="span12" style="text-align: center">
-        <h1>Successful Payment!</h1>
+    <div class="row">
+        <div class="span12" style="text-align: center">
+            <h1>Successful Payment!</h1>
+        </div>
     </div>
-</div>
 </section>
+@if (Model != null)
+{
+
+    <section class="main-content">
+        <div class="row">
+            <div class="span12" style="text-align: center">
+                <h5>Thank You For Buying Product From Us </h5>
+                <h5>We will Deliver You Product In Time</h5><br />
+                <h5 style="color: red">Please Download Payment Recipt Untill Delivery of Product</h5>
+                <form method="post" asp-action="TransactionSlip">
+                    <input style="display: none" asp-for="Id" />
+                    <button type="submit" class="btn btn-success">Download</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+}
 

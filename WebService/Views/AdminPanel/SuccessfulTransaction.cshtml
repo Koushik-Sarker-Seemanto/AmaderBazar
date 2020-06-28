@@ -18,7 +18,7 @@
                 <thead>
                     <tr class="bg-success text-white">
                         <td class="text-center font-weight-bold">Transaction ID</td>
-                        <td class="text-center font-weight-bold">Name</td>
+                        
                         <td class="text-center font-weight-bold">Amount</td>
                         <td class="text-center font-weight-bold">Product ID</td>
                         <td class="text-center font-weight-bold">Transaction Time</td>
@@ -41,14 +41,7 @@
                                         {
                                             <td class="text-center">N/A</td>
                                         }
-                                        if (item.Name != null)
-                                        {
-                                            <td class="text-center">@item.Name</td>
-                                        }
-                                        else
-                                        {
-                                            <td class="text-center">N/A</td>
-                                        }
+                                        
                                         if (!double.IsNaN(item.Amount))
                                         {
                                             <td class="text-center">@item.Amount</td>

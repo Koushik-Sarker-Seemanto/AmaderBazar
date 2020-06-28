@@ -172,6 +172,7 @@ namespace Services
 
         public async Task<bool> SellAnimal(string itemId)
         {
+            _logger.LogInformation("ENTERED ====================== >>>>>");
             try
             {
                 var result = await _repository.GetItemAsync<LiveAnimal>(e => e.Id == itemId);
