@@ -28,7 +28,9 @@
                                                             <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img class="card-pic" alt="" src="~/images/@Model.Related[i].Images[0]"></a>
                                                             @if (Model.Related[i].Sold)
                                                             {
-                                                                <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img class="sold-tag" alt="" src="~/themes/images/sold.png" /></a>
+                                                                                                                        
+
                                                             }
 
                                                         </div>
@@ -88,8 +90,8 @@
                                             <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img class="card-pic" alt="" src="~/images/@Model.Related[j].Images[0]"></a>
                                             @if (Model.Related[j].Sold)
                                             {
-                                                <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
-                                            }
+                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img class="sold-tag" alt="" src="~/themes/images/sold.png" /></a>
+                                              }
 
                                         </div>
                                     }

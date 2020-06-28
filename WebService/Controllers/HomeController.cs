@@ -69,6 +69,10 @@ namespace WebService.Controllers
             return View();
         }
 
+        public IActionResult TermsAndCondition()
+        {
+            return View();
+        }
         
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

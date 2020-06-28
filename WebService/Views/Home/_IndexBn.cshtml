@@ -4,7 +4,7 @@
 @model Models.LiveAnimalModels.IndexViewModel
 <section class="header_text banner-text">
     আমরা গ্রাহকদের জন্য বিভিন্ন শীর্ষ স্তরের খামার থেকে সেরা মানের পশু সরবরাহের চেষ্টা করে থাকি। আমরা হোম ডেলিভারি পরিষেবাও নিশ্চিত করি যাতে আমাদের গ্রাহকেরা এই সঙ্কটের মুহুর্তে নিজেকে এবং তার পরিবারকে সুরক্ষিত রাখতে পারে।
-    </section>
+</section>
 
 <section class="main-content">
     <div class="row">
@@ -41,7 +41,9 @@
                                                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})'><img class="card-pic" alt="" src="~/images/@Model.Featured[i].Images[0]"></a>
                                                                 @if (Model.Featured[i].Sold)
                                                                 {
-                                                                    <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})'><img class="sold-tag" alt="" src="~/themes/images/sold.png" /></a>
+
+
                                                                 }
 
                                                             </div>
@@ -107,7 +109,9 @@
                                                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})'><img class="card-pic" alt="" src="~/images/@Model.Featured[j].Images[0]"></a>
                                                                     @if (Model.Featured[j].Sold)
                                                                     {
-                                                                        <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})'><img class="sold-tag" alt="" src="~/themes/images/sold.png" /></a>
+
+
                                                                     }
 
                                                                 </div>
@@ -185,7 +189,9 @@
                                                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})'><img class="card-pic" alt="" src="~/images/@Model.Featured[i].Images[0]"></a>
                                                                 @if (Model.Featured[i].Sold)
                                                                 {
-                                                                    <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[i].Id})'><img class="sold-tag" alt="" src="~/themes/images/sold.png" /></a>
+
+
                                                                 }
 
                                                             </div> }
@@ -249,7 +255,9 @@
                                                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})'><img class="card-pic" alt="" src="~/images/@Model.Featured[j].Images[0]"></a>
                                                                     @if (Model.Featured[j].Sold)
                                                                     {
-                                                                        <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})'><img class="sold-tag" alt="" src="~/themes/images/sold.png" /></a>
+
+
                                                                     }
 
                                                                 </div>
@@ -313,140 +321,77 @@
             <div class="row">
                 <div class="span12">
 
-                @if(Model != null)
-                {
-                    
+                    @if (Model != null)
+                    {
 
-                    @*---Latest Product---     [Carousel For PC and TAB]*@
 
-                    <h4 class="carousel-normal title">
-                        <span class="pull-left"><span class="text"><span class="line">নতুন  <strong>প্রোডাক্ট</strong></span></span></span>
-                        <span class="pull-right">
-                            <a class="left button" href="#myCarousel-2" data-slide="prev"></a><a class="right button" href="#myCarousel-2" data-slide="next"></a>
-                        </span>
-                    </h4>
-                    <div id="myCarousel-2" class="myCarousel carousel-normal carousel slide">
-                        <div class="carousel-inner">
-                            <div class="active item">
-                                <ul class="thumbnails listing-products">
+                        @*---Latest Product---     [Carousel For PC and TAB]*@
 
-                                    @for (int i = 0; i < Math.Min(@Model.Latest.Count, 4); i++)
-                                    {
-                                        <li class="span3">
-                                            <div class="product-box">
-                                                <span class="sale_tag"></span>
-                                                @{
-                                                    if (Model.Latest[i].Images != null && Model.Latest[i].Images.Count > 0 )
-                                                    {
-                                                        <div style="position: relative; left: 0; top: 0;">
-                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'><img class="card-pic" alt="" src="~/images/@Model.Latest[i].Images[0]"></a>
-                                                            @if (Model.Latest[i].Sold)
-                                                            {
-                                                                <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
-                                                            }
-
-                                                        </div>
-                                                    }
-                                                    else
-                                                    {
-                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'><img alt="" src="~/static/noimage.png"></a><br />
-                                                    }
-                                                }
-
-                                                @if (Model.Latest[i].TitleBn != null)
-                                                {
-                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})' class="title">@Model.Latest[i].TitleBn</a><br />
-                                                }
-                                                else
-                                                {
-                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})' class="title">শিরোনাম: নাই</a><br />
-                                                }
-                                                @if (Model.Latest[i].OriginBn != null)
-                                                {
-                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'>@Model.Latest[i].OriginBn</a>
-                                                }
-                                                else
-                                                {
-                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'>উত্স: নাই</a>
-                                                }
-                                                @if (!double.IsNaN(Model.Latest[i].Price))
-                                                {
-                                                    <p class="price">&#2547 @Model.Latest[i].Price</p>
-                                                }
-                                                else
-                                                {
-                                                    <p class="price">&#2547 নাই</p>
-                                                }
-                                                <script>
-                                var num = @Model.Latest[i].Price;
-                                $("#@Model.Latest[i].Id")
-                                    .text("৳ " +replaceNumbers(num.toString()));
-                                console.log(replaceNumbers(num.toString()));
-
-                                                </script>
-                                            </div>
-                                        </li>
-                                    }
-                                </ul>
-                            </div>
-
-                            @for (int i = 1; i < Math.Ceiling(@Model.Latest.Count / 4.00); i++)
-                            {
-                                <div class="item">
+                        <h4 class="carousel-normal title">
+                            <span class="pull-left"><span class="text"><span class="line">নতুন  <strong>প্রোডাক্ট</strong></span></span></span>
+                            <span class="pull-right">
+                                <a class="left button" href="#myCarousel-2" data-slide="prev"></a><a class="right button" href="#myCarousel-2" data-slide="next"></a>
+                            </span>
+                        </h4>
+                        <div id="myCarousel-2" class="myCarousel carousel-normal carousel slide">
+                            <div class="carousel-inner">
+                                <div class="active item">
                                     <ul class="thumbnails listing-products">
 
-                                        @for (int j = i * 4; j < Math.Min(@Model.Latest.Count, (i * 4) + 4); j++)
+                                        @for (int i = 0; i < Math.Min(@Model.Latest.Count, 4); i++)
                                         {
                                             <li class="span3">
                                                 <div class="product-box">
                                                     <span class="sale_tag"></span>
                                                     @{
-                                                        if (Model.Latest[j].Images != null && Model.Latest[j].Images.Count > 0)
+                                                        if (Model.Latest[i].Images != null && Model.Latest[i].Images.Count > 0)
                                                         {
                                                             <div style="position: relative; left: 0; top: 0;">
-                                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'><img class="card-pic" alt="" src="~/images/@Model.Latest[j].Images[0]"></a>
-                                                                @if (Model.Latest[j].Sold)
+                                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'><img class="card-pic" alt="" src="~/images/@Model.Latest[i].Images[0]"></a>
+                                                                @if (Model.Latest[i].Sold)
                                                                 {
-                                                                    <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'><img class="sold-tag" alt="" src="~/themes/images/sold.png" /></a>
+
+
                                                                 }
 
                                                             </div>
                                                         }
                                                         else
                                                         {
-                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'><img alt="" src="~/static/noimage.png"></a><br />
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'><img alt="" src="~/static/noimage.png"></a><br />
                                                         }
                                                     }
 
-                                                    @if (Model.Latest[j].TitleBn != null)
+                                                    @if (Model.Latest[i].TitleBn != null)
                                                     {
-                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})' class="title">@Model.Latest[j].TitleBn</a><br />
+                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})' class="title">@Model.Latest[i].TitleBn</a><br />
                                                     }
                                                     else
                                                     {
-                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})' class="title">শিরোনাম: নাই</a><br />
+                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})' class="title">শিরোনাম: নাই</a><br />
                                                     }
-                                                    @if (Model.Latest[j].OriginBn != null)
+                                                    @if (Model.Latest[i].OriginBn != null)
                                                     {
-                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'>@Model.Latest[j].OriginBn</a>
+                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'>@Model.Latest[i].OriginBn</a>
                                                     }
                                                     else
                                                     {
-                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'>উত্স: নাই</a>
+                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'>উত্স: নাই</a>
                                                     }
-                                                    @if (!double.IsNaN(Model.Latest[j].Price))
+                                                    @if (!double.IsNaN(Model.Latest[i].Price))
                                                     {
-                                                        <p class="price">&#2547 @Model.Latest[j].Price</p>
+                                                        <p class="price">&#2547 @Model.Latest[i].Price</p>
                                                     }
                                                     else
                                                     {
                                                         <p class="price">&#2547 নাই</p>
                                                     }
                                                     <script>
-                                    var num = @Model.Latest[j].Price;
-                                    $("#@Model.Latest[j].Id")
-                                        .text("৳ " +replaceNumbers(num.toString()));
-                                    console.log(replaceNumbers(num.toString()));
+                                var num = @Model.Latest[i].Price;
+                                $("#@Model.Latest[i].Id")
+                                    .text("৳ " +replaceNumbers(num.toString()));
+                                console.log(replaceNumbers(num.toString()));
 
                                                     </script>
                                                 </div>
@@ -454,142 +399,147 @@
                                         }
                                     </ul>
                                 </div>
-                            }
-                        </div>
-                    </div>
 
+                                @for (int i = 1; i < Math.Ceiling(@Model.Latest.Count / 4.00); i++)
+                                {
+                                    <div class="item">
+                                        <ul class="thumbnails listing-products">
 
-
-                    @*---Latest Product---     [Carousel MOBILE]*@
-
-                    <h4 class="carousel-mobile title">
-                        <span class="pull-left"><span class="text"><span class="line">নতুন  <strong>প্রোডাক্ট</strong></span></span></span>
-                        <span class="pull-right">
-                            <a class="left button" href="#myCarousel-2-mobile" data-slide="prev"></a><a class="right button" href="#myCarousel-2-mobile" data-slide="next"></a>
-                        </span>
-                    </h4>
-
-                    <div id="myCarousel-2-mobile" class="myCarousel carousel-mobile carousel slide">
-                        <div class="carousel-inner">
-                            <div class="active item">
-                                <ul class="thumbnails listing-products">
-
-                                    @for (int i = 0; i < Math.Min(@Model.Latest.Count, 1); i++)
-                                    {
-                                        <li class="span3">
-                                            <div class="product-box">
-                                                <span class="sale_tag"></span>
-                                                @{
-                                                    if (Model.Latest[i].Images != null && Model.Latest[i].Images.Count > 0)
-                                                    {
-                                                        <div style="position: relative; left: 0; top: 0;">
-                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'><img class="card-pic" alt="" src="~/images/@Model.Latest[i].Images[0]"></a>
-                                                            @if (Model.Latest[i].Sold)
+                                            @for (int j = i * 4; j < Math.Min(@Model.Latest.Count, (i * 4) + 4); j++)
+                                            {
+                                                <li class="span3">
+                                                    <div class="product-box">
+                                                        <span class="sale_tag"></span>
+                                                        @{
+                                                            if (Model.Latest[j].Images != null && Model.Latest[j].Images.Count > 0)
                                                             {
-                                                                <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                                                <div style="position: relative; left: 0; top: 0;">
+                                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'><img class="card-pic" alt="" src="~/images/@Model.Latest[j].Images[0]"></a>
+                                                                    @if (Model.Latest[j].Sold)
+                                                                    {
+                                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'><img class="sold-tag" alt="" src="~/themes/images/sold.png" /></a>
+
+
+                                                                    }
+
+                                                                </div>
                                                             }
+                                                            else
+                                                            {
+                                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'><img alt="" src="~/static/noimage.png"></a><br />
+                                                            }
+                                                        }
 
-                                                        </div>
-                                                    }
-                                                    else
-                                                    {
-                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'><img alt="" src="~/static/noimage.png"></a><br />
-                                                    }
-                                                }
+                                                        @if (Model.Latest[j].TitleBn != null)
+                                                        {
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})' class="title">@Model.Latest[j].TitleBn</a><br />
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})' class="title">শিরোনাম: নাই</a><br />
+                                                        }
+                                                        @if (Model.Latest[j].OriginBn != null)
+                                                        {
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'>@Model.Latest[j].OriginBn</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'>উত্স: নাই</a>
+                                                        }
+                                                        @if (!double.IsNaN(Model.Latest[j].Price))
+                                                        {
+                                                            <p class="price">&#2547 @Model.Latest[j].Price</p>
+                                                        }
+                                                        else
+                                                        {
+                                                            <p class="price">&#2547 নাই</p>
+                                                        }
+                                                        <script>
+                                    var num = @Model.Latest[j].Price;
+                                    $("#@Model.Latest[j].Id")
+                                        .text("৳ " +replaceNumbers(num.toString()));
+                                    console.log(replaceNumbers(num.toString()));
 
-                                                @if (Model.Latest[i].TitleBn != null)
-                                                {
-                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})' class="title">@Model.Latest[i].TitleBn</a><br />
-                                                }
-                                                else
-                                                {
-                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})' class="title">শিরোনাম: নাই</a><br />
-                                                }
-                                                @if (Model.Latest[i].OriginBn != null)
-                                                {
-                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'>@Model.Latest[i].OriginBn</a>
-                                                }
-                                                else
-                                                {
-                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'>উত্স: নাই</a>
-                                                }
-                                                @if (!double.IsNaN(Model.Latest[i].Price))
-                                                {
-                                                    <p class="price">&#2547 @Model.Latest[i].Price</p>
-                                                }
-                                                else
-                                                {
-                                                    <p class="price">&#2547 নাই</p>
-                                                }
-                                                <script>
-                                var num = @Model.Latest[i].Price;
-                                $("#@Model.Latest[i].Id")
-                                    .text("৳ " +replaceNumbers(num.toString()));
-                                console.log(replaceNumbers(num.toString()));
-
-                                                </script>
-                                            </div>
-                                        </li>
-                                    }
-                                </ul>
+                                                        </script>
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                }
                             </div>
+                        </div>
 
-                            @for (int i = 1; i < Math.Ceiling(@Model.Latest.Count / 1.00); i++)
-                            {
-                                <div class="item">
+
+
+                        @*---Latest Product---     [Carousel MOBILE]*@
+
+                        <h4 class="carousel-mobile title">
+                            <span class="pull-left"><span class="text"><span class="line">নতুন  <strong>প্রোডাক্ট</strong></span></span></span>
+                            <span class="pull-right">
+                                <a class="left button" href="#myCarousel-2-mobile" data-slide="prev"></a><a class="right button" href="#myCarousel-2-mobile" data-slide="next"></a>
+                            </span>
+                        </h4>
+
+                        <div id="myCarousel-2-mobile" class="myCarousel carousel-mobile carousel slide">
+                            <div class="carousel-inner">
+                                <div class="active item">
                                     <ul class="thumbnails listing-products">
 
-                                        @for (int j = i * 1; j < Math.Min(@Model.Latest.Count, (i * 1) + 1); j++)
+                                        @for (int i = 0; i < Math.Min(@Model.Latest.Count, 1); i++)
                                         {
                                             <li class="span3">
                                                 <div class="product-box">
                                                     <span class="sale_tag"></span>
                                                     @{
-                                                        if (Model.Latest[j].Images != null && Model.Latest[j].Images.Count > 0)
+                                                        if (Model.Latest[i].Images != null && Model.Latest[i].Images.Count > 0)
                                                         {
                                                             <div style="position: relative; left: 0; top: 0;">
-                                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'><img class="card-pic" alt="" src="~/images/@Model.Latest[j].Images[0]"></a>
-                                                                @if (Model.Latest[j].Sold)
+                                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'><img class="card-pic" alt="" src="~/images/@Model.Latest[i].Images[0]"></a>
+                                                                @if (Model.Latest[i].Sold)
                                                                 {
-                                                                    <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'><img class="sold-tag" alt="" src="~/themes/images/sold.png" /></a>
+
+
                                                                 }
 
                                                             </div>
                                                         }
                                                         else
                                                         {
-                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'><img alt="" src="~/static/noimage.png"></a><br />
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'><img alt="" src="~/static/noimage.png"></a><br />
                                                         }
                                                     }
-                                                    @if (Model.Latest[j].TitleBn != null)
+
+                                                    @if (Model.Latest[i].TitleBn != null)
                                                     {
-                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})' class="title">@Model.Latest[j].TitleBn</a><br />
+                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})' class="title">@Model.Latest[i].TitleBn</a><br />
                                                     }
                                                     else
                                                     {
-                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})' class="title">শিরোনাম: নাই</a><br />
+                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})' class="title">শিরোনাম: নাই</a><br />
                                                     }
-                                                    @if (Model.Latest[j].OriginBn != null)
+                                                    @if (Model.Latest[i].OriginBn != null)
                                                     {
-                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'>@Model.Latest[j].OriginBn</a>
+                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'>@Model.Latest[i].OriginBn</a>
                                                     }
                                                     else
                                                     {
-                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'>উত্স: নাই</a>
+                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[i].Id})'>উত্স: নাই</a>
                                                     }
-                                                    @if (!double.IsNaN(Model.Latest[j].Price))
+                                                    @if (!double.IsNaN(Model.Latest[i].Price))
                                                     {
-                                                        <p class="price">&#2547 @Model.Latest[j].Price</p>
+                                                        <p class="price">&#2547 @Model.Latest[i].Price</p>
                                                     }
                                                     else
                                                     {
                                                         <p class="price">&#2547 নাই</p>
                                                     }
                                                     <script>
-                                    var num = @Model.Latest[j].Price;
-                                    $("#@Model.Latest[j].Id")
-                                        .text("৳ " +replaceNumbers(num.toString()));
-                                    console.log(replaceNumbers(num.toString()));
+                                var num = @Model.Latest[i].Price;
+                                $("#@Model.Latest[i].Id")
+                                    .text("৳ " +replaceNumbers(num.toString()));
+                                console.log(replaceNumbers(num.toString()));
 
                                                     </script>
                                                 </div>
@@ -597,14 +547,80 @@
                                         }
                                     </ul>
                                 </div>
-                            }
+
+                                @for (int i = 1; i < Math.Ceiling(@Model.Latest.Count / 1.00); i++)
+                                {
+                                    <div class="item">
+                                        <ul class="thumbnails listing-products">
+
+                                            @for (int j = i * 1; j < Math.Min(@Model.Latest.Count, (i * 1) + 1); j++)
+                                            {
+                                                <li class="span3">
+                                                    <div class="product-box">
+                                                        <span class="sale_tag"></span>
+                                                        @{
+                                                            if (Model.Latest[j].Images != null && Model.Latest[j].Images.Count > 0)
+                                                            {
+                                                                <div style="position: relative; left: 0; top: 0;">
+                                                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'><img class="card-pic" alt="" src="~/images/@Model.Latest[j].Images[0]"></a>
+                                                                    @if (Model.Latest[j].Sold)
+                                                                    {
+                                                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Featured[j].Id})'><img class="sold-tag" alt="" src="~/themes/images/sold.png" /></a>
+
+
+                                                                    }
+
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'><img alt="" src="~/static/noimage.png"></a><br />
+                                                            }
+                                                        }
+                                                        @if (Model.Latest[j].TitleBn != null)
+                                                        {
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})' class="title">@Model.Latest[j].TitleBn</a><br />
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})' class="title">শিরোনাম: নাই</a><br />
+                                                        }
+                                                        @if (Model.Latest[j].OriginBn != null)
+                                                        {
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'>@Model.Latest[j].OriginBn</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Latest[j].Id})'>উত্স: নাই</a>
+                                                        }
+                                                        @if (!double.IsNaN(Model.Latest[j].Price))
+                                                        {
+                                                            <p class="price">&#2547 @Model.Latest[j].Price</p>
+                                                        }
+                                                        else
+                                                        {
+                                                            <p class="price">&#2547 নাই</p>
+                                                        }
+                                                        <script>
+                                    var num = @Model.Latest[j].Price;
+                                    $("#@Model.Latest[j].Id")
+                                        .text("৳ " +replaceNumbers(num.toString()));
+                                    console.log(replaceNumbers(num.toString()));
+
+                                                        </script>
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                }
+                            </div>
                         </div>
-                    </div>
-                }
-                else
-                {
-                    <h2>No DATA Found</h2>
-                }
+                    }
+                    else
+                    {
+                        <h2>No DATA Found</h2>
+                    }
                 </div>
             </div>
             @* <div class="row feature_box"> *@

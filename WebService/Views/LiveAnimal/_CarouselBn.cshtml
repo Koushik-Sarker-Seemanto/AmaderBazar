@@ -25,7 +25,7 @@
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img class="card-pic" alt="" src="~/images/@Model.Related[i].Images[0]"></a>
                                         @if (Model.Related[i].Sold)
                                         {
-                                            <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
+                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img class="sold-tag" alt="" src="~/themes/images/sold.png" /></a>
                                         }
 
                                     </div>
@@ -36,8 +36,8 @@
                                     <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img alt="" src="~/static/noimage.png"></a><br />
                                 }
                             }
-                            <br/>
-                            @if(Model.Related[i].TitleBn != null)
+                            <br />
+                            @if (Model.Related[i].TitleBn != null)
                             {
                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">@Model.Related[i].TitleBn</a><br />
                             }
@@ -45,7 +45,7 @@
                             {
                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})' class="title">শিরোনাম: নাই</a><br />
                             }
-                            @if(Model.Related[i].OriginBn != null)
+                            @if (Model.Related[i].OriginBn != null)
                             {
                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>@Model.Related[i].OriginBn</a>
                             }
@@ -53,9 +53,10 @@
                             {
                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'>উত্স: নাই</a>
                             }
-                            @if(!double.IsNaN(Model.Related[i].Price))
+                            @if (!double.IsNaN(Model.Related[i].Price))
                             {
-                                <p class="price">&#2547 @Model.Related[i].Price</p>
+                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><p class="price">&#2547 @Model.Related[i].Price</p></a>
+                                
                             }
                             else
                             {
@@ -92,8 +93,8 @@
                                             <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img class="card-pic" alt="" src="~/images/@Model.Related[j].Images[0]"></a>
                                             @if (Model.Related[j].Sold)
                                             {
-                                                <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
-                                            }
+                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img class="sold-tag" alt="" src="~/themes/images/sold.png" /></a>
+                                           }
 
                                         </div>   
                                     }
@@ -120,7 +121,7 @@
                                 }
                                 @if(!double.IsNaN(Model.Related[j].Price))
                                 {
-                                    <p class="price">&#2547 @Model.Related[j].Price</p>
+                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><p class="price">&#2547 @Model.Related[i].Price</p></a>
                                 }
                                 else
                                 {

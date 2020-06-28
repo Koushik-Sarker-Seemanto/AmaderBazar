@@ -223,7 +223,7 @@ namespace Services
 <body>
     <header class='clearfix'>
         <h1 style='margin-top: 10px;'>PAYMENT SLIP </h1>
-        <h3 style='color: #73c067'>Order Id: <a style='cursor: none;color:red;text-decoration: none;'>" + transaction.TranxId + @"</a></h3>
+        <h3 style='color: #73c067'>Transaction Id: <a style='cursor: none;color:red;text-decoration: none;'>" + transaction.TranxId + @"</a></h3>
         <div id='project'>
             <div><span>Customer</span> " + customerName + @"</div>
             <div><span>Phone No</span> " + customerPhone + @"</div>

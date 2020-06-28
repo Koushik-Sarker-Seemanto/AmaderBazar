@@ -193,7 +193,7 @@ namespace WebService.Controllers
 
             return RedirectToAction("Index", "Payment");
         }
-        [HttpPost]
+        
         public IActionResult Success(Order order)
         {
             return View(order);
