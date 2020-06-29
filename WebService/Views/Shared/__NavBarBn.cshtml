@@ -53,14 +53,18 @@
 @* Mobile NavBar Opening Button *@
 <div class="mobile_nav mobile_nav_icon" style="display: inline-block">
     <i class="fa fa-bars hamBurger" style="" onclick="openNav()"></i>
-    <span id="nav-name" class="hamBurger" style="margin-left: 10px;font-size: 100%;font-family: 'Oleo Script Swash Caps', cursive;" >FarmHut</span>
+    <span id="nav-name" class="hamBurger" style="margin-left: 10px;font-size: 100%;font-family: 'Oleo Script Swash Caps', cursive;">FarmHut</span>
     <form id="search-form" class="inline searchBar" method="get" asp-action="Index" asp-controller="LiveAnimal" style="margin-bottom: 0px; margin-right: 25px; float: right">
         <input id="title-input" name="title" style="width: 55vw; margin-bottom: 0px;margin-right: 0;display: none;" type="text" class="form-search" placeholder="Search"/>
         <i id="search-btn" type="submit" style="margin-left: 0" class="fa fa-search"></i>
     </form>
 </div>
 
-
+<script>
+    $("#nav-name").click(function() {
+        window.location.href = '/home';
+    });
+</script>
 
 @* PC NavBar *@
 

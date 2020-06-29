@@ -102,7 +102,8 @@ namespace Services
                 {"Black", "কালো"},
                 {"White","সাদা" },
                 {"Red","লাল" },
-                {"Mixed","মিশ্র" }
+                {"Mixed","মিশ্র" },
+                {"Ash","খাকি" }
             };
             liveAnimal.ColorBn = color[model.Color];
             return liveAnimal;

@@ -137,11 +137,11 @@
                         @if (!double.IsNaN(Model.LiveAnimalDetails.Teeth))
                         {
                             <div class="mobile-text-center">
-                                <strong style="font-size: medium;"> দাঁত : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Teeth</span>
+                                <strong style="font-size: medium;"> দাঁত : </strong> <span style="font-size: medium;" id="teeth">@Model.LiveAnimalDetails.Teeth</span>
                             </div>
                             <script>
                             var num = @Model.LiveAnimalDetails.Teeth;
-                            $("#weight")
+                            $("#teeth")
                                 .text(replaceNumbers(num.toString()) );
                             console.log(replaceNumbers(num.toString()));
 

@@ -13,6 +13,9 @@
     {
         @if (Model.Order.Contacted == false)
         {
+
+
+
             <section class="main-content">
                 <div class="row">
                     <div class="span12">
@@ -194,43 +197,58 @@
 
                                 @if (Model.Order.Contacted)
                                 {
-                                    <div class="mobile-text-center" style="margin-top: 15%;">
-                                        <strong style="font-size: x-large; color: white;background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Order Status </strong>
-                                    </div>
-                                    <div class="mobile-text-center" style="margin-top: 5%;">
-                                        <strong style="font-size: x-large; color: green;"> Accpted </strong>
-                                    </div>
 
-                                    <form asp-action="OrderDetails">
-                                        <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none">
-                                        <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
-                                        <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
-                                        <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
-                                        <input asp-for="LiveAnimalDetails.Id" value="@Model.LiveAnimalDetails.Id" style="display: none">
-                                        <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
-                                        <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
+                                    @if (Model.LiveAnimalDetails.Sold == false)
+                                    {
 
-                                        <div class="mobile-text-center" style="margin-top: 10%">
-                                            <label for="checkboxId" style="word-wrap: break-word">
-                                                <input type="checkbox" id="checkboxId" class="accept-tnc"/> I accept the <a href='@Url.Action("TermsAndCondition", "Home")'>Terms and Conditions</a>
-                                            </label>
+                                        <div class="mobile-text-center" style="margin-top: 15%;">
+                                            <strong style="font-size: x-large; color: white;background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Order Status </strong>
                                         </div>
-                                        
-                                        <div class="mobile-text-center" style="margin-top: 3%;display: flex">
-                                            <button class="paybill Btn btn btn-success" disabled="disabled" style="background: #5D6975;font-size: 16px; padding: 3%; width: 70%; margin: auto">Pay Bill</button>
+                                        <div class="mobile-text-center" style="margin-top: 5%;">
+                                            <strong style="font-size: x-large; color: green;"> Accpted </strong>
                                         </div>
-                                    </form>
+
+                                        <form asp-action="OrderDetails">
+                                            <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none">
+                                            <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
+                                            <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
+                                            <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
+                                            <input asp-for="LiveAnimalDetails.Id" value="@Model.LiveAnimalDetails.Id" style="display: none">
+                                            <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
+                                            <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
+
+                                            <div class="mobile-text-center" style="margin-top: 10%">
+                                                <label for="checkboxId" style="word-wrap: break-word">
+                                                    <input type="checkbox" id="checkboxId" class="accept-tnc" /> I accept the <a href='@Url.Action("TermsAndCondition", "Home")'>Terms and Conditions</a>
+                                                </label>
+                                            </div>
+
+                                            <div class="mobile-text-center" style="margin-top: 3%;display: flex">
+                                                <button class="paybill Btn btn btn-success" disabled="disabled" style="background: #5D6975;font-size: 16px; padding: 3%; width: 70%; margin: auto">Pay Bill</button>
+                                            </div>
+                                        </form>
+
+                                    }
+                                    else
+                                    {
+                                        <div class="mobile-text-center" style="margin-top: 5%;">
+                                            <strong style="font-size: large; color: red;"> Product Is Sold Already </strong>
+                                        </div>
+                                    }
+
                                 }
                                 else
                                 {
-                                    <div class="mobile-text-center" style="margin-top: 15%;">
-                                        <strong style="font-size: x-large; color: white;background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Order Status </strong>
-                                    </div>
-                                    <div class="mobile-text-center" style="margin-top: 5%;">
-                                        <strong style="font-size: x-large; color: red;"> Pending </strong>
-                                    </div>
+
                                     @if (Model.LiveAnimalDetails.Sold == false)
                                     {
+                                        <div class="mobile-text-center" style="margin-top: 15%;">
+                                            <strong style="font-size: x-large; color: white;background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Order Status </strong>
+                                        </div>
+                                        <div class="mobile-text-center" style="margin-top: 5%;">
+                                            <strong style="font-size: x-large; color: red;"> Pending </strong>
+                                        </div>
+
                                         <div class="mobile-text-center" style="margin-top: 8%;">
                                             <strong style="font-size: large; color: green;"> Please Wait !! </strong>
                                         </div>
@@ -362,19 +380,8 @@
                                             <strong style="font-size: medium;">Color : </strong> <span style="font-size: medium;">N/A</span>
                                         </div>
                                     }
-            
-            @*                         @if (Model.LiveAnimalDetails.Location != null) *@
-            @*                         { *@
-            @*                             <div class="mobile-text-center"> *@
-            @*                                 <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span> *@
-            @*                             </div> *@
-            @*                         } *@
-            @*                         else *@
-            @*                         { *@
-            @*                             <div class="mobile-text-center"> *@
-            @*                                 <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">N/A</span> *@
-            @*                             </div> *@
-            @*                         } *@
+
+
                                     @if (!double.IsNaN(Model.LiveAnimalDetails.Height))
                                     {
                                         <div class="mobile-text-center">
@@ -438,8 +445,8 @@
                                             <strong style="font-size: x-large;">&#2547 N/A </strong>
                                         </div>
                                     }
-                                    
-                                    
+
+
                                     <div style="margin-top: 15%;margin-bottom: 3%" class="mobile-text-center">
                                         <strong style="font-size: x-large;font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Recipient</strong>
                                     </div>
@@ -482,42 +489,55 @@
 
                                     @if (Model.Order.Contacted)
                                     {
-                                        <div class="mobile-text-center" style="margin-top: 15%;">
-                                            <strong style="font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Order Status </strong>
-                                        </div>
-                                        <div class="mobile-text-center" style="margin-top: 5%;">
-                                            <strong style="font-size: x-large; color: green;"> Accpted </strong>
-                                        </div>
 
-                                        <form asp-action="OrderDetails">
-                                            <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none">
-                                            <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
-                                            <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
-                                            <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
-                                            <input asp-for="LiveAnimalDetails.Id" value="@Model.LiveAnimalDetails.Id" style="display: none">
-                                            <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
-                                            <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
-                                            <div class="mobile-text-center" style="margin-top: 10%">
-                                                <label for="checkboxId" style="word-wrap: break-word">
-                                                    <input type="checkbox" id="checkboxId" class="accept-tnc"/> I accept the <a>Terms and Conditions</a>
-                                                </label>
+                                        @if (Model.LiveAnimalDetails.Sold == false)
+                                        {
+                                            <div class="mobile-text-center" style="margin-top: 15%;">
+                                                <strong style="font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Order Status </strong>
                                             </div>
-                                            
-                                            <div class="mobile-text-center" style="margin-top: 3%;display: flex">
-                                                <button class="paybill Btn btn btn-success" disabled="disabled" style="background: #5D6975;font-size: 16px; padding: 3%; width: 70%; margin: auto">Pay Bill</button>
+                                            <div class="mobile-text-center" style="margin-top: 5%;">
+                                                <strong style="font-size: x-large; color: green;"> Accpted </strong>
                                             </div>
-                                        </form>
+
+                                            <form asp-action="OrderDetails">
+                                                <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none">
+                                                <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
+                                                <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
+                                                <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
+                                                <input asp-for="LiveAnimalDetails.Id" value="@Model.LiveAnimalDetails.Id" style="display: none">
+                                                <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
+                                                <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
+                                                <div class="mobile-text-center" style="margin-top: 10%">
+                                                    <label for="checkboxId" style="word-wrap: break-word">
+                                                        <input type="checkbox" id="checkboxId" class="accept-tnc" /> I accept the <a>Terms and Conditions</a>
+                                                    </label>
+                                                </div>
+
+                                                <div class="mobile-text-center" style="margin-top: 3%;display: flex">
+                                                    <button class="paybill Btn btn btn-success" disabled="disabled" style="background: #5D6975;font-size: 16px; padding: 3%; width: 70%; margin: auto">Pay Bill</button>
+                                                </div>
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <div class="mobile-text-center" style="margin-top: 5%;">
+                                                <strong style="font-size: large; color: red;"> Product Is Sold Already </strong>
+                                            </div>
+                                        }
+
                                     }
                                     else
                                     {
-                                        <div class="mobile-text-center" style="margin-top: 15%;">
-                                            <strong style="font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Order Status </strong>
-                                        </div>
-                                        <div class="mobile-text-center" style="margin-top: 5%;">
-                                            <strong style="font-size: x-large; color: red;"> Pending </strong>
-                                        </div>
+
+
                                         @if (Model.LiveAnimalDetails.Sold == false)
                                         {
+                                            <div class="mobile-text-center" style="margin-top: 15%;">
+                                                <strong style="font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> Order Status </strong>
+                                            </div>
+                                            <div class="mobile-text-center" style="margin-top: 5%;">
+                                                <strong style="font-size: x-large; color: red;"> Pending </strong>
+                                            </div>
                                             <div class="mobile-text-center" style="margin-top: 8%;">
                                                 <strong style="font-size: large; color: green;"> Please Wait !! </strong>
                                             </div>

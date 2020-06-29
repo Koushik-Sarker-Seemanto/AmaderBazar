@@ -131,11 +131,11 @@
                             @if (!double.IsNaN(Model.LiveAnimalDetails.Teeth))
                             {
                                 <div class="mobile-text-center">
-                                    <strong style="font-size: medium;"> দাঁত : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Teeth</span>
+                                    <strong style="font-size: medium;"> দাঁত : </strong> <span style="font-size: medium;" id="teeth">@Model.LiveAnimalDetails.Teeth</span>
                                 </div>
                                 <script>
                                     var num = @Model.LiveAnimalDetails.Teeth;
-                                    $("#weight")
+                                    $("#teeth")
                                         .text(replaceNumbers(num.toString()) );
                                     console.log(replaceNumbers(num.toString()));
         
@@ -216,6 +216,8 @@
 
                             @if (Model.Order.Contacted)
                             {
+                                @if (Model.LiveAnimalDetails.Sold == false)
+                                {
                                 <div class="mobile-text-center" style="margin-top: 15%;">
                                     <strong style="font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
                                 </div>
@@ -223,35 +225,43 @@
                                     <strong style="font-size: x-large; color: green;"> একসেপ্টেড </strong>
                                 </div>
 
-                                <form asp-action="OrderDetails">
-                                    <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none">
-                                    <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
-                                    <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
-                                    <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
-                                    <input asp-for="LiveAnimalDetails.Id" value="@Model.LiveAnimalDetails.Id" style="display: none">
-                                    <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
-                                    <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
+                                    <form asp-action="OrderDetails">
+                                        <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none">
+                                        <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
+                                        <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
+                                        <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
+                                        <input asp-for="LiveAnimalDetails.Id" value="@Model.LiveAnimalDetails.Id" style="display: none">
+                                        <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
+                                        <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
 
-                                    <div class="mobile-text-center" style="margin-top: 10%">
-                                        <label for="checkboxId" style="word-wrap: break-word">
-                                        <input type="checkbox" id="checkboxId" class="accept-tnc"/> আমি <a href='@Url.Action("TermsAndCondition", "Home")'>শর্তাদি</a> মেনে নিচ্ছি
-                                        </label>
+                                        <div class="mobile-text-center" style="margin-top: 10%">
+                                            <label for="checkboxId" style="word-wrap: break-word">
+                                                <input type="checkbox" id="checkboxId" class="accept-tnc"/> আমি <a href='@Url.Action("TermsAndCondition", "Home")'>শর্তাদি</a> মেনে নিচ্ছি
+                                            </label>
+                                        </div>
+                                        <div class="mobile-text-center" style="margin-top: 3%;">
+                                            <button class="paybill btn btn-success" disabled="disabled" style="background: #5D6975;font-size: 16px; padding: 3%; width: 70%; margin: auto">পরিশোধ করুন</button>
+                                        </div>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <div class="mobile-text-center" style="margin-top: 5%;">
+                                        <strong style="font-size: large; color: red;"> দুঃখিত প্রোডাক্ট বিক্রি হয়ে গেছে </strong>
                                     </div>
-                                    <div class="mobile-text-center" style="margin-top: 3%;">
-                                        <button class="paybill btn btn-success" disabled="disabled" style="background: #5D6975;font-size: 16px; padding: 3%; width: 70%; margin: auto">পরিশোধ করুন</button>
-                                    </div>
-                                </form>
+                                }
                             }
                             else
                             {
-                                <div class="mobile-text-center" style="margin-top: 15%;">
-                                    <strong style="font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
-                                </div>
-                                <div class="mobile-text-center" style="margin-top: 5%;">
-                                    <strong style="font-size: x-large; color: red;"> পেন্ডিং </strong>
-                                </div>
+                                
                                 @if (Model.LiveAnimalDetails.Sold == false)
                                 {
+                                    <div class="mobile-text-center" style="margin-top: 15%;">
+                                        <strong style="font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
+                                    </div>
+                                    <div class="mobile-text-center" style="margin-top: 5%;">
+                                        <strong style="font-size: x-large; color: red;"> পেন্ডিং </strong>
+                                    </div>
                                     <div class="mobile-text-center" style="margin-top: 8%;">
                                         <strong style="font-size: large; color: green;"> অপেক্ষা করুন !! </strong>
                                     </div>
@@ -393,8 +403,8 @@
                                             $("#height")
                                                 .text(replaceNumbers(num.toString()) +" ফুট");
                                             console.log(replaceNumbers(num.toString()));
-                
-                                            </script>
+
+                                        </script>
                                     }
                                     else
                                     {
@@ -412,8 +422,8 @@
                                             $("#weight")
                                                 .text(replaceNumbers(num.toString()) + " কেজি");
                                             console.log(replaceNumbers(num.toString()));
-                
-                                            </script>
+
+                                        </script>
                                     }
                                     else
                                     {
@@ -431,8 +441,8 @@
                                             $("#weight")
                                                 .text(replaceNumbers(num.toString()) );
                                             console.log(replaceNumbers(num.toString()));
-                
-                                            </script>
+
+                                        </script>
                                     }
                                     else
                                     {
@@ -440,7 +450,7 @@
                                             <strong style="font-size: medium;"> দাঁত : </strong> <span style="font-size: medium;">N/A</span>
                                         </div>
                                     }
-                                                                
+
                                     @* <div> *@
                                     @*     <strong style="font-size: medium;">ঠিকানা : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span> *@
                                     @* </div> *@
@@ -465,7 +475,7 @@
                                         console.log(replaceNumbers(num.toString()));
 
                                     </script>
-                                    
+
                                     <div style="margin-top: 15%;margin-bottom: 3%" class="mobile-text-center">
                                         <strong style="font-size: x-large;font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> গ্রহণকারীর তথ্য</strong>
                                     </div>
@@ -508,49 +518,33 @@
 
                                     @if (Model.Order.Contacted)
                                     {
-                                        <div class="mobile-text-center" style="margin-top: 15%;">
-                                            <strong style="font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
-                                        </div>
-                                        <div class="mobile-text-center" style="margin-top: 5%;">
-                                            <strong style="font-size: x-large; color: green;"> একসেপ্টেড </strong>
-                                        </div>
-
-                                        <form asp-action="OrderDetails">
-                                            <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none">
-                                            <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
-                                            <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
-                                            <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
-                                            <input asp-for="LiveAnimalDetails.Id" value="@Model.LiveAnimalDetails.Id" style="display: none">
-                                            <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
-                                            <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
-
-                                            <div class="mobile-text-center" style="margin-top: 10%">
-                                                <label for="checkboxId" style="word-wrap: break-word">
-                                                <input type="checkbox" id="checkboxId" class="accept-tnc"/> আমি <a>শর্তাদি</a> মেনে নিচ্ছি
-                                                </label>
-                                            </div>
-                                            <div class="mobile-text-center" style="margin-top: 3%;">
-                                                <button class="paybill btn btn-success" disabled="disabled" style="background: #5D6975;font-size: 16px; padding: 3%; width: 70%; margin: auto">পরিশোধ করুন</button>
-                                            </div>
-                                        </form>
-                                    }
-                                    else
-                                    {
-                                        <div class="mobile-text-center" style="margin-top: 15%;">
-                                            <strong style="font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
-                                        </div>
-                                        <div class="mobile-text-center" style="margin-top: 5%;">
-                                            <strong style="font-size: x-large; color: red;"> পেন্ডিং </strong>
-                                        </div>
                                         @if (Model.LiveAnimalDetails.Sold == false)
                                         {
-                                            <div class="mobile-text-center" style="margin-top: 8%;">
-                                                <strong style="font-size: large; color: green;"> অপেক্ষা করুন !! </strong>
+                                            <div class="mobile-text-center" style="margin-top: 15%;">
+                                                <strong style="font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
                                             </div>
-                                            <div class="mobile-text-center" style="margin-top: 1%;">
-                                                <strong style="font-size: large; color: green;">শীগ্রই আপনার সাথে যোগাযোগ করা হবে </strong>
+                                            <div class="mobile-text-center" style="margin-top: 5%;">
+                                                <strong style="font-size: x-large; color: green;"> একসেপ্টেড </strong>
                                             </div>
 
+                                            <form asp-action="OrderDetails">
+                                                <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none">
+                                                <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
+                                                <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
+                                                <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
+                                                <input asp-for="LiveAnimalDetails.Id" value="@Model.LiveAnimalDetails.Id" style="display: none">
+                                                <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
+                                                <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none">
+
+                                                <div class="mobile-text-center" style="margin-top: 10%">
+                                                    <label for="checkboxId" style="word-wrap: break-word">
+                                                        <input type="checkbox" id="checkboxId" class="accept-tnc" /> আমি <a>শর্তাদি</a> মেনে নিচ্ছি
+                                                    </label>
+                                                </div>
+                                                <div class="mobile-text-center" style="margin-top: 3%;">
+                                                    <button class="paybill btn btn-success" disabled="disabled" style="background: #5D6975;font-size: 16px; padding: 3%; width: 70%; margin: auto">পরিশোধ করুন</button>
+                                                </div>
+                                            </form>
                                         }
                                         else
                                         {
@@ -558,23 +552,49 @@
                                                 <strong style="font-size: large; color: red;"> দুঃখিত প্রোডাক্ট বিক্রি হয়ে গেছে </strong>
                                             </div>
                                         }
+                                        }
+                                        else
+                                        {
 
-                                        <form asp-action="OrderDetails">
-                                            <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none" required="required">
-                                            <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
-                                            <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
-                                            <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
-                                            <input asp-for="LiveAnimalDetails" value="@Model.LiveAnimalDetails.Id" style="display: none" required="required">
-                                            <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
-                                            <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none" required="required">
+                                            @if (Model.LiveAnimalDetails.Sold == false)
+                                            {
+                                                <div class="mobile-text-center" style="margin-top: 15%;">
+                                                    <strong style="font-size: x-large; color: white; background: var(--logoGreen); padding: 1%; padding-left: 3%; padding-right: 3%;"> অর্ডার স্ট্যাটাস </strong>
+                                                </div>
+                                                <div class="mobile-text-center" style="margin-top: 5%;">
+                                                    <strong style="font-size: x-large; color: red;"> পেন্ডিং </strong>
+                                                </div>
+                                                <div class="mobile-text-center" style="margin-top: 8%;">
+                                                    <strong style="font-size: large; color: green;"> অপেক্ষা করুন !! </strong>
+                                                </div>
+                                                <div class="mobile-text-center" style="margin-top: 1%;">
+                                                    <strong style="font-size: large; color: green;">শীগ্রই আপনার সাথে যোগাযোগ করা হবে </strong>
+                                                </div>
+
+                                            }
+                                            else
+                                            {
+                                                <div class="mobile-text-center" style="margin-top: 5%;">
+                                                    <strong style="font-size: large; color: red;"> দুঃখিত প্রোডাক্ট বিক্রি হয়ে গেছে </strong>
+                                                </div>
+                                            }
+
+                                            <form asp-action="OrderDetails">
+                                                <input asp-for="Order.Id" value="@Model.Order.Id" style="display: none" required="required">
+                                                <input asp-for="Order.Name" value="@Model.Order.Name" style="display: none">
+                                                <input asp-for="Order.PhoneNumber" value="@Model.Order.PhoneNumber" style="display: none">
+                                                <input asp-for="Order.Address" value="@Model.Order.Address" style="display: none">
+                                                <input asp-for="LiveAnimalDetails" value="@Model.LiveAnimalDetails.Id" style="display: none" required="required">
+                                                <input asp-for="LiveAnimalDetails.Title" value="@Model.LiveAnimalDetails.Title" style="display: none">
+                                                <input asp-for="LiveAnimalDetails.Price" value="@Model.LiveAnimalDetails.Price" style="display: none" required="required">
 
 
-                                        </form>
+                                            </form>
 
 
-                                    }
+                                        }
 
-                                </div>
+                                    </div>
                             </div>
 
                         </div>

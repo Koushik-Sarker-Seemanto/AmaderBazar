@@ -7,6 +7,7 @@ using System.Web;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Models.AdminModels;
 using Models.Entities;
 using Models.LiveAnimalModels;
 using Models.OrderModels;
@@ -117,7 +118,7 @@ namespace WebService.Controllers
             postData.Add("cus_name", model.Order.Name);
             postData.Add( "cus_add1", model.Order.Address);
             postData.Add("cus_phone", model.Order.PhoneNumber);
-            postData.Add("cus_email","nayeemahmed24@gmail.com");
+            postData.Add("cus_email", "farmhut.bd@gmail.com");
             postData.Add("cus_city","Dhaka");
             postData.Add("cus_postcode","1000");
             postData.Add("cus_country","Bangladesh");
@@ -131,14 +132,15 @@ namespace WebService.Controllers
             postData.Add("product_category",model.LiveAnimalDetails.Title);
             postData.Add("product_profile", "general");
 
+            var live = await _liveAnimalService.GetLiveAnimalById(model.LiveAnimalDetails.Id);
             postData.Add("value_a", model.Order.Id);
-            postData.Add("value_b",model.LiveAnimalDetails.Title);
-            postData.Add("value_c",model.LiveAnimalDetails.Category);
-            postData.Add("value_d",model.LiveAnimalDetails.Color);
+            postData.Add("value_b",live.Title);
+            postData.Add("value_c",live.Category);
+            postData.Add("value_d",live.Color);
 
             _logger.LogInformation($"SSL COmerzzzzzzzzzzzzzzz NmaeValueCollection: {JsonConvert.SerializeObject(postData)}");
 
-            if (model.LiveAnimalDetails.Sold == false)
+            if (live.Sold == false)
             {
                 SSLCommerzInitResponse response = _sslCommerzService.InitiateTransaction(postData);
                 _logger.LogInformation($"SSL COmerzzzzzzzzzzzzzzz Responseeeeeee: {JsonConvert.SerializeObject(response)}");
