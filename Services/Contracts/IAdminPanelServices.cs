@@ -18,6 +18,7 @@ namespace Services.Contracts
         Task<bool> SellAnimal(string itemId);
 
         Task<List<string>> UploadImage(ICollection<IFormFile> files);
+        Task<string> UploadCoverImage(IFormFile files);
         Task<bool> UpdateAnimalLiveAnimal(LiveAnimal item);
     }
 }

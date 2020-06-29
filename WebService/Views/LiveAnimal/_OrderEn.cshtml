@@ -33,7 +33,7 @@
                         @{
                             if (Model.LiveAnimalDetails.Images != null && Model.LiveAnimalDetails.Images.Count > 0)
                             {
-                                <a href="~/images/@Model.LiveAnimalDetails.Images[0]" class="thumbnail thumbnail-main" data-fancybox-group="group1" title="Description 1" id="big">
+                                <a href="~/images/@Model.LiveAnimalDetails.Images[0]"  target="_blank" class="thumbnail thumbnail-main" data-fancybox-group="group1" title="Description 1" id="big">
                                     <img alt="" src="~/images/@Model.LiveAnimalDetails.Images[0]" id="big-img">
                                 </a>
                             }
@@ -45,21 +45,27 @@
                             }
                         }
 
-                        <ul class="thumbnails small">
-                            @{
-                                if (Model.LiveAnimalDetails.Images != null && Model.LiveAnimalDetails.Images.Count > 0)
+                    <ul class="thumbnails small">
+                        @{
+                            if (Model.LiveAnimalDetails.Images != null && Model.LiveAnimalDetails.Images.Count > 0)
+                            {
+                                @foreach (var image in Model.LiveAnimalDetails.Images)
                                 {
-                                    @foreach (var image in Model.LiveAnimalDetails.Images)
-                                    {
-                                        <li class="span1">
-                                            <a class="thumbnail" href="~/images/@image" data-fancybox-group="group1" title="Description 2"><img src="~/images/@image" alt=""></a>
-                                        </li>
-                                    }
+                                    <li class="span1 carousel-normal">
+                                        <a class="thumbnail"  data-fancybox-group="group1" title="Description 2"><img src="~/images/@image" alt=""></a>
+                                    </li>
+                                }
+                                @foreach (var image in Model.LiveAnimalDetails.Images)
+                                {
+                                    <li class="span1 carousel-mobile">
+                                        <a class="thumbnail" href="~/images/@image" target="_blank" data-fancybox-group="group1" title="Description 2"><img src="~/images/@image" alt=""></a>
+                                    </li>
                                 }
                             }
+                        }
 
 
-                        </ul>
+                    </ul>
                     </div>
                     <div class="span2">
                         <div class="mobile-text-center">

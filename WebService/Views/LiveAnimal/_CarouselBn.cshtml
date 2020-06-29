@@ -19,10 +19,10 @@
                         <div class="product-box">
                             <span class="sale_tag"></span>
                             @{
-                                if (Model.Related[i].Images != null && Model.Related[i].Images.Count > 0)
+                                if (Model.Related[i].CoverImage != null )
                                 {
                                     <div style="position: relative; left: 0; top: 0;">
-                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img class="card-pic" alt="" src="~/images/@Model.Related[i].Images[0]"></a>
+                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img class="card-pic" alt="" src="~/images/@Model.Related[i].CoverImage"></a>
                                         @if (Model.Related[i].Sold)
                                         {
                                             <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img class="sold-tag" alt="" src="~/themes/images/sold.png" /></a>
@@ -87,10 +87,10 @@
                             <div class="product-box">
                                 <span class="sale_tag"></span>
                                 @{
-                                    if (Model.Related[j].Images != null && Model.Related[j].Images.Count > 0)
+                                    if (Model.Related[j].CoverImage != null )
                                     {
                                         <div style="position: relative; left: 0; top: 0;">
-                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img class="card-pic" alt="" src="~/images/@Model.Related[j].Images[0]"></a>
+                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img class="card-pic" alt="" src="~/images/@Model.Related[j].CoverImage"></a>
                                             @if (Model.Related[j].Sold)
                                             {
                                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img class="sold-tag" alt="" src="~/themes/images/sold.png" /></a>
@@ -166,10 +166,10 @@
                         <div class="product-box">
                             <span class="sale_tag"></span>
                             @{
-                                if (Model.Related[i].Images != null && Model.Related[i].Images.Count > 0)
+                                if (Model.Related[i].CoverImage != null )
                                 {
                                     <div style="position: relative; left: 0; top: 0;">
-                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img class="card-pic" alt="" src="~/images/@Model.Related[i].Images[0]"></a>
+                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img class="card-pic" alt="" src="~/images/@Model.Related[i].CoverImage"></a>
                                         @if (Model.Related[i].Sold)
                                         {
                                             <img class="sold-tag" alt="" src="~/themes/images/sold.png" />
@@ -230,10 +230,10 @@
                             <div class="product-box">
                                 <span class="sale_tag"></span>
                                 @{
-                                    if (Model.Related[j].Images != null && Model.Related[j].Images.Count > 0)
+                                    if (Model.Related[j].CoverImage != null )
                                     {
                                         <div style="position: relative; left: 0; top: 0;">
-                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img class="card-pic" alt="" src="~/images/@Model.Related[j].Images[0]"></a>
+                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img class="card-pic" alt="" src="~/images/@Model.Related[j].CoverImage"></a>
                                             @if (Model.Related[j].Sold)
                                             {
                                                 <img class="sold-tag" alt="" src="~/themes/images/sold.png" />

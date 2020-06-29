@@ -105,10 +105,10 @@
                                 <div class="product-box">
                                     <span class="sale_tag"></span>
                                     @{
-                                        if (animal.Images != null && animal.Images.Count>0)
+                                        if (animal.CoverImage != null)
                                         {
                                             <div style="position: relative; left: 0; top: 0;">
-                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = animal.Id})'><img class="card-pic" alt="" src="~/images/@animal.Images[0]"></a>
+                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = animal.Id})'><img class="card-pic" alt="" src="~/images/@animal.CoverImage]"></a>
                                                 @if (animal.Sold)
                                                 {
                                                     <img class="sold-tag" alt="" src="~/themes/images/sold.png" />

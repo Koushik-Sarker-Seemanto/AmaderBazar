@@ -52,7 +52,7 @@ namespace WebService.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddAnimal([Bind] LiveAnimalViewModel model, ICollection<IFormFile> files)
+        public async Task<IActionResult> AddAnimal([Bind] LiveAnimalViewModel model, ICollection<IFormFile> files,IFormFile cover)
         {
 
             ViewBag.Categories = await _adminPanelServices.GetCategoryList();
@@ -63,10 +63,10 @@ namespace WebService.Controllers
 
             var id = Guid.NewGuid().ToString();
             model.Id = id;
-            
+            var coverImage = await _adminPanelServices.UploadCoverImage(cover);
             var images = await _adminPanelServices.UploadImage(files);
             model.Images = images;
-            
+            model.CoverImage = coverImage;
             _logger.LogInformation($"AddAnimal: {JsonConvert.SerializeObject(model)}");
 
             await _adminPanelServices.AddAnimal(model);
@@ -158,6 +158,7 @@ namespace WebService.Controllers
                 _logger.LogInformation($"UpdateAnimal Final Images: {JsonConvert.SerializeObject(existingImages)}");
 
                 model.Images = existingImages;
+                model.CoverImage = item.CoverImage;
             }
 
             _logger.LogInformation($"UpdateAnimal: {JsonConvert.SerializeObject(model)}");

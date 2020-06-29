@@ -41,5 +41,6 @@ namespace Models.Entities
 
         public double Teeth { get; set; }
         public List<string> Images { get; set; }
+        public string CoverImage { get; set; }
     }
 }

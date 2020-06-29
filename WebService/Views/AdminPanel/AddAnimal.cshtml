@@ -106,11 +106,16 @@
             <textarea rows="5" asp-for="DescriptionBn" class="form-control" id="descriptionbn" placeholder="Enter Description ( বাংলায় লিখুন )"></textarea>
             <span asp-validation-for="DescriptionBn" class="text-danger"></span>
         </div>
-        
+
 
         <div class="form-group">
             <label for="files">Upload Images</label>
             <input type="file" class="form-control" accept=".png, .jpg, .jpeg" id="files" name="files" multiple required />
+
+        </div>
+        <div class="form-group">
+            <label for="files">Cover Photo Images</label>
+            <input type="file" class="form-control" accept=".png, .jpg, .jpeg" id="cover" name="cover"  />
 
         </div>
 

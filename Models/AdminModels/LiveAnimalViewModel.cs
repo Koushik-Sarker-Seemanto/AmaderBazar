@@ -31,6 +31,7 @@ namespace Models.AdminModels
         public string Location { get; set; }
         public string LocationBn { get; set; }
         public List<string> Images { get; set; }
+        public string CoverImage { get; set; }
         
         public bool Featured { get; set; }
         public double Weight { get; set; }

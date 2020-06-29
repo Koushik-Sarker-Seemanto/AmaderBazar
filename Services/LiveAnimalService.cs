@@ -189,6 +189,7 @@ namespace Services
                     Description = animal.Description,
                     DescriptionBn = animal.DescriptionBn,
                     Images = animal.Images,
+                    CoverImage = animal.CoverImage,
                     Sold = animal.Sold,
                     Featured = animal.Featured,
                     Height = animal.Height,

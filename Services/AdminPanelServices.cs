@@ -92,6 +92,7 @@ namespace Services
                 Description = model.Description,
                 DescriptionBn = model.DescriptionBn,
                 Images = model.Images,
+                CoverImage = model.CoverImage,
                 Featured = model.Featured,
                 Weight = model.Weight,
                 Height = model.Height,
@@ -212,7 +213,7 @@ namespace Services
                     }
                     string phrase = file.FileName;
                     string[] words = phrase.Split('.');
-                    var Bigimg = ScaleImage(uploadedImage, 342);
+                    var Bigimg = ScaleImage(uploadedImage, 960,720);
                     
                     var BigImgPath =  Guid.NewGuid().ToString()+"."+words[1];
 
@@ -224,7 +225,30 @@ namespace Services
 
             return paths;
         }
+        public async Task<string> UploadCoverImage(IFormFile file)
+        {
 
+            
+            if (file.Length > 0)
+                {
+                    Image uploadedImage;
+                    using (var stream = file.OpenReadStream())
+                    {
+                        uploadedImage = Image.FromStream(stream);
+                    }
+                    string phrase = file.FileName;
+                    string[] words = phrase.Split('.');
+                    var Bigimg = ScaleImage(uploadedImage, 342,342);
+
+                    var BigImgPath = Guid.NewGuid().ToString() + "." + words[1];
+
+                    Bigimg.SaveAs($"{pathBaseLinux}{BigImgPath}");
+                    return BigImgPath;
+
+                }
+
+            return "";
+        }
         public async Task<bool> UpdateAnimalLiveAnimal(LiveAnimal model)
         {
             try
@@ -240,13 +264,13 @@ namespace Services
             }
         }
 
-        public static System.Drawing.Image ScaleImage(System.Drawing.Image image, int maxHeight)
+        public static System.Drawing.Image ScaleImage(System.Drawing.Image image, int maxHeight,int maxWeight)
         {
             
-            var newImage = new Bitmap(maxHeight, maxHeight);
+            var newImage = new Bitmap(maxHeight, maxWeight);
             using (var g = Graphics.FromImage(newImage))
             {
-                g.DrawImage(image, 0, 0, maxHeight, maxHeight);
+                g.DrawImage(image, 0, 0, maxHeight, maxWeight);
             }
             return newImage;
         }
