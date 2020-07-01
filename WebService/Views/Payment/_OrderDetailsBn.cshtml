@@ -118,7 +118,7 @@
                             @if (!double.IsNaN(Model.LiveAnimalDetails.Weight))
                             {
                                 <div class="mobile-text-center">
-                                    <strong style="font-size: medium;">ওজন : </strong> <span style="font-size: medium;" id="weight">@Model.LiveAnimalDetails.Weight KG</span>
+                                    <strong style="font-size: medium;">লাইভ ওজন : </strong> <span style="font-size: medium;" id="weight">@Model.LiveAnimalDetails.Weight KG</span>
                                 </div>
                                 <script>
                                     var num = @Model.LiveAnimalDetails.Weight;
@@ -131,7 +131,7 @@
                             else
                             {
                                 <div class="mobile-text-center">
-                                    <strong style="font-size: medium;">ওজন : </strong> <span style="font-size: medium;">N/A</span>
+                                    <strong style="font-size: medium;">লাইভ ওজন : </strong> <span style="font-size: medium;">N/A</span>
                                 </div>
                             }
                             @if (!double.IsNaN(Model.LiveAnimalDetails.Teeth))
