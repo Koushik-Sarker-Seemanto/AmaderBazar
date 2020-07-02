@@ -30,21 +30,21 @@
                         @{
                             if (Model.LiveAnimalDetails.Images != null && Model.LiveAnimalDetails.Images.Count > 0)
                             {
-                                                <ul class="thumbnails small ">
-                                                    @foreach (var image in Model.LiveAnimalDetails.Images)
-                                                    {
-                                                        <li class="span1 carousel-mobile">
-                                                            <a class="thumbnail " data-fancybox-group="group1" title="Description 2" href="~/images/@image" target="_blank"><img src="~/images/@image" alt=""></a>
-                                                        </li>
-                                                    }
-                                                    @foreach (var image in Model.LiveAnimalDetails.Images)
-                                                    {
-                                                        <li class="span1 carousel-normal">
-                                                            <a class="thumbnail " data-fancybox-group="group1" title="Description 2"><img src="~/images/@image" alt=""></a>
-                                                        </li>
-                                                    }
+                                <ul class="thumbnails small ">
+                                    @foreach (var image in Model.LiveAnimalDetails.Images)
+                                    {
+                                        <li class="span1 carousel-mobile">
+                                            <a class="thumbnail " data-fancybox-group="group1" title="Description 2" href="~/images/@image" target="_blank"><img src="~/images/@image" alt=""></a>
+                                        </li>
+                                    }
+                                    @foreach (var image in Model.LiveAnimalDetails.Images)
+                                    {
+                                        <li class="span1 carousel-normal">
+                                            <a class="thumbnail " data-fancybox-group="group1" title="Description 2"><img src="~/images/@image" alt=""></a>
+                                        </li>
+                                    }
 
-                                                </ul>
+                                </ul>
                             }
                         }
 
@@ -87,18 +87,18 @@
                             </div>
                         }
 
-@*                         @if (Model.LiveAnimalDetails.Location != null) *@
-@*                         { *@
-@*                             <div class="mobile-text-center"> *@
-@*                                 <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span> *@
-@*                             </div> *@
-@*                         } *@
-@*                         else *@
-@*                         { *@
-@*                             <div class="mobile-text-center"> *@
-@*                                 <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">N/A</span> *@
-@*                             </div> *@
-@*                         } *@
+                        @*                         @if (Model.LiveAnimalDetails.Location != null) *@
+                        @*                         { *@
+                        @*                             <div class="mobile-text-center"> *@
+                        @*                                 <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.Location</span> *@
+                        @*                             </div> *@
+                        @*                         } *@
+                        @*                         else *@
+                        @*                         { *@
+                        @*                             <div class="mobile-text-center"> *@
+                        @*                                 <strong style="font-size: medium;">Location : </strong> <span style="font-size: medium;">N/A</span> *@
+                        @*                             </div> *@
+                        @*                         } *@
                         @if (!double.IsNaN(Model.LiveAnimalDetails.Height))
                         {
                             <div class="mobile-text-center">
@@ -150,6 +150,7 @@
                             }
 
                         }
+                        
 
                         @if (!double.IsNaN(Model.LiveAnimalDetails.Price))
                         {
@@ -179,6 +180,21 @@
                 </div>
 
             </div>
+            @if(Model.LiveAnimalDetails.Description != null)
+            {
+                <div class="row">
+                    <div class="span9" style="margin-left: 2.5%; ">
+                        <ul class="nav nav-tabs" id="myTab" style="margin-left: 2.5%; ">
+                            <li class="active"><a href="#home">Description</a></li>
+                    
+                        </ul>							 
+                        <div class="tab-content" style="margin-left: 2.5%; ">
+                            <div class="tab-pane active" id="home">@Model.LiveAnimalDetails.Description</div>
+                        </div>							
+                    </div>
+                </div>
+            }
+        
             <div class="row" style="margin-left: 0%; ">
                 
                 <div class="span9" style="margin-left: 2.5%; ">

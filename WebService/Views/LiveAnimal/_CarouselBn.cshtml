@@ -55,7 +55,7 @@
                             }
                             @if (!double.IsNaN(Model.Related[i].Price))
                             {
-                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><p class="price">&#2547 @Model.Related[i].Price</p></a>
+                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><p class="price" id="@Model.Related[i].Id">&#2547 @Model.Related[i].Price</p></a>
                                 
                             }
                             else
@@ -121,7 +121,7 @@
                                 }
                                 @if(!double.IsNaN(Model.Related[j].Price))
                                 {
-                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><p class="price">&#2547 @Model.Related[i].Price</p></a>
+                                    <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><p class="price" id="@Model.Related[j].Id">&#2547 @Model.Related[i].Price</p></a>
                                 }
                                 else
                                 {
@@ -201,7 +201,7 @@
                             }
                             @if(!double.IsNaN(Model.Related[i].Price))
                             {
-                                <p class="price">&#2547 @Model.Related[i].Price</p>
+                                <p class="price" id="@Model.Related[i].Id">&#2547 @Model.Related[i].Price</p>
                             }
                             else
                             {
@@ -266,7 +266,7 @@
                                 }
                                 @if(!double.IsNaN(Model.Related[j].Price))
                                 {
-                                    <p class="price">&#2547 @Model.Related[j].Price</p>
+                                    <p class="price" id="@Model.Related[j].Id">&#2547 @Model.Related[j].Price</p>
                                 }
                                 else
                                 {

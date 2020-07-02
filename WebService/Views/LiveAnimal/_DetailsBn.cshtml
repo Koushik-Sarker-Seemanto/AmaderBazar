@@ -89,28 +89,28 @@
                             </div>
                         }
 
-@*                         @if (Model.LiveAnimalDetails.LocationBn != null) *@
-@*                         { *@
-@*                             <div class="mobile-text-center"> *@
-@*                                 <strong style="font-size: medium;">ঠিকানা  : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.LocationBn</span> *@
-@*                             </div> *@
-@*                         } *@
-@*                         else *@
-@*                         { *@
-@*                             <div class="mobile-text-center"> *@
-@*                                 <strong style="font-size: medium;">ঠিকানা : </strong> <span style="font-size: medium;">N/A</span> *@
-@*                             </div> *@
-@*                         } *@
+                        @*                         @if (Model.LiveAnimalDetails.LocationBn != null) *@
+                        @*                         { *@
+                        @*                             <div class="mobile-text-center"> *@
+                        @*                                 <strong style="font-size: medium;">ঠিকানা  : </strong> <span style="font-size: medium;">@Model.LiveAnimalDetails.LocationBn</span> *@
+                        @*                             </div> *@
+                        @*                         } *@
+                        @*                         else *@
+                        @*                         { *@
+                        @*                             <div class="mobile-text-center"> *@
+                        @*                                 <strong style="font-size: medium;">ঠিকানা : </strong> <span style="font-size: medium;">N/A</span> *@
+                        @*                             </div> *@
+                        @*                         } *@
                         @if (!double.IsNaN(Model.LiveAnimalDetails.Height))
                         {
                             <div class="mobile-text-center">
                                 <strong style="font-size: medium;">উচ্চতা : </strong> <span style="font-size: medium;" id="height">@Model.LiveAnimalDetails.Height Feet</span>
                             </div>
                             <script>
-                            var num = @Model.LiveAnimalDetails.Height;
-                            $("#height")
-                                .text(replaceNumbers(num.toString()) +" ফুট");
-                            console.log(replaceNumbers(num.toString()));
+                                var num = @Model.LiveAnimalDetails.Height;
+                                $("#height")
+                                    .text(replaceNumbers(num.toString()) +" ফুট");
+                                console.log(replaceNumbers(num.toString()));
 
                             </script>
                         }
@@ -126,10 +126,10 @@
                                 <strong style="font-size: medium;">লাইভ ওজন : </strong> <span style="font-size: medium;" id="weight">@Model.LiveAnimalDetails.Weight KG</span>
                             </div>
                             <script>
-                            var num = @Model.LiveAnimalDetails.Weight;
-                            $("#weight")
-                                .text(replaceNumbers(num.toString()) + " কেজি");
-                            console.log(replaceNumbers(num.toString()));
+                                var num = @Model.LiveAnimalDetails.Weight;
+                                $("#weight")
+                                    .text(replaceNumbers(num.toString()) + " কেজি");
+                                console.log(replaceNumbers(num.toString()));
 
                             </script>
                         }
@@ -145,10 +145,10 @@
                                 <strong style="font-size: medium;"> দাঁত : </strong> <span style="font-size: medium;" id="teeth">@Model.LiveAnimalDetails.Teeth</span>
                             </div>
                             <script>
-                            var num = @Model.LiveAnimalDetails.Teeth;
-                            $("#teeth")
-                                .text(replaceNumbers(num.toString()) );
-                            console.log(replaceNumbers(num.toString()));
+                                var num = @Model.LiveAnimalDetails.Teeth;
+                                $("#teeth")
+                                    .text(replaceNumbers(num.toString()) );
+                                console.log(replaceNumbers(num.toString()));
 
                             </script>
                         }
@@ -179,11 +179,11 @@
                                 <strong style="font-size: x-large;" id="priceM">&#2547 @Model.LiveAnimalDetails.Price </strong>
                             </div>
                             <script>
-                            var num = @Model.LiveAnimalDetails.Price;
+                                var num = @Model.LiveAnimalDetails.Price;
 
-                            $("#priceM")
-                                .text("৳ " +replaceNumbers(num.toString()));
-                            console.log(replaceNumbers(num.toString()));
+                                $("#priceM")
+                                    .text("৳ " +replaceNumbers(num.toString()));
+                                console.log(replaceNumbers(num.toString()));
 
                             </script>
                         }
@@ -209,6 +209,20 @@
                 </div>
 
             </div>
+        @if(Model.LiveAnimalDetails.DescriptionBn != null)
+        {
+            <div class="row">
+                <div class="span9" style="margin-left: 2.5%; ">
+                    <ul class="nav nav-tabs" id="myTab" style="margin-left: 2.5%; ">
+                        <li class="active"><a href="#home">Description</a></li>
+                    
+                    </ul>							 
+                    <div class="tab-content" style="margin-left: 2.5%; ">
+                        <div class="tab-pane active" id="home">@Model.LiveAnimalDetails.DescriptionBn</div>
+                    </div>							
+                </div>
+            </div>
+        }
             <div class="row" style="margin-left: 0%; ">
                 
                 <div class="span9" style="margin-left: 2.5%; ">
