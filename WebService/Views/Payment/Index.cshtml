@@ -1,0 +1,42 @@
+@model Models.OrderModels.SearchOrderModel;
+
+
+
+@{
+    ViewData["Title"] = "OrderConfirmation";
+    ViewBag.Detailes = Model;
+}
+@Html.Partial("_NavBar")
+<section class="header_text sub">
+    <img class="pageBanner" src="~/themes/images/banner.png" alt="New products">
+    
+</section>
+<section class="main-content">
+<div class="row">
+    <div class="span12" style="text-align: center">
+        <h5 style="color: red">Check the Invoice for Order Id</h5>
+        <img id="invoiceImg" src="~/static/example_invoice.png" style="border: solid 3px var(--logoGreen);margin-bottom: 3%" alt="">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger alert alert-danger" })
+        <form method="post" asp-action="Index" autocomplete="off" asp-controller="Payment">
+            @Html.AntiForgeryToken()
+            <div class="control-group">
+                <label class="control-label"><strong style="font-size: 130%">Order Id</strong></label>
+                <div class="controls">
+                    <input asp-for="Id" type="text" placeholder="Example: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX" class="span6"><br/>
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">Search Order</button>
+        </form>
+    </div>
+</div>
+</section>
+
+<style>
+    @@media (min-width: 980px){
+        #invoiceImg{
+            width: 60%;
+        }
+    }
+</style>
+

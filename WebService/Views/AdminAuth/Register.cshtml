@@ -1,0 +1,41 @@
+@model Models.AdminModels.RegisterViewModel;
+@{
+    ViewData["Title"] = "Register Page";
+    Layout = "_LayoutAdmin";
+}
+
+
+<div class="container m-auto">
+    <div class="m-auto col-lg-9 p-5 bg-white">
+        <h1 class="d-flex justify-content-center">Register Form</h1>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger alert alert-danger"})
+        <form id="registerForm" asp-action="Register" class="" autocomplete="off">
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <label for="author">Author Secret</label>
+                <input asp-for="AuthorSecret" class="form-control" id="author" aria-describedby="emailHelp" placeholder="Enter Author Secret">
+                <span asp-validation-for="AuthorSecret" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input asp-for="Name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter Name">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input asp-for="Username" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter Username">
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input asp-for="Password" type="password" class="form-control" id="password" placeholder="Password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-block btn-success m-b-20" type="submit">sign up</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>

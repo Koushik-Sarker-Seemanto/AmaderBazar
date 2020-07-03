@@ -1,0 +1,166 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Core.Common
+
+@model X.PagedList.IPagedList<Models.OrderModels.OrderViewModel>;
+@{
+    ViewData["Title"] = "Placed Order";
+    Layout = "_LayoutAdmin";
+}
+
+<div class="container-fluid m-auto">
+    <div class="m-auto col-lg-9 bg-white p-5 mt-3 mb-3">
+        <h1 class="d-flex justify-content-center">Placed Orders</h1>
+        <div class="table-responsive-md">
+            <table class="table-bordered table table-striped">
+                <thead>
+                    <tr class="bg-success text-white">
+                        <td class="text-center font-weight-bold">Order ID</td>
+                        <td class="text-center font-weight-bold">Title</td>
+                        <td class="text-center font-weight-bold">Color</td>
+                        <td class="text-center font-weight-bold">Origin</td>
+                        <td class="text-center font-weight-bold">Location</td>
+                        <td class="text-center font-weight-bold">Price</td>
+                        <td class="text-center font-weight-bold">Name</td>
+                        <td class="text-center font-weight-bold">Phone Number</td>
+                        <td class="text-center font-weight-bold">Address</td>
+                        <td class="text-center font-weight-bold">Action</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @{
+                        if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                               
+                                        <tr>
+
+                                            @if (item.LiveAnimal != null)
+                                            {
+                                                @if (item.Order != null)
+                                                {
+                                                    @if (item.Order.Id != null)
+                                                    {
+                                                        <td class="text-center">@item.Order.Id</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="text-center">N/A</td>
+                                                    }
+                                                    @if (item.LiveAnimal.Title != null)
+                                                    {
+                                                        <td class="text-center">@item.LiveAnimal.Title</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="text-center">N/A</td>
+                                                    }
+                                                    @if (item.LiveAnimal.Color != null)
+                                                    {
+                                                        <td class="text-center">@item.LiveAnimal.Color</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="text-center">N/A</td>
+                                                    }
+                                                    @if (item.LiveAnimal.Origin != null)
+                                                    {
+                                                        <td class="text-center">@item.LiveAnimal.Origin</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="text-center">N/A</td>
+                                                    }
+                                                    @if (item.LiveAnimal.Location != null)
+                                                    {
+                                                        <td class="text-center">@item.LiveAnimal.Location</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="text-center">N/A</td>
+                                                    }
+                                                    @if (!double.IsNaN(item.LiveAnimal.Price))
+                                                    {
+                                                        <td class="text-center">@item.LiveAnimal.Price</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="text-center">N/A</td>
+                                                    }
+                                                    @if (item.Order.Name != null)
+                                                    {
+                                                        <td class="text-center">@item.Order.Name</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="text-center">N/A</td>
+                                                    }
+                                                    @if (item.Order.PhoneNumber != null)
+                                                    {
+                                                        <td class="text-center">@item.Order.PhoneNumber</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="text-center">N/A</td>
+                                                    }
+
+                                                    @if (item.Order.Address != null)
+                                                    {
+                                                        <td class="text-center">@item.Order.Address</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="text-center">N/A</td>
+                                                    }
+                                                    @if (item.Order.Id != null)
+                                                    {
+                                                        <td class="text-center">
+                                                            @Html.ActionLink(" Details ", "AnimalDetails", "AdminPanel", new { itemId = item.LiveAnimal.Id }, new { @class = "btn btn-primary mr-2" })
+                                                            @{
+                                                                if (item.Order.Contacted)
+                                                                {
+                                                                    @Html.ActionLink("Order Confirmed", "", "", "", new { @class = "btn btn-secondary disabled mr-2", })
+                                                                }
+                                                                else
+                                                                {
+                                                                    @Html.ActionLink(" Confirm Order ", "ContactClient", "AdminPanel", new { Id = item.Order.Id }, new { @class = "btn btn-success mr-2", })
+                                                                }
+                                                            }
+                                                            @Html.ActionLink("  Delete ", "OrderDelete", "AdminPanel", new { itemId = item.Order.Id }, new { @class = "btn btn-danger mr-2" })
+
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="text-center">N/A</td>
+                                                    }
+                                                }
+                                            }
+
+
+
+                                        </tr>
+                            }
+                        }
+                        else
+                        {
+                        <td> No data found!!!</td>
+                    }
+                    }
+                    </tbody>
+
+                </table>
+                <div class="d-flex justify-content-center">
+                    @Html.PagedListPager(Model, page => Url.Action("PlacedOrder", new { page }),
+                        new PagedListRenderOptions
+                             {
+                            LiElementClasses = new string[] { "page-item" },
+                            PageClasses = new string[] { "page-link" },
+                        })
+                </div>
+            </div>
+
+        </div>
+
+    </div>

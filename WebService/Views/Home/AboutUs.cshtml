@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewData["Title"] = "AboutUs";
+}
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+@Html.Partial("_NavBar")
+
+
+@if (@TempData["Is_English"] != null)
+{
+    @if (@TempData["Is_English"].Equals(true))
+    {
+        await Html.RenderPartialAsync("_AboutUsEn");
+    }
+    else
+    {
+        await Html.RenderPartialAsync("_AboutUsBn");
+    }
+    TempData.Keep("Is_English");
+}
+else
+{
+    await Html.RenderPartialAsync("_AboutUsEn");
+}
+
+
+<script src="~/themes/js/common.js"></script>
+<script src="~/themes/js/jquery.flexslider-min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(document).ready(function () {
+            $('.flexslider').flexslider({
+                animation: "fade",
+                slideshowSpeed: 4000,
+                animationSpeed: 600,
+                controlNav: false,
+                directionNav: true,
+                controlsContainer: ".flex-container" // the container that holds the flexslider
+            });
+        });
+    });
+    $('#myCarousel-2-mobile').carousel({
+        interval: 3000,
+    });
+    $('#myCarousel-2').carousel({
+        interval: 4000,
+    });
+    $('#myCarousel-mobile').carousel({
+        interval: 3000,
+    });
+    $('#myCarousel').carousel({
+        interval: 4000,
+    });
+</script>
+
+<style>
+    @@media (min-width: 0px) and (max-width: 767px) {
+        .carousel-normal {
+            display: none;
+        }
+
+        .carousel-mobile {
+            display: block;
+        }
+    }
+
+    @@media only screen and (min-width: 768px) {
+        .carousel-mobile {
+            display: none;
+        }
+
+        .carousel-normal {
+            display: block;
+        }
+    }
+</style>

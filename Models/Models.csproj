@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="PaymentModels\**" />
+      <EmbeddedResource Remove="PaymentModels\**" />
+      <None Remove="PaymentModels\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MongoDB.Bson" Version="2.10.4" />
+    </ItemGroup>
+
+</Project>

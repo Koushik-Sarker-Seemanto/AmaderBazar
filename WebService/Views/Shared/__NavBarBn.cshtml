@@ -1,0 +1,119 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@* Mobile NavBar *@
+
+<div class="sidenav">
+
+
+    <div id="mySidenav" style="text-align: center;overflow-y: scroll" class="sidenav-top sidenav">
+        <a style="margin-top: 5%;" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a style="padding: 8px 8px 8px 32px;" href="@Url.Action("Index", "Home")" class="logo pull-left"><img style="display: block;width: 150px; height: 150px; margin-top: -50%" src="~/themes/images/logo.png" class="img-responsive site_logo" alt=""></a>
+
+    </div>
+
+    <div style="overflow-y: scroll" id="mySidenav-bottom" class="sidenav-bottom sidenav">
+        <a href='@Url.Action("Index", "Home")'><i class="fa fa-home"></i> হোম</a>
+
+        <a style="cursor: pointer;" href='@Url.Action("Index", "LiveAnimal")'><i class="fa fa-shopping-cart"></i> প্রোডাক্ট </a>
+        
+
+        <a href='@Url.Action("FeatureProduct", "LiveAnimal")'><i class="fa fa-shopping-cart"></i> প্রিমিয়াম প্রোডাক্ট</a>
+        <a href='@Url.Action("NewProduct", "LiveAnimal")'><i class="fa fa-shopping-cart"></i> নতুন প্রোডাক্ট</a>
+        <a href="@Url.Action("Index", "Payment")"><i class="fa fa-comment-dollar"></i> পেমেন্ট</a>
+        <a href="@Url.Action("ChangeLanguage", "Home",new {_language = true})"> <i class="fa fa-language"></i> English</a>
+    </div>
+
+</div>
+
+@* Mobile NavBar Opening Button *@
+
+<div class="sidenav">
+
+
+    <div id="mySidenav" style="text-align: center;overflow-y: scroll" class="sidenav-top sidenav">
+        <a style="margin-top: 5%;" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a style="padding: 8px 8px 8px 32px;" href="@Url.Action("Index", "Home")" class="logo pull-left"><img style="display: block;width: 150px; height: 150px; margin-top: -50%" src="~/themes/images/logo.png" class="img-responsive site_logo" alt=""></a>
+
+    </div>
+
+    <div style="overflow-y: scroll" id="mySidenav-bottom" class="sidenav-bottom sidenav">
+        <a href='@Url.Action("Index", "Home")'><i class="fa fa-home"></i> হোম</a>
+        <a style="cursor: pointer;" class="dropdown" href='@Url.Action("Index", "LiveAnimal")'><i class="fa fa-shopping-cart"></i> প্রোডাক্ট </a>
+
+        <a href='@Url.Action("FeatureProduct", "LiveAnimal")'><i class="fa fa-shopping-cart"></i> প্রিমিয়াম প্রোডাক্ট</a>
+        <a href='@Url.Action("NewProduct", "LiveAnimal")'><i class="fa fa-shopping-cart"></i> নতুন প্রোডাক্ট</a>
+        <a href="@Url.Action("Index", "Payment")"><i class="fa fa-comment-dollar"></i> পেমেন্ট</a>
+
+        <a href="@Url.Action("ChangeLanguage", "Home",new {_language = true})"> <i class="fa fa-language"></i> English</a>
+    </div>
+
+</div>
+
+@* Mobile NavBar Opening Button *@
+<div class="mobile_nav mobile_nav_icon" style="display: inline-block">
+    <i class="fa fa-bars hamBurger" style="" onclick="openNav()"></i>
+    <span id="nav-name" class="hamBurger" style="margin-left: 10px;font-size: 100%;font-family: 'Oleo Script Swash Caps', cursive;">FarmHut</span>
+    <form id="search-form" class="inline searchBar" method="get" asp-action="Index" asp-controller="LiveAnimal" style="margin-bottom: 0px; margin-right: 25px; float: right">
+        <input id="title-input" name="title" style="width: 55vw; margin-bottom: 0px;margin-right: 0;display: none;" type="text" class="form-search" placeholder="Search"/>
+        <i id="search-btn" type="submit" style="margin-left: 0" class="fa fa-search"></i>
+    </form>
+</div>
+
+<script>
+    $("#nav-name").click(function() {
+        window.location.href = '/home';
+    });
+</script>
+
+@* PC NavBar *@
+
+<section class="pc_nav navbar main-menu">
+    <div class="navbar-inner main-menu" style="padding: 1%;">
+
+        <a href="@Url.Action("Index", "Home")" class="logo pull-left"><img style="width: 180px; height: 90px;margin-top: -20px" src="~/themes/images/logo.png" class="site_logo" alt=""></a>
+        <nav id="menu" class=" pull-right">
+            <ul>
+
+                <li><a href='@Url.Action("Index", "Home")'>হোম</a></li>
+                <li id="product-dropdown">
+                    <a style="cursor: pointer;">প্রোডাক্ট <i class="fa fa-caret-down"></i></a>
+                    <ul class="showDropdown" style="z-index: 100;">
+                        <li><a href='@Url.Action("Index", "LiveAnimal")'>সকল প্রোডাক্ট</a></li>
+                        <li><a href='@Url.Action("FeatureProduct", "LiveAnimal")'>প্রিমিয়াম প্রোডাক্ট</a></li>
+                        <li><a href='@Url.Action("NewProduct", "LiveAnimal")'>নতুন প্রোডাক্ট</a></li>
+                    </ul>
+
+                </li>
+                <li><a href="@Url.Action("Index", "Payment")">পেমেন্ট</a></li>
+
+                <li>
+                    <form class="inline form-horizontal" method="get" asp-action="Index" asp-controller="LiveAnimal" style="float: right">
+                        <input id="pc-title-input" name="title" style="margin-bottom: 0;margin-right: 0;" type="text" class="form-inline" placeholder="খুজুন"/>
+                        <button class="btn btn-success" id="pc-search-btn" type="submit" style="margin-left: 0;margin-top: 0; background: var(--logoGreen);"><i class="fa fa-search"></i></button>
+                    </form>
+                </li>
+                <li><a href="@Url.Action("ChangeLanguage", "Home",new {_language = true})">English</a></li>
+
+
+
+                
+                @* <li>
+                    <a href='@Url.Action("Index", "LiveAnimal")'>প্রোডাক্ট</a>
+                    
+                </li>
+
+                <li><a href='@Url.Action("FeatureProduct", "LiveAnimal")'>প্রিমিয়াম প্রোডাক্ট</a></li>
+                <li><a href='@Url.Action("NewProduct", "LiveAnimal")'>নতুন প্রোডাক্ট</a></li>
+                <li><a href="@Url.Action("Index", "Payment")">পেমেন্ট</a></li> *@
+ 
+                @* <li><a href="@Url.Action("ChangeLanguage", "Home",new {_language = true})">English</a></li> *@
+            </ul>
+        </nav>
+    </div>
+</section>
+@* <span class="mobile_nav mobile_nav_icon" style="" onclick="openNav()">&#9776;</span> *@
+
+
+
+

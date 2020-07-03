@@ -1,0 +1,326 @@
+﻿@model Models.Entities.LiveAnimal;
+@{
+    ViewData["Title"] = "Animal Details";
+    Layout = "_LayoutAdmin";
+    ViewBag.Featured = Model.Featured;
+}
+
+<div class="container m-auto">
+    <div class="m-auto col-lg-9 bg-white p-5 mt-3 mb-3">
+        <h1 class="d-flex justify-content-center">Animal Details</h1>
+        @{
+            if (Model != null)
+            {
+                if (Model.Title != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="title">Title</label>
+                        <p style="background: #eeeeee" class="p-1" id="title"> @Html.DisplayFor(model => model.Title) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="title">Title</label>
+                        <p style="background: #eeeeee" class="p-1" id="title"> N/A </p>
+                    </div>
+                }
+                if (Model.TitleBn != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="title">Title ( বাংলায় )</label>
+                        <p style="background: #eeeeee" class="p-1" id="title"> @Html.DisplayFor(model => model.TitleBn) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="title">Title ( বাংলায় )</label>
+                        <p style="background: #eeeeee" class="p-1" id="title"> N/A </p>
+                    </div>
+                }
+                if (Model.Category != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="category">Category</label>
+                        <p style="background: #eeeeee" class="p-1" id="category"> @Model.Category.Name </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="category">Category</label>
+                        <p style="background: #eeeeee" class="p-1" id="category"> N/A </p>
+                    </div>
+                }
+
+                if (!double.IsNaN(Model.Price))
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="price">Price</label>
+                        <p style="background: #eeeeee" class="p-1" id="price"> @Html.DisplayFor(model => model.Price) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="price">Price</label>
+                        <p style="background: #eeeeee" class="p-1" id="price"> N/A </p>
+                    </div>
+                }
+                if (!double.IsNaN(Model.Height))
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="height">Height</label>
+                        <p style="background: #eeeeee" class="p-1" id="height"> @Html.DisplayFor(model => model.Height) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="height">Height</label>
+                        <p style="background: #eeeeee" class="p-1" id="height"> N/A </p>
+                    </div>
+                }
+                if (!double.IsNaN(Model.Weight))
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="weight">Weight</label>
+                        <p style="background: #eeeeee" class="p-1" id="weight"> @Html.DisplayFor(model => model.Weight) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="weight">Weight</label>
+                        <p style="background: #eeeeee" class="p-1" id="weight"> N/A </p>
+                    </div>
+                }
+                if (!double.IsNaN(Model.Teeth))
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="teeth">Teeth</label>
+                        <p style="background: #eeeeee" class="p-1" id="teeth"> @Html.DisplayFor(model => model.Teeth) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="teeth">Teeth</label>
+                        <p style="background: #eeeeee" class="p-1" id="teeth"> N/A </p>
+                    </div>
+                }
+
+                if (Model.Origin != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="origin">Origin</label>
+                        <p style="background: #eeeeee" class="p-1" id="origin"> @Html.DisplayFor(model => model.Origin) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="origin">Origin</label>
+                        <p style="background: #eeeeee" class="p-1" id="origin"> N/A </p>
+                    </div>
+                }
+
+                if (Model.OriginBn != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="origin">Origin ( বাংলায় )</label>
+                        <p style="background: #eeeeee" class="p-1" id="origin"> @Html.DisplayFor(model => model.OriginBn) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="origin">Origin ( বাংলায় )</label>
+                        <p style="background: #eeeeee" class="p-1" id="origin"> N/A </p>
+                    </div>
+                }
+                if (Model.Location != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="location">Location</label>
+                        <p style="background: #eeeeee" class="p-1" id="location"> @Html.DisplayFor(model => model.Location) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="location">Location</label>
+                        <p style="background: #eeeeee" class="p-1" id="location"> N/A </p>
+                    </div>
+                }
+                if (Model.LocationBn != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="location">Location (বাংলায়)</label>
+                        <p style="background: #eeeeee" class="p-1" id="location"> @Html.DisplayFor(model => model.LocationBn) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="location">Location (বাংলায়)</label>
+                        <p style="background: #eeeeee" class="p-1" id="location"> N/A </p>
+                    </div>
+                }
+
+                if (Model.Featured != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="Featured">Premium</label>
+                        @if (@ViewBag.Featured == true)
+                        {
+                            <p style="background: #eeeeee" class="p-1" id="location"> YES </p>
+                        }
+                        else
+                        {
+                            <p style="background: #eeeeee" class="p-1" id="location"> NO </p>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="location">Premium</label>
+                        <p style="background: #eeeeee" class="p-1" id="location"> N/A </p>
+                    </div>
+                }
+
+                if (Model.Description != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="description">Description</label>
+                        <p style="background: #eeeeee" class="p-1" id="description"> @Html.DisplayFor(model => model.Description) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="description">Location</label>
+                        <p style="background: #eeeeee" class="p-1" id="description"> N/A </p>
+                    </div>
+                }
+
+                @if (Model.DescriptionBn != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="description">Description (বাংলায়)</label>
+                        <p style="background: #eeeeee" class="p-1" id="description"> @Html.DisplayFor(model => model.DescriptionBn) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="description">Location</label>
+                        <p style="background: #eeeeee" class="p-1" id="description"> N/A </p>
+                    </div>
+                }
+                if (Model.Description != null)
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="description">Description</label>
+                        <p style="background: #eeeeee" class="p-1" id="description"> @Html.DisplayFor(model => model.Description) </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <label class="h5" for="description">Location</label>
+                        <p style="background: #eeeeee" class="p-1" id="description"> N/A </p>
+                    </div>
+                }
+    <div class="d-flex mt-3 mb-5">
+        @Html.ActionLink("Update", "UpdateAnimal", "AdminPanel", new { itemId = Model?.Id }, new { @class = "btn btn-success w-45 float-left" })
+        @Html.ActionLink("Delete", "AnimalDelete", "AdminPanel", new { itemId = Model?.Id }, new { @class = "animalDeleteBtn btn btn-danger w-45 float-right" })
+        @if(Model.Sold == false)
+        {
+            @Html.ActionLink("Sell", "SellAnimal", "AdminPanel", new { itemId = Model?.Id }, new { @class = "animalDeleteBtn btn btn-danger w-45 float-right" })
+        }
+        </div>
+
+                if (Model.Images != null)
+                {
+                    <h3 class="d-flex justify-content-center">Uploaded Images</h3>
+                    <div class="row mt-5">
+
+                        @{
+                            foreach (var img in Model.Images)
+                            {
+                                <div class="col-lg-3">
+                                    <div class="m-2">
+                                        <a target="_blank" href="~/images/@img" data-fancybox-group="group1">
+                                            <img class="img-fluid" style="max-width: 100%; height: auto;" src="~/images/@img" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                }
+            }
+            else
+            {
+                <h1>No data found!!!</h1>
+            }
+
+        }
+    </div>
+</div>
+
+<script>
+
+    $(document).on('click',
+        '.animalDeleteBtn',
+        function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: '@Url.Action("AnimalDelete", "AdminPanel")',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        type: 'GET',
+                        data: "itemId=" + @Model.Id ,
+                        success: function(response) {
+                            if (response === true) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                );
+
+
+                            } else {
+                                Swal.fire(
+                                    'Ops!',
+                                    "Couldn't delete image!",
+                                    'Failed'
+                                );
+                            }
+                        },
+                        error: function(response) {
+                            Swal.fire(
+                                'Ops!',
+                                'Internal Error!',
+                                'Failed'
+                            );
+                        }
+                    });
+            }
+        }
+   );
+
+</script>
