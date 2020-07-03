@@ -1,8 +1,101 @@
-﻿@{
+﻿@model Models.LiveAnimalModels.IndexViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
+@Html.Partial("_NavBar")
+<section class="homepage-slider" id="home-slider">
+    <div class="flexslider">
+        <ul class="slides">
+            <li>
+                <img src="~/themes/images/carousel/rsz_banner03_01.jpg" alt="" />
+            </li>
+            <li>
+                <img src="~/themes/images/carousel/rsz_bannerpromo.jpg" alt="" />
+            </li>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+            <li>
+                <img src="~/themes/images/carousel/rsz_maxresdefault_2.png" alt="" />
+            </li>
+            <li>
+                <img src="~/themes/images/carousel/rsz_maxresdefault.png" alt="" />
+            </li>
+
+
+        </ul>
+    </div>
+</section>
+
+
+@if (@TempData["Is_English"] != null)
+{
+    @if (@TempData["Is_English"].Equals(true))
+    {
+        await Html.RenderPartialAsync("_IndexEn", Model );
+    }
+    else
+    {
+        await Html.RenderPartialAsync("_IndexBn", Model);
+    }
+    TempData.Keep("Is_English");
+}
+else
+{
+    await Html.RenderPartialAsync("_IndexEn", Model);
+}
+
+    <script src="~/themes/js/common.js"></script>
+    <script src="~/themes/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(document).ready(function () {
+                $('.flexslider').flexslider({
+                    animation: "fade",
+                    slideshowSpeed: 4000,
+                    animationSpeed: 600,
+                    controlNav: false,
+                    directionNav: true,
+                    controlsContainer: ".flex-container" // the container that holds the flexslider
+                });
+            });
+        });
+        $('#myCarousel-2-mobile').carousel({
+            interval: 3000,
+        });
+        $('#myCarousel-2').carousel({
+            interval: 4000,
+        });
+        $('#myCarousel-mobile').carousel({
+            interval: 3000,
+        });
+        $('#myCarousel').carousel({
+            interval: 4000,
+        });
+    </script>
+
+<style>
+    @@media (min-width: 0px) and (max-width: 767px) {
+        .carousel-normal {
+            display: none;
+        }
+
+        .carousel-mobile {
+            display: block;
+        }
+        .banner-text {
+            margin-top: 10% !important;
+        }
+    }
+
+    @@media only screen and (min-width: 768px) {
+        .carousel-mobile {
+            display: none;
+        }
+
+        .carousel-normal {
+            display: block;
+        }
+        .banner-text {
+            margin-top: 0%;
+        }
+    }
+</style>

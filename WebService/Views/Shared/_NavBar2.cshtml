@@ -1,0 +1,25 @@
+﻿    <section class="navbar main-menu">
+        <div class="navbar-inner main-menu" style="padding: 1%;">
+            <a href="@Url.Action("Index", "Home")" class="logo pull-left"><img src="~/themes/images/logo.png" class="site_logo" alt=""></a>
+            <nav id="menu" class="pull-right">
+                <ul>
+
+                    <li><a href='@Url.Action("Index", "Home")'>Home</a></li>
+                    <li>
+                        <a href='@Url.Action("Index", "LiveAnimal")'>Kurbani</a>
+                        <ul>
+                            <li><a href='@Url.Action("Index", "LiveAnimal")'>Cow</a></li>
+                            @* <li><a href="./products.html">Ties and Hats</a></li> *@
+                            @* <li><a href="./products.html">Cold Weather</a></li> *@
+                        </ul>
+                    </li>
+
+                    <li><a href='@Url.Action("FeatureProduct", "LiveAnimal")'>Feature Product</a></li>
+                    <li><a href="#">New Product</a></li>
+                    <li><a href="@Url.Action("Index", "Payment")">Payment</a></li>
+                    <li><a href="@Url.Action("ChangeLanguage", "Home",new {_language = false})">Bangla</a></li>
+                    <li><a href="@Url.Action("ChangeLanguage", "Home",new {_language = true})">English</a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>

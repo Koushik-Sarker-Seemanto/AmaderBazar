@@ -1,0 +1,262 @@
+@* Style for Navbar Mobile *@
+
+<style>
+
+    .sidenav-top {
+        height: 20%;
+        width: 0;
+        position: fixed;
+        z-index: 101;
+        top: 0;
+        left: 0;
+        background-color: #ffffff;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+        display: block;
+        text-align: center;
+        opacity: .95;
+    }
+
+    .sidenav-bottom {
+        height: 80%;
+        width: 0;
+        position: fixed;
+        z-index: 101;
+        top: 20%;
+        left: 0;
+        background-color: var(--logoGreen);
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 2%;
+        opacity: .95;
+    }
+
+        .sidenav-bottom a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 12pt;
+            font-weight: bold;
+            color: white;
+            display: block;
+            transition: 0.3s;
+            margin-top: 1%;
+        }
+
+    .sidenav-top .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    .mobile_nav_icon {
+        font-size: 30px;
+        cursor: pointer;
+        background: var(--logoGreen);
+        color: white;
+        top: 0%;
+        z-index: 100;
+        padding: 15px;
+        width: 100vw;
+        position: fixed;
+        margin-left: -50vw;
+        left: 50%;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: relative;
+        margin-left: 10%;
+        padding: 16px 16px;
+        z-index: 1;
+        margin-top: -20px;
+        margin-bottom: -20px;
+    }
+
+        .dropdown-content a {
+            border: white;
+        }
+</style>
+ <link href="https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps:wght@700&display=swap" rel="stylesheet"> 
+
+
+@* Mobile NavBar *@
+
+@if (@TempData["Is_English"] != null)
+{
+    @if (@TempData["Is_English"].Equals(true))
+    {
+        // For English
+        await Html.RenderPartialAsync("__NavBarEn");
+
+    }
+    else
+    {
+        // For Bangla
+        await Html.RenderPartialAsync("__NavBarBn");
+
+    }
+    TempData.Keep("Is_English");
+}
+else
+{
+    // Exception
+    await Html.RenderPartialAsync("__NavBarEn");
+}
+
+
+@* Media Query For (Mobile & Tab) or Pc *@
+
+<style>
+    @@media (min-width: 0px) and (max-width: 767px) {
+        .pc_nav {
+            display: none;
+        }
+        .mobile_nav {
+            display: block;
+        }
+    }
+
+    @@media (min-width: 768px) {
+        .pc_nav {
+            display: block;
+        }
+
+        .mobile_nav {
+            display: none;
+        }
+        
+        .searchBar {
+            display: none;
+        }
+        .hamBurger {
+            display: none;
+        }
+        .mobile_nav_icon {
+            background: none;
+        }
+    }
+
+    @@media (min-width: 0px) and (max-width: 550px) {
+        .farmhut-com-bd {margin-left: 50%;}
+    }
+    @@media(min-width: 551px){
+        .farmhut-com-bd{margin-left: 70%;}
+    }
+</style>
+
+
+@* Mobile navBar control script *@
+
+@* <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <script type="text/javascript">
+        $("body").on("swiperight",function(event){
+            console.log("Swiped");
+            // take 15% of screen good for diffrent screen size
+            var window_width_15p = $( window ).width() * 0.15;
+            console.log("window_width_15p: "+window_width_15p);
+            console.log("event.swipestart.coords[0]: "+ event.swipestart.coords[0]);
+            // check if the swipe right is from 15% of screen (coords[0] means X)
+            if ( event.swipestart.coords[0] < window_width_15p) {
+                console.log("Swiped If pass");
+                var _opened = $("#mySidenav").css("width");
+                var _openedBottom = $("#mySidenav-bottom").css('width');
+                console.log("_opened & _opened"+ _opened +" "+_openedBottom);
+
+                if (_opened == "0px" && _openedBottom == "0px") {
+                    console.log("Open Navbar");
+                    openNav();
+                }
+            }
+        });
+    </script> *@
+
+<script>
+
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("mySidenav-bottom").style.width = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("mySidenav-bottom").style.width = "0";
+    }
+
+
+    (function ($) {
+
+
+        $(document).ready(function(){
+
+            $("#product-dropdown").click(function(){
+                let main = $(this);
+                console.log("Toggled");
+                $(".showDropdown").each(function(){
+                    if($(this).css("visibility") === "hidden" && $(this).css('display') === 'none')
+                    {
+                        main.addClass("sfHover");
+                        $(this).css("visibility", "inherit");
+                        $(this).css('display', 'block');
+                    }
+                    else
+                    {
+                        main.removeClass("sfHover");
+                        $(this).css("visibility", "hidden");
+                        $(this).css('display', 'none');
+                    }
+                });
+                
+            });
+        });
+
+        $(document).ready(function(){
+            $("#search-btn").click(function(e){
+                
+                let inp = $("#title-input");
+                let name = $("#nav-name");
+                if(inp.val() == "")
+                {
+                    e.preventDefault();
+                    name.animate({width:'toggle'},350);
+                    inp.animate({width:'toggle'},350);
+                }
+                else
+                {
+                    $("#search-form").submit();
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $(".dropdown").click(function () {
+                $(".dropdown-content").fadeToggle();
+            });
+        });
+
+        $(document).ready(function () {
+            $(document).click(function (event) {
+                let inside = false;
+
+                var clickover = $(event.target);
+                if (clickover.parents('.sidenav').length) {
+                    inside = true;
+                }
+                var _opened = $("#mySidenav").css("width");
+                var _openedBottom = $("#mySidenav-bottom").css('width');
+
+                if (_opened !== "0px" && _openedBottom !== "0px" && !inside) {
+                    console.log("Clicked Outside");
+                    closeNav();
+                }
+            });
+        });
+
+    }(jQuery));
+
+
+
+</script>

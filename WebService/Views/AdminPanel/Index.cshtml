@@ -1,0 +1,136 @@
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Core.Common
+
+@model X.PagedList.IPagedList<Models.Entities.LiveAnimal>;
+@{
+    ViewData["Title"] = "Admin Panel";
+    Layout = "_LayoutAdmin";
+}
+
+<div class="container-fluid m-auto">
+    <div class="m-auto col-lg-9 bg-white p-5 mt-3 mb-3">
+        <h1 class="d-flex justify-content-center">Animal List</h1>
+        <div class="table-responsive-md">
+            <table class="table-bordered table table-striped">
+                <thead>
+                <tr class="bg-success text-white">
+                    <td class="text-center font-weight-bold">Title</td>
+                    <td class="text-center font-weight-bold">Category</td>
+                    <td class="text-center font-weight-bold">Price</td>
+                    <td class="text-center font-weight-bold">Origin</td>
+                    <td class="text-center font-weight-bold">Location</td>
+                    <td class="text-center font-weight-bold">Sold</td>
+                    <td class="text-center font-weight-bold">Color</td>
+                    <td class="text-center font-weight-bold">Action</td>
+                </tr>
+                </thead>
+            
+                <tbody>
+                @{
+                    if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                @{
+                                    if (item.Title != null)
+                                    {
+                                        <td class="text-center">@item.Title</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (item.Category != null)
+                                    {
+                                        <td class="text-center">@item.Category.Name</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (!double.IsNaN(item.Price))
+                                    {
+                                        <td class="text-center">@item.Price</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (item.Origin != null)
+                                    {
+                                        <td class="text-center">@item.Origin</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (item.Location != null)
+                                    {
+                                        <td class="text-center">@item.Location</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (item.Sold != null)
+                                    {
+                                        <td class="text-center">@item.Sold</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (item.Color != null)
+                                    {
+                                        <td class="text-center">@item.Color</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                    if (item.Id != null)
+                                    {
+                                        <td class="text-center">
+                                            @Html.ActionLink("Details", "AnimalDetails", "AdminPanel", new {itemId = item.Id}, new {@class = "btn btn-primary mr-2"})
+                                            @{
+                                                if (item.Sold == true)
+                                                {
+                                                    @Html.ActionLink("Sold", "", "", "", new {@class = "btn btn-secondary disabled mr-2", })
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink("Sell", "SellAnimal", "AdminPanel", new {itemId = item.Id}, new {@class = "btn btn-success mr-2", })
+                                                }
+                                            }
+                                            
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">N/A</td>
+                                    }
+                                }
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <td> No data found!!!</td>
+                    }
+                }
+                </tbody>
+            
+            </table>
+            <div class="d-flex justify-content-center">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new{ page }),
+                    new PagedListRenderOptions {
+                        LiElementClasses = new string[] { "page-item" }, 
+                        PageClasses = new string[] { "page-link" },
+                    })
+            </div>
+        </div>
+        
+    </div>
+
+</div>

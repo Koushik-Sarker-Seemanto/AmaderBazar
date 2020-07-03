@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -9,7 +10,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Models.Entities;
 using Repositories;
+using Services;
+using Services.Contracts;
+using SSLCommerz;
+using SSLCommerz.Contracts;
+using SSLCommerz.Services;
 
 namespace WebService
 {
@@ -25,15 +32,46 @@ namespace WebService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             services.Configure<DatabaseSettings>(
                 Configuration.GetSection(nameof(DatabaseSettings)));
             
             services.AddSingleton<IDatabaseSettings>(sp => 
                 sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
-
-            services.AddSingleton<IMongoRepository, MongoRepository>();
             
-            services.AddControllersWithViews();
+            //authentication configure
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/AdminAuth/Login";
+                    options.AccessDeniedPath = "/Auth/Forbidden/";
+                    options.Cookie.Name = "UserLoginCookie";
+                });
+            
+            services.AddSingleton<IMongoRepository, MongoRepository>();
+
+            services.AddSingleton<IUserServices, UserServices>();
+
+            services.AddSingleton<IAdminPanelServices, AdminPanelServices>();
+            services.AddSingleton<ILiveAnimalService, LiveAnimalService>();
+            services.AddSingleton<IOrderService, OrderService>();
+            services.AddSingleton<IPaymentService, PaymentService>();
+            services.AddSingleton<ITransactionService, TransactionService>();
+
+            services.Configure<SSLCommerzConfig>(Configuration.GetSection(nameof(SSLCommerzConfig)));
+            services.AddSingleton<ISSLCommerzConfig>(sp => 
+                sp.GetRequiredService<IOptions<SSLCommerzConfig>>().Value);
+
+            services.AddTransient<ISSLCommerzService, SSLCommerzService>();
+
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,7 +92,10 @@ namespace WebService
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,0 +1,85 @@
+﻿@*
+    @model Models.Entities.Order;
+*@
+@model Models.LiveAnimalModels.LiveAnimalDetailsViewModel;
+@{
+    ViewData["Title"] = "Order";
+    ViewBag.LiveAnimalDetailsId = Model.LiveAnimalDetails.Id;
+    ViewBag.LiveAnimalDetailsSold = Model.LiveAnimalDetails.Sold;
+}
+
+@Html.Partial("_NavBar")
+@if (@TempData["Is_English"] != null)
+{
+    @if (@TempData["Is_English"].Equals(true))
+    {
+        await Html.RenderPartialAsync("_OrderEn", Model);
+    }
+    else
+    {
+        await Html.RenderPartialAsync("_OrderBn", Model);
+    }
+    TempData.Keep("Is_English");
+}
+else
+{
+    await Html.RenderPartialAsync("_OrderEn", Model);
+}
+
+<script src="~/themes/js/common.js"></script>
+
+<style>
+    @@media (min-width: 0px) and (max-width: 767px) {
+    
+        .mobile-text-center {
+            text-align: center;
+        }
+    
+        .carousel-normal {
+            display: none;
+        }
+
+        .carousel-mobile {
+            display: block;
+        }
+        .form-margin {
+            margin-left: 0%;
+        }
+    }
+
+    @@media only screen and (min-width: 768px) {
+        .carousel-mobile {
+            display: none;
+        }
+
+        .carousel-normal {
+            display: block;
+        }
+        .form-margin {
+            margin-left: 5%;
+        }
+    }
+</style>
+
+<script>
+
+    $(document).ready(function () {
+
+
+        $('.thumbnail').click(function () {
+            console.log("clicked ");
+            var images = $(this).find('img').attr('src');
+
+            $('#big-img').attr("src", images);
+            $('#big').attr("href", images);
+
+        });
+
+        $('#myCarousel-mobile').carousel({
+            interval: 3000,
+        });
+        $('#myCarousel-1').carousel({
+            interval: 4000,
+        });
+    });
+</script>

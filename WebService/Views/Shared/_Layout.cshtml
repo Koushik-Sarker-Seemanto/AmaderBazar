@@ -1,48 +1,112 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebService</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link runat="server" rel="shortcut icon" href="~/themes/images/favicon.ico" type="image/x-icon" />
+    <link runat="server" rel="icon" href="~/themes/images/favicon.ico" type="image/ico" />
+    <meta charset="utf-8">
+    <title>@ViewData["Title"] - FarmHut</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+    <meta name="description" content="">
+    <!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- bootstrap -->
+
+    <link href="~/lib/bootstra/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/lib/bootstra/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="~/themes/css/bootstrappage.css" rel="stylesheet" />
+
+
+    <!-- global styles -->
+    <link href="~/themes/css/flexslider.css" rel="stylesheet" />
+    <link href="~/themes/css/main.css" rel="stylesheet" />
+    <link href="~/themes/css/jquery.fancybox.css" rel="stylesheet" />
+
+    <!-- scripts -->
+    <script src="~/themes/js/jquery-1.7.2.min.js"></script>
+    <script src="~/themes/js/superfish.js"></script>
+    <script src="~/themes/js/jquery.scrolltotop.js"></script>
+    <script src="~/themes/js/jquery.fancybox.js"></script>
+    <script src="~/lib/bootstra/js/bootstrap.min.js"></script>
+    <style>
+        .text-danger {
+            color: red;
+        }
+
+        :root {
+            --logoGreen: #a3d39c;
+        }
+    </style>
+    <style>
+        .card-pic
+        {
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+        .sold-tag
+        {
+            position: absolute;
+            top: 15%;
+            left: 0px;
+        }
+    </style>
+    <script>
+        var numbers = {
+            '0': '০',
+            '1': '১',
+            '2': '২',
+            '3': '৩',
+            '4': '৪',
+            '5': '৫',
+            '6': '৬',
+            '7': '৭',
+            '8': '৮',
+            '9': '৯',
+            ',':',',
+        };
+
+        function replaceNumbers(input) {
+            var output = [];
+            for (var i = 0; i < input.length; ++i) {
+                if (numbers.hasOwnProperty(input[i])) {
+                    output.push(numbers[input[i]]);
+                } else {
+                    output.push(input[i]);
+                }
+            }
+            return output.join('');
+        }
+
+    </script>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebService</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div id="wrapper" class="container">
+        @RenderBody()
+
+        @if (@TempData["Is_English"] != null)
+        {
+            @if (@TempData["Is_English"].Equals(true))
+            {
+                // For English
+                await Html.RenderPartialAsync("_FooterEn");
+
+            }
+            else
+            {
+                // For Bangla
+                await Html.RenderPartialAsync("_FooterBn");
+
+            }
+            TempData.Keep("Is_English");
+        }
+        else
+        {
+            // Exception
+            await Html.RenderPartialAsync("_FooterEn");
+        }
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - WebService - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
 </body>
+
 </html>

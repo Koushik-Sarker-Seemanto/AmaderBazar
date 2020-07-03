@@ -1,0 +1,27 @@
+﻿@model Models.Entities.Category;
+@{
+    ViewData["Title"] = "Admin Panel";
+    Layout = "_LayoutAdmin";
+}
+
+<div class="container m-auto">
+    <div class="m-auto col-lg-9 p-5 bg-white">
+        <h1 class="d-flex justify-content-center">Add Category</h1>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger alert alert-danger"})
+    <form asp-action="AddCategory" asp-controller="AdminPanel">
+        <div class="form-group">
+            <label for="categoryName">Category Name</label>
+            <input asp-for="Name" class="form-control" id="categoryName" placeholder="Enter Category Name">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="categoryName">Category Name( বাংলায় লিখুন )</label>
+            <input asp-for="NameBn" class="form-control" id="categoryNamebn" placeholder="Enter Category Name ( বাংলায় লিখুন )">
+            <span asp-validation-for="NameBn" class="text-danger"></span>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-block btn-success m-b-20" type="submit">Add Category</button>
+        </div>
+    </form>
+    </div>
+</div>

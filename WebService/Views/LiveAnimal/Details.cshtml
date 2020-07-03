@@ -1,0 +1,79 @@
+﻿@model Models.LiveAnimalModels.LiveAnimalDetailsViewModel;
+@{
+    ViewData["Title"] = "Product Details";
+
+}
+
+@Html.Partial("_NavBar")
+
+@if (@TempData["Is_English"] != null)
+{
+    @if (@TempData["Is_English"].Equals(true))
+    {
+        await Html.RenderPartialAsync("_DetailsEn", Model);
+    }
+    else
+    {
+        await Html.RenderPartialAsync("_DetailsBn", Model);
+    }
+    TempData.Keep("Is_English");
+}
+else
+{
+    await Html.RenderPartialAsync("_DetailsEn", Model);
+}
+
+<style>
+    @@media (min-width: 0px) and (max-width: 767px) {
+    
+        .mobile-text-center {
+            text-align: center;
+        }
+    
+        .carousel-normal {
+            display: none;
+        }
+
+        .carousel-mobile {
+            display: block;
+        }
+    }
+
+    @@media only screen and (min-width: 768px) {
+        .carousel-mobile {
+            display: none;
+        }
+
+        .carousel-normal {
+            display: block;
+        }
+    }
+</style>
+
+
+
+<script src="~/themes/js/common.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        
+        $('.thumbnail').click(function () {
+            console.log("clicked ");
+            
+            
+            var images = $(this).find('img').attr('src');
+            
+            $('#big-img').attr("src", images);
+            $('#big').attr("href", images);
+
+        });
+
+        $('#myCarousel-mobile').carousel({
+            interval: 3000,
+        });
+        $('#myCarousel-1').carousel({
+            interval: 4000,
+        });
+    });
+</script>

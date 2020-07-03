@@ -1,0 +1,285 @@
+﻿@using Microsoft.AspNetCore.Http
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Core.Common;
+@using System.Web;
+
+@model X.PagedList.IPagedList<Models.LiveAnimalModels.LiveAnimalViewModelFrontend>
+@{
+    ViewData["Title"] = "All Products";
+
+}
+
+@Html.Partial("_NavBar")
+    <section class="homepage-slider" id="home-slider">
+        <div class="flexslider">
+            <ul class="slides">
+                <li>
+                    <img src="~/themes/images/carousel/rsz_banner03_01.jpg" alt="" />
+                </li>
+                <li>
+                    <img src="~/themes/images/carousel/rsz_maxresdefault.png" alt=""/>
+                </li>
+                <li>
+                    <img src="~/themes/images/carousel/rsz_maxresdefault_2.png" alt=""/>
+                </li>
+            </ul>
+        </div>
+    </section>
+@if (@TempData["Is_English"] != null)
+{
+    @if (@TempData["Is_English"].Equals(true))
+    {
+        await Html.RenderPartialAsync("_IndexEn", Model);
+    }
+    else
+    {
+        await Html.RenderPartialAsync("_IndexBn", Model);
+    }
+    TempData.Keep("Is_English");
+}
+else
+{
+    await Html.RenderPartialAsync("_IndexEn", Model);
+}
+
+<script src="~/themes/js/common.js"></script>
+<script src="~/js/priceRange.js"></script>
+
+<style>
+    @@media (min-width: 768px) and (max-width: 1199px) {
+        #min {
+            width: 120px;
+        }
+
+        #max {
+            width: 120px;
+        }
+
+        h3 {
+            display: none;
+        }
+
+        h4 {
+            display: block;
+        }
+    }
+
+    @@media (min-width: 0px) and (max-width: 767px) {
+        h3 {
+            display: none;
+        }
+
+        h4 {
+            display: block;
+        }
+    }
+
+    @@media only screen and (min-width: 1200px) {
+        h4 {
+            display: none;
+        }
+
+        h3 {
+            display: block;
+        }
+    }
+</style>
+
+
+<script>
+
+    $(document).ready(function () {
+        let isMobile = window.matchMedia("(min-width: 0px) and (max-width: 600px)").matches;
+        console.log("isMobile: " + isMobile);
+        if (isMobile) {
+            $("#upperDiv").css('marginTop', '-20%');
+            $("#categoryExpand").fadeOut(1);
+            $("#colorExpand").fadeOut(1);
+            $(".priceExpand1").fadeOut(1);
+            $(".priceExpand2").fadeOut(1);
+        }
+
+        try {
+            $(document).on("change", "#minRange", function () {
+                $("#min").val($(this).val());
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+        try {
+            $(document).on("change", "#maxRange", function () {
+                $("#max").val($(this).val());
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+
+        try {
+            $(document).on("click", "#categoryExpandBtn", function () {
+                $("#categoryExpand").fadeToggle();
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+        try {
+            $(document).on("click", "#colorExpandBtn", function () {
+                $("#colorExpand").fadeToggle();
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+        try {
+            $(document).on("click", "#priceExpandBtn", function () {
+                $(".priceExpand1").fadeToggle();
+                $(".priceExpand2").fadeToggle();
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+        try {
+            $(document).on("click", "#priceSelect", function () {
+                let minVal = $("#min").val();
+                let maxVal = $("#max").val();
+                BuildFilterSection("min", minVal);
+                BuildFilterSection("max", maxVal);
+                BuildQuery();
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+        try {
+            $(document).on("click", "#categorySelect", function () {
+                let value = $(this).attr('name');
+                BuildFilterSection("category", value);
+                BuildQuery();
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+        try {
+            $(document).on("click", "#colorSelect", function () {
+                let value = $(this).attr('name');
+                BuildFilterSection("color", value);
+                BuildQuery();
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+        try {
+            $(document).on("click", "#removeItem", function () {
+                $(this).parent().remove();
+                BuildQuery();
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    });
+
+    function BuildQuery() {
+        let filters = $("#allFilters");
+        let categoryValue = "";
+        let colorValue = "";
+        let minValue = "";
+        let maxValue = "";
+        let titleValue = "";
+        filters.children().each(function () {
+            let key = $(this).attr('id');
+            let value = $(this).attr('name').trim();
+            if (key === "category") {
+                categoryValue = "&category=" + value;
+            }
+            if (key === "color") {
+                colorValue = "&color=" + value;
+            }
+            if (key === "min") {
+                minValue = "&min=" + value;
+            }
+            if (key === "max") {
+                maxValue = "&max=" + value;
+            }
+            if (key === "title") {
+                titleValue = "&title=" + value;
+            }
+        });
+        if (minValue === "" && maxValue === "" && colorValue === "" && categoryValue === "" && titleValue === "") {
+            window.location.href = '/LiveAnimal';
+        }
+        else {
+            window.location.href = '/LiveAnimal?' + minValue + maxValue + categoryValue + colorValue + titleValue;
+        }
+    }
+
+    function BuildFilterSection(key, value) {
+        let dom = $("#allFilters");
+        let newData = `<p id="${key}" hidden name="${value}" style="padding: 3%; background: #eeeeee; border-radius: 10px">${key} : ${value}
+                            <i id="removeItem" style="padding: 3%; color: red; cursor: pointer" class="fa fa-times pull-right"></i>
+                        </p>`;
+        dom.append(newData);
+    }
+</script>
+<script src="~/themes/js/common.js"></script>
+<script src="~/themes/js/jquery.flexslider-min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(document).ready(function () {
+            $('.flexslider').flexslider({
+                animation: "fade",
+                slideshowSpeed: 4000,
+                animationSpeed: 600,
+                controlNav: false,
+                directionNav: true,
+                controlsContainer: ".flex-container" // the container that holds the flexslider
+            });
+        });
+    });
+    $('#myCarousel-2-mobile').carousel({
+        interval: 3000,
+    });
+    $('#myCarousel-2').carousel({
+        interval: 4000,
+    });
+    $('#myCarousel-mobile').carousel({
+        interval: 3000,
+    });
+    $('#myCarousel').carousel({
+        interval: 4000,
+    });
+</script>
+
+<style>
+    @@media (min-width: 0px) and (max-width: 767px) {
+        .carousel-normal {
+            display: none;
+        }
+
+        .carousel-mobile {
+            display: block;
+        }
+
+        .banner-text {
+            margin-top: 10% !important;
+        }
+    }
+
+    @@media only screen and (min-width: 768px) {
+        .carousel-mobile {
+            display: none;
+        }
+
+        .carousel-normal {
+            display: block;
+        }
+
+        .banner-text {
+            margin-top: 0%;
+        }
+    }
+</style>
