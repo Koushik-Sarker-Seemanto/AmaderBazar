@@ -118,8 +118,15 @@
                             </div>
                         }
                         <div class="mobile-text-center" style="margin-top: 3%;">
-                            <strong style="font-size: x-large;">&#2547 @Model.LiveAnimalDetails.Price </strong>
+                            <strong style="font-size: x-large;" id="@Model.LiveAnimalDetails.Id">&#2547 @Model.LiveAnimalDetails.Price </strong>
                         </div>
+                        <script>
+                            var num = @Model.LiveAnimalDetails.Price;
+                            $("#@Model.LiveAnimalDetails.Id")
+                                .text("৳ " + num.toLocaleString('en-IN'));
+                            console.log(replaceNumbers(num.toString()));
+
+                        </script>
                         @* <div class="mobile-text-center" style="margin-top: 7%;"> *@
                         @*     <h5 style="text-align: center;">Confirm Order</h5> *@
                         @* </div> *@
@@ -147,8 +154,17 @@
                             <li class="active"><a href="#home">Description</a></li>
 
                         </ul>
-                        <div class="tab-content" style="margin-left: 2.5%; ">
-                            <div class="tab-pane active" id="home">@Model.LiveAnimalDetails.Description</div>
+                        <div class="tab-content" style="margin-left: 3.5%;margin-top: -1%">
+                            <div class="tab-pane active" id="home">
+                                @if (!string.IsNullOrWhiteSpace(@Model.LiveAnimalDetails.Description))
+                                {
+                                    var lines = @Model.LiveAnimalDetails.Description.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                                    foreach (var line in lines)
+                                    {
+                                        <p>@line</p>
+                                    }
+                                }
+                            </div >
                         </div>
                     </div>
                 </div>

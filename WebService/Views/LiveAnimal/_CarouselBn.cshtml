@@ -66,7 +66,7 @@
                             <script>
                                 var num = @Model.Related[i].Price;
                                 $("#@Model.Related[i].Id")
-                                    .text("৳ " +replaceNumbers(num.toString()));
+                                    .text("৳ " + num.toLocaleString('bn-IN'));
                                 console.log(replaceNumbers(num.toString()));
 
                             </script>
@@ -130,7 +130,7 @@
                                 <script>
                                     var num = @Model.Related[j].Price;
                                     $("#@Model.Related[j].Id")
-                                        .text("৳ " +replaceNumbers(num.toString()));
+                                        .text("৳ " + num.toLocaleString('bn-IN'));
                                     console.log(replaceNumbers(num.toString()));
 
                                 </script>
@@ -210,7 +210,7 @@
                             <script>
                                 var num = @Model.Related[i].Price;
                                 $("#@Model.Related[i].Id")
-                                    .text("৳ " +replaceNumbers(num.toString()));
+                                    .text("৳ " + num.toLocaleString('bn-IN'));
                                 console.log(replaceNumbers(num.toString()));
 
                             </script>
@@ -275,7 +275,7 @@
                                 <script>
                                     var num = @Model.Related[j].Price;
                                     $("#@Model.Related[j].Id")
-                                        .text("৳ " +replaceNumbers(num.toString()));
+                                        .text("৳ " + num.toLocaleString('bn-IN'));
                                     console.log(replaceNumbers(num.toString()));
 
                                 </script>

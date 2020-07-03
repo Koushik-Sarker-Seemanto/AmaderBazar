@@ -37,13 +37,13 @@
                                 @foreach (var image in Model.LiveAnimalDetails.Images)
                                 {
                                     <li class="span1 carousel-normal">
-                                        <a class="thumbnail"  data-fancybox-group="group1" title="Description 2"><img src="~/images/@image" alt=""></a>
+                                        <a class="thumbnail" data-fancybox-group="group1" title="Description 2"><img src="~/images/@image" alt=""></a>
                                     </li>
                                 }
                                 @foreach (var image in Model.LiveAnimalDetails.Images)
                                 {
                                     <li class="span1 carousel-mobile">
-                                        <a class="thumbnail"  data-fancybox-group="group1" title="Description 2" href="~/images/@image" target="_blank"><img src="~/images/@image" alt=""></a>
+                                        <a class="thumbnail" data-fancybox-group="group1" title="Description 2" href="~/images/@image" target="_blank"><img src="~/images/@image" alt=""></a>
                                     </li>
                                 }
                             </ul>
@@ -182,7 +182,7 @@
                                 var num = @Model.LiveAnimalDetails.Price;
 
                                 $("#priceM")
-                                    .text("৳ " +replaceNumbers(num.toString()));
+                                    .text("৳ " +num.toLocaleString('bn-IN'));
                                 console.log(replaceNumbers(num.toString()));
 
                             </script>
@@ -209,22 +209,31 @@
                 </div>
 
             </div>
-        @if(Model.LiveAnimalDetails.DescriptionBn != null)
-        {
-            <div class="row">
-                <div class="span9" style="margin-left: 2.5%; ">
-                    <ul class="nav nav-tabs" id="myTab" style="margin-left: 2.5%; ">
-                        <li class="active"><a href="#home">Description</a></li>
-                    
-                    </ul>							 
-                    <div class="tab-content" style="margin-left: 2.5%; ">
-                        <div class="tab-pane active" id="home">@Model.LiveAnimalDetails.DescriptionBn</div>
-                    </div>							
+            @if (Model.LiveAnimalDetails.DescriptionBn != null)
+            {
+                <div class="row">
+                    <div class="span9" style="margin-left: 2.5%; ">
+                        <ul class="nav nav-tabs" id="myTab" style="margin-left: 2.5%; ">
+                            <li class="active"><a href="#home">Description</a></li>
+
+                        </ul>
+                        <div class="tab-content" style="margin-left: 3.5%;margin-top: -1%">
+                            <div class="tab-pane active" id="home">
+                                @if (!string.IsNullOrWhiteSpace(@Model.LiveAnimalDetails.DescriptionBn))
+                                {
+                                    var lines = @Model.LiveAnimalDetails.DescriptionBn.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                                    foreach (var line in lines)
+                                    {
+                                        <p>@line</p>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        }
+            }
             <div class="row" style="margin-left: 0%; ">
-                
+
                 <div class="span9" style="margin-left: 2.5%; ">
                     <br>
 

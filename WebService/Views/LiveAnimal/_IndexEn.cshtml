@@ -105,7 +105,7 @@
                                 <div class="product-box">
                                     <span class="sale_tag"></span>
                                     @{
-                                        if (animal.CoverImage != null )
+                                        if (animal.CoverImage != null)
                                         {
                                             <div style="position: relative; left: 0; top: 0;">
                                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = animal.Id})'><img class="card-pic" alt="" src="~/images/@animal.CoverImage"></a>
@@ -121,7 +121,7 @@
                                             <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'><img alt="" src="~/static/noimage.png"></a><br />
                                         }
                                     }
-                                    @if(animal.Title != null)
+                                    @if (animal.Title != null)
                                     {
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})' class="title">@animal.Title</a><br />
                                     }
@@ -129,7 +129,7 @@
                                     {
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})' class="title">Title: N/A</a><br />
                                     }
-                                    @if(animal.Origin != null)
+                                    @if (animal.Origin != null)
                                     {
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>@animal.Origin</a>
                                     }
@@ -137,17 +137,24 @@
                                     {
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>Origin: N/A</a>
                                     }
-                                    @if(!double.IsNaN(animal.Price))
+                                    @if (!double.IsNaN(animal.Price))
                                     {
-                                        <p class="price">&#2547 @animal.Price</p>
+                                        <p class="price" id="@animal.Id">&#2547 @animal.Price</p>
                                     }
                                     else
                                     {
                                         <p class="price">&#2547 N/A</p>
                                     }
-                                    
+
                                 </div>
                             </li>
+                            <script>
+                                var num = @animal.Price;
+                                $("#@animal.Id")
+                                    .text("৳ " + num.toLocaleString('en-IN'));
+                                console.log(replaceNumbers(num.toString()));
+
+                            </script>
                         }
                     }
                     else

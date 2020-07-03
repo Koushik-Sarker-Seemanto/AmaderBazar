@@ -1,4 +1,4 @@
-@model Models.LiveAnimalModels.LiveAnimalDetailsViewModel;
+﻿@model Models.LiveAnimalModels.LiveAnimalDetailsViewModel;
 
 
     @*For PC and TAB*@
@@ -24,16 +24,16 @@
                             @{
                                 if (Model.Related[i].CoverImage != null)
                                 {
-                                                        <div style="position: relative; left: 0; top: 0;">
-                                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img class="card-pic" alt="" src="~/images/@Model.Related[i].CoverImage"></a>
-                                                            @if (Model.Related[i].Sold)
-                                                            {
-                                                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img class="sold-tag" alt="" src="~/themes/images/sold.png" /></a>
+                                    <div style="position: relative; left: 0; top: 0;">
+                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img class="card-pic" alt="" src="~/images/@Model.Related[i].CoverImage"></a>
+                                        @if (Model.Related[i].Sold)
+                                        {
+                                            <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img class="sold-tag" alt="" src="~/themes/images/sold.png" /></a>
                                                                                                                         
 
-                                                            }
+                                        }
 
-                                                        </div>
+                                    </div>
                                 }
                                 else
                                 {
@@ -58,7 +58,7 @@
                             }
                             @if(!double.IsNaN(Model.Related[i].Price))
                             {
-                                <p class="price">&#2547 @Model.Related[i].Price</p>
+                                <p class="price" id="@Model.Related[i].Id">&#2547 @Model.Related[i].Price</p>
                             }
                             else
                             {
@@ -69,6 +69,13 @@
                             
                         </div>
                     </li>
+                    <script>
+                        var num = @Model.Related[i].Price;
+                        $("#@Model.Related[i].Id")
+                            .text("৳ " + num.toLocaleString('en-IN'));
+                        console.log(replaceNumbers(num.toString()));
+
+                    </script>
                 }
             </ul>
         </div>
@@ -91,7 +98,7 @@
                                             @if (Model.Related[j].Sold)
                                             {
                                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[j].Id})'><img class="sold-tag" alt="" src="~/themes/images/sold.png" /></a>
-                                              }
+                                            }
 
                                         </div>
                                     }
@@ -118,7 +125,7 @@
                                 }
                                 @if (!double.IsNaN(Model.Related[j].Price))
                                 {
-                                    <p class="price">&#2547 @Model.Related[j].Price</p>
+                                    <p class="price" id="@Model.Related[j].Id">&#2547 @Model.Related[j].Price</p>
                                 }
                                 else
                                 {
@@ -126,6 +133,13 @@
                                 }
                             </div>
                         </li>
+                        <script>
+                            var num = @Model.Related[j].Price;
+                            $("#@Model.Related[j].Id")
+                                .text("৳ " + num.toLocaleString('en-IN'));
+                            console.log(replaceNumbers(num.toString()));
+
+                        </script>
                     }
                 </ul>
             </div>
@@ -149,7 +163,7 @@
                 
         <div class="active item">
             <ul class="thumbnails listing-products">
-                
+
                 @for (int i = 0; i < Math.Min(@Model.Related.Count, 1); i++)
                 {
                     <li class="span3">
@@ -163,7 +177,7 @@
                                         @if (Model.Related[i].Sold)
                                         {
                                             <a href='@Url.Action("Details", "LiveAnimal", new {Id = @Model.Related[i].Id})'><img class="sold-tag" alt="" src="~/themes/images/sold.png" /></a>
-                
+
                                         }
 
                                     </div>
@@ -191,7 +205,7 @@
                             }
                             @if (!double.IsNaN(Model.Related[i].Price))
                             {
-                                <p class="price">&#2547 @Model.Related[i].Price</p>
+                                <p class="price" id="@Model.Related[i].Id">&#2547 @Model.Related[i].Price</p>
                             }
                             else
                             {
@@ -199,6 +213,13 @@
                             }
                         </div>
                     </li>
+                    <script>
+                        var num = @Model.Related[i].Price;
+                        $("#@Model.Related[i].Id")
+                            .text("৳ " + num.toLocaleString('en-IN'));
+                        console.log(replaceNumbers(num.toString()));
+
+                    </script>
                 }
             </ul>
         </div>
@@ -249,7 +270,7 @@
                                 }
                                 @if (!double.IsNaN(Model.Related[j].Price))
                                 {
-                                    <p class="price">&#2547 @Model.Related[j].Price</p>
+                                    <p class="price" id="@Model.Related[j].Id">&#2547 @Model.Related[j].Price</p>
                                 }
                                 else
                                 {
@@ -257,6 +278,13 @@
                                 }
                             </div>
                         </li>
+                        <script>
+                            var num = @Model.Related[j].Price;
+                            $("#@Model.Related[j].Id")
+                                .text("৳ " + num.toLocaleString('en-IN'));
+                            console.log(replaceNumbers(num.toString()));
+
+                        </script>
                     }
                 </ul>
             </div>

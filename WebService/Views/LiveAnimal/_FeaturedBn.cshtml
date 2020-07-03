@@ -150,7 +150,7 @@
                                     <script>
                                         var num = @animal.Price;
                                         $("#@animal.Id")
-                                            .text("৳ "+replaceNumbers(num.toString()));
+                                            .text("৳ " + num.toLocaleString('bn-IN'));
                                         console.log(replaceNumbers(num.toString()));
                                     </script>
                                 </div>

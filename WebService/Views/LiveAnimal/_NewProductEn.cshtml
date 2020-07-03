@@ -106,7 +106,7 @@
                                     }
                                     @if (!double.IsNaN(animal.Price))
                                     {
-                                        <p class="price">&#2547 @animal.Price</p>
+                                        <p class="price" id="@animal.Id">&#2547 @animal.Price</p>
                                     }
                                     else
                                     {
@@ -115,6 +115,13 @@
 
                                 </div>
                             </li>
+                            <script>
+                                var num = @animal.Price;
+                                $("#@animal.Id")
+                                    .text("৳ " + num.toLocaleString('en-IN'));
+                                console.log(replaceNumbers(num.toString()));
+
+                            </script>
                         }
                     }
                     else

@@ -155,7 +155,7 @@
                         @if (!double.IsNaN(Model.LiveAnimalDetails.Price))
                         {
                             <div class="mobile-text-center" style="margin-top: 10%;">
-                                <strong style="font-size: x-large;">&#2547 @Model.LiveAnimalDetails.Price </strong>
+                                <strong style="font-size: x-large;" id="@Model.LiveAnimalDetails.Id">&#2547 @Model.LiveAnimalDetails.Price </strong>
                             </div>
                         }
                         else
@@ -164,7 +164,13 @@
                                 <strong style="font-size: x-large;">&#2547 N/A </strong>
                             </div>
                         }
+                    <script>
+                            var num = @Model.LiveAnimalDetails.Price;
+                            $("#@Model.LiveAnimalDetails.Id")
+                                .text("৳ " + num.toLocaleString('en-IN'));
+                            console.log(replaceNumbers(num.toString()));
 
+                    </script>
                         @if (Model.LiveAnimalDetails.Sold != null)
                         {
                             @if (Model.LiveAnimalDetails.Sold == false)
@@ -180,20 +186,29 @@
                 </div>
 
             </div>
-            @if(Model.LiveAnimalDetails.Description != null)
-            {
-                <div class="row">
-                    <div class="span9" style="margin-left: 2.5%; ">
-                        <ul class="nav nav-tabs" id="myTab" style="margin-left: 2.5%; ">
-                            <li class="active"><a href="#home">Description</a></li>
-                    
-                        </ul>							 
-                        <div class="tab-content" style="margin-left: 2.5%; ">
-                            <div class="tab-pane active" id="home">@Model.LiveAnimalDetails.Description</div>
-                        </div>							
+        @if (Model.LiveAnimalDetails.Description != null)
+        {
+            <div class="row">
+                <div class="span9" style="margin-left: 2.5%; ">
+                    <ul class="nav nav-tabs" id="myTab" style="margin-left: 2.5%; ">
+                        <li class="active"><a href="#home">Description</a></li>
+
+                    </ul>
+                    <div class="tab-content" style="margin-left: 3.5%;margin-top: -1%">
+                        <div class="tab-pane active" id="home">
+                            @if (!string.IsNullOrWhiteSpace(@Model.LiveAnimalDetails.Description))
+                            {
+                                var lines = @Model.LiveAnimalDetails.Description.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                                foreach (var line in lines)
+                                {
+                                    <p>@line</p>
+                                }
+                            }
+                        </div >
                     </div>
                 </div>
-            }
+            </div>
+        }
         
             <div class="row" style="margin-left: 0%; ">
                 
