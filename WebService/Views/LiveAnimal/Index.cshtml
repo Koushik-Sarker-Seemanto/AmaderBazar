@@ -114,6 +114,22 @@ else
         } catch (e) {
             console.log(e);
         }
+        
+        try {
+            $(document).on("change", "#minRangeWeight", function () {
+                $("#minWeight").val($(this).val());
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+        try {
+            $(document).on("change", "#maxRangeWeight", function () {
+                $("#maxWeight").val($(this).val());
+            });
+        } catch (e) {
+            console.log(e);
+        }
 
 
         try {
@@ -147,6 +163,18 @@ else
                 let maxVal = $("#max").val();
                 BuildFilterSection("min", minVal);
                 BuildFilterSection("max", maxVal);
+                BuildQuery();
+            });
+        } catch (e) {
+            console.log(e);
+        }
+        
+        try {
+            $(document).on("click", "#weightSelect", function () {
+                let minVal = $("#minWeight").val();
+                let maxVal = $("#maxWeight").val();
+                BuildFilterSection("minWeight", minVal);
+                BuildFilterSection("maxWeight", maxVal);
                 BuildQuery();
             });
         } catch (e) {
@@ -189,6 +217,8 @@ else
         let colorValue = "";
         let minValue = "";
         let maxValue = "";
+        let minWeightValue = "";
+        let maxWeightValue = "";
         let titleValue = "";
         filters.children().each(function () {
             let key = $(this).attr('id');
@@ -205,15 +235,21 @@ else
             if (key === "max") {
                 maxValue = "&max=" + value;
             }
+            if (key === "minWeight") {
+                minWeightValue = "&minWeight=" + value;
+            }
+            if (key === "maxWeight") {
+                maxWeightValue = "&maxWeight=" + value;
+            }
             if (key === "title") {
                 titleValue = "&title=" + value;
             }
         });
-        if (minValue === "" && maxValue === "" && colorValue === "" && categoryValue === "" && titleValue === "") {
+        if (minValue === "" && maxValue === "" && minWeightValue === "" && maxWeightValue === "" && colorValue === "" && categoryValue === "" && titleValue === "") {
             window.location.href = '/LiveAnimal';
         }
         else {
-            window.location.href = '/LiveAnimal?' + minValue + maxValue + categoryValue + colorValue + titleValue;
+            window.location.href = '/LiveAnimal?' + minValue + maxValue + minWeightValue + maxWeightValue + categoryValue + colorValue + titleValue;
         }
     }
 
