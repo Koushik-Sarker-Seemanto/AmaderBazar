@@ -23,7 +23,7 @@ namespace WebService.Controllers
             _liveAnimalService = liveAnimalService;
             _orderService = orderService;
         }
-        public async Task<IActionResult> Index(int? page, int? min, int? max, string category = null, string color = null, string title = null)
+        public async Task<IActionResult> Index(int? page, int? min, int? max, int? minWeight, int? maxWeight, string category = null, string color = null, string title = null)
         {
             Dictionary<string, int> categoryWise = await _liveAnimalService.GetCategoryCount();
             Dictionary<string, int> colorWise = await _liveAnimalService.GetColorCount();
@@ -36,7 +36,7 @@ namespace WebService.Controllers
             
             if (min != null)
             {
-                allAnimals = allAnimals.Where(e => e.Price > min).ToList();
+                allAnimals = allAnimals.Where(e => e.Price >= min).ToList();
                 queryParam.Add("min", min.ToString());
             }
             if (title != null)
@@ -47,8 +47,18 @@ namespace WebService.Controllers
 
             if (max != null)
             {
-                allAnimals = allAnimals.Where(e => e.Price < max).ToList();
+                allAnimals = allAnimals.Where(e => e.Price <= max).ToList();
                 queryParam.Add("max", max.ToString());
+            }
+            if (minWeight != null)
+            {
+                allAnimals = allAnimals.Where(e => e.Weight >= minWeight).ToList();
+                queryParam.Add("minWeight", minWeight.ToString());
+            }
+            if (maxWeight != null)
+            {
+                allAnimals = allAnimals.Where(e => e.Weight <= maxWeight).ToList();
+                queryParam.Add("maxWeight", maxWeight.ToString());
             }
 
             if (category != null)

@@ -91,14 +91,14 @@ else
 <script>
 
     $(document).ready(function () {
-        let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+        let isMobile = window.matchMedia("(min-width: 0px) and (max-width: 600px)").matches;
         console.log("isMobile: " + isMobile);
         if (isMobile) {
-            $("#upperDiv").css('marginTop', '-30%');
-            $("#categoryExpand").fadeOut();
-            $("#colorExpand").fadeOut();
-            $(".priceExpand1").fadeOut();
-            $(".priceExpand2").fadeOut();
+            $("#upperDiv").css('marginTop', '-20%');
+            $("#categoryExpand").fadeOut(1);
+            $("#colorExpand").fadeOut(1);
+            $(".priceExpand1").fadeOut(1);
+            $(".priceExpand2").fadeOut(1);
         }
 
         try {
@@ -112,6 +112,22 @@ else
         try {
             $(document).on("change", "#maxRange", function () {
                 $("#max").val($(this).val());
+            });
+        } catch (e) {
+            console.log(e);
+        }
+        
+        try {
+            $(document).on("change", "#minRangeWeight", function () {
+                $("#minWeight").val($(this).val());
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+        try {
+            $(document).on("change", "#maxRangeWeight", function () {
+                $("#maxWeight").val($(this).val());
             });
         } catch (e) {
             console.log(e);
@@ -154,6 +170,18 @@ else
         } catch (e) {
             console.log(e);
         }
+        
+        try {
+            $(document).on("click", "#weightSelect", function () {
+                let minVal = $("#minWeight").val();
+                let maxVal = $("#maxWeight").val();
+                BuildFilterSection("minWeight", minVal);
+                BuildFilterSection("maxWeight", maxVal);
+                BuildQuery();
+            });
+        } catch (e) {
+            console.log(e);
+        }
 
         try {
             $(document).on("click", "#categorySelect", function () {
@@ -191,6 +219,9 @@ else
         let colorValue = "";
         let minValue = "";
         let maxValue = "";
+        let minWeightValue = "";
+        let maxWeightValue = "";
+        let titleValue = "";
         filters.children().each(function () {
             let key = $(this).attr('id');
             let value = $(this).attr('name').trim();
@@ -206,12 +237,21 @@ else
             if (key === "max") {
                 maxValue = "&max=" + value;
             }
+            if (key === "minWeight") {
+                minWeightValue = "&minWeight=" + value;
+            }
+            if (key === "maxWeight") {
+                maxWeightValue = "&maxWeight=" + value;
+            }
+            if (key === "title") {
+                titleValue = "&title=" + value;
+            }
         });
-        if (minValue === "" && maxValue === "" && colorValue === "" && categoryValue === "") {
+        if (minValue === "" && maxValue === "" && minWeightValue === "" && maxWeightValue === "" && colorValue === "" && categoryValue === "" && titleValue === "") {
             window.location.href = '/LiveAnimal';
         }
         else {
-            window.location.href = '/LiveAnimal?' + minValue + maxValue + categoryValue + colorValue;
+            window.location.href = '/LiveAnimal?' + minValue + maxValue + minWeightValue + maxWeightValue + categoryValue + colorValue + titleValue;
         }
     }
 
