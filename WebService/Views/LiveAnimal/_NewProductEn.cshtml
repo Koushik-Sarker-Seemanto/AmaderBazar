@@ -92,7 +92,7 @@
                                 <div class="product-box">
                                     <span class="sale_tag"></span>
                                     @{
-                                        if (animal.CoverImage != null )
+                                        if (animal.CoverImage != null)
                                         {
                                             <div style="position: relative; left: 0; top: 0;">
                                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = animal.Id})'><img class="card-pic" alt="" src="~/images/@animal.CoverImage"></a>
@@ -123,6 +123,15 @@
                                     else
                                     {
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>Origin: N/A</a>
+                                    }
+                                    <br />
+                                    @if (!double.IsNaN(@animal.Weight))
+                                    {
+                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>@animal.Weight K.G. (approx.)</a>
+                                    }
+                                    else
+                                    {
+                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>N/A</a>
                                     }
                                     @if (!double.IsNaN(animal.Price))
                                     {

@@ -126,7 +126,7 @@
                                 <div class="product-box">
                                     <span class="sale_tag"></span>
                                     @{
-                                        if (animal.CoverImage != null )
+                                        if (animal.CoverImage != null)
                                         {
                                             <div style="position: relative; left: 0; top: 0;">
                                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = animal.Id})'><img class="card-pic" alt="" src="~/images/@animal.CoverImage"></a>
@@ -142,7 +142,7 @@
                                             <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'><img alt="" src="~/static/noimage.png"></a><br />
                                         }
                                     }
-                                    @if(animal.TitleBn != null)
+                                    @if (animal.TitleBn != null)
                                     {
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})' class="title">@animal.TitleBn</a><br />
                                     }
@@ -150,7 +150,7 @@
                                     {
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})' class="title">শিরোনাম: নাই</a><br />
                                     }
-                                    @if(animal.OriginBn != null)
+                                    @if (animal.OriginBn != null)
                                     {
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>@animal.OriginBn</a>
                                     }
@@ -158,10 +158,19 @@
                                     {
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>উত্স: নাই</a>
                                     }
-                                    @if(!double.IsNaN(animal.Price))
+                                    <br />
+                                    @if (!double.IsNaN(@animal.Weight))
+                                    {
+                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>@animal.Weight K.G. (approx.)</a>
+                                    }
+                                    else
+                                    {
+                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>N/A</a>
+                                    }
+                                    @if (!double.IsNaN(animal.Price))
                                     {
                                         <p class="price" id="@animal.Id">&#2547 @animal.Price</p>
-                                        
+
                                     }
                                     else
                                     {
@@ -194,7 +203,7 @@
                 {
                     <hr>
                     <div class="pagination pagination-small pagination-centered">
-                        @Html.PagedListPager(Model, page => Url.Action("Index", new
+                        @Html.PagedListPager(Model, page => Url.Action("FeatureProduct", new
                         {
                             min = Context.Request.Query["min"],
                             max = Context.Request.Query["max"],

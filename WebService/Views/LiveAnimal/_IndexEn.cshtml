@@ -157,6 +157,15 @@
                                     {
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>Origin: N/A</a>
                                     }
+                                    <br />
+                                    @if (!double.IsNaN(@animal.Weight))
+                                    {
+                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>@animal.Weight K.G. (approx.)</a>
+                                    }
+                                    else
+                                    {
+                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>N/A</a>
+                                    }
                                     @if (!double.IsNaN(animal.Price))
                                     {
                                         <p class="price" id="@animal.Id">&#2547 @animal.Price</p>
@@ -200,7 +209,9 @@
                             max = Context.Request.Query["max"],
                             category = Context.Request.Query["category"],
                             color = Context.Request.Query["color"],
-                            page
+                            minWeight = Context.Request.Query["minWeight"],
+                            maxWeight = Context.Request.Query["maxWeight"],
+                        page
                         }),
                             new PagedListRenderOptions
                                  {

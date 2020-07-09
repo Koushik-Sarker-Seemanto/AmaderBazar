@@ -1,79 +1,233 @@
 ﻿@model Models.LiveAnimalModels.LiveAnimalDetailsViewModel;
 @{
-    ViewData["Title"] = "Product Details";
-
+    Layout = null;
 }
 
-@Html.Partial("_NavBar")
 
-@if (@TempData["Is_English"] != null)
-{
-    @if (@TempData["Is_English"].Equals(true))
-    {
-        await Html.RenderPartialAsync("_DetailsEn", Model);
-    }
-    else
-    {
-        await Html.RenderPartialAsync("_DetailsBn", Model);
-    }
-    TempData.Keep("Is_English");
-}
-else
-{
-    await Html.RenderPartialAsync("_DetailsEn", Model);
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link runat="server" rel="shortcut icon" href="~/themes/images/favicon.ico" type="image/x-icon" />
+    <link runat="server" rel="icon" href="~/themes/images/favicon.ico" type="image/ico" />
+    <meta charset="utf-8">
+    <title>Product Details - FarmHut</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+    <meta name="description" content="">
+    <meta property="og:title" content="@Model.LiveAnimalDetails.Title">
+    <meta property="og:image" content="~/images/@Model.LiveAnimalDetails.Images[0]">
+    <meta property="og:description" content="@Model.LiveAnimalDetails.Description ">
+    <!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
 
-<style>
-    @@media (min-width: 0px) and (max-width: 767px) {
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- bootstrap -->
+
+    <link href="~/lib/bootstra/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/lib/bootstra/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="~/themes/css/bootstrappage.css" rel="stylesheet" />
+
+
+    <!-- global styles -->
+    <link href="~/themes/css/flexslider.css" rel="stylesheet" />
+    <link href="~/themes/css/main.css" rel="stylesheet" />
+    <link href="~/themes/css/jquery.fancybox.css" rel="stylesheet" />
+
+    <!-- scripts -->
+    <script src="~/themes/js/jquery-1.7.2.min.js"></script>
+    <script src="~/themes/js/superfish.js"></script>
+    <script src="~/themes/js/jquery.scrolltotop.js"></script>
+    <script src="~/themes/js/jquery.fancybox.js"></script>
+    <script src="~/lib/bootstra/js/bootstrap.min.js"></script>
     
-        .mobile-text-center {
-            text-align: center;
+
+    <style>
+        .text-danger {
+            color: red;
         }
+
+        :root {
+            --logoGreen: #a3d39c;
+        }
+    </style>
+    <style>
+        .card-pic {
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        .sold-tag {
+            position: absolute;
+            top: 15%;
+            left: 0px;
+        }
+    </style>
+    <script>
+        var numbers = {
+            '0': '০',
+            '1': '১',
+            '2': '২',
+            '3': '৩',
+            '4': '৪',
+            '5': '৫',
+            '6': '৬',
+            '7': '৭',
+            '8': '৮',
+            '9': '৯',
+            ',': ',',
+        };
+
+        function replaceNumbers(input) {
+            var output = [];
+            for (var i = 0; i < input.length; ++i) {
+                if (numbers.hasOwnProperty(input[i])) {
+                    output.push(numbers[input[i]]);
+                } else {
+                    output.push(input[i]);
+                }
+            }
+            return output.join('');
+        }
+
+    </script>
+
     
-        .carousel-normal {
-            display: none;
+    <style>
+        @@media (min-width: 0px) and (max-width: 767px) {
+
+            .mobile-text-center {
+                text-align: center;
+            }
+
+            .carousel-normal {
+                display: none;
+            }
+
+            .carousel-mobile {
+                display: block;
+            }
         }
 
-        .carousel-mobile {
-            display: block;
+        @@media only screen and (min-width: 768px) {
+            .carousel-mobile {
+                display: none;
+            }
+
+            .carousel-normal {
+                display: block;
+            }
         }
-    }
-
-    @@media only screen and (min-width: 768px) {
-        .carousel-mobile {
-            display: none;
-        }
-
-        .carousel-normal {
-            display: block;
-        }
-    }
-</style>
+    </style>
 
 
 
-<script src="~/themes/js/common.js"></script>
-<script>
+    <script src="~/themes/js/common.js"></script>
+    <script>
 
-    $(document).ready(function () {
+        $(document).ready(function () {
 
+
+            $('.thumbnail').click(function () {
+                console.log("clicked ");
+
+
+                var images = $(this).find('img').attr('src');
+
+                $('#big-img').attr("src", images);
+                $('#big').attr("href", images);
+
+            });
+
+            $('#myCarousel-mobile').carousel({
+                interval: 3000,
+            });
+            $('#myCarousel-1').carousel({
+                interval: 4000,
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div id="wrapper" class="container">
+        @Html.Partial("_NavBar")
         
-        $('.thumbnail').click(function () {
-            console.log("clicked ");
-            
-            
-            var images = $(this).find('img').attr('src');
-            
-            $('#big-img').attr("src", images);
-            $('#big').attr("href", images);
+        
+        
+        
+        @if (@TempData["Is_English"] != null)
+        {
+            @if (@TempData["Is_English"].Equals(true))
+            {
+                await Html.RenderPartialAsync("_DetailsEn", Model);
+            }
+            else
+            {
+                await Html.RenderPartialAsync("_DetailsBn", Model);
+            }
+            TempData.Keep("Is_English");
+        }
+        else
+        {
+            await Html.RenderPartialAsync("_DetailsEn", Model);
+        }
+        
 
-        });
 
-        $('#myCarousel-mobile').carousel({
-            interval: 3000,
-        });
-        $('#myCarousel-1').carousel({
-            interval: 4000,
-        });
-    });
-</script>
+        @if (@TempData["Is_English"] != null)
+        {
+            @if (@TempData["Is_English"].Equals(true))
+            {
+                // For English
+                await Html.RenderPartialAsync("_FooterEn");
+
+            }
+            else
+            {
+                // For Bangla
+                await Html.RenderPartialAsync("_FooterBn");
+
+            }
+            TempData.Keep("Is_English");
+        }
+        else
+        {
+            // Exception
+            await Html.RenderPartialAsync("_FooterEn");
+        }
+    </div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
