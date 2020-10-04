@@ -18,7 +18,7 @@
             <div id="upperDiv" style="padding: 10%; margin-bottom: -20%">
                 <h3 id="priceExpandBtn" style="text-align: center;color: white; background: var(--logoGreen); cursor: pointer; border-radius: 5px">প্রাইজ </h3>
                 <h4 id="priceExpandBtn" style="text-align: center;color: white; background: var(--logoGreen); cursor: pointer;padding: 2%; border-radius: 3px">প্রাইজ </h4>
-                <section class=" range-slider" id="facet-price-range-slider">
+                <section class="facet-price-range-slider range-slider" >
 
                     <input id="minRange" name="range-1" value="0" min="0" max="1000001" step="2" type="range">
 
@@ -34,6 +34,27 @@
                 </section>
 
             </div>
+            <div id="upperDiv" style="padding: 10%; margin-bottom: -20%">
+                <h3 id="priceExpandBtn" style="text-align: center;color: white; background: var(--logoGreen); cursor: pointer; border-radius: 5px">ওজন <i></i></h3>
+                <h4 id="priceExpandBtn" style="text-align: center;color: white; background: var(--logoGreen); cursor: pointer;padding: 2%; border-radius: 3px">ওজন <i></i></h4>
+                <section class="facet-price-range-slider range-slider" id="">
+                                    
+                    <input id="minRangeWeight" name="range-1" value="0" min="0" max="1001" step="2" type="range">
+                                    
+                    <input id="maxRangeWeight" name="range-2" value="1000" min="0" max="1001" step="2" type="range">
+                                    
+                </section>
+                <section style="margin-top: -20%" class=" range-slider">
+                                    
+                    <input id="minWeight" type="text" placeholder="Minimum" value="0" />
+                    <input id="maxWeight" type="text" placeholder="Maximum" value="1000" />
+                        
+                    <button id="weightSelect" style="background: var(--logoGreen)" class="btn btn-success">খুজুন <i class="fa fa-search"></i></button>
+                                    
+                </section>
+                                    
+            </div>
+
 
             @*             <div class="brands_products" style="padding: 10%; margin-bottom: -20%"><!--brands_products--> *@
             @*                 <h3 id="categoryExpandBtn" style="text-align: center;color: white; background: var(--logoGreen); cursor: pointer;border-radius: 5px">Category</h3> *@
@@ -137,6 +158,15 @@
                                     else
                                     {
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>উত্স: নাই</a>
+                                    }
+                                    <br />
+                                    @if (!double.IsNaN(@animal.Weight))
+                                    {
+                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>@animal.Weight K.G. (approx.)</a>
+                                    }
+                                    else
+                                    {
+                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>N/A</a>
                                     }
                                     @if (!double.IsNaN(animal.Price))
                                     {
