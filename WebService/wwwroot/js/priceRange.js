@@ -232,7 +232,7 @@
 )(jQuery);
 
 
-var rangeSlider = $('#facet-price-range-slider');
+var rangeSlider = $('.facet-price-range-slider');
 if (rangeSlider.length > 0) {
     rangeSlider.RangeSlider({
         output: {

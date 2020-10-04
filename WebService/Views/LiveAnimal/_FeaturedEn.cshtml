@@ -19,7 +19,7 @@
             <div id="upperDiv" style="padding: 10%; margin-bottom: -20%">
                 <h3 id="priceExpandBtn" style="text-align: center;color: white; background: var(--logoGreen); cursor: pointer; border-radius: 5px">Price </h3>
                 <h4 id="priceExpandBtn" style="text-align: center;color: white; background: var(--logoGreen); cursor: pointer;padding: 2%; border-radius: 3px">Price </h4>
-                <section class=" range-slider" id="facet-price-range-slider">
+                <section class="facet-price-range-slider range-slider">
 
                     <input id="minRange" name="range-1" value="0" min="0" max="1000001" step="2" type="range">
 
@@ -34,6 +34,26 @@
 
                 </section>
 
+            </div>
+            <div id="upperDiv" style="padding: 10%; margin-bottom: -20%">
+                <h3 id="priceExpandBtn" style="text-align: center;color: white; background: var(--logoGreen); cursor: pointer; border-radius: 5px">Weight <i></i></h3>
+                <h4 id="priceExpandBtn" style="text-align: center;color: white; background: var(--logoGreen); cursor: pointer;padding: 2%; border-radius: 3px">Weight <i></i></h4>
+                <section class="facet-price-range-slider range-slider" id="">
+                        
+                    <input id="minRangeWeight" name="range-1" value="0" min="0" max="1001" step="2" type="range">
+                        
+                    <input id="maxRangeWeight" name="range-2" value="1000" min="0" max="1001" step="2" type="range">
+                        
+                </section>
+                <section style="margin-top: -20%" class=" range-slider">
+                        
+                    <input id="minWeight" type="text" placeholder="Minimum" value="0" />
+                    <input id="maxWeight" type="text" placeholder="Maximum" value="1000" />
+            
+                    <button id="weightSelect" style="background: var(--logoGreen)" class="btn btn-success">Search <i class="fa fa-search"></i></button>
+                        
+                </section>
+                        
             </div>
 
             <div class="brands_products" style="padding: 10%">
@@ -71,7 +91,7 @@
                                 <div class="product-box">
                                     <span class="sale_tag"></span>
                                     @{
-                                        if (animal.CoverImage != null )
+                                        if (animal.CoverImage != null)
                                         {
                                             <div style="position: relative; left: 0; top: 0;">
                                                 <a href='@Url.Action("Details", "LiveAnimal", new {Id = animal.Id})'><img class="card-pic" alt="" src="~/images/@animal.CoverImage"></a>
@@ -87,7 +107,7 @@
                                             <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'><img alt="" src="~/static/noimage.png"></a><br />
                                         }
                                     }
-                                    @if(animal.Title != null)
+                                    @if (animal.Title != null)
                                     {
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})' class="title">@animal.Title</a><br />
                                     }
@@ -95,7 +115,7 @@
                                     {
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})' class="title">Title: N/A</a><br />
                                     }
-                                    @if(animal.Origin != null)
+                                    @if (animal.Origin != null)
                                     {
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>@animal.Origin</a>
                                     }
@@ -103,9 +123,18 @@
                                     {
                                         <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>Origin: N/A</a>
                                     }
-                                    @if(!double.IsNaN(animal.Price))
+                                    <br />
+                                    @if (!double.IsNaN(@animal.Weight))
                                     {
-                                        <p class="price"id="@animal.Id">&#2547 @animal.Price</p>
+                                <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>@animal.Weight K.G. (approx.)</a>
+                                    }
+                                    else
+                                    {
+                                        <a href='@Url.Action("Details", "LiveAnimal", new {Id = @animal.Id})'>N/A</a>
+                                    }
+                                    @if (!double.IsNaN(animal.Price))
+                                    {
+                                        <p class="price" id="@animal.Id">&#2547 @animal.Price</p>
                                     }
                                     else
                                     {
@@ -140,7 +169,7 @@
                 {
                     <hr>
                     <div class="pagination pagination-small pagination-centered">
-                        @Html.PagedListPager(Model, page => Url.Action("Index", new
+                        @Html.PagedListPager(Model, page => Url.Action("FeatureProduct", new
                         {
                             min = Context.Request.Query["min"],
                             max = Context.Request.Query["max"],
